@@ -64,6 +64,15 @@ int user_choice(void)
 	return nchoice;
 }
 
+void user_choice_verify(int vchoice)
+{
+	if (vchoice == 1) {
+		printf("sorted into ascending order\n");
+	} else {
+		printf("sorted into descending order\n");
+	}
+}
+
 int main(void)
 {
 	int values[6] = { 30, 21, 19, 7, 8, 1 };
@@ -79,11 +88,11 @@ int main(void)
 	if ( choice == 1 || choice == 2 ) {
 		if (choice == 1) {
 			array_sort_up(values, nvalue);
-			printf("sorted into ascending order\n");
+			user_choice_verify(choice);
 			array_print(values, nvalue);
 		} else {
 			array_sort_down(values, nvalue);
-			printf("sorted into descending order\n");
+			user_choice_verify(choice);
 			array_print(values, nvalue);
 		}
 	} else {
