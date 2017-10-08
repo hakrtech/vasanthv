@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-void ascending_sort(int a[], int n)
+void array_sort_up(int a[], int n)
 {
 	int i;
 
@@ -24,7 +24,7 @@ void ascending_sort(int a[], int n)
 
 }
 
-void decending_sort(int a[], int n)
+void array_sort_down(int a[], int n)
 {
 	int i;
 
@@ -43,43 +43,51 @@ void decending_sort(int a[], int n)
 	}
 }
 
+void array_print(int a[], int n)
+{
+
+	printf("array[%i] = ", n);
+	int i;
+
+	for (i = 0; i < 6; ++i) {
+		printf("%i   ", a[i]);
+	}
+
+}
+
 int main(void)
 {
-	int sortvalue[16] = { 34, 37, -9, 0, 24, 6, 49, -32, 34, 32, 89, 30, 5, 8, -3, -4 };
+	int sortvalue[6] = { 30, 21, 19, 7, 8, 1 };
 	int i;
 	int asds;
 
-	printf("The array befor the sort:\n");
-
-	for (i = 0; i < 16; ++i) {
-		printf("%i   ", sortvalue[i]);
-	}
+	array_print(sortvalue, 6);
 
 	printf("\nPlease Enter anyone number- Sort on Ascending Order[1]:\n\t\t\t    Sort on Decending Order[2]: ");
 	scanf("%i", &asds);
 
 	if (asds == 1) {
-		ascending_sort(sortvalue, 16);
+		array_sort_up(sortvalue, 6);
 		printf("\n\nThe array value sorted into Acending order:\n");
 
-		for (i = 0; i < 16; ++i) {
+		for (i = 0; i < 6; ++i) {
 			printf("%i   ", sortvalue[i]);
 		}
 
 		printf("\n");
 
 	} else if(asds == 2) {
-		decending_sort(sortvalue, 16);
+		array_sort_down(sortvalue, 6);
 		printf("\n\nThe array value sorted into Decending order:\n");
 
-		for (i = 0; i < 16; ++i) {
+		for (i = 0; i < 6; ++i) {
 			printf("%i   ", sortvalue[i]);
 		}
 
 		printf("\n");
 	}
 	else {
-		printf("Sorry!!! Worng Selection:\n");
+		printf("Sorry!!! Wrong Selection:\n");
 	}
 
 	return 0;
