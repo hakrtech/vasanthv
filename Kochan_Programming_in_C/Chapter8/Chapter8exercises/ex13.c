@@ -46,12 +46,12 @@ void array_sort_down(int a[], int n)
 void array_print(int a[], int n)
 {
 	int i;
-	printf("array[%i] = ", n);
+	printf("array[%i] = { ", n);
 
 	for (i = 0; i < n; ++i) {
-		printf("%i   ", a[i]);
+		printf("%i, ", a[i]);
 	}
-	printf("\n");
+	printf("}\n");
 }
 
 int main(void)
@@ -59,20 +59,22 @@ int main(void)
 	int value[6] = { 30, 21, 19, 7, 8, 1 };
 	int i;
 	int choice;
+	int element;
 
-	array_print(value, 6);
-	printf("choice- 1.ascending order:\n\t2.descending Order: ");
+	element = 6;
+	array_print(value, element);
+	printf("choice- 1.ascending order\n\t2.descending order : ");
 	scanf("%i", &choice);
 
 	if (choice == 1) {
-		array_sort_up(value, 6);
-		printf("sorted into acending order:\n");
-		array_print(value, 6);
+		array_sort_up(value, element);
+		printf("sorted into ascending order\n");
+		array_print(value, element);
 
 	} else if (choice == 2) {
-		array_sort_down(value, 6);
-		printf("sorted into descending order:\n");
-		array_print(value, 6);
+		array_sort_down(value, element);
+		printf("sorted into descending order\n");
+		array_print(value, element);
 
 	}else {
 		printf("sorry!!! wrong choice\n");
