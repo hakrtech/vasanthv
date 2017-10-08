@@ -4,15 +4,17 @@
 
 #include <stdio.h>
 
-void ascendingsort(int a[], int n)
+void ascending_sort(int a[], int n)
 {
 	int i;
-	int j;
-	int temp;
 
 	for (i = 0; i < n-1; ++i) {
+		int j;
+
 		for (j = i+1; j < n; ++j) {
 			if (a[i] > a[j]) {
+				int temp;
+
 				temp = a[i];
 				a[i] = a[j];
 				a[j] = temp;
@@ -22,18 +24,20 @@ void ascendingsort(int a[], int n)
 
 }
 
-void decendingsort(int b[], int p)
+void decending_sort(int a[], int n)
 {
-	int x;
-	int y;
-	int z;
+	int i;
 
-	for (x = 0; x < p-1; ++x) {
-		for (y = x+1; y < p; ++y) {
-			if (b[x] < b[y]) {
-				z = b[x];
-				b[x] = b[y];
-				b[y] = z;
+	for (i = 0; i < n-1; ++i) {
+		int j;
+
+		for (j = i+1; j < n; ++j) {
+			if (a[i] < a[j]) {
+				int temp;
+
+				temp = a[i];
+				a[i] = a[j];
+				a[j] = temp;
 			}
 		}
 	}
@@ -55,7 +59,7 @@ int main(void)
 	scanf("%i", &asds);
 
 	if (asds == 1) {
-		ascendingsort(sortvalue, 16);
+		ascending_sort(sortvalue, 16);
 		printf("\n\nThe array value sorted into Acending order:\n");
 
 		for (i = 0; i < 16; ++i) {
@@ -65,7 +69,7 @@ int main(void)
 		printf("\n");
 
 	} else if(asds == 2) {
-		decendingsort(sortvalue, 16);
+		decending_sort(sortvalue, 16);
 		printf("\n\nThe array value sorted into Decending order:\n");
 
 		for (i = 0; i < 16; ++i) {
