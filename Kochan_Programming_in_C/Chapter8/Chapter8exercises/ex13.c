@@ -54,31 +54,41 @@ void array_print(int a[], int n)
 	printf("}\n");
 }
 
+void choice(void)
+{
+	int nchoice;
+
+	printf("choice- 1.ascending order\n\t2.descending order : ");
+	scanf("%i", &nchoice);
+
+	if (nchoice == 1 || nchoice == 2) {
+		if (nchoice == 1) {
+			//array_sort_up(values, nvalue);
+			printf("sorted into ascending order\n");
+			//array_print(values, nvalue);
+		} else {
+			//array_sort_down(values, nvalue);
+			printf("sorted into descending order\n");
+			//array_print(values, nvalue);
+		}
+	} else {
+		printf("error!!! wrong choice\n");
+	}
+}
+
 int main(void)
 {
-	int value[6] = { 30, 21, 19, 7, 8, 1 };
-	int i;
-	int choice;
-	int element;
+	int values[6] = { 30, 21, 19, 7, 8, 1 };
+	int nvalue;
+	int n;
 
-	element = 6;
-	array_print(value, element);
-	printf("choice- 1.ascending order\n\t2.descending order : ");
-	scanf("%i", &choice);
+	nvalue = 6;
+	array_print(values, nvalue);
 
-	if (choice == 1) {
-		array_sort_up(value, element);
-		printf("sorted into ascending order\n");
-		array_print(value, element);
-
-	} else if (choice == 2) {
-		array_sort_down(value, element);
-		printf("sorted into descending order\n");
-		array_print(value, element);
-
-	}else {
-		printf("sorry!!! wrong choice\n");
-	}
-
+//	choice(nchoice);
+		array_sort_up(values, nvalue);
+		array_print(values, nvalue);
+//	} else {
+//	}
 	return 0;
 }
