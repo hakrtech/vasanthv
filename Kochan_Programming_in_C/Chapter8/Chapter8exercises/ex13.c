@@ -49,7 +49,7 @@ void array_print(int a[], int n)
 	printf("array[%i] = ", n);
 	int i;
 
-	for (i = 0; i < 6; ++i) {
+	for (i = 0; i < n; ++i) {
 		printf("%i   ", a[i]);
 	}
 
