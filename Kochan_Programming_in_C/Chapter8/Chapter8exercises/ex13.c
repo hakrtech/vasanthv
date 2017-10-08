@@ -4,6 +4,15 @@
 
 #include <stdio.h>
 
+void array_swap_element(int a[], int i, int j)
+{
+	int temp;
+
+	temp = a[i];
+	a[i] = a[j];
+	a[j] = temp;
+}
+
 void array_sort_up(int a[], int n)
 {
 	int i;
@@ -13,11 +22,7 @@ void array_sort_up(int a[], int n)
 
 		for (j = i+1; j < n; ++j) {
 			if (a[i] > a[j]) {
-				int temp;
-
-				temp = a[i];
-				a[i] = a[j];
-				a[j] = temp;
+				array_swap_element(a, i, j);
 			}
 		}
 	}
@@ -33,11 +38,7 @@ void array_sort_down(int a[], int n)
 
 		for (j = i+1; j < n; ++j) {
 			if (a[i] < a[j]) {
-				int temp;
-
-				temp = a[i];
-				a[i] = a[j];
-				a[j] = temp;
+				array_swap_element(a, i, j);
 			}
 		}
 	}
@@ -68,7 +69,7 @@ int main(void)
 
 	if (asds == 1) {
 		array_sort_up(sortvalue, 6);
-		printf("\n\nThe array value sorted into Acending order:\n");
+		printf("\nThe array value sorted into Acending order:\n");
 
 		for (i = 0; i < 6; ++i) {
 			printf("%i   ", sortvalue[i]);
@@ -78,7 +79,7 @@ int main(void)
 
 	} else if(asds == 2) {
 		array_sort_down(sortvalue, 6);
-		printf("\n\nThe array value sorted into Decending order:\n");
+		printf("\nThe array value sorted into Decending order:\n");
 
 		for (i = 0; i < 6; ++i) {
 			printf("%i   ", sortvalue[i]);
