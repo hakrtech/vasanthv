@@ -55,67 +55,66 @@ void array_print(int a[], int n)
 	printf("}\n");
 }
 
-int user_choice(void)
+int user_choice_input(void)
 {
-	int nchoice;
+	int input;
 
 	printf("choice- 0. print array\n\t1. sort\n\t2. reverse sort : ");
-	scanf("%i", &nchoice);
-
-	return nchoice;
+	scanf("%i", &input);
+	return input;
 }
 
-int user_choice_verify(void)
+int user_choice_verify(int vchoice)
 {
-	int vchoice;
-	int vnum;
-	vchoice = user_choice();
-
-	if (vchoice == 0) {
-		vnum = vchoice;
-	} else if (vchoice == 1 || vchoice == 2) {
-		vnum = vchoice;
- 	} else {
+	if (vchoice < 0 || vchoice > 2) {
 		printf("error!!! wrong choice\n");
 		exit (1);
+ 	} else {
+		int vnum ;
+
+		if (vchoice == 1 || vchoice == 2) {
+			vnum = vchoice;
+		} else {
+			vnum = vchoice;
+		}
+		return vnum;
 	}
-	return vnum;
 }
 
-int user_choice_print(void)
+void user_choice_print(int pvalues[6], int pnvalue, int pchoice)
 {
-	int pchoice;
-	pchoice = user_choice_verify();
-
-	if (pchoice == 1) {
-		printf("sorted order\n");
-	} else if (pchoice == 2) {
-		printf("sorted reverse order\n");
-	} else {
-		printf("printed array\n");
+	switch (pchoice) {
+		case 0:
+			printf("printed array\n");
+			array_print(pvalues, pnvalue);
+			exit (1);
+		case 1:
+			array_sort_up(pvalues, pnvalue);
+			printf("sorted order\n");
+			array_print(pvalues, pnvalue);
+			exit (1);
+		case 2:
+			array_sort_down(pvalues, pnvalue);
+			printf("sorted reverse order\n");
+			array_print(pvalues, pnvalue);
+			exit (1);
+		default:
+			printf("check program\n");
 	}
-	return pchoice;
+
 }
 
 int main(void)
 {
-	int values[6] = { 30, 21, 19, 7, 8, 1 };
+	int values[6] = { 30, -21, 19, 7, 8, 1 };
 	int nvalue;
-	int choice;
+	int input;
+	int print;
 
 	nvalue = 6;
-
-	choice = user_choice_print();
-
-	if (choice == 0) {
-		array_print(values, nvalue);
-	}else if (choice == 1) {
-		array_sort_up(values, nvalue);
-		array_print(values, nvalue);
-	} else {
-		array_sort_down(values, nvalue);
-		array_print(values, nvalue);
-	}
+	input = user_choice_input();
+	print = user_choice_verify(input);
+	user_choice_print(values, nvalue, print);
 
 	return 0;
 }
