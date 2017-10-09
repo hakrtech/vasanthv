@@ -57,51 +57,59 @@ void array_print(int a[], int n)
 
 int user_choice_input(void)
 {
-	int input;
-
+	int input_num;
 	printf("choice- 0. print array\n\t1. sort\n\t2. reverse sort : ");
-	scanf("%i", &input);
-	return input;
+	scanf("%i", &input_num);
+	return input_num;
 }
 
-int user_choice_verify(int vchoice)
+int user_choice_validate(int vchoice)
 {
 	if (vchoice < 0 || vchoice > 2) {
-		printf("error!!! wrong choice\n");
-		exit (1);
- 	} else {
-		int vnum ;
-
-		if (vchoice == 1 || vchoice == 2) {
-			vnum = vchoice;
-		} else {
-			vnum = vchoice;
-		}
-		return vnum;
-	}
+		printf("error!!! choice again\n");
+ 	}
+		return vchoice;
 }
 
-void user_choice_print(int pvalues[6], int pnvalue, int pchoice)
+int user_choice_invalid(int repeat)
+{
+	do {
+		user_choice_validate(repeat);
+		user_choice_input();
+	} while (repeat < 0 || repeat > 2);
+}
+
+int user_choice_print(int pchoice)
 {
 	switch (pchoice) {
 		case 0:
 			printf("printed array\n");
-			array_print(pvalues, pnvalue);
-			exit (1);
+			break;
 		case 1:
-			array_sort_up(pvalues, pnvalue);
 			printf("sorted order\n");
-			array_print(pvalues, pnvalue);
-			exit (1);
+			break;
 		case 2:
-			array_sort_down(pvalues, pnvalue);
 			printf("sorted reverse order\n");
-			array_print(pvalues, pnvalue);
-			exit (1);
+			break;
 		default:
 			printf("check program\n");
 	}
+	return pchoice;
+}
 
+void user_choice_do_operation(int do_values[], int do_nvalue, int do_case)
+{
+	if (do_case == 1 || do_case == 2) {
+		if (do_case == 1) {
+			array_sort_up(do_values, do_nvalue);
+			array_print(do_values, do_nvalue);
+		} else {
+			array_sort_down(do_values, do_nvalue);
+			array_print(do_values, do_nvalue);
+		}
+	} else {
+		array_print(do_values, do_nvalue);
+	}
 }
 
 int main(void)
@@ -110,11 +118,17 @@ int main(void)
 	int nvalue;
 	int input;
 	int print;
+	int doit;
 
 	nvalue = 6;
 	input = user_choice_input();
-	print = user_choice_verify(input);
-	user_choice_print(values, nvalue, print);
+
+	if (input < 0 || input >2) {
+		user_choice_invalid(input);
+	} else
+		print = user_choice_validate(input);
+		doit = user_choice_print(print);
+		user_choice_do_operation(values, nvalue, doit);
 
 	return 0;
 }
