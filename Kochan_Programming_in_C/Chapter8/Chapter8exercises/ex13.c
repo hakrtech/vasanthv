@@ -1,8 +1,9 @@
 /* Chapter 8 Exercise 13 Program to sorting into ascending order or decending order
- * Vasanth 08 October 2017
+ * Vasanth 09 October 2017
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void array_swap_element(int a[], int i, int j)
 {
@@ -58,19 +59,42 @@ int user_choice(void)
 {
 	int nchoice;
 
-	printf("choice- 1.ascending order\n\t2.descending order : ");
+	printf("choice- 0. print array\n\t1. sort\n\t2. reverse sort : ");
 	scanf("%i", &nchoice);
 
 	return nchoice;
 }
 
-void user_choice_verify(int vchoice)
+int user_choice_verify(void)
 {
-	if (vchoice == 1) {
-		printf("sorted into ascending order\n");
-	} else {
-		printf("sorted into descending order\n");
+	int vchoice;
+	int vnum;
+	vchoice = user_choice();
+
+	if (vchoice == 0) {
+		vnum = vchoice;
+	} else if (vchoice == 1 || vchoice == 2) {
+		vnum = vchoice;
+ 	} else {
+		printf("error!!! wrong choice\n");
+		exit (1);
 	}
+	return vnum;
+}
+
+int user_choice_print(void)
+{
+	int pchoice;
+	pchoice = user_choice_verify();
+
+	if (pchoice == 1) {
+		printf("sorted order\n");
+	} else if (pchoice == 2) {
+		printf("sorted reverse order\n");
+	} else {
+		printf("printed array\n");
+	}
+	return pchoice;
 }
 
 int main(void)
@@ -78,25 +102,20 @@ int main(void)
 	int values[6] = { 30, 21, 19, 7, 8, 1 };
 	int nvalue;
 	int choice;
-	int n;
 
 	nvalue = 6;
-	array_print(values, nvalue);
 
-	choice = user_choice();
+	choice = user_choice_print();
 
-	if ( choice == 1 || choice == 2 ) {
-		if (choice == 1) {
-			array_sort_up(values, nvalue);
-			user_choice_verify(choice);
-			array_print(values, nvalue);
-		} else {
-			array_sort_down(values, nvalue);
-			user_choice_verify(choice);
-			array_print(values, nvalue);
-		}
+	if (choice == 0) {
+		array_print(values, nvalue);
+	}else if (choice == 1) {
+		array_sort_up(values, nvalue);
+		array_print(values, nvalue);
 	} else {
-		printf("error!!! wrong choice\n");
+		array_sort_down(values, nvalue);
+		array_print(values, nvalue);
 	}
+
 	return 0;
 }
