@@ -1,4 +1,5 @@
 CC=gcc
+CFLAGS=-g -Wall
 
 all: ex02  ex03  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13 
 ex02: 	ex02.c
