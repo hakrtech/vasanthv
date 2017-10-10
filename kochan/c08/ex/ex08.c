@@ -40,6 +40,7 @@ int main(void)
 
 		printf("\nThe results are x1 = %f and x2 = %f\n\n", x1, x2);
 	}
+	return 0;
 }
 
 float squareRoot(float sqr)
