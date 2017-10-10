@@ -73,26 +73,32 @@ int user_choice_validate(int vchoice)
 
 int user_choice_invalid(int repeat)
 {
-	do {
+	if (repeat < 0 || repeat > 2) {
 		user_choice_validate(repeat);
-		user_choice_input();
-	} while (repeat < 0 || repeat > 2);
+		while (repeat <= 2) {
+			int again;
+
+			again = user_choice_input();
+			repeat = again;
+		}
+	}
+	return repeat;
 }
 
 int user_choice_print(int pchoice)
 {
 	switch (pchoice) {
-		case 0:
-			printf("printed array\n");
-			break;
-		case 1:
-			printf("sorted order\n");
-			break;
-		case 2:
-			printf("sorted reverse order\n");
-			break;
-		default:
-			printf("check program\n");
+	case 0:
+		printf("printed array\n");
+		break;
+	case 1:
+		printf("sorted order\n");
+		break;
+	case 2:
+		printf("sorted reverse order\n");
+		break;
+	default:
+		printf("check program\n");
 	}
 	return pchoice;
 }
@@ -122,13 +128,10 @@ int main(void)
 
 	nvalue = 6;
 	input = user_choice_input();
-
-	if (input < 0 || input >2) {
-		user_choice_invalid(input);
-	} else
-		print = user_choice_validate(input);
-		doit = user_choice_print(print);
-		user_choice_do_operation(values, nvalue, doit);
+	user_choice_invalid(input);
+	print = user_choice_validate(input);
+	doit = user_choice_print(print);
+	user_choice_do_operation(values, nvalue, doit);
 
 	return 0;
 }

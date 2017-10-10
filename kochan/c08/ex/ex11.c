@@ -9,7 +9,6 @@ int main(void)
 	int arraySum(int arraynum[], int element);
 
 	int arrayvals[11] = { 1, 3, 5, 7, 9, 0, 9, 7, 5, 3, 1 };
-	int i;
 
 	printf("The give Array Elements: 1, 3, 5, 7, 9, 0, 9, 7, 5, 3, 1\n");
 	printf("The Sum of Array Elements: %i\n", arraySum(arrayvals, 11));
