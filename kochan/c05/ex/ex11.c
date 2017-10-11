@@ -14,15 +14,14 @@ int main(void)
 	printf("entered number is %d\n", num);
 
 	sum = 0;
-
 	while (num != 0) {
-		int initial;
+		int digit;
 
-		initial = num % 10;
-		sum = sum + initial;
+		digit = num % 10;
+		sum = sum + digit;	/*additon of last digit and sum value stored into sum variable*/
 		num = num / 10;
 
-		printf("+%i", initial);
+		printf("+%i", digit);
 	}
 	printf(" = %i\n", sum);
 

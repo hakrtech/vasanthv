@@ -1,4 +1,4 @@
-/* Chapter 05 Exercise 10 Program to reverse the digits
+/* Chapter 05 Exercise 10 Program to print the digits in reverse order
  * Vasanth 11 October 2017
  */
 
@@ -7,18 +7,24 @@
 int main(void)
 {
 	int num;
-	printf("enter number get reverse number ");
+
+	printf("enter any negative or pastive number and printed the digits of a number in reverse order> ");
 	scanf("%i", &num);
+	printf("entered number %i\n", num);
 
 	while (num != 0) {
-		int reverse_num;
-		reverse_num = num % 10;
-		printf("%i", reverse_num);
+		int last_digit;
+
+		last_digit = num % 10;
+
 		if (num < 0) {
 			num = (-1 * num);
 		}
 		num = num / 10;
+
+		printf("%i", last_digit);
 	}
 	printf("\n");
+
 	return 0;
 }
