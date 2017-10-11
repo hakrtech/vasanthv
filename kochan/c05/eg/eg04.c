@@ -1,4 +1,4 @@
-/* Chapter 05 Example 04 Program to find triangular number using user input
+/* Chapter 05 Example 04 Program to find triangular number
  * Vasanth 11 October 2017
  */
 
