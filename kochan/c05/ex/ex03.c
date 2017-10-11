@@ -7,15 +7,20 @@
 
 int main(void)
 {
-	int n;
-	n = 5;
+	int num;
+
 	printf("fifth triangular number between 5 and 50\n");
 
-	while (n <= 50) {
+	num = 5;
+	while (num <= 50) {
 		int triangular;
-		triangular = (n * (n+1)) / 2;
-		printf("%5i\t%i\n", n, triangular);
-		n += 5;
+
+		triangular = ( num * (num+1) ) / 2;
+
+		printf("%5i\t%i\n", num, triangular);
+
+		num += 5;
 	}
+
 	return 0;
 }

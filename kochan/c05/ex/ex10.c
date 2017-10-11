@@ -18,7 +18,7 @@ int main(void)
 		last_digit = num % 10;
 
 		if (num < 0) {
-			num = (-1 * num);
+			num = -num;
 		}
 		num = num / 10;
 

@@ -1,4 +1,4 @@
-/* Chapter 05 Exercise 07 Program to print  dollars, cents value
+/* Chapter 05 Exercise 07 Program to print  dollars with cents value
  * Vasanth 10 October 2017
  */
 
@@ -6,19 +6,21 @@
 
 int main(void)
 {
-	int dollars;
-	int cents;
 	int count;
-	count = 1;
 
+	count = 1;
 	while (count <= 5) {
-		printf("enter dollars ");
+		int dollars;
+		int cents;
+
+		printf("enter dollars value ");
 		scanf("%i", &dollars);
-		printf("enter cents ");
+		printf("enter cents velue ");
 		scanf("%i", &cents);
 		printf("$%i.%.2i\n\n", dollars, cents);
+
 		++count;
 	}
+
 	return 0;
 }
-

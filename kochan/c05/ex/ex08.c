@@ -6,24 +6,28 @@
 
 int main(void)
 {
-	int num;
-	int input;
-	int triangul;
 	int counter;
-	counter = 1;
 
+	counter = 1;
 	while (counter <= 5) {
-		printf("give number view triangular number ");
+		int input;
+		int num;
+		int triangulnum;
+
+		printf("enter the number and view triangular number ");
 		scanf("%i", &input);
-		triangul = 0;
+
+		triangulnum = 0;
 		num = 1;
 		while (num <= input) {
-			triangul += num;
+			triangulnum += num;
 			++num;
 		}
 
-		printf("number %i triangular number is %i\n\n", input, triangul);
+		printf("entered number %i triangular number is %i\n\n", input, triangulnum);
+
 		++counter;
 	}
+
 	return 0;
 }

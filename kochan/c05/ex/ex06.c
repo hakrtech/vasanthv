@@ -7,15 +7,19 @@
 int main(void)
 {
 	int num;
-	int triangul;
-	num = 1;
-	triangul = 0;
+	int triangulnum;
 
+	num = 1;
+	triangulnum = 0;
 	while (num <= 200) {
-		triangul = triangul + num;
-		printf("%-2i\t%i\n", num, triangul);
+		triangulnum = triangulnum + num;
+
+		printf("%-2i\t%i\n", num, triangulnum);
+
 		++num;
 	}
-	printf("200th triangular number %i\n", triangul);
+
+	printf("200th triangular number is %i\n", triangulnum);
+
 	return 0;
 }

@@ -6,13 +6,16 @@
 
 int main(void)
 {
-	int n;
-	n = 1;
+	int num;
+
 	printf("table of n and n^2\n");
 
-	while (n <= 10) {
-		printf("%5i%5i\n", n, n*n);
-		n += 1;
+	num = 1;
+	while (num <= 10) {
+		printf("%5i%5i\n", num, num*num);
+
+		num += 1;
 	}
+
 	return 0;
 }
