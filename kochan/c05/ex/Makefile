@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-g -Wall
 
-all: ex02 ex03 ex04 ex05 ex06 ex07 ex08
+all: ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11
 
 ex02: ex02.c
 
@@ -17,5 +17,11 @@ ex07: ex07.c
 
 ex08: ex08.c
 
+ex09: ex09.c
+
+ex10: ex10.c
+
+ex11: ex11.c
+
 clean:
-	/bin/rm -f a.out *.o ex02 ex03 ex04 ex05 ex06 ex07 ex08
+	/bin/rm -f a.out *.o ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11
