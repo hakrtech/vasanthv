@@ -7,7 +7,9 @@
 int main(void)
 {
 	int triangulnum;
-	triangulnum = 1+2+3+4+5+6+7+8;
+
+	triangulnum = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8;
 	printf("eighth triangular number: %i\n", triangulnum);
+
 	return 0;
 }

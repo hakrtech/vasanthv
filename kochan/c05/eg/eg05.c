@@ -8,22 +8,25 @@ int main(void)
 {
 	int input;
 	int counter;
+
 	counter = 1;
-
 	while (counter <= 5) {
-		printf("give number to get triangular number ");
-		scanf("%i", &input);
-		int number;
+		int i;
 		int triangul;
-		number = 1;
-		triangul = 0;
 
-		while (number <= input) {
-			triangul = triangul + number;
-			++number;
+		printf("enter the number and to view triangular number> ");
+		scanf("%i", &input);
+		printf("entered number is %i\n", input);
+
+		i = 1;
+		triangul = 0;
+		while (i <= input) {
+			triangul = triangul + i;
+			++i;
 		}
-		printf("number %i triangular number %i\n\n", input, triangul);
+		printf("number %i triangular number is %i\n\n", input, triangul);
 		++counter;
 	}
+
 	return 0;
 }

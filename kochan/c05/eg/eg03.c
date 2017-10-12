@@ -6,17 +6,19 @@
 
 int main(void)
 {
-	int num;
+	int i;
 	int triangulnum;
-	printf("table of triangular number \n");
-	printf("number\tsum of number\n");
-	num =1;
-	triangulnum = 0;
 
-	while (num <= 10) {
-		triangulnum = triangulnum + num;
-		printf("%5i\t%i\n", num, triangulnum);
-		num += 1;
+	printf("table of triangular number \n");
+	printf("number	sum of number\n");
+
+	i =1;
+	triangulnum = 0;
+	while (i <= 10) {
+		triangulnum = triangulnum + i;
+		printf("%i	%i\n", i, triangulnum);
+		++i;
 	}
+
 	return 0;
 }

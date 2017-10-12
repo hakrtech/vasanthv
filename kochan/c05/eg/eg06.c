@@ -7,11 +7,12 @@
 int main(void)
 {
 	float count;
-	count = 0;
 
-	while (count < 5) {
-		count = count +0.5;
+	count = 0.0;
+	while (count < 5.0) {
+		count = count + 0.5;
 		printf("%.2f\n", count);
 	}
+
 	return 0;
 }

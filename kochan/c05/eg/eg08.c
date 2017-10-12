@@ -7,15 +7,20 @@
 int main(void)
 {
 	int num;
-	printf("give number get reverse number\n");
+
+	printf("enter the number and to get reverse number ");
 	scanf("%i", &num);
+	printf("entered number is %i\n", num);
+	printf("reversed number is ");
 
 	while (num != 0) {
 		int digit;
+
 		digit = num % 10;
 		printf("%i", digit);
 		num = num / 10;
 	}
 	printf("\n");
+
 	return 0;
 }

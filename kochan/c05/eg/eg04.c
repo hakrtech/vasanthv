@@ -6,18 +6,21 @@
 
 int main(void)
 {
-	int num;
+	int i;
 	int input;
 	int triangul;
-	printf("Give number to get triangular number ");
-	scanf("%i", &input);
-	num = 1;
-	triangul = 0;
 
-	 while (num <= input) {
-		triangul += num;
-		num += 1;
+	printf("enter the number and to view triangular number> ");
+	scanf("%i", &input);
+	printf("entered number is %d\n", input);
+
+	i = 1;
+	triangul = 0;
+	while (i <= input) {
+		triangul += i;
+		++i;
 	}
-	printf("triangular number %i\n", triangul);
+	printf("triangular number is %i\n", triangul);
+
 	return 0;
 }
