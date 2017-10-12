@@ -6,17 +6,15 @@
 
 int main(void)
 {
-	int num;
+	int i;
 	int triangulnum;
 
-	num = 1;
+	i = 1;
 	triangulnum = 0;
-	while (num <= 200) {
-		triangulnum = triangulnum + num;
-
-		printf("%-2i\t%i\n", num, triangulnum);
-
-		++num;
+	while (i <= 200) {
+		triangulnum = triangulnum + i;
+		printf("%i	%i\n", i, triangulnum);
+		++i;
 	}
 
 	printf("200th triangular number is %i\n", triangulnum);

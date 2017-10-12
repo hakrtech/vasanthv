@@ -6,7 +6,7 @@
 
 int main(void)
 {
-	int number;
+	int i;
 	int input;
 	int triangulnum;
 
@@ -14,15 +14,12 @@ int main(void)
 	scanf("%i", &input);
 	printf("given number %i\n", input);
 
-	number = 1;
+	i = 1;
 	triangulnum = 0;
-	while (number <= input) {
-
-		triangulnum = triangulnum + number;
-
-		printf("%2i\t%i\n", number, triangulnum);
-
-		number += 1;
+	while (i <= input) {
+		triangulnum = triangulnum + i;
+		printf("%2i\t%i\n", i, triangulnum);
+		++i;
 	}
 
 	return 0;

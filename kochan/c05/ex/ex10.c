@@ -10,18 +10,18 @@ int main(void)
 
 	printf("enter any negative or pastive number and printed the digits of a number in reverse order> ");
 	scanf("%i", &num);
-	printf("entered number %i\n", num);
+	printf("entered number is %i\n", num);
+	printf("reversed number is ");
+
+	if (num < 0) {
+		num = -num;
+	}
 
 	while (num != 0) {
 		int last_digit;
 
 		last_digit = num % 10;
-
-		if (num < 0) {
-			num = -num;
-		}
 		num = num / 10;
-
 		printf("%i", last_digit);
 	}
 	printf("\n");

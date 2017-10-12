@@ -20,7 +20,6 @@ int main(void)
 		digit = num % 10;
 		sum = sum + digit;	/*additon of last digit and sum value stored into sum variable*/
 		num = num / 10;
-
 		printf("+%i", digit);
 	}
 	printf(" = %i\n", sum);

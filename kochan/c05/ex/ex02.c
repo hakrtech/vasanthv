@@ -6,15 +6,17 @@
 
 int main(void)
 {
-	int num;
+	int i;
 
-	printf("table of n and n^2\n");
+	printf("table of number and square value\n");
 
-	num = 1;
-	while (num <= 10) {
-		printf("%5i%5i\n", num, num*num);
+	i = 1;
+	while (i <= 10) {
+		int square;
 
-		num += 1;
+		square = i * i;
+		printf("%i	%i\n", i, square);
+		++i;
 	}
 
 	return 0;

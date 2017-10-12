@@ -7,16 +7,16 @@
 int main(void)
 {
 	int n;
-	int two_n;
+	int square;
 
-	printf("power of two values\n");
+	printf("power of 2^n values\n");
 
 	n = 0;
-	two_n = 1;
+	square = 1;
 	while (n <= 10) {
-		printf("%2i\t%i\n", n, two_n);
+		printf("%i	%i\n", n, square);
 
-		two_n *= 2;
+		square *= 2;
 		++n;
 	}
 

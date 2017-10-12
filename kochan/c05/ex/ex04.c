@@ -6,19 +6,17 @@
 
 int main(void)
 {
-	int number;
-	int initial;
+	int i;
+	int start_num;
 
-	printf("first ten number factorial vlues\n");
+	printf("first ten number factorial values\n");
 
-	number = 1;
-	initial = 1;
-	while (initial <= 10) {
-		number = number * initial;
-
-		printf("%5i!\t%i\n", initial, number);
-
-		initial += 1;
+	i = 1;
+	start_num = 1;
+	while (start_num <= 10) {
+		i = i * start_num;
+		printf("%i!	%i\n", start_num, i);
+		++start_num;
 	}
 
 	return 0;
