@@ -7,16 +7,15 @@
 int main(void)
 {
 	int n;
-	int square;
+	int two_pow;
 
 	printf("power of 2^n values\n");
 
 	n = 0;
-	square = 1;
+	two_pow = 1;
 	while (n <= 10) {
-		printf("%i	%i\n", n, square);
-
-		square *= 2;
+		printf("%i	%i\n", n, two_pow);
+		two_pow *= 2;
 		++n;
 	}
 

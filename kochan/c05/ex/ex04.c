@@ -7,16 +7,16 @@
 int main(void)
 {
 	int i;
-	int start_num;
+	int f;
 
 	printf("first ten number factorial values\n");
 
 	i = 1;
-	start_num = 1;
-	while (start_num <= 10) {
-		i = i * start_num;
-		printf("%i!	%i\n", start_num, i);
-		++start_num;
+	f = 1;
+	while (i <= 10) {
+		f = f * i;
+		printf("%i!	%i\n", i, f);
+		++i;
 	}
 
 	return 0;
