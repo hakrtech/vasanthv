@@ -9,7 +9,7 @@ int main(void)
 	int i;
 	int triangulnum;
 
-	i =1;
+	i = 1;
 	triangulnum = 0;
 	while (i <= 200) {
 		triangulnum = triangulnum + i;

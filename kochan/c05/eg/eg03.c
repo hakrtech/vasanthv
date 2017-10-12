@@ -10,9 +10,9 @@ int main(void)
 	int triangulnum;
 
 	printf("table of triangular number \n");
-	printf("number	sum of number\n");
+	printf("number sum of number\n");
 
-	i =1;
+	i = 1;
 	triangulnum = 0;
 	while (i <= 10) {
 		triangulnum = triangulnum + i;
