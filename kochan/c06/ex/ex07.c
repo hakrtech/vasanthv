@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -15,7 +16,10 @@ int main(void)
 	scanf("%i", &limit);
 	printf("entered number is %i\n", limit);
 
-	if (limit >= 2) {
+	if (limit < 2) {
+		printf("sorry this is not valid number to check prime or not\n");
+		exit (1);
+	} else {
 		printf("prime numbers: 2 ");
 
 		i = 3;
@@ -35,15 +39,13 @@ int main(void)
 				++j;
 			}
 
-			if (is_prime != false) {
+			if (is_prime == true) {
 				printf("%i ", i);
 			}
 
 			i += 2;		/* now, this loop not check the even numbers */
 		}
 		printf("\n");
-	} else {
-		printf("sorry this is not valid number to check prime or not\n");
 	}
 
 	return 0;
