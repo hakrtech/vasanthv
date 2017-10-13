@@ -1,4 +1,4 @@
-/* Chapter 06 Exercise 07 Program to generate prime number
+/* Chapter 06 Exercise 07a Program to generate prime number using for loop
  * Vasanth 13 October 2017
  */
 
