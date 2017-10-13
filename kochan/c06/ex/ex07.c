@@ -7,35 +7,44 @@
 
 int main(void)
 {
-	int num;
+	int limit;
 	int i;
 	bool is_prime;
 
 	printf("enter number and to get upto prime numbers> ");
-	scanf("%i", &num);
-	printf("entered number is %i\n", num);
-	printf("prime numbers: 2 ");
+	scanf("%i", &limit);
+	printf("entered number is %i\n", limit);
 
-	i = 3;
-	while (i <= num) {
-		int j;
+	if (limit >= 2) {
+		printf("prime numbers: 2 ");
 
-		is_prime = true;
-		j = 3;
-		while (j < i) {
-			if (i % j == 0) {
-				is_prime = false;
-				break;		/* exit continuous looping */
+		i = 3;
+		while (i <= limit) {
+			int j;
+
+			is_prime = true;
+			j = 3;
+			while (j < i) {
+				int remainder;
+
+				remainder = i % j;
+				if (remainder == 0) {
+					is_prime = false;
+					break;		/* exit continuous looping */
+				}
+				++j;
 			}
-			++j;
-		}
 
-		if (is_prime != false) {
-			printf("%i ", i);
+			if (is_prime != false) {
+				printf("%i ", i);
+			}
+
+			i += 2;		/* now, this loop not check the even numbers */
 		}
-		i += 2;		/* now, this loop not check the even numbers */
+		printf("\n");
+	} else {
+		printf("sorry this is not valid number to check prime or not\n");
 	}
-	printf("\n");
 
 	return 0;
 }
