@@ -1,5 +1,5 @@
 /* Chapter 06 Exercise 06 Program to print the digit into english word
- * Vasanth 12 October 2017
+ * Vasanth 13 October 2017
  */
 
 #include <stdio.h>

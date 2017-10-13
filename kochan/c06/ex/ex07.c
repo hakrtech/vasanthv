@@ -3,34 +3,37 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
 
 int main(void)
 {
 	int num;
 	int i;
-	_Bool prime;
+	bool is_prime;
 
 	printf("enter number and to get upto prime numbers> ");
 	scanf("%i", &num);
 	printf("entered number is %i\n", num);
+	printf("prime numbers: 2 ");
 
-	i = 2;
+	i = 3;
 	while (i <= num) {
 		int j;
 
-		prime = 1;
-		j =2;
-		while ( j < i) {
+		is_prime = true;
+		j = 3;
+		while (j < i) {
 			if (i % j == 0) {
-				prime = 0;
+				is_prime = false;
+				break;		/* exit continuous looping */
 			}
 			++j;
 		}
 
-		if (prime != 0) {
+		if (is_prime != false) {
 			printf("%i ", i);
 		}
-		++i;
+		i += 2;		/* now, this loop not check the even numbers */
 	}
 	printf("\n");
 
