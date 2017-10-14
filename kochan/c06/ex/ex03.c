@@ -8,7 +8,7 @@ int main(void)
 {
 	int first_num;
 	int second_num;
-	int result;
+	int quotient;
 
 	printf("enter any two number and to get division result>\n");
 	printf("enter first number: ");
@@ -17,9 +17,9 @@ int main(void)
 	scanf("%i", &second_num);
 	printf("entered first number is %d and second number is %d\n", first_num, second_num);
 
-	result = first_num / second_num;
+	quotient = first_num / second_num;
 
-	printf("result %.3i\n", result);
+	printf("result of quotient %.3i\n", quotient);
 
 	return 0;
 }
