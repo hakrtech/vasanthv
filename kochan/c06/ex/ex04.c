@@ -7,26 +7,26 @@
 int main(void)
 {
 	float accumulator;
-	int i;
+	int option;
 
-	printf("set S for accumulator and use simple calculator to access given operation + - * / S E\n");
+	printf("set S for accumulator and use simple calculator to access given operations + - * / S E\n");
 	printf("set accumulator value ");
 	scanf("%f", &accumulator);
 	printf("setted accumulator is %f\n\n", accumulator);
 
-	i = 1;
-	while (i != 0) {
-		int num;
-		char action;
+	option = 1;
+	while (option != 0) {
+		float num;
+		char operatCal;
 
 		printf("enter number ");
-		scanf("%i", &num);
-		printf("entered number is %i\n", num);
+		scanf("%f", &num);
+		printf("entered number is %f\n", num);
 		printf("enter operation ");
-		scanf("%s", &action);
-		printf("entered operation is %c\n\n", action);
+		scanf("%s", &operatCal);
+		printf("entered operation is %c\n\n", operatCal);
 
-		switch (action) {
+		switch (operatCal) {
 		case 'S':
 			printf("the accumulator value is %f\n\n", accumulator);
 			break;
@@ -47,11 +47,11 @@ int main(void)
 			printf("the division of value is %f\n\n", accumulator);
 			break;
 		case 'E':
-			i = 0;
-			printf("end of operation and final value %f\n", accumulator);
+			option = 0;
+			printf("end of operation and the final value is %f\n", accumulator);
 			break;
 		default:
-			i = 0;
+			option = 0;
 			printf("unknown operation\n");
 		}
 	}
