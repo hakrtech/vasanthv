@@ -6,5 +6,6 @@ TLOC=5000
 echo "Lines of Code:   $LOC ($CLOC non ws) in $NFILES files"
 echo "Target LOC:      $TLOC"
 PCT=$(echo "$LOC*100/$TLOC" | bc)
-echo "Target Achieved: $PCT%"
+CPCT=$(echo "$CLOC*100/$TLOC" | bc)
+echo "Target Achieved: $PCT% ($CPCT%)"
 exit 0
