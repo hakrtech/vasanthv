@@ -1,7 +1,7 @@
 CC=gcc
 FLAGS=-g -Wall
 
-all: eg01 eg02 eg03
+all: eg01 eg02 eg03 eg04
 
 eg01: eg01.c
 
@@ -9,5 +9,7 @@ eg02: eg02.c
 
 eg03: eg03.c
 
+eg04: eg04.c
+
 clean:
-	/bin/rm -f a.out *o eg01 eg02 eg03
+	/bin/rm -f a.out *o eg01 eg02 eg03 eg04
