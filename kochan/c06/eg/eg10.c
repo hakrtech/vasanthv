@@ -19,7 +19,7 @@ int main(void)
 			int remainder;
 
 			remainder = i % j;
-			if ( remainder == 0) {
+			if (remainder == 0) {
 				is_prime = 0;
 				break;
 			}
