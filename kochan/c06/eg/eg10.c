@@ -16,14 +16,16 @@ int main(void)
 
 		is_prime = 1;
 		for (j = 3; j < i; j += 2) {
+			int remainder;
 
-			if (i % j == 0) {
+			remainder = i % j;
+			if ( remainder == 0) {
 				is_prime = 0;
 				break;
 			}
 		}
 
-		if ( is_prime != 0) {
+		if (is_prime != 0) {
 			printf("%i ", i);
 		}
 	}
