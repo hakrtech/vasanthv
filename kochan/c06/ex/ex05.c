@@ -17,7 +17,7 @@ int main(void)
 	do {
 		int last_digit;
 
-		last_digit = num % 10;
+		last_digit = num % 10;		/* remainder vale stored into last_digit variable name */
 		num = num / 10;
 		printf("%d", last_digit);
 

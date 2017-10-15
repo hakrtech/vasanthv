@@ -7,22 +7,20 @@
 int main(void)
 {
 	int num;
-	int i;
-	int j;
+	int count;
 
 	printf("digits are printed into english word form> \n");
 	printf("enter the number ");
 	scanf("%d", &num);
 	printf("printed number is %d\n", num);
 
-	i = num;
-	j = 0;
-	while (i != 0) {
-		j = (j*10) + (i%10);	/* last digit continuously added and saved into j variable */
-		i = i / 10;
+	count = 0;
+	while (num != 0) {
+		count = (count * 10) + (num % 10);	/* the last digit of user input continuously sum reminder, product and finaly saved into count variable for this loop */
+		num = num / 10;
 	}
 
-	num = j;
+	num = count;		/*total count value is asigned into num variable */
 	do {
 		int digit;
 

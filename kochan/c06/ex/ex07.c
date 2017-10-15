@@ -34,16 +34,16 @@ int main(void)
 			remainder = i % j;
 			if (remainder == 0) {
 				is_prime = false;
-				break;		/* exit continuous looping */
+				break;
 			}
-			++j;
+			j += 2;
 		}
 
 		if (is_prime == true) {
 			printf("%i ", i);
 		}
 
-		i += 2;		/* now, this loop not check the even numbers */
+		i += 2;		/* In even number two only prime and other even numbers are not prime depend upon proof. so eliminated even values */
 	}
 	printf("\n");
 

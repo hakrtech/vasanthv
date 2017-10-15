@@ -6,9 +6,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-void prime_print(int output, bool prime)
+void prime_print(int output, bool found)
 {
-	if (prime == true) {
+	if (found == true) {
 		printf("%i ", output);
 	}
 }
@@ -16,23 +16,23 @@ void prime_print(int output, bool prime)
 void prime_generate(int limit)
 {
 	bool is_prime;
-	int jump;
-	int start;
+	int i;
+	int j;
 
-	for (jump = 3; jump <= limit; jump += 2) {	/* now, this loop not check the even numbers */
+	for (i = 3; i <= limit; i += 2) {	/* In even number two only prime and other even numbers are not prime depend upon proof. so eliminated even values */
 
 		is_prime = true;
 
-		for (start = 3; start < jump; ++start) {
+		for (j = 3; j < i; j += 2) {
 			int remainder;
 
-			remainder = jump % start;
+			remainder = i % j;
 			if (remainder == 0) {
 				is_prime = false;
-				break;		/* exit continuous looping */
+				break;
 			}
 		}
-		prime_print(jump, is_prime);
+		prime_print(i, is_prime);
 	}
 }
 

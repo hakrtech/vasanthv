@@ -17,16 +17,16 @@ int main(void)
 	option = 1;
 	while (option != 0) {
 		float num;
-		char operatCal;
+		char operate_cal;
 
 		printf("enter number ");
 		scanf("%f", &num);
 		printf("entered number is %f\n", num);
 		printf("enter operation ");
-		scanf("%s", &operatCal);
-		printf("entered operation is %c\n\n", operatCal);
+		scanf("%s", &operate_cal);
+		printf("entered operation is %c\n\n", operate_cal);
 
-		switch (operatCal) {
+		switch (operate_cal) {
 		case 'S':
 			printf("the accumulator value is %f\n\n", accumulator);
 			break;
