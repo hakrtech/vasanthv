@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 NFILES=$(find . -type f -name "*.[hc]" -print | wc -l)
 LOC=$(find . -name "*.[ch]" -print | xargs wc -l | tail -1 | awk '{ print $1; }')
 CLOC=$(find . -type f -name "*.[hc]" -print | xargs cat | sed -e '/^[ 	]*$/d' | wc -l)
