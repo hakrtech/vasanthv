@@ -9,6 +9,8 @@ int main()
 	int val[10];
 	int index;
 
+	printf("view after arithmetic operation of initialized array values>\n");
+
 	val[0] = 197;
 	val[2] = -100;
 	val[5] = 350;

@@ -9,6 +9,8 @@ int main(void)
 	char word[] = { 'H', 'e', 'l', 'l', 'o', '!' };
 	int i;
 
+	printf("print sample array characters>\n");
+
 	for (i = 0; i < 6; ++i) {
 		printf("%c", word[i]);
 	}

@@ -8,11 +8,13 @@ int main(void)
 	int val[100] = {0, 1, 4, 9, 16};
 	int i;
 
-	for (i = 5; i < 100; ++i) {
+	printf("initializing first 50 array square values> \n");
+
+	for (i = 5; i < 50; ++i) {
 		val[i] = i*i;
 	} 
 
-	for (i = 0; i < 100; ++i) {
+	for (i = 0; i < 50; ++i) {
 		printf("val[%i] = %i\n", i, val[i]);
 	}
 
