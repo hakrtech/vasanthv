@@ -8,6 +8,7 @@
 int main(void)
 {
 	int num;
+	long int fibonacci[1000];
 	int i;
 
 	printf("how many fibonacci number do you want (between 1 and 1000)?>  ");
@@ -19,8 +20,6 @@ int main(void)
 		exit(1);
 	}
 
-	unsigned long long int fibonacci[num];
-
 	fibonacci[0] = 0;
 	fibonacci[1] = 1;
 
@@ -29,7 +28,7 @@ int main(void)
 	}
 
 	for (i = 0; i < num; ++i) {
-		printf("%llu	", fibonacci[i]);
+		printf("%li	", fibonacci[i]);
 	}
 	printf("\n");
 
