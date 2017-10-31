@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 int main(void)
 {
@@ -16,12 +17,11 @@ int main(void)
 	scanf("%i", &num_response);
 	printf("entered number of response is %i\n", num_response);
 
-	if (num_response < 1 || num_response > 999) {
-		printf("you are entered invalid number of response: %i\n", num_response);
-		exit(1);
-	} else if (num_response == 999) {
+	assert(num_response > 0 && num_response <= 999);
+
+	if (num_response == 999) {
 		printf("you are entered last number of response: %i\n", num_response);
-		exit(2);
+		exit(EXIT_FAILURE);
 	}
 	
 	for (i = 1; i <= 10; ++i) {
@@ -34,18 +34,15 @@ int main(void)
 		scanf("%i", &response);
 		printf("entered response is %i\n", response);
 
-		if (response < 1 || response > 10) {
-			printf("bad response: %i\n", response);
-			break;
-		} else {
-			++counts[response];
-		}
+		assert(response > 0 && response <= 10);
+		++counts[response];
 	}
 
 	printf("\n\n");
 	printf("rating		number of response\n");
 
 	for (i = 1; i <= 10; ++i) {
+		assert(counts[i] < 999);
 		printf("%i		%i\n", i, counts[i]);
 	}
 
