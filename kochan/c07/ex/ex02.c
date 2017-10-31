@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+#include <assert.h>
 
 int main(void)
 {
@@ -12,11 +13,12 @@ int main(void)
 
 	val[0] = 0;
 
-	printf("initializ elements>\n"); 
+	printf("initializ any positive integer elements>\n"); 
 
-	for (i = 1; i < 10; ++i) {
+	for (i = 1; i < 10; ++i) {	
 		scanf("%i", &val[i]);
 		printf("entered value is %i\n", val[i]);
+		assert(val[i] >= 0);
 	}
 
 	i = 0;
@@ -27,6 +29,7 @@ int main(void)
 	++val[8];
 
 	while (i < 10) {
+		assert(val[i] <= 32767);
 		printf("value[%i] = %i\n", i, val[i]);
 		++i;
 	}
