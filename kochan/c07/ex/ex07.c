@@ -3,11 +3,13 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <limits.h>
 
-#define LIMIT 1000
-#define PRIME 1
-#define COMPOSITE 0
+#include "level.h"
+
+#define PRIME (1)
+#define COMPOSITE (0)
 
 int main(void)
 {
@@ -16,10 +18,15 @@ int main(void)
 	int arrow = 2;
 	int i;
 
+
 	p[0] = COMPOSITE;
 	p[1] = COMPOSITE;
 	
 	printf("int max = %d\n",INT_MAX);
+	printf("sizeof int = %u\n",sizeof(int));
+	printf("sizeof short = %u\n",sizeof(short));
+	printf("sizeof long = %u\n",sizeof(long));
+	printf("sizeof char = %u\n",sizeof(char));
 	printf("short max = %d\n", SHRT_MAX);
 	printf("long max = %lu\n", LONG_MAX);
 	printf("long long max = %llu\n\n", LLONG_MAX);
@@ -39,7 +46,14 @@ int main(void)
 
 					j = arrow * i;
 
-					if (j <= limit && p[j] == PRIME) {
+					if (j < 0) {
+						break;
+					}
+					if(j > limit) {
+						break;
+					}
+
+					if (j < limit && p[j] == PRIME) {
 						p[j] = COMPOSITE;
 					}
 				}
