@@ -1,7 +1,8 @@
 #!/bin/sh
-NFILES=$(find . -type f -name "*.[hc]" -print | wc -l)
-LOC=$(find . -name "*.[ch]" -print | xargs wc -l | tail -1 | awk '{ print $1; }')
-CLOC=$(find . -type f -name "*.[hc]" -print | xargs cat | sed -e '/^[ 	]*$/d' | wc -l)
+NFILES=$(find . -type f -name "*.[c]" -print | wc -l)
+LOC=$(find . -name "*.[c]" -print | xargs wc -l | tail -1 | awk '{ print $1; }')
+find . -type f -name "*.c" -print | xargs cat | sed -e '/^[ 	]*$/d' | awk -f rmc.awk > o
+CLOC=$(find . -type f -name "*.c" -print | xargs cat | sed -e '/^[ 	]*$/d' | awk -f rmc.awk | wc -l)
 TLOC=5000
 echo "Lines of Code:   $LOC ($CLOC non ws) in $NFILES files"
 echo "Target LOC:      $TLOC"
