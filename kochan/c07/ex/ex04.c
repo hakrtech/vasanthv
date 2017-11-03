@@ -12,7 +12,7 @@ int main(void)
 	float avg;
 	int count;
 
-	add = 0;
+	add = 0.0;
 	count = 0;
 
 	printf("enter ten floating point value>\n");
@@ -24,9 +24,10 @@ int main(void)
 		add += val[count];
 		++count;
 	}
-	avg = add / 10;
+	avg = add / 10.0;
 	
 	printf("calculated total value is %.4f and average of values is %.4f\n", add, avg);
 
 	return 0;
 }
+

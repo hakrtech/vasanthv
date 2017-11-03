@@ -1,59 +1,48 @@
-/* Chapter 07 Exercise 03 Program to count the number of responses in the list
+/* Chapter 07 Exercise 03 Program to array the number of responses in the list
  * Vasanth 30 October 2017
  */
 
 #include <stdio.h>
-#include <stdlib.h>
+#include "level.h"
+
+#define INIT_VALUE (0)
 
 int main(void)
 {
-	int counts[10];
+	int logic[LIMIT];
+	int input;
 	int i;
-	int num_response = 1;
-	int response;
+	
+	printf("enter number and count number of responses? (use -1 to exit)>\n");
 
-	printf("how many number of responses you want? (use 999 to exit)>\n");
-
-	for (i = 1; i <= 10; ++i) {
-		counts[i] = 0;
+	for (i = 0; i < LIMIT; ++i) {
+		logic[i] = INIT_VALUE;
 	}
 
-	while (num_response != 0) {
-		printf("enter 999 to exit or continue any number>\n");
-		scanf("%i", &num_response);
-		printf("entered number of response is %i\n", num_response);
-
-		if (num_response <= 0) {
-			printf("invalied number!!!\n");
-			exit(1);
-		} else if (num_response == 999) {
-			printf("you are entered exit value %i\n", num_response);
+	for (i = 0; i < LIMIT; ++i) {
+		
+		scanf("%d", &input);
+		printf(" %d\n", input);
+		
+		if (input == -1) {
+			printf("input over!!!\n");
 			break;
-		} else {
-			printf("enter your responses (between 1 and 10)>\n");
-			
-			for (i = 1; i <= num_response; i++) {
-				scanf("%i", &response);
-				printf("entered response is %i\n", response);
-
-				if (response >= 1 && response <= 10) {
-					++counts[response];
-				} else if (response == 999) {
-					printf("entered last response is %i\n", response);
-					break;
-				} else {
-					printf("bad!!! response %i\n", response);
-				}
-			}
 		}
+		
+		if (input < 0 || input > LIMIT-1){
+			printf("bad input %d\n", input);
+		} else {
+			++logic[input];
+		}		
+
 	}
 
-	printf("\n\n");
-	printf("rating		number of response\n");
+	printf("number	count of response\n");
 
-	for (i = 1; i <= 10; ++i) {
-		printf("%i		%i\n", i, counts[i]);
+	for (i = 0; i < LIMIT; ++i) {
+		printf("%d	%d\n", i, logic[i]);
 	}
 
 	return 0;
 }
+
