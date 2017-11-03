@@ -3,32 +3,44 @@
  */
 
 #include <stdio.h>
+#include "level.h"
 
-#define LIMIT 1000
-#define PRIME_TRUE 0	/* 0 is prime */
-#define PRIME_FALSE 1	/* 1 is composite */
+#define PRIME  1	/* 1 is prime */
+#define COMPOSITE 0	/* 0 is composite */
 
-int p[LIMIT];	/* array of declaration values is initialy zero into outside main function */ 
 
 int main(void)
 {
+	int p[LIMIT];
+	int i;
 	int arrow;
 
-	printf("prime numbers>\n");
-	
+	p[0] = COMPOSITE;
+	p[1] = COMPOSITE;
+
+	for (i = 2; i < LIMIT; ++i) {
+		p[i] = PRIME;
+	}	
+
 	for (arrow = 2; arrow < LIMIT; ++arrow) {
-		int jump = 2 * arrow;
+		int jump;
+	       
+		jump = 2 * arrow;
 
 		while (jump < LIMIT) {
 			
-			if (p[jump] == PRIME_TRUE) {
-				p[jump] = PRIME_FALSE;
+			if (p[jump] == PRIME) {
+				p[jump] = COMPOSITE;
 			}
 			jump += arrow;
 		}
-		
-		if(p[arrow] == PRIME_TRUE) {
-			printf("%d ", arrow);
+	}
+	
+	printf("prime numbers>\n");
+
+	for (i = 2; i < LIMIT; ++i) {
+		if (p[i] == PRIME) {
+			printf("%d ", i);
 		}
 	}
 	printf("\n");
