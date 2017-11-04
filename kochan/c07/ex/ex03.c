@@ -4,9 +4,10 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <assert.h>
 #include "level.h"
 
-#define INIT_VALUE (-1)
+#define INIT_VALUE (0)
 
 int main(void)
 {
@@ -36,18 +37,27 @@ int main(void)
 		}
 		if (input < 0) {
 			printf("bad input %d\n", input);
+			continue;
 		}
-		if (input >= LIMIT) {
+		if (input == LIMIT) {
 			printf("bad input %d\n", input);
-		} else {
-			logic[input] += 1;
+			continue;
 		}
+	       if (input > LIMIT) {
+			printf("bad input %d\n", input);
+			continue;
+		}
+
+	       assert(input >= 0);
+	       assert(input < LIMIT);
+	       logic[input] += 1;
+
 	}
 
 	printf("number	count of response\n");
 
 	for (i = 0; i < LIMIT; ++i) {
-		printf("%d	%d\n", i, logic[i]+1);
+		printf("%d	%d\n", i, logic[i]);
 	}
 
 	return 0;
