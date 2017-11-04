@@ -37,7 +37,7 @@ int main(void)
 		if (input < 0) {
 			printf("bad input %d\n", input);
 		}
-		if (input > LIMIT) {
+		if (input >= LIMIT) {
 			printf("bad input %d\n", input);
 		} else {
 			logic[input] += 1;
