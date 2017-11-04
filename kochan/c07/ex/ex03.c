@@ -27,7 +27,7 @@ int main(void)
 	}
 	printf("\n");
 #endif
-	while(true) {
+	while (true) {
 		scanf("%d", &input);
 		printf(" %d\n", input);
 		
@@ -43,15 +43,14 @@ int main(void)
 			printf("bad input %d\n", input);
 			continue;
 		}
-	       if (input > LIMIT) {
+	       	if (input > LIMIT) {
 			printf("bad input %d\n", input);
 			continue;
 		}
 
-	       assert(input >= 0);
-	       assert(input < LIMIT);
-	       logic[input] += 1;
-
+		assert(input >= 0);
+		assert(input < LIMIT);
+	       	logic[input] += 1;
 	}
 
 	printf("number	count of response\n");
