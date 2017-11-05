@@ -3,6 +3,7 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
 
 int triangular_num(int n)
 {
@@ -24,14 +25,16 @@ int main()
 {
 	int num;
 	int result;
-
+	
 	printf("Enter the number and get triangular number> ");
-	scanf("%i", &num);
-	printf("entered number is %i\n", num);
 
-	result = triangular_num(num);
+	for (true; true; true) {
+		scanf("%i", &num);
 
-	printf("triangular number is %i\n", result);
+		result = triangular_num(num);
+
+		printf("entered number %i triangular number %i\n", num, result);
+	}
 
 	return 0;
 }
