@@ -3,37 +3,42 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
+
+#define EXIT_VAL (-1)
 
 int triangular_num(int n)
 {
-	int add;
+	int sum;
 	int count;
 
-	add = 0;
+	sum = 0;
 	count = 1;
        
 	while (count <= n) {
-		add += count;
+		sum += count;
 		++count;
 	}
 
-	return add;
+	return sum;
 }
 
 int main()
 {
-	int num;
-	int result;
-	
-	printf("Enter the number and get triangular number> ");
+	while (true) {
+		int num;
+		int result;
 
-	for (true; true; true) {
 		scanf("%i", &num);
+
+		if (num == EXIT_VAL) {
+			exit(1);
+		}
 
 		result = triangular_num(num);
 
-		printf("entered number %i triangular number %i\n", num, result);
+		printf("number %i triangular %i\n", num, result);
 	}
 
 	return 0;
