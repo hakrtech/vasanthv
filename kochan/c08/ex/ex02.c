@@ -29,8 +29,14 @@ int main()
 	while (true) {
 		int num;
 		int result;
+		int s;
 
-		scanf("%i", &num);
+		s = scanf("%i", &num);
+
+		if (s != 1) {
+			printf("error ss %d\n", s);
+			exit(1);
+		}
 
 		if (num == EXIT_VAL) {
 			exit(1);
@@ -38,7 +44,7 @@ int main()
 
 		result = triangular_num(num);
 
-		printf("number %i triangular %i\n", num, result);
+		printf("ss %d number %i triangular %i\n", s, num, result);
 	}
 
 	return 0;
