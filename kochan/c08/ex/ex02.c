@@ -4,34 +4,35 @@
 
 #include <stdio.h>
 
+int triangular_num(int n)
+{
+	int add;
+	int count;
+
+	add = 0;
+	count = 1;
+       
+	while (count <= n) {
+		add += count;
+		++count;
+	}
+
+	return add;
+}
+
 int main()
 {
-	int calTraingularnum(int n);
-
-	int trinum;
+	int num;
 	int result;
 
-	printf("Enter the number:\n");
-	scanf("%i", &trinum);
+	printf("Enter the number and get triangular number> ");
+	scanf("%i", &num);
+	printf("entered number is %i\n", num);
 
-	result = calTraingularnum(trinum);
+	result = triangular_num(num);
 
-	printf("Entered Value is %i and the Triangular value is %i\n", trinum, result);
+	printf("triangular number is %i\n", result);
 
 	return 0;
 }
 
-int calTraingularnum(int n)
-{
-	int caltrinum;
-	int i;
-
-	caltrinum = 0;
-
-	for(i =1; i <= n; ++i)
-	{
-		caltrinum += i;
-	}
-
-	return caltrinum;
-}
