@@ -1,19 +1,20 @@
-/* Chapter 8 Examle2 Calling function
+/* Chapter 8 Examle 02 Calling functions
  * vasanth 01 October 2017
  */
 
 #include <stdio.h>
 
-void printMessage(void)
+void print_msg(void)
 {
-	printf("Programming is fun.\n");
+	printf("programming is fun\n");
 }
 
 int main(void)
 {
-	printMessage();
-	printMessage();
-	printMessage();
+	print_msg();
+	print_msg();
+	print_msg();
 
 	return 0;
 }
+
