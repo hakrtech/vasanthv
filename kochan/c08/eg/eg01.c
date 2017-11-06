@@ -4,14 +4,15 @@
 
 #include <stdio.h>
 
-void printMessage(void)
+void print_msg(void)
 {
-	printf("Programming is fun.\n");
+	printf("hello functions!!! programming is fun\n");
 }
 
 int main(void)
 {
-	printMessage();
+	print_msg();
 
 	return 0;
 }
+
