@@ -3,10 +3,6 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-#define EXIT_VAL (-1)
 
 int triangular_num(int n)
 {
@@ -24,27 +20,31 @@ int triangular_num(int n)
 	return sum;
 }
 
-int main()
+int main(void)
 {
-	while (true) {
+	while (!feof(stdin)) {
 		int num;
 		int result;
 		int s;
+		char line[100];
+		char *p;
 
-		s = scanf("%i", &num);
+		p = fgets(line, 100, stdin);
 
-		if (s != 1) {
-			printf("error ss %d\n", s);
-			exit(1);
+		if (!p) {
+			break;		
 		}
 
-		if (num == EXIT_VAL) {
-			exit(1);
+		s = sscanf(line, "%d", &num);
+
+		if (s != 1) {
+			fprintf(stderr, "error ss %d [%s]\n", s, line);
+			continue;
 		}
 
 		result = triangular_num(num);
 
-		printf("ss %d number %i triangular %i\n", s, num, result);
+		printf("number %d triangular %d\n", num, result);
 	}
 
 	return 0;
