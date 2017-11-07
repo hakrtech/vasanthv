@@ -1,10 +1,21 @@
 CC=gcc
 CFLAGS=-g -Wall
 
-all: ex02  ex03  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13 
+
+all: ex02  ex03 ex03a  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
+
 ex02: 	ex02.c
+	gcc $(CFLAGS) $< -o $@
+	size $@
 
 ex03: 	ex03.c
+	gcc $(CFLAGS) ex03.c -lm -o ex03
+
+ex03a: 	ex03a.c
+	gcc ex03a.c -lm -o ex03a
+
+ex03b: ex03b.c
+	gcc ex03b.c -lm -o ex03b
 
 ex04: 	ex04.c
 
@@ -26,5 +37,6 @@ ex12: 	ex12.c
 
 ex13: 	ex13.c
 
+
 clean:
-	/bin/rm -f a.out *.o ex02  ex03  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
+	/bin/rm -f a.out *.o ex02  ex03  ex03a  ex03b  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
