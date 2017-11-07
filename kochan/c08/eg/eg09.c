@@ -1,45 +1,63 @@
-/* Chapter 8 Example 9 Program to finding minimum value in an array
+/* Chapter 08 Example 09 Program to finding minimum value in an array
  * Vasanth 02 October 2017
  */
 
 #include <stdio.h>
 
-int main(void)
+int minmum(int value[10])
 {
-	int i;
-	int scores[10];
-	int minival;
+	int smallest;
+	int found = 1;
 
-	int minimum(int value[10]);
+	smallest = value[0];
 
-	printf("Enter the 10 Score Number:\n");
-
-	for(i =0; i<10; ++i)
-	{
-		scanf("%i", &scores[i]);
+	while (found < 10) {
+		if (value[found] < smallest) {
+			smallest = value[found];
+		}
+		++found;
 	}
 
-	minival = minimum(scores);
+	return smallest;
+}
 
-	printf("\nminimum score is %i\n", minival);
+int maxmum(int num[10])
+{
+	int largest;
+	int found = 1;
+
+	largest = num[0];
+
+	while (found < 10) {
+		if (num[found] > largest) {
+			largest = num[found];
+		}
+		++found;
+	}
+
+	return largest;
+}
+
+int main(void)
+{
+	int count = 0;
+	int scores[10];
+	int min;
+	int max;
+
+	printf("enter 10 score number\n");
+
+	while (count < 10) {
+		scanf("%i", &scores[count]);
+		++count;
+	}
+
+	min = minmum(scores);
+	max = maxmum(scores);
+
+	printf("smallest score %i\n", min);
+	printf("largest score %i\n", max);
 
 	return 0;
 }
 
-int minimum(int value[10])
-{
-	int small;
-	int i;
-
-	small = value[0];
-
-	for(i = 1; i < 10; ++i)
-	{
-		if (value[i] < small)
-		{
-			small = value[i];
-		}
-	}
-
-	return small;
-}
