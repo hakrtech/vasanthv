@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-#define SYMBOL "programming is fun !"
+#define CHR "programming is fun !"
 
 void print_msg(char symbol)
 {	
@@ -16,7 +16,7 @@ int main(void)
 	int count = 0;
 	
 	while(count < 20) {
-		print_msg(SYMBOL[count]);
+		print_msg(CHR[count]);
 		++count;
 	}
 	printf("\n");
