@@ -6,23 +6,24 @@
 
 int main(void)
 {
-	int sortvalue[16] = { 34, 37, -9, 0, 24, 6, 49, -32, 34, 32, 89, 30, 5, 8, -3, -4 };
+	// int sortvalue[16] = { 34, 37, -9, 0, 24, 6, 49, -32, 34, 32, 89, 30, 5, 8, -3, -4 };
+	int sortvalue[10] = { 34, 37, -9, 0, 24, 6, 49, -32, 34, 32 };
 	int i;
 
 	void sort(int a[], int n);
 
 	printf("The array befor the sort:\n");
 
-	for(i = 0; i < 16; ++i)
+	for(i = 0; i < 10; ++i)
 	{
 		printf("%i   ", sortvalue[i]);
 	}
 
-	sort(sortvalue, 16);
+	sort(sortvalue, 10);
 
 	printf("\n\nThe array after the sort:\n");
 
-	for(i = 0; i < 16; ++i)
+	for(i = 0; i < 10; ++i)
 	{
 		printf("%i   ", sortvalue[i]);
 	}
@@ -38,17 +39,21 @@ void sort(int a[], int n)
 	int j;
 	int temp;
 
+   	printf("\n");
+
 	for(i = 0; i < n-1; ++i)
 	{
 		for(j = (i + 1); j < n; ++j)
 		{
-			if(a[i] < a[j])
+			printf("cmp %d %d\n", i, j);
+			if(a[i] > a[j])
 			{
 				temp = a[i];
 				a[i] = a[j];
 				a[j] = temp;
 			}
 		}
+		printf("cmp done\n");
 	}
 
 }
