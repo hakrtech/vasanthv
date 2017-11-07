@@ -3,47 +3,55 @@
  */
 
 #include <stdio.h>
+#include <assert.h>
+#include <stdbool.h>
 
-int main()
+#define EPSILON 0.0001
+
+float absolute_val(float num)
 {
-	void squareRoot(float n, float Ep);
+	if (num < 0) {
+		num = -num;
+	}
 
-	float  num;
-	float epsilon;
-
-	epsilon = 0.00001;
-
-	printf("Compute Square Root? Give value:   ");
-	scanf("%f", &num);
-
-	squareRoot(num, epsilon);
-
-	return 0;
+	return num;
 }
 
-void squareRoot(float n, float Ep)
+float squareRoot(float val, float epsilon)
 {
 	float guess;
 
-	float absoluteValue(float x);
-
 	guess = 1.0;
 
-	while(absoluteValue(guess * guess - n) >= Ep)
-	{
-		guess = (n / guess + guess) / 2.0;
+	while(absolute_val(guess * guess - val) >= epsilon) {
+		guess = (val / guess + guess) / 2.0;
 	}
 
-	printf("The Square Root Value:   %f\n",guess);
+	return guess;
 }
 
-float absoluteValue(float x)
+int main()
 {
-	if(x < 0)
-	{
-		x = -x;
+	printf("compute square root>\n");
+	
+	while (true) {
+		float num;
+		float result;
+		int s;
+	
+		s = scanf("%f", &num);
+
+		if (s != 1) {
+			printf("scanf error %d\n", s);
+			break;
+		}	
+
+		assert(num >= 0);
+		result = squareRoot(num, EPSILON);
+	
+		printf("num %f square root %f\n", num, result);
 	}
 
-	return x;
+	return 0;
 }
 
