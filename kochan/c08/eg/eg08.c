@@ -4,24 +4,23 @@
 
 #include <stdio.h>
 
-float absoluteValue(float x)
+float absolute_val(float x)
 {
-	if(x < 0)
-	{
+	if (x < 0) {
 		x = -x;
 	}
 
-	return (x);
+	return x;
 }
 
-float squareRoot(float a)
+float sqrt_val(float num)
 {
 	float guess = 1.0;
 	float epsilon = 0.00001;
 
-	while(absoluteValue((guess * guess) - a) >= epsilon)
+	while (absolute_val((guess * guess) - num) >= epsilon)
 	{
-		guess = ((a / guess) + guess) / 2.0;
+		guess = ((num / guess) + guess) / 2.0;
 	}
 
 	return guess;
@@ -29,9 +28,9 @@ float squareRoot(float a)
 
 int main(void)
 {
-	printf("Square Root of(2.0) = %f\n", squareRoot(2.0));
-	printf("Square Root of(144.0) = %f\n", squareRoot(144.0));
-	printf("Square Root of(869.0) = %f\n", squareRoot(869.0));
+	printf("square root(2.0) = %f\n", sqrt_val(2.0));
+	printf("square root(144.0) = %f\n", sqrt_val(144.0));
+	printf("square root(869.0) = %f\n", sqrt_val(869.0));
 
 	return 0;
 }
