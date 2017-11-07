@@ -6,7 +6,9 @@
 
 int main(void)
 {
-	int sampleMatrix[3][5] = { { 4, 6, 9, 3 ,12}, { 3, 5, 6, 5, 2 }, { 7, 4, 1, 4, 2 } };
+	int sampleMatrix[3][5] = {      { 4, 6, 9, 3, 12 }, 
+					{ 3, 5, 6, 5,  2 }, 
+					{ 7, 4, 1, 4,  2 } };
 
 	void displaymatrix(int matrix[3][5]);
 	void scalarmultiply(int matrix[3][5], int scalar);
