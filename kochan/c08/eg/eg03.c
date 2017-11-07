@@ -1,22 +1,26 @@
-/* Chapter 8 Example3 More on calling function
+/* Chapter 8 Example 03 more on calling functions
  * vasanth 01 October 2017
  */
 
 #include <stdio.h>
 
-void printMessage(void)
-{
-	printf("Programming is fun.\n");
+#define SYMBOL "programming is fun !"
+
+void print_msg(char symbol)
+{	
+	printf("%c ", symbol);
 }
 
 int main(void)
 {
-	int i;
-
-	for(i=0; i<10; ++i)
-	{
-		printMessage();
+	int count = 0;
+	
+	while(count < 20) {
+		print_msg(SYMBOL[count]);
+		++count;
 	}
+	printf("\n");
 
 	return 0;
 }
+
