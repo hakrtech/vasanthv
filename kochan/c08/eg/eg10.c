@@ -4,33 +4,50 @@
 
 #include <stdio.h>
 
+int maxvalue(int array[], int limit)
+{
+	int largest;
+	int count = 1;
+
+	largest = array[0];
+
+	while (count < limit) {
+		if(array[count] > largest) {
+			largest = array[count];
+		}
+		++count;
+	}
+
+	return largest;
+}
+
+int minvalue(int array[], int limit)
+{
+	int smallest;
+	int count = 1;
+
+	smallest = array[0];
+
+	while (count < limit) {
+		if(array[count] < smallest) {
+			smallest = array[count];
+		}
+		++count;
+	}
+
+	return smallest;
+}
+
 int main(void)
 {
 	int a[5] = { 33, 45, 74, 34, 29};
 	int b[7] = { 89, 78, 90, 84, 78, 89, 79};
 
-	int minivalue(int x[], int countnum);
-
-	printf("The minimum value in A array is: %i\n", minivalue(a , 5));
-	printf("The minimum value in B array is : %i\n", minivalue(b, 7));
+	printf("largest value in A array> %i\n", maxvalue(a , 5));
+	printf("largest value in B array> %i\n\n", maxvalue(b, 7));
+	printf("smallest value in A array> %i\n", minvalue(a , 5));
+	printf("samllest value in B array> %i\n", minvalue(b, 7));
 
 	return 0;
 }
 
-int minivalue(int x[], int countnum)
-{
-	int low;
-	int i;
-
-	low = x[0];
-
-	for(i=1; i<countnum; ++i)
-	{
-		if(x[i] < low)
-		{
-			low = x[i];
-		}
-	}
-
-	return low;
-}
