@@ -1,30 +1,29 @@
-/* Chapter 8 Example 4 Calculating the nth triangular number
+/* Chapter 08 Example 04 Calculating the nth triangular number
  * Vasanth 01 October 2017
  */
 
 #include <stdio.h>
 
-int main(void)
+#define NUM 1000
+
+void triangular_num(int n)
 {
-	void CalculatingTrangularNumber();
+	int count = 1;
+	int sum = 0;
 
-	CalculatingTrangularNumber(10);
-	CalculatingTrangularNumber(20);
-	CalculatingTrangularNumber(50);
-
-	return 0;
+	while (count <= n) {
+		sum += count;
+		++count;
+	}
+	printf("%i triangular %i\n", n, sum);
 }
 
-void CalculatingTrangularNumber(int n)
+int main(void)
 {
-	int i;
-	int traingularValue = 0;
+	triangular_num(10);
+	triangular_num(99);
+	triangular_num(NUM);
 
-	for(i=1; i<=n; ++i)
-	{
-		traingularValue += i;
-	}
-
-	printf("Traingular Number %i is %i\n", n, traingularValue);
+	return 0;
 }
 
