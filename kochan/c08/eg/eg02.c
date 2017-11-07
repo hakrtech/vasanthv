@@ -1,4 +1,4 @@
-/* Chapter 8 Examle 02 Calling functions
+/* Chapter 08 Examle 02 Calling functions
  * vasanth 01 October 2017
  */
 

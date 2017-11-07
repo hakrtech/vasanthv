@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-void common_div(int a, int b)
+void gcd(int a, int b)
 {
 	int temp;
 	
@@ -21,11 +21,11 @@ void common_div(int a, int b)
 int main(void)
 {
 
-	common_div(150, 35);
-	common_div(1026, 405);
-	common_div(5, 7);
-	common_div(33, 88);
-	common_div(95, 35);
+	gcd(150, 35);
+	gcd(1026, 405);
+	gcd(5, 7);
+	gcd(33, 88);
+	gcd(95, 35);
 
 	return 0;
 }

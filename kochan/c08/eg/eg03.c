@@ -15,7 +15,7 @@ int main(void)
 {
 	int count = 0;
 	
-	while(count < 20) {
+	while (count < 20) {
 		print_msg(CHR[count]);
 		++count;
 	}

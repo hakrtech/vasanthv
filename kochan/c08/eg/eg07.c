@@ -1,4 +1,4 @@
-/* Chapter 8 Example 7 Program to calculate absolute value
+/* Chapter 08 Example 07 Program to calculate absolute value
  * Vasanth 01 October 2017
  */
 

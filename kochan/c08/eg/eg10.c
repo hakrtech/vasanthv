@@ -1,4 +1,4 @@
-/* Chapter 8 Example 10 Program to find the minimum value in an array already givened input
+/* Chapter 08 Example 10 Program to find the minimum value in an array already givened input
  * Vasanth 02 October 2017
  */
 

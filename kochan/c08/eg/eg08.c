@@ -1,4 +1,4 @@
-/* Chapter 8 Example 8 Program to calculate Square Root of absolute value number
+/* Chapter 08 Example 08 Program to calculate Square Root of absolute value number
  * Vasanth 02 October 2017
  */
 
@@ -34,3 +34,4 @@ int main(void)
 
 	return 0;
 }
+

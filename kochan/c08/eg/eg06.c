@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-int common_div(int x, int y)
+int gcd(int x, int y)
 {
 	int temp;
 
@@ -41,7 +41,7 @@ int main(void)
 
 		assert(a >= 0);
 		assert(b >= 0);
-		result = common_div(a,b);
+		result = gcd(a,b);
 
 		printf("gratest common divisor %d\n", result);
 	}

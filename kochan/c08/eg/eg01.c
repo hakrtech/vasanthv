@@ -1,4 +1,4 @@
-/* Chapter 8 Example 8.1 A function in C
+/* Chapter 08 Example 01 A function in C
  * vasanth 01 October 2017
  */
 

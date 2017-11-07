@@ -7,15 +7,15 @@
 int minmum(int value[10])
 {
 	int smallest;
-	int found = 1;
+	int count = 1;
 
 	smallest = value[0];
 
-	while (found < 10) {
-		if (value[found] < smallest) {
-			smallest = value[found];
+	while (count < 10) {
+		if (value[count] < smallest) {
+			smallest = value[count];
 		}
-		++found;
+		++count;
 	}
 
 	return smallest;
@@ -24,15 +24,15 @@ int minmum(int value[10])
 int maxmum(int num[10])
 {
 	int largest;
-	int found = 1;
+	int count = 1;
 
 	largest = num[0];
 
-	while (found < 10) {
-		if (num[found] > largest) {
-			largest = num[found];
+	while (count < 10) {
+		if (num[count] > largest) {
+			largest = num[count];
 		}
-		++found;
+		++count;
 	}
 
 	return largest;
