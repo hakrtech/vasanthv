@@ -5,26 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void)
+void gcd(int a, int b)
 {
-	int a;
-	int b;
-	int s;
-
-	s = scanf("%d%d", &a, &b);
-	if (s != 2){
-		printf("scanf error %d\n", s);
-		exit(1);
-	}
-	printf("a %d b %d gcd>\n", a, b);
-
 	while (a > 0 && b > 0) {
 		int c;
 		
-		if (a == b) {
-			printf("gcd %d\n", a);
-			exit(1);
-		}
 		if (a < b) {
 			c = b;
 			b = a;
@@ -32,7 +17,7 @@ int main(void)
 		}
 		
 		c = a - b;
-		printf("cmd %d %d %d\n", a, b, c);
+		printf("cmp %d %d %d\n", a, b, c);
 		
 		if (b <= c) {
 			a = c;
@@ -41,7 +26,31 @@ int main(void)
 			a = b;
 			b = c;
 		}
+		if (a == b) {
+			printf("gcd %d\n", a);
+			exit(1);
+		}
 	}
+}
+
+int main(void)
+{
+	int x;
+	int y;
+	int d;
+
+	d = scanf("%d%d", &x, &y);
+	if (d != 2){
+		printf("scanf error %d\n", d);
+		exit(1);
+	}
+	printf("x %d y %d gcd>\n", x, y);
+	
+	if (x == y) {
+		printf("gcd %d\n", x);
+		exit(1);
+	}
+	gcd(x, y);
 	
 	return 0;
 }

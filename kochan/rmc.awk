@@ -8,6 +8,7 @@
 #
 /^\/\*/ 		{ comment_inside = 1; stop_printing = 1; }
 /^[ ]*\*\/[ 	]*$/ 	{ comment_inside = 0; stop_printing = 1; }
+/^[ 	]*\/\//		{ stop_printing = 1; }
 /^#include[ 	]*</	{ stop_printing = 1; }
 /^[ 	]*printf/	{ stop_printing = 1; }
 /./			{ if (!comment_inside) {
