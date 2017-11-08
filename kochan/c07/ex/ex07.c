@@ -3,8 +3,9 @@
  */
 
 #include <stdio.h>
-#include "level.h"
+//#include "level.h"
 
+#define LIMIT 1000
 #define PRIME  1	/* 1 is prime */
 #define COMPOSITE 0	/* 0 is composite */
 

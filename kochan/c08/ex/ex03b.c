@@ -1,9 +1,10 @@
  /* sqrt example */
 #include <stdio.h>
 #include <math.h>
-#include "level.h"
+//#include "level.h"
 
 #define VAL 1.0
+#define LIMIT 100
 
 int main (void)
 {
@@ -12,7 +13,6 @@ int main (void)
 		double res;
 
 		res = sqrt(val);
-   
 		printf ("sqrt(%lf) = %lf\n", val, res);
 		++val;
 	}

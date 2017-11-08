@@ -4,20 +4,20 @@
 
 #include <stdio.h>
 
-#define CHR "programming is fun !"
+#define STR "programming is fun !"
 
-void print_msg(char symbol)
+void print_msg(char c)
 {	
-	printf("%c ", symbol);
+	printf("%c ", c);
 }
 
 int main(void)
 {
-	int count = 0;
+	int i = 0;
 	
-	while (count < 20) {
-		print_msg(CHR[count]);
-		++count;
+	while (i < 20) {
+		print_msg(STR[i]);
+		++i;
 	}
 	printf("\n");
 

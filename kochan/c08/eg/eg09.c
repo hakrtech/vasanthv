@@ -1,38 +1,38 @@
-/* Chapter 08 Example 09 Program to finding minimum value in an array
+/* Chapter 08 Example 09 Program to finding maximum and minimum value in an array
  * Vasanth 02 October 2017
  */
 
 #include <stdio.h>
 
-int minmum(int value[10])
+int aminimum(int a[], int n)
 {
 	int smallest;
-	int count = 1;
+	int i = 1;
 
-	smallest = value[0];
+	smallest = a[0];
 
-	while (count < 10) {
-		if (value[count] < smallest) {
-			smallest = value[count];
+	while (i < n) {
+		if (a[i] < smallest) {
+			smallest = a[i];
 		}
-		++count;
+		++i;
 	}
 
 	return smallest;
 }
 
-int maxmum(int num[10])
+int amaximum(int a[], int n)
 {
 	int largest;
-	int count = 1;
+	int i = 1;
 
-	largest = num[0];
+	largest = a[0];
 
-	while (count < 10) {
-		if (num[count] > largest) {
-			largest = num[count];
+	while (i < 10) {
+		if (a[i] > largest) {
+			largest = a[i];
 		}
-		++count;
+		++i;
 	}
 
 	return largest;
@@ -40,20 +40,20 @@ int maxmum(int num[10])
 
 int main(void)
 {
-	int count = 0;
+	int i = 0;
 	int scores[10];
 	int min;
 	int max;
 
 	printf("enter 10 score number\n");
 
-	while (count < 10) {
-		scanf("%i", &scores[count]);
-		++count;
+	while (i < 10) {
+		scanf("%i", &scores[i]);
+		++i;
 	}
 
-	min = minmum(scores);
-	max = maxmum(scores);
+	min = aminimum(scores, 10);
+	max = amaximum(scores, 10);
 
 	printf("smallest score %i\n", min);
 	printf("largest score %i\n", max);

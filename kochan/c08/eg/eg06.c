@@ -31,18 +31,15 @@ int main(void)
 		int s;
 
 		s = scanf("%d\n%d", &a, &b);
-
 		if(s != 2) {
 			printf("error scanf %d\n", s);
 			break;
 		}
-
 		printf(" %d and %d ", a, b);
 
 		assert(a >= 0);
 		assert(b >= 0);
-		result = gcd(a,b);
-
+		result = gcd(a, b);
 		printf("gratest common divisor %d\n", result);
 	}
 

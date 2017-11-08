@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-void sort(int a[], int limit)
+void asort(int a[], int n)
 {
 	int i;
 	int j;
@@ -12,8 +12,8 @@ void sort(int a[], int limit)
 
    	printf("\n");
 
-	for (i = 0; i < limit-1; ++i) {
-		for (j = (i + 1); j < limit; ++j) {
+	for (i = 0; i < n-1; ++i) {
+		for (j = (i + 1); j < n; ++j) {
 			printf("cmp %d %d\n", i, j);
 			
 			if (a[i] > a[j]) {
@@ -28,24 +28,21 @@ void sort(int a[], int limit)
 
 int main(void)
 {
-	int sortvalue[16] = { 34, 37, -9, 0, 24, 6, 49, -32, 34, 32, 89, 30, 5, 8, -3, -4 };
-	int count = 0;
+	int a[16] = { 34, 37, -9, 0, 24, 6, 49, -32, 34, 32, 89, 30, 5, 8, -3, -4 };
+	int i = 0;
 
 	printf("array befor sort> ");
-
-	while (count < 16) {
-		printf("%i ", sortvalue[count]);
-		++count;
+	while (i < 16) {
+		printf("%i ", a[i]);
+		++i;
 	}
 
-	sort(sortvalue, 16);
-
+	asort(a, 16);
 	printf("array after sort> ");
-
-	count = 0;
-	while (count < 16) {
-		printf("%i ", sortvalue[count]);
-		++count;
+	i = 0;
+	while (i < 16) {
+		printf("%i ", a[i]);
+		++i;
 	}
 	printf("\n");
 

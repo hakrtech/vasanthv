@@ -5,9 +5,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "level.h"
+//#include "level.h"
 
 #define INIT_VALUE (0)
+#define LIMIT 10
 
 int main(void)
 {

@@ -4,9 +4,9 @@
 
 #include <stdio.h>
 
-float absolute_val(float x)
+float fabsolute(float x)
 {
-	if (x < 0) {
+	if (x < 0.0f) {
 		x = -x;
 	}
 
@@ -15,12 +15,11 @@ float absolute_val(float x)
 
 float sqrt_val(float num)
 {
-	float guess = 1.0;
-	float epsilon = 0.00001;
+	float guess = 1.0f;
+	float epsilon = 0.00001f;
 
-	while (absolute_val((guess * guess) - num) >= epsilon)
-	{
-		guess = ((num / guess) + guess) / 2.0;
+	while (fabsolute((guess * guess) - num) >= epsilon) {
+		guess = ((num / guess) + guess) / 2.0f;
 	}
 
 	return guess;
@@ -28,9 +27,9 @@ float sqrt_val(float num)
 
 int main(void)
 {
-	printf("square root(2.0) = %f\n", sqrt_val(2.0));
-	printf("square root(144.0) = %f\n", sqrt_val(144.0));
-	printf("square root(869.0) = %f\n", sqrt_val(869.0));
+	printf("square root(2.0f) = %f\n", sqrt_val(2.0f));
+	printf("square root(144.0f) = %f\n", sqrt_val(144.0f));
+	printf("square root(869.0f) = %f\n", sqrt_val(869.0f));
 
 	return 0;
 }

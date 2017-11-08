@@ -33,3 +33,12 @@ int main(void)
 	return 0;
 }
 
+/*
+array_operation(int a[], int n, char c = '=+-*%/', float k)
+ = k
+ + k
+ - k
+ * k
+ / k
+*/
+

@@ -1,38 +1,38 @@
-/* Chapter 08 Example 10 Program to find the minimum value in an array already givened input
+/* Chapter 08 Example 10 Program to find the maximum and minimum value in an array already givened input
  * Vasanth 02 October 2017
  */
 
 #include <stdio.h>
 
-int maxvalue(int array[], int limit)
+int amaximum(int a[], int n)
 {
 	int largest;
-	int count = 1;
+	int i = 1;
 
-	largest = array[0];
+	largest = a[0];
 
-	while (count < limit) {
-		if(array[count] > largest) {
-			largest = array[count];
+	while (i < n) {
+		if(a[i] > largest) {
+			largest = a[i];
 		}
-		++count;
+		++i;
 	}
 
 	return largest;
 }
 
-int minvalue(int array[], int limit)
+int aminimum(int a[], int n)
 {
 	int smallest;
-	int count = 1;
+	int i = 1;
 
-	smallest = array[0];
+	smallest = a[0];
 
-	while (count < limit) {
-		if(array[count] < smallest) {
-			smallest = array[count];
+	while (i < n) {
+		if(a[i] < smallest) {
+			smallest = a[i];
 		}
-		++count;
+		++i;
 	}
 
 	return smallest;
@@ -43,10 +43,10 @@ int main(void)
 	int a[5] = { 33, 45, 74, 34, 29};
 	int b[7] = { 89, 78, 90, 84, 78, 89, 79};
 
-	printf("largest value in A array> %i\n", maxvalue(a , 5));
-	printf("largest value in B array> %i\n\n", maxvalue(b, 7));
-	printf("smallest value in A array> %i\n", minvalue(a , 5));
-	printf("samllest value in B array> %i\n", minvalue(b, 7));
+	printf("largest value in A array> %i\n", amaximum(a , 5));
+	printf("smallest value in A array> %i\n", aminimum(a , 5));
+	printf("largest value in B array> %i\n\n", amaximum(b, 7));
+	printf("samllest value in B array> %i\n", aminimum(b, 7));
 
 	return 0;
 }

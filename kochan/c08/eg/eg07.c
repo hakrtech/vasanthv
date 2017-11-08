@@ -4,9 +4,9 @@
 
 #include <stdio.h>
 
-float absolute_val(float a)
+float fabsolute(float a)
 {
-	if (a < 0) {
+	if (a < 0.0f) {
 		a = -a;
 	}
 
@@ -15,29 +15,25 @@ float absolute_val(float a)
 
 int main(void)
 {
-	float x = -15.5;
-	float y = 20;
-	float z = -5;
+	float x = -15.5f;
+	float y = 20.0f;
+	float z = -5.0f;
 	int num = -221;
 	float result;
 
-	result = absolute_val(x);
-
+	result = fabsolute(x);
 	printf("result = %.2f\n", result);
 	printf("x = %.2f\n", x);
 
-	result = absolute_val(y) + absolute_val(z);
-
+	result = fabsolute(y) + fabsolute(z);
 	printf("result = %.2f\n", result);
 
-	result = absolute_val((float) num);
-
+	result = fabsolute((float) num);
 	printf("result = %.2f\n", result);
 
-	result = absolute_val(num);
-
+	result = fabsolute(num);
 	printf("result = %.2f\n", result);
-	printf("absolute value %2.f\n", absolute_val(-6.0) / 4.0);
+	printf("absolute division %2.f\n", fabsolute(-6.0f) / 4.0f);
 
 	return 0;
 }
