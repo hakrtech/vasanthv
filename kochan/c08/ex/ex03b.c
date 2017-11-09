@@ -1,14 +1,14 @@
  /* sqrt example */
 #include <stdio.h>
 #include <math.h>
-//#include "level.h"
+#include "level.h"
 
-#define VAL 1.0
-#define LIMIT 100
+#define VAL 1.0f
 
 int main (void)
 {
 	double val = VAL;
+
 	while (val <= LIMIT) {
 		double res;
 

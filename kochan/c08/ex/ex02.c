@@ -1,4 +1,4 @@
-/* Chapter 8 Exercise 2 Program to calculate triangular number using function
+/* Chapter 08 Exercise 02 Program to calculate triangular number using function
  * Vasanth 03 October 2017
  */
 

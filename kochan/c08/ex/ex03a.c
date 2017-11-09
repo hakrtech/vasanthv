@@ -1,20 +1,23 @@
  /* sqrt example */
 #include <stdio.h>
-#include <math.h>
+#include <assert.h>
+
+#include "libnumf.h"
 
 #define MAX_STR 200
+#define EPSILON 0.00001f
 
 int main (void)
 {
 	while (!feof(stdin)) {
-		double param; 
-		double result;
+		float param; 
+		float result;
 		int ss;
 		char str[MAX_STR];
 		char *p;
 
 		p = fgets(str, MAX_STR, stdin);
-		ss = sscanf(str, "%lf", &param);
+		ss = sscanf(str, "%f", &param);
 
 		if (!p) {
 			break;
@@ -23,10 +26,10 @@ int main (void)
 			fprintf(stderr, "error ss %d [%s]\n",ss, str);
 			continue;
 		}
-
-		result = sqrt(param);
-   
-		printf ("sqrt(%lf) = %lf\n", param, result);
+		
+		assert(param > 0.0f);
+		result = numf_sqrtf(param, EPSILON);
+   		printf("sqrt(%f) = %f\n", param, result);
 	}
 	
 	return 0;

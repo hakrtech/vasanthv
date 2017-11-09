@@ -18,7 +18,7 @@ COMPILE.FLAGS+=$(INCDIR)
 LIBDIR=-L. -L../px
 
 # link with these libraries
-LIB=-lhakr -lnumi -lm -lnumf
+LIB=-lhakr -lnumi -lm -lreal
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LIBDIR) $(LIB)
@@ -29,7 +29,7 @@ BIN=ex02 ex03 ex03a ex03b ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11 ex12 ex13
 # default target - compile libraries and then binaries
 all: 	lib bin
 
-lib: 	libnumi.a libnumf.a
+lib: 	libnumi.a libreal.a
 
 bin:	$(BIN)
 
@@ -41,18 +41,20 @@ clean:
 
 # number integer library
 libnumi.a: libnumi.o
-	ar crs libnumi.a libnumi.o
+	ar crs $@ libnumi.o
 
 libnumi.o: libnumi.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
 
 # number float library
-libnumf.a: libnumf.o
-	ar crs libnumf.a libnumf.o
+libreal.a: libnumf.o libnumd.o
+	ar crs $@ libnumf.o libnumd.o
 
 libnumf.o: libnumf.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
 
+libnumd.o: libnumd.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
 
 # binaries
 ex02: 	ex02.c

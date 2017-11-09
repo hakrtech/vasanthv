@@ -1,4 +1,4 @@
-/* Chapter 8 Exercise 7 Program to calculate x^n and get postive result
+/* Chapter 08 Exercise 07 Program to calculate x^n and get postive result
  * Vasanth 03 October 2017
  */
  #include <stdio.h>
@@ -28,15 +28,14 @@ int powernum(long int x, int n) // LIBIT
 	int i;
 	int xnum = 1;
 
-	if(n < 0)
-	{
+	if(n < 0) {
 		n = -n;
 	}
 
-	for(i = 0; i < n; i++)
-	{
+	for(i = 0; i < n; i++) {
 		xnum *= x;
 	}
 
 	return xnum;
 }
+
