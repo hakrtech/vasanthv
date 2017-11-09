@@ -1,2 +1,4 @@
-float numf_absf() // DOIT
-float numf_sqrtf(float n, float accuracy) // DOIT
+
+float numf_absf(float n); // DONE
+float numf_sqrtf(float n, float accuracy); // DONE
+

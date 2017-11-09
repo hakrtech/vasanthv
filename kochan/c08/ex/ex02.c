@@ -16,20 +16,17 @@ int main(void)
 		char *p;
 
 		p = fgets(line, 100, stdin);
-
 		if (!p) {
 			break;		
 		}
 
 		s = sscanf(line, "%d", &num);
-
 		if (s != 1) {
 			fprintf(stderr, "error ss %d [%s]\n", s, line);
 			continue;
 		}
 
 		result = numi_trisum(num);
-
 		printf("number %d triangular %d\n", num, result);
 	}
 

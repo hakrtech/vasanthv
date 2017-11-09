@@ -6,49 +6,27 @@
 #include <assert.h>
 #include <stdbool.h>
 
+#include "libnumf.h"
+
 #define EPSILON 0.0001
 
-float absolute_val(float num) // LIBIT
-{
-	if (num < 0) {
-		num = -num;
-	}
-
-	return num;
-}
-
-float squareRoot(float val, float epsilon) // LIBIT
-{
-	float guess;
-
-	guess = 1.0;
-
-	while(absolute_val(guess * guess - val) >= epsilon) {
-		guess = (val / guess + guess) / 2.0;
-	}
-
-	return guess;
-}
-
-int main()
+int main(void)
 {
 	printf("compute square root>\n");
 	
 	while (true) {
 		float num;
 		float result;
-		int s;
+		int d;
 	
-		s = scanf("%f", &num);
-
-		if (s != 1) {
-			printf("scanf error %d\n", s);
+		d = scanf("%f", &num);
+		if (d != 1) {
+			printf("scanf error %d\n", d);
 			break;
 		}	
 
 		assert(num >= 0);
-		result = squareRoot(num, EPSILON);
-	
+		result = numf_sqrtf(num, EPSILON);
 		printf("num %f square root %f\n", num, result);
 	}
 
