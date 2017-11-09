@@ -17,7 +17,9 @@ void gcd(int a, int b)
 		}
 		
 		c = a - b;
+#ifdef DEBUG
 		printf("cmp %d %d %d\n", a, b, c);
+#endif
 		
 		if (b <= c) {
 			a = c;

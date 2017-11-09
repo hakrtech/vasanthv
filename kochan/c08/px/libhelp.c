@@ -3,13 +3,16 @@
  */
 
 #include <stdio.h>
+#include <assert.h>
+
 #include "libhelp.h"
 
 void ari_setall(int a[], int n, int val)
 {
 	int i;
 
-	// a[0] .. a[n-1] = val
+	assert(n >= 0);
+
 	for (i = 0; i < n; i++) {
 		a[i] = val;
 	}
@@ -19,7 +22,12 @@ void ari_setall(int a[], int n, int val)
 
 void ari_setone(int a[], int n, int pos, int val)
 {
+	assert(n >= 0);
+	assert(pos >= 0);
+	assert(pos < n);
+
 	a[pos] = val;
+
 	return;
 }
 

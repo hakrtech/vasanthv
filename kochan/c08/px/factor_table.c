@@ -11,7 +11,7 @@
 void factor(int n)
 {	
 	int divisor;
-	int a[n];
+	int a[100];
 	int i = 0;
 
 	divisor = n;
@@ -20,7 +20,7 @@ void factor(int n)
 
 		remainder = n % divisor;
 		if (remainder == 0) {
-		//	a[i] = divisor;
+			/* a[i] = divisor; */
 			ari_setone(a, n, i, divisor);
 			++i;
 		}
