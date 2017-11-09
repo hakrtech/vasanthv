@@ -33,6 +33,12 @@ lib: 	libhakr.a
 
 bin:	$(BIN)
 
+# clean up and build everything again
+build:	clean all
+
+clean:
+	/bin/rm -f a.out *.o *.a $(BIN)
+
 libhakr.a: libhelp.o
 	ar crs libhakr.a libhelp.o
 	# nm -s libhakr.a
@@ -84,11 +90,4 @@ ex12: 	ex12.c
 
 ex13: 	ex13.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
-
-
-# clean up and build everything again
-build:	clean all
-
-clean:
-	/bin/rm -f a.out *.o *.a $(BIN)
 
