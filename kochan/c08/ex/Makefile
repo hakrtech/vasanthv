@@ -24,10 +24,10 @@ LIB=-lhakr
 LINK.FLAGS=$(LIBDIR) $(LIB)
 
 # list of binaries (executables)
-#BIN=factor_table gcd
+BIN= ex02  ex03 ex03a ex03b  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
 
 # default target - compile libraries and then binaries
-all: 	lib bin
+all: 	bin
 
 lib: 	libhakr.a
 
@@ -42,14 +42,6 @@ libhelp.o: libhelp.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
 
 
-# clean up and build everything again
-build:	clean all
-
-clean:
-	/bin/rm -f a.out *.o *.a $(BIN)
-
-
-BIN= ex02  ex03 ex03a ex03b  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
 
 ex02: 	ex02.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
@@ -60,7 +52,7 @@ ex03: 	ex03.c
 ex03a: 	ex03a.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
-ex03b: ex03b.c
+ex03b: 	ex03b.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex04: 	ex04.c
@@ -94,6 +86,9 @@ ex13: 	ex13.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 
+# clean up and build everything again
+build:	clean all
+
 clean:
-	/bin/rm -f a.out *.o ex02  ex03  ex03a  ex03b  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
+	/bin/rm -f a.out *.o *.a $(BIN)
 
