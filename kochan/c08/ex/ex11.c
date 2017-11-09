@@ -16,7 +16,7 @@ int main(void)
 	return 0;
 }
 
-int arraySum(int arraynum[], int element)
+int arraySum(int arraynum[], int element) // LIBIT
 {
 	int i;
 	int sum;

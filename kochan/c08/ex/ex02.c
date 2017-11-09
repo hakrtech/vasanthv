@@ -4,21 +4,7 @@
 
 #include <stdio.h>
 
-int triangular_num(int n)
-{
-	int sum;
-	int count;
-
-	sum = 0;
-	count = 1;
-       
-	while (count <= n) {
-		sum += count;
-		++count;
-	}
-
-	return sum;
-}
+#include "libnumi.h"
 
 int main(void)
 {
@@ -42,7 +28,7 @@ int main(void)
 			continue;
 		}
 
-		result = triangular_num(num);
+		result = numi_trisum(num);
 
 		printf("number %d triangular %d\n", num, result);
 	}

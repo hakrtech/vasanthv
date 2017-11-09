@@ -8,7 +8,7 @@
 
 #define EPSILON 0.0001
 
-float absolute_val(float num)
+float absolute_val(float num) // LIBIT
 {
 	if (num < 0) {
 		num = -num;
@@ -17,7 +17,7 @@ float absolute_val(float num)
 	return num;
 }
 
-float squareRoot(float val, float epsilon)
+float squareRoot(float val, float epsilon) // LIBIT
 {
 	float guess;
 

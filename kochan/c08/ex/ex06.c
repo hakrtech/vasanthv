@@ -22,7 +22,7 @@ int main()
 	return 0;
 }
 
-float squareRoot(float epsilon, float n)
+float squareRoot(float epsilon, float n) // LIBIT
 {
 	float guess;
 
@@ -41,7 +41,7 @@ float squareRoot(float epsilon, float n)
 	return guess;
 }
 
-float absoluteValue(float x)
+float absoluteValue(float x) // LIBIT
 {
 	if(x < 0)
 	{

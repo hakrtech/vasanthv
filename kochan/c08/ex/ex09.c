@@ -30,7 +30,7 @@ int main(void)
 	return 0;
 }
 
-int gcd(int u, int v)
+int gcd(int u, int v) // LIBIT
 {
 	int temp;
 

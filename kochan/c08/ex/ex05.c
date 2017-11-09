@@ -18,7 +18,7 @@ int main()
 	return 0;
 }
 
-void squareRoot(float n)
+void squareRoot(float n) // LIBIT
 {
 	float guess;
 	float epsilon;
@@ -37,7 +37,7 @@ void squareRoot(float n)
 	printf("\nThe Square Root Value:   %f\n",guess);
 }
 
-float absoluteValue(float x)
+float absoluteValue(float x) // LIBIT
 {
 	if(x < 0)
 	{

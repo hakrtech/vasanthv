@@ -22,7 +22,7 @@ int main(void)
 	return 0;
 }
 
-void displayMatrix(int mat[4][5])
+void displayMatrix(int mat[4][5]) // LIBIT
 {
 	int rw;
 	int cl;
@@ -38,7 +38,7 @@ void displayMatrix(int mat[4][5])
 	}
 }
 
-void transposeMatrix(int matval[4][5])
+void transposeMatrix(int matval[4][5]) // LIBIT
 {
 	int rows;
 	int cols;

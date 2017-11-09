@@ -1,12 +1,12 @@
 # choice of compiles
-CC=gcc 
 CC=clang
+CC=gcc 
 
 # preprocess with these options usually called CPPFLAGS
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG
 
 # compile with these options usually called CFLAGS
-COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi
+COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
 
 # search for user header files in these directories
 INCDIR=-I.
@@ -15,21 +15,21 @@ INCDIR=-I.
 COMPILE.FLAGS+=$(INCDIR)
 
 # link time search for libraries in these directories
-LIBDIR=-L.
+LIBDIR=-L. -L../px
 
 # link with these libraries
-LIB=-lhakr
+LIB=-lhakr -lnumi -lm
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LIBDIR) $(LIB)
 
 # list of binaries (executables)
-BIN= ex02  ex03 ex03a ex03b  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
+BIN=ex02 ex03 ex03a ex03b ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11 ex12 ex13
 
 # default target - compile libraries and then binaries
-all: 	bin
+all: 	lib bin
 
-lib: 	libhakr.a
+lib: 	libnumi.a
 
 bin:	$(BIN)
 
@@ -39,14 +39,13 @@ build:	clean all
 clean:
 	/bin/rm -f a.out *.o *.a $(BIN)
 
-libhakr.a: libhelp.o
-	ar crs libhakr.a libhelp.o
-	# nm -s libhakr.a
+libnumi.a: libnumi.o
+	ar crs libnumi.a libnumi.o
+	# nm -s libnumi.a
 
 # rename to libari.c libarf.c libnumi.c libnumf.c ...
-libhelp.o: libhelp.c
+libnumi.o: libnumi.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
-
 
 
 ex02: 	ex02.c

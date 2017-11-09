@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void array_swap_element(int a[], int i, int j)
+void array_swap_element(int a[], int i, int j) // LIBIT
 {
 	int temp;
 
@@ -14,7 +14,7 @@ void array_swap_element(int a[], int i, int j)
 	a[j] = temp;
 }
 
-void array_sort_up(int a[], int n)
+void array_sort_up(int a[], int n) // LIBIT
 {
 	int i;
 
@@ -29,7 +29,7 @@ void array_sort_up(int a[], int n)
 	}
 }
 
-void array_sort_down(int a[], int n)
+void array_sort_down(int a[], int n) // LIBIT
 {
 	int i;
 
@@ -44,7 +44,7 @@ void array_sort_down(int a[], int n)
 	}
 }
 
-void array_print(int a[], int n)
+void array_print(int a[], int n) // LIBIT
 {
 	int i;
 	printf("array[%i] = { ", n);

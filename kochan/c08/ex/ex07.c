@@ -23,7 +23,7 @@ int main(void)
 	return 0;
 }
 
-int powernum(long int x, int n)
+int powernum(long int x, int n) // LIBIT
 {
 	int i;
 	int xnum = 1;
