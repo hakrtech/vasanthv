@@ -24,7 +24,7 @@ LIB=-lhakr
 LINK.FLAGS=$(LIBDIR) $(LIB)
 
 # list of binaries (executables)
-BIN=factor_table gcd
+#BIN=factor_table gcd
 
 # default target - compile libraries and then binaries
 all: 	lib bin
@@ -41,11 +41,6 @@ libhakr.a: libhelp.o
 libhelp.o: libhelp.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
 
-factor_table: factor_table.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
-
-gcd: 	gcd.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 # clean up and build everything again
 build:	clean all
@@ -54,44 +49,49 @@ clean:
 	/bin/rm -f a.out *.o *.a $(BIN)
 
 
-CC=gcc
-CFLAGS=-g -Wall
-
-
-all: ex02  ex03 ex03a ex03b  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
+BIN= ex02  ex03 ex03a ex03b  ex04  ex05  ex06  ex07  ex08  ex09  ex10  ex11  ex12  ex13
 
 ex02: 	ex02.c
-	gcc $(CFLAGS) $< -o $@
-	size $@
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex03: 	ex03.c
-	gcc $(CFLAGS) ex03.c -lm -o ex03
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex03a: 	ex03a.c
-	gcc ex03a.c -lm -o ex03a
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex03b: ex03b.c
-	gcc ex03b.c -lm -o ex03b
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex04: 	ex04.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex05: 	ex05.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex06: 	ex06.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex07: 	ex07.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex08: 	ex08.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex09: 	ex09.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex10: 	ex10.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex11: 	ex11.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex12: 	ex12.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex13: 	ex13.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 
 clean:
