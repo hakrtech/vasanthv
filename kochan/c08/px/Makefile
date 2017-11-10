@@ -1,3 +1,4 @@
+
 # choice of compiles
 CC=gcc 
 CC=clang
@@ -6,50 +7,54 @@ CC=clang
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG
 
 # compile with these options usually called CFLAGS
-COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi
+COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
 
 # search for user header files in these directories
-INCDIR=-I.
+INCDIR=-I ../lib
 
 # add this to compile flags
 COMPILE.FLAGS+=$(INCDIR)
 
 # link time search for libraries in these directories
-LIBDIR=-L.
+LINK.LIBDIRS=-L ../lib
 
-# link with these libraries
-LIB=-lhakr
+# list of libraries to link with 
+LINK.LIBS=-lhakr
 
 # link with these flags usually called LDFLAGS
-LINK.FLAGS=$(LIBDIR) $(LIB)
+LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
-# list of binaries (executables)
+# list of binaries to be built
 BIN=factor_table gcd
 
-# default target - compile libraries and then binaries
-all: 	lib bin
+# list of libraries to be built
+LIB=
 
-lib: 	libhakr.a
+#
+# default target - compile libraries and then binaries
+#
+
+all: 	lib bin 
+
+lib: 	$(LIB)
 
 bin:	$(BIN)
 
-libhakr.a: libhelp.o
-	ar crs libhakr.a libhelp.o
-	# nm -s libhakr.a
+# clean up and build everything again
+rebuild: build
 
-# rename to libari.c libarf.c libnumi.c libnumf.c ...
-libhelp.o: libhelp.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
+build:	clean all
 
+clean:
+	/bin/rm -f a.out *.o *.a $(BIN) $(LIB)
+#
+# end of Makefile template
+#
+
+#binary
 factor_table: factor_table.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 gcd: 	gcd.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
-
-# clean up and build everything again
-build:	clean all
-
-clean:
-	/bin/rm -f a.out *.o *.a $(BIN)
 
