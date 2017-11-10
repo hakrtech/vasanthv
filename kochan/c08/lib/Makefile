@@ -27,7 +27,7 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 BIN=
 
 # list of libraries to be built
-LIB=libinteger.a libreal.a libhakr.a
+LIB=libinteger.a libreal.a libarray.a
 
 #
 # default target - compile libraries and then binaries
@@ -52,7 +52,7 @@ clean:
 
 # integer number library
 libinteger.a: libnumi.o
-	ar crs libinteger.a libnumi.o
+	ar crs $@ libnumi.o
 
 libnumi.o: libnumi.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
@@ -67,12 +67,11 @@ libnumf.o: libnumf.c
 libnumd.o: libnumd.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
-# own hakr library
-libhakr.a: libhelp.o
-	ar crs libhakr.a libhelp.o
-	# nm -s libhakr.a
+# array library
+libarray.a: libhelp.o
+	ar crs $@ libhelp.o
 
-# renamed
+# array renamed
 libhelp.o: libhelp.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
 
