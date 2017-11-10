@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "libnumd.h"
+#include "libreal.h"
 
 int main()
 {
@@ -14,12 +14,14 @@ int main()
 
 	printf("enter epsilon(0.1 to double limit)> ");
 	scanf("%lf", &epsilon);
+	printf("epsilon %lf\n", epsilon);
 
-	printf("compute square root? value> ");
+	printf("compute square root? num> ");
 	scanf("%lf", &num);
+	printf("num %lf\n", num);
 
 	assert(num > 0.0);
-	printf("\nsquare root> %lf\n", numd_sqrtd(num, epsilon));
+	printf("square root> %lf\n", numd_sqrtd(num, epsilon));
 
 	return 0;
 }

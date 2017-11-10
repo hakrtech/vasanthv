@@ -6,7 +6,7 @@
 #include <assert.h>
 #include <stdbool.h>
 
-#include "libnumf.h"
+#include "libreal.h"
 
 #define EPSILON 0.0001f
 

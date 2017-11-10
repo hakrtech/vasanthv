@@ -33,9 +33,11 @@ int main(void)
 	printf("second num %d\n", v);
 	
 	if (u < 1) {
+		printf("sorry! lcm use positive num only\n");
 		exit(1);
 	}
 	if (v < 1) {
+		printf("sorry! lcm use positive num only\n");
 		exit(1);
 	}
 

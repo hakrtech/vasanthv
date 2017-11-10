@@ -9,13 +9,13 @@ PREPROCESSOR.FLAGS=-DLAB -DDEBUG
 COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
 
 # search for user header files in these directories
-INCDIR=-I . -I lib
+INCDIR=-I . -I ../lib
 
 # add this to compile flags
 COMPILE.FLAGS+=$(INCDIR)
 
 # link time search for libraries in these directories
-LINK.LIBDIRS=-L lib -L ../px
+LINK.LIBDIRS=-L ../lib
 
 # list of libraries to link with 
 LINK.LIBS=-lnumi -lm -lreal
