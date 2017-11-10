@@ -1,46 +1,48 @@
-/* Chapter 8 Exercise 9 Program to find Least Common Multiple(LCM) of two postive number. The LCM(u,v) = uv / GCD(u,v) and  u,v >=0.
+/* Chapter 08 Exercise 09 Program to find Least Common Multiple(LCM) of two postive number.
+ * the LCM(u,v) = uv / GCD(u,v) and  u,v >=0.
  * Vasanth 04 October 2017
  */
 
 #include <stdio.h>
-
-int main(void)
-{
-	int gcd(int u, int v);
-
-	int u;
-	int v;
-	int result;
-	int gcd1;
-
-	printf("Welcome!!! to Least Common Multiple[LCM] of any two numbers:\n");
-	printf("Enter U value:  ");
-	scanf("%i", &u);
-	printf("Enter V value:  ");
-	scanf("%i", &v);
-
-	if(u >= 0 || v >= 0)
-	{
-		gcd1 = gcd(u, v);
-		result =  (u * v) / gcd1;
-	}
-
-	printf("\nThe Greatest Common Divisor[GCD] of U and V:  %i and The Least Common Multiple[LCM] of U and V:  %i\n\n", gcd1, result);
-
-	return 0;
-}
+#include <stdlib.h>
 
 int gcd(int u, int v) // LIBIT
 {
 	int temp;
 
-	while( v != 0)
-	{
+	while ( v != 0) {
 		temp = u % v;
 		u = v;
 		v = temp;
 	}
 
 	return u;
+}
+
+int main(void)
+{
+	int u;
+	int v;
+	int result;
+	int gcd_val;
+	
+	printf("enter two positive num and get least common multiple[LCM]>\n");
+	scanf("%d", &u);
+	printf("first num %d\n", u);
+	scanf("%d", &v);
+	printf("second num %d\n", v);
+	
+	if (u < 1) {
+		exit(1);
+	}
+	if (v < 1) {
+		exit(1);
+	}
+
+	gcd_val = gcd(u, v);
+	result =  (u * v) / gcd_val;
+	printf("gcd %d lcm %d\n", gcd_val, result);
+
+	return 0;
 }
 

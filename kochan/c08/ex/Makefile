@@ -1,6 +1,6 @@
 # choice of compiles
-CC=clang
 CC=gcc 
+CC=clang
 
 # preprocess with these options usually called CPPFLAGS
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG
@@ -9,52 +9,47 @@ PREPROCESSOR.FLAGS=-DLAB -DDEBUG
 COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
 
 # search for user header files in these directories
-INCDIR=-I.
+INCDIR=-I . -I lib
 
 # add this to compile flags
 COMPILE.FLAGS+=$(INCDIR)
 
 # link time search for libraries in these directories
-LIBDIR=-L. -L../px
+LINK.LIBDIRS=-L lib -L ../px
 
-# link with these libraries
-LIB=-lhakr -lnumi -lm -lreal
+# list of libraries to link with 
+LINK.LIBS=-lnumi -lm -lreal
 
 # link with these flags usually called LDFLAGS
-LINK.FLAGS=$(LIBDIR) $(LIB)
+LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
-# list of binaries (executables)
+# list of binaries to be built
 BIN=ex02 ex03 ex03a ex03b ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11 ex12 ex13
 
-# default target - compile libraries and then binaries
-all: 	lib bin
+# list of libraries to be built
+LIB=
 
-lib: 	libnumi.a libreal.a
+#
+# default target - compile libraries and then binaries
+#
+
+all: 	lib bin 
+
+lib: 	$(LIB)
 
 bin:	$(BIN)
 
 # clean up and build everything again
+rebuild: build
+
 build:	clean all
 
 clean:
-	/bin/rm -f a.out *.o *.a $(BIN)
+	/bin/rm -f a.out *.o *.a $(BIN) $(LIB)
+#
+# end of Makefile template
+#
 
-# number integer library
-libnumi.a: libnumi.o
-	ar crs $@ libnumi.o
-
-libnumi.o: libnumi.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
-
-# number float library
-libreal.a: libnumf.o libnumd.o
-	ar crs $@ libnumf.o libnumd.o
-
-libnumf.o: libnumf.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
-
-libnumd.o: libnumd.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
 
 # binaries
 ex02: 	ex02.c
