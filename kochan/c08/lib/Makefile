@@ -27,7 +27,7 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 BIN=
 
 # list of libraries to be built
-LIB=libinteger.a libreal.a libhakr.a
+LIB=libinteger.a libreal.a libarray.a
 
 #
 # default target - compile libraries and then binaries
@@ -52,27 +52,26 @@ clean:
 
 # integer number library
 libinteger.a: libnumi.o
-	ar crs libinteger.a libnumi.o
+	ar crs $(.TARGET) $(.ALLSRC)
 
 libnumi.o: libnumi.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
+	$(CC) -o $(.TARGET) $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $(.ALLSRC) 
 
 # real number library
 libreal.a: libnumf.o libnumd.o
-	ar crs $@ libnumf.o libnumd.o
+	ar crs $(.TARGET) $(.ALLSRC)
 
 libnumf.o: libnumf.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
+	$(CC) -o $(.TARGET) $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $(.ALLSRC) 
 
 libnumd.o: libnumd.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
+	$(CC) -o $(.TARGET) $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $(.ALLSRC)
 
-# own hakr library
-libhakr.a: libhelp.o
-	ar crs libhakr.a libhelp.o
-	# nm -s libhakr.a
+# array library
+libarray.a: libhelp.o
+	ar crs $(.TARGET) $(.ALLSRC)
 
 # renamed
 libhelp.o: libhelp.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $(.ALLSRC) 
 
