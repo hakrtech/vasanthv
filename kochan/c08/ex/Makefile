@@ -18,7 +18,7 @@ COMPILE.FLAGS+=$(INCDIR)
 LINK.LIBDIRS=-L ../lib
 
 # list of libraries to link with 
-LINK.LIBS=-linteger -lm -lreal
+LINK.LIBS=-linteger -lreal -lm
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
@@ -27,6 +27,7 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 BIN=ex02 ex03 ex03a ex03b ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11 ex12 ex13
 
 # list of libraries to be built
+LIBDIR= ../lib
 LIB=
 
 #
@@ -36,6 +37,7 @@ LIB=
 all: 	lib bin 
 
 lib: 	$(LIB)
+	cd $(LIBDIR) && make lib && cd ..
 
 bin:	$(BIN)
 
@@ -52,6 +54,8 @@ clean:
 
 
 # binaries
+# $@ is lhs
+# $< is rhs
 ex02: 	ex02.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
@@ -91,6 +95,6 @@ ex11: 	ex11.c
 ex12: 	ex12.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
-ex13: 	ex13.c
+ex13: 	ex13.c 
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 

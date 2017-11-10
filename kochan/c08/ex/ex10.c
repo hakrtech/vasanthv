@@ -1,10 +1,10 @@
-/* Chapter 8 Exercise 10 Program to check Prime number and using Prime function
+/* Chapter 08 Exercise 10 Program to check Prime number and using Prime function
  * Vasanth 04 October 2017
  */
 
 #include <stdio.h>
 
-#include "libnumi.h"
+#include "libinteger.h"
 
 int main(void)
 {
@@ -22,3 +22,4 @@ int main(void)
 	}
 	return 0;
 }
+

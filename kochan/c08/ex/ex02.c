@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-#include "libnumi.h"
+#include "libinteger.h"
 
 int main(void)
 {

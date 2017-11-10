@@ -19,7 +19,7 @@ COMPILE.FLAGS+=$(INCDIR)
 LINK.LIBDIRS=-L ../lib
 
 # list of libraries to link with 
-LINK.LIBS=-lhakr
+LINK.LIBS=-larray
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
@@ -29,6 +29,7 @@ BIN=factor_table gcd
 
 # list of libraries to be built
 LIB=
+LIBDIR= ../lib
 
 #
 # default target - compile libraries and then binaries
@@ -37,6 +38,7 @@ LIB=
 all: 	lib bin 
 
 lib: 	$(LIB)
+	cd $(LIBDIR) && make lib && cd ..
 
 bin:	$(BIN)
 
