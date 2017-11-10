@@ -18,7 +18,7 @@ COMPILE.FLAGS+=$(INCDIR)
 LINK.LIBDIRS=-L ../lib
 
 # list of libraries to link with 
-LINK.LIBS=-lnumi -lm -lreal
+LINK.LIBS=-linteger -lm -lreal
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
