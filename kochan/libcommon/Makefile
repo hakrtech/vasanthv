@@ -27,7 +27,7 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 BIN=
 
 # list of libraries to be built
-LIB=libinteger.a libreal.a libarray.a
+LIB=libinteger.a libreal.a libarray.a libmatrix.a
 
 #
 # default target - compile libraries and then binaries
@@ -74,4 +74,12 @@ libarray.a: libhelp.o
 # array renamed
 libhelp.o: libhelp.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
+
+# matrix library
+libmatrix.a: libmxi.o
+	ar crs $@ libmxi.o
+
+libmxi.o: libmxi.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
+
 
