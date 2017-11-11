@@ -10,13 +10,13 @@ PREPROCESSOR.FLAGS=-DLAB -DDEBUG
 COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
 
 # search for user header files in these directories
-INCDIR=-I ../lib
+INCDIR=-I ../../libcommon
 
 # add this to compile flags
 COMPILE.FLAGS+=$(INCDIR)
 
 # link time search for libraries in these directories
-LINK.LIBDIRS=-L ../lib
+LINK.LIBDIRS=-L ../../libcommon
 
 # list of libraries to link with 
 LINK.LIBS=-larray
@@ -29,7 +29,8 @@ BIN=factor_table gcd
 
 # list of libraries to be built
 LIB=
-LIBDIR= ../lib
+LIBDIR= ../../libcommon
+RETURNPATH= ../c08/px
 
 #
 # default target - compile libraries and then binaries
@@ -38,7 +39,7 @@ LIBDIR= ../lib
 all: 	lib bin 
 
 lib: 	$(LIB)
-	cd $(LIBDIR) && make lib && cd ..
+	cd $(LIBDIR) && make && cd $(RETURNPATH)
 
 bin:	$(BIN)
 
