@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <assert.h>
 
 #include "libnumi.h"
 
@@ -10,7 +11,6 @@ int  numi_gcd2(int a, int b) // DOIT our - algo
 int  numi_gcd3(int a, int b) // DOIT euler algo
 int  numi_gcd4(int a, int b) // DOIT while loop algo
 int  numi_gcd5(int a, int b) // DOIT recursive algo
-int  numi_pown(int n, int pow)	// DOIT
 int  numi_pown_rec(int n, int pow) // DOIT
 bool numi_iscomposite(int n) // DOIT
 int  numi_trisum_rec(int n) // DOIT
@@ -31,22 +31,6 @@ bool numi_isprime(int n) // DONE
 
 	return isPrime;
 }
-#if 0
-int prime(int x) // LIBIT
-{
-	int d;
-	_Bool isPrime;
-
-	isPrime = 1;
-
-	for (d = 2; d < x; ++d) {
-		if (x % d == 0) {
-			isPrime = 0;
-		}
-	}
-		return isPrime;
-}
-#endif
 
 int  numi_trisum(int n) //DONE
 {
@@ -63,21 +47,36 @@ int  numi_trisum(int n) //DONE
 	return sum;
 }
 
-#if 0
-int triangular_num(int n) // LIBIT
+int  numi_pown(int x, int n)	// DOIT
+// int powernum(long int x, int n) // LIBIT
 {
-	int sum;
-	int count;
+	int i;
+	int xnum = 1;
 
-	sum = 0;
-	count = 1;
-       
-	while (count <= n) {
-		sum += count;
-		++count;
+	assert(n >= 0);
+
+	for(i = 0; i < n; i++) {
+		xnum *= x;
 	}
 
-	return sum;
+	return xnum;
 }
 
+
+#if 0
+int powernum(long int x, int n) // LIBIT
+{
+	int i;
+	int xnum = 1;
+
+	if(n < 0) {
+		n = -n;
+	}
+
+	for(i = 0; i < n; i++) {
+		xnum *= x;
+	}
+
+	return xnum;
+}
 #endif
