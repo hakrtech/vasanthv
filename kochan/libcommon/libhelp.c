@@ -43,6 +43,34 @@ void ari_print(int a[], int n)
 	return;
 }
 
+void ari_plusk(int a[], int n, int k)
+{
+	int i = 0;
+
+	while (i < n) {
+		k += a[i];
+		++i;
+	}
+}
+
+/*
+int arraySum(int arraynum[], int element) // LIBIT
+{
+	int i;
+	int sum;
+
+	sum = 0;
+
+	for(i = 0; i < element; ++i)
+	{
+		sum += arraynum[i];
+	}
+
+	return sum;
+}
+*/
+
+#if 0
 int ari_isvalpresent(int a[], int n, int val)
 {
 	return 1;
@@ -77,12 +105,6 @@ int ari_getminpos(int a[], int n, int pos)
 {
 	return 1;
 }
-
-void ari_plusk(int a[], int n, int k)
-{
-	return;
-}
-
 void ari_subk(int a[], int n, int k)
 {
 	return;
@@ -107,4 +129,5 @@ void ari_bsortdown(int a[], int n)
 {
 	return;
 }
+#endif
 

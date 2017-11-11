@@ -7,6 +7,7 @@ void ari_setall(int a[], int n, int val);
 void ari_setone(int a[], int n, int pos, int val);
 void ari_print(int a[], int n);
 
+
 int  ari_isvalpresent(int a[], int n, int val);
 int  ari_getposbyval(int a[], int n, int pos);
 int  ari_get(int a[], int n, int i);
