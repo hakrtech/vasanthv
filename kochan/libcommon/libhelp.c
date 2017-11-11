@@ -53,17 +53,25 @@ void ari_plusk(int a[], int n, int k)
 	}
 }
 
-/*
-int arraySum(int arraynum[], int element) // LIBIT
+void ari_sum(int a[], int n)
 {
 	int i;
-	int sum;
 
-	sum = 0;
+	for(i = 0; i < n; ++i) {
+		a[i] = a[i] + a[i];
+	}
+}
 
-	for(i = 0; i < element; ++i)
-	{
-		sum += arraynum[i];
+/*
+int arraysum(int arraynum[], int element) // LIBIT
+{
+	int i;
+	int sum = 0;
+
+	for(i = 0; i < element; ++i) {
+		arraynum[i] = arraynum[i] + arraynum[i];
+		sum += arraynum[i]; 
+	       	printf("%d ", sum);	
 	}
 
 	return sum;
