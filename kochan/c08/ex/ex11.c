@@ -4,29 +4,30 @@
 
 #include <stdio.h>
 
-int main(void)
-{
-	int arraySum(int arraynum[], int element);
+#include "libarray.h"
 
-	int arrayvals[11] = { 1, 3, 5, 7, 9, 0, 9, 7, 5, 3, 1 };
-
-	printf("The give Array Elements: 1, 3, 5, 7, 9, 0, 9, 7, 5, 3, 1\n");
-	printf("The Sum of Array Elements: %i\n", arraySum(arrayvals, 11));
-
-	return 0;
-}
-
-int arraySum(int arraynum[], int element) // LIBIT
+int arraysum(int arraynum[], int element) // LIBIT
 {
 	int i;
-	int sum;
+	int sum = 0;
 
-	sum = 0;
-
-	for(i = 0; i < element; ++i)
-	{
-		sum += arraynum[i];
+	for(i = 0; i < element; ++i) {
+		arraynum[i] = arraynum[i] + arraynum[i];
+		sum += arraynum[i]; 
+	       	printf("%d ", sum);	
 	}
 
 	return sum;
 }
+
+int main(void)
+{
+	int arrayvals[11] = { 1, 3, 5, 7, 9, 0, 9, 7, 5, 3, 1 };
+
+	printf("given array ");
+	ari_print(arrayvals, 11);
+	printf("\nsum of array elements> %d\n", arraysum(arrayvals, 11));
+
+	return 0;
+}
+
