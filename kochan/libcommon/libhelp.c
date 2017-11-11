@@ -6,6 +6,7 @@
 #include <assert.h>
 
 #include "libhelp.h"
+#include "libari.h"
 
 void ari_setall(int a[], int n, int val)
 {
@@ -138,4 +139,46 @@ void ari_bsortdown(int a[], int n)
 	return;
 }
 #endif
+
+void ari_swap_elem(int a[], int n, int i, int j)
+{
+	int temp;
+
+	assert(n > 0);
+	temp = a[i];
+	a[i] = a[j];
+	a[j] = temp;
+}
+
+void ari_sortup(int a[], int n)
+{
+	int i;
+
+	assert(n > 0);
+	for (i = 0; i < n-1; ++i) {
+		int j;
+
+		for (j = i+1; j < n; ++j) {
+			if (a[i] > a[j]) {
+				ari_swap_elem(a, n, i, j);
+			}
+		}
+	}
+}
+
+void ari_sortdown(int a[], int n)
+{
+	int i;
+
+	assert(n > 0);
+	for (i = 0; i < n-1; ++i) {
+		int j;
+
+		for (j = i+1; j < n; ++j) {
+			if (a[i] < a[j]) {
+				ari_swap_elem(a, n, i, j);
+			}
+		}
+	}
+}
 

@@ -4,47 +4,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "libarray.h"
 
-void array_swap_element(int a[], int i, int j) // LIBIT
-{
-	int temp;
-
-	temp = a[i];
-	a[i] = a[j];
-	a[j] = temp;
-}
-
-void array_sort_up(int a[], int n) // LIBIT
-{
-	int i;
-
-	for (i = 0; i < n-1; ++i) {
-		int j;
-
-		for (j = i+1; j < n; ++j) {
-			if (a[i] > a[j]) {
-				array_swap_element(a, i, j);
-			}
-		}
-	}
-}
-
-void array_sort_down(int a[], int n) // LIBIT
-{
-	int i;
-
-	for (i = 0; i < n-1; ++i) {
-		int j;
-
-		for (j = i+1; j < n; ++j) {
-			if (a[i] < a[j]) {
-				array_swap_element(a, i, j);
-			}
-		}
-	}
-}
 
 int user_choice_input(void)
 {
@@ -98,10 +61,10 @@ void user_choice_do_operation(int do_values[], int do_nvalue, int do_case)
 {
 	if (do_case == 1 || do_case == 2) {
 		if (do_case == 1) {
-			array_sort_up(do_values, do_nvalue);
+			ari_sortup(do_values, do_nvalue);
 			ari_print(do_values, do_nvalue);
 		} else {
-			array_sort_down(do_values, do_nvalue);
+			ari_sortdown(do_values, do_nvalue);
 			ari_print(do_values, do_nvalue);
 		}
 	} else {
@@ -118,11 +81,13 @@ int main(void)
 	int doit;
 
 	nvalue = 6;
+	while (true) {
 	input = user_choice_input();
 	user_choice_invalid(input);
 	print = user_choice_validate(input);
 	doit = user_choice_print(print);
 	user_choice_do_operation(values, nvalue, doit);
+	}
 
 	return 0;
 }
