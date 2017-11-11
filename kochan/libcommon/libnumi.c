@@ -8,7 +8,6 @@ int  numi_factorial(int n) // DOIT factor array algo
 int  numi_factorial_rec(int n) // DOIT factor array algo
 int  numi_gcd1(int a, int b) // DOIT factor array algo
 int  numi_gcd2(int a, int b) // DOIT our - algo
-int  numi_gcd3(int a, int b) // DOIT euler algo
 int  numi_gcd4(int a, int b) // DOIT while loop algo
 int  numi_gcd5(int a, int b) // DOIT recursive algo
 int  numi_pown_rec(int n, int pow) // DOIT
@@ -80,3 +79,35 @@ int powernum(long int x, int n) // LIBIT
 	return xnum;
 }
 #endif
+
+
+int  numi_gcd3(int u, int v) // DOIT euler algo
+{
+	int temp;
+
+	assert(u > 0);
+	assert(v > 0);
+	while ( v != 0) {
+		temp = u % v;
+		u = v;
+		v = temp;
+	}
+
+	return u;
+}
+
+#if 0
+int gcd(int u, int v) // LIBIT
+{
+	int temp;
+
+	while ( v != 0) {
+		temp = u % v;
+		u = v;
+		v = temp;
+	}
+
+	return u;
+}
+#endif
+

@@ -6,18 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int gcd(int u, int v) // LIBIT
-{
-	int temp;
-
-	while ( v != 0) {
-		temp = u % v;
-		u = v;
-		v = temp;
-	}
-
-	return u;
-}
+#include "libinteger.h"
 
 int main(void)
 {
@@ -41,7 +30,7 @@ int main(void)
 		exit(1);
 	}
 
-	gcd_val = gcd(u, v);
+	gcd_val = numi_gcd3(u, v);
 	result =  (u * v) / gcd_val;
 	printf("gcd %d lcm %d\n", gcd_val, result);
 
