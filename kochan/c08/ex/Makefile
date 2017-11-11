@@ -3,13 +3,13 @@ CC=gcc
 CC=clang
 
 # preprocess with these options usually called CPPFLAGS
-PREPROCESSOR.FLAGS=-DLAB -DDEBUG
+PREPROCESSOR.FLAGS=-DUNIVERSITY -DDEBUG
 
 # compile with these options usually called CFLAGS
 COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
 
 # search for user header files in these directories
-INCDIR=-I . -I ../../libcommon
+INCDIR=-I ../../libcommon
 
 # add this to compile flags
 COMPILE.FLAGS+=$(INCDIR)
