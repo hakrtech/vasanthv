@@ -12,7 +12,7 @@ int main()
 	double num;
 	double epsilon;
 
-	printf("enter epsilon(0.1 to double limit)> ");
+	printf("enter epsilon(0.000001 to double limit)> ");
 	scanf("%lf", &epsilon);
 	printf("epsilon %lf\n", epsilon);
 
