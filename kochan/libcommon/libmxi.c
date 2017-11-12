@@ -10,18 +10,18 @@ void mxi_printrow(int m[MXIDIM][MXIDIM], int nr, int nc, int r) // DOIT
 
 void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // DOIT
 {
-	int i;
-	int j;
+	int r;
+	int c;
 
 	assert(nr > 0);
 	assert(nr <= MXIDIM);
 
-	assert(nc > 1);
+	assert(nc > 0);
 	assert(nc <= MXIDIM);
 
-	for(i = 0; i < nr; ++i)	{
-		for(j = 0; j < nc; ++j) {
-			printf("%5i ", m[i][j]);
+	for(r = 0; r < nr; ++r)	{
+		for(c = 0; c < nc; ++c) {
+			printf("%5i ", m[r][c]);
 		}
 		printf("\n");
 	}
@@ -33,10 +33,10 @@ void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXID
 	int c; // j
 
 	assert(nr > 0);
-	assert(nr <= 100);
+	assert(nr <= MXIDIM);
 
-	assert(nc > 1);
-	assert(nc <= 100);
+	assert(nc > 0);
+	assert(nc <= MXIDIM);
 	
 	for(r = 0; r < nr; ++r) {
 		for(c = 0; c < nc; ++c) {

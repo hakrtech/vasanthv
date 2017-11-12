@@ -20,7 +20,7 @@ bool numi_isprime(int n) // DONE
 	int d;
 	bool isPrime;
 
-	assert(n > 2);
+	assert(n > 0);
 
 	isPrime = true;
 	for (d = 2; d < n; ++d) {
