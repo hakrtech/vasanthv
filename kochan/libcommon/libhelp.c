@@ -12,7 +12,7 @@ void ari_setall(int a[], int n, int val)
 {
 	int i;
 
-	assert(n >= 0);
+	assert(n > 0);
 
 	for (i = 0; i < n; i++) {
 		a[i] = val;
@@ -23,7 +23,7 @@ void ari_setall(int a[], int n, int val)
 
 void ari_setone(int a[], int n, int pos, int val)
 {
-	assert(n >= 0);
+	assert(n > 0);
 	assert(pos >= 0);
 	assert(pos < n);
 
@@ -36,6 +36,8 @@ void ari_print(int a[], int n)
 {
 	int i;
 
+	assert(n > 0);
+	
 	for (i = 0; i < n; i++) {
 		printf("%d ", a[i]);
 	}
@@ -48,8 +50,10 @@ void ari_plusk(int a[], int n, int k)
 {
 	int i = 0;
 
+	assert(n > 0);
+
 	while (i < n) {
-		k += a[i];
+		a[i] = a[i] + k;
 		++i;
 	}
 }
@@ -57,6 +61,8 @@ void ari_plusk(int a[], int n, int k)
 void ari_sum(int a[], int n)
 {
 	int i;
+
+	assert(n > 0);
 
 	for(i = 0; i < n; ++i) {
 		a[i] = a[i] + a[i];
@@ -145,6 +151,11 @@ void ari_swap_elem(int a[], int n, int i, int j)
 	int temp;
 
 	assert(n > 0);
+	assert(i >= 0 );
+	assert(i < n-1);
+	assert(j > 0);
+	assert(j < n);
+
 	temp = a[i];
 	a[i] = a[j];
 	a[j] = temp;
@@ -155,6 +166,7 @@ void ari_sortup(int a[], int n)
 	int i;
 
 	assert(n > 0);
+
 	for (i = 0; i < n-1; ++i) {
 		int j;
 
@@ -171,6 +183,7 @@ void ari_sortdown(int a[], int n)
 	int i;
 
 	assert(n > 0);
+	
 	for (i = 0; i < n-1; ++i) {
 		int j;
 
