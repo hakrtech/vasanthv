@@ -1,4 +1,4 @@
-/* Chapter 8 Exercise 11 Program to execute the arraySum function.
+/* Chapter 08 Exercise 11 Program to execute the arraySum function
  * Vasanth 04 October 2017
  */
 
@@ -12,9 +12,7 @@ int main(void)
 
 	printf("given array\n");
 	ari_print(arrayvals, 11);
-	printf("sum of array elements>\n");
-       	ari_sum(arrayvals, 11);
-	ari_print(arrayvals, 11);
+	printf("sum of array elements> %d\n", ari_sum(arrayvals, 11));
 
 	return 0;
 }

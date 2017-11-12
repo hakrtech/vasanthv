@@ -6,7 +6,7 @@
 void ari_setall(int a[], int n, int val);
 void ari_setone(int a[], int n, int pos, int val);
 void ari_print(int a[], int n);
-void ari_sum(int a[], int n);
+int ari_sum(int a[], int n);
 
 
 int  ari_isvalpresent(int a[], int n, int val);

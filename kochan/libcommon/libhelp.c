@@ -58,32 +58,19 @@ void ari_plusk(int a[], int n, int k)
 	}
 }
 
-void ari_sum(int a[], int n)
-{
-	int i;
-
-	assert(n > 0);
-
-	for(i = 0; i < n; ++i) {
-		a[i] = a[i] + a[i];
-	}
-}
-
-/*
-int arraysum(int arraynum[], int element) // LIBIT
+int ari_sum(int a[], int n)
 {
 	int i;
 	int sum = 0;
 
-	for(i = 0; i < element; ++i) {
-		arraynum[i] = arraynum[i] + arraynum[i];
-		sum += arraynum[i]; 
-	       	printf("%d ", sum);	
+	assert(n > 0);
+
+	for(i = 0; i < n; ++i) {
+		sum += a[i];
 	}
 
 	return sum;
 }
-*/
 
 #if 0
 int ari_isvalpresent(int a[], int n, int val)
@@ -152,8 +139,8 @@ void ari_swap_elem(int a[], int n, int i, int j)
 
 	assert(n > 0);
 	assert(i >= 0 );
-	assert(i < n-1);
-	assert(j > 0);
+	assert(i < n);
+	assert(j >= 0);
 	assert(j < n);
 
 	temp = a[i];
