@@ -20,6 +20,8 @@ bool numi_isprime(int n) // DONE
 	int d;
 	bool isPrime;
 
+	assert(n > 2);
+
 	isPrime = true;
 	for (d = 2; d < n; ++d) {
 		if (n % d == 0) {
@@ -36,6 +38,8 @@ int  numi_trisum(int n) //DONE
 	int sum;
 	int i;
 
+	assert(n >= 0);
+
 	sum = 0;
 	i = 1;
        	while (i <= n) {
@@ -46,8 +50,7 @@ int  numi_trisum(int n) //DONE
 	return sum;
 }
 
-int  numi_pown(int x, int n)	// DOIT
-// int powernum(long int x, int n) // LIBIT
+int  numi_pown(int x, int n)	// DONE
 {
 	int i;
 	int xnum = 1;
@@ -61,45 +64,12 @@ int  numi_pown(int x, int n)	// DOIT
 	return xnum;
 }
 
-
-#if 0
-int powernum(long int x, int n) // LIBIT
-{
-	int i;
-	int xnum = 1;
-
-	if(n < 0) {
-		n = -n;
-	}
-
-	for(i = 0; i < n; i++) {
-		xnum *= x;
-	}
-
-	return xnum;
-}
-#endif
-
-
-int  numi_gcd3(int u, int v) // DOIT euler algo
+int  numi_gcd3(int u, int v) // DONE euler algo
 {
 	int temp;
 
 	assert(u > 0);
 	assert(v > 0);
-	while ( v != 0) {
-		temp = u % v;
-		u = v;
-		v = temp;
-	}
-
-	return u;
-}
-
-#if 0
-int gcd(int u, int v) // LIBIT
-{
-	int temp;
 
 	while ( v != 0) {
 		temp = u % v;
@@ -109,5 +79,4 @@ int gcd(int u, int v) // LIBIT
 
 	return u;
 }
-#endif
 
