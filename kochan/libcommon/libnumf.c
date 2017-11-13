@@ -20,7 +20,7 @@ float numf_sqrtf(float f, float accuracy) // DONE
 	assert(accuracy > 0.0f);
 
 	guess = 1.0f;
-	while(numf_absf(guess * guess - f) >= accuracy) {
+	while (numf_absf(guess * guess - f) >= accuracy) {
 		guess = (f / guess + guess) / 2.0f;
 	}
 

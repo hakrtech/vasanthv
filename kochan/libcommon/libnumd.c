@@ -20,7 +20,7 @@ double numd_sqrtd(double d, double accuracy) // DONE
 	assert(accuracy > 0.0);
 
 	guess = 1.0;
-	while(numd_absd(guess * guess - d) >= accuracy) {
+	while (numd_absd(guess * guess - d) >= accuracy) {
 		guess = (d / guess + guess) / 2.0;
 	}
 
