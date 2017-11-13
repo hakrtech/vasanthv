@@ -3,7 +3,7 @@
 
 #include "libnumf.h"
 
-float numf_absf(float f) // DONE
+float numf_absf(float f) // OK
 {
 	if (f < 0.0f) {
 		f = -f;
@@ -12,7 +12,7 @@ float numf_absf(float f) // DONE
 	return f;
 }
 
-float numf_sqrtf(float f, float accuracy) // DONE
+float numf_sqrtf(float f, float accuracy) // OKOK
 {
 	float guess;
 
@@ -27,7 +27,7 @@ float numf_sqrtf(float f, float accuracy) // DONE
 	return guess;
 }
 
-float numf_sqrtf1(float f) // DONE
+float numf_sqrtf1(float f) // OK
 {
 	float accuracy = 0.000001f;
 	

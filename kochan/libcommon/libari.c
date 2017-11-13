@@ -5,10 +5,9 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "libhelp.h"
 #include "libari.h"
 
-void ari_setall(int a[], int n, int val)
+void ari_setall(int a[], int n, int val) // OK
 {
 	int i;
 
@@ -21,7 +20,7 @@ void ari_setall(int a[], int n, int val)
 	return;
 }
 
-void ari_setone(int a[], int n, int pos, int val)
+void ari_setone(int a[], int n, int pos, int val) // OK
 {
 	assert(n > 0);
 	assert(pos >= 0);
@@ -32,7 +31,7 @@ void ari_setone(int a[], int n, int pos, int val)
 	return;
 }
 
-void ari_print(int a[], int n) // DONE
+void ari_print(int a[], int n) // OK
 {
 	int i;
 
@@ -46,7 +45,7 @@ void ari_print(int a[], int n) // DONE
 	return;
 }
 
-void ari_plusk(int a[], int n, int k)
+void ari_plusk(int a[], int n, int k) // OK
 {
 	int i = 0;
 
@@ -58,7 +57,7 @@ void ari_plusk(int a[], int n, int k)
 	}
 }
 
-int ari_sum(int a[], int n) //DONE
+int ari_sum(int a[], int n) // OK
 {
 	int i;
 	int sum = 0;
@@ -133,7 +132,7 @@ void ari_bsortdown(int a[], int n)
 }
 #endif
 
-void ari_swap_elem(int a[], int n, int i, int j) // DONE
+void ari_swap_elem(int a[], int n, int i, int j) // OK
 {
 	int temp;
 
@@ -148,7 +147,7 @@ void ari_swap_elem(int a[], int n, int i, int j) // DONE
 	a[j] = temp;
 }
 
-void ari_sortup(int a[], int n) // DONE
+void ari_sortup(int a[], int n) // OK
 {
 	int i;
 
@@ -165,7 +164,7 @@ void ari_sortup(int a[], int n) // DONE
 	}
 }
 
-void ari_sortdown(int a[], int n) // DONE
+void ari_sortdown(int a[], int n) // OK
 {
 	int i;
 

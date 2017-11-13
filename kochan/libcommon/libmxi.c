@@ -8,7 +8,7 @@
 void mxi_printrow(int m[MXIDIM][MXIDIM], int nr, int nc, int r) // DOIT
 */
 
-void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
+void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // OK
 {
 	int r;
 	int c;
@@ -26,7 +26,7 @@ void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
 	}
 }
 
-void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXIDIM]) // DONE
+void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXIDIM]) // OK
 {
 	int r;
 	int c;

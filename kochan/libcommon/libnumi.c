@@ -15,7 +15,7 @@ bool numi_iscomposite(int n) // DOIT
 int  numi_trisum_rec(int n) // DOIT
 #endif
 
-bool numi_isprime(int n) // DONE
+bool numi_isprime(int n) // OK
 {
 	int i;
 	bool isprime;
@@ -41,7 +41,7 @@ bool numi_isprime(int n) // DONE
 	return isprime;
 }
 
-int  numi_trisum(int n) //DONE
+int  numi_trisum(int n) // OK
 {
 	int sum = 0;
 	int i = 1;
@@ -56,21 +56,21 @@ int  numi_trisum(int n) //DONE
 	return sum;
 }
 
-int  numi_pown(int x, int n)	// DONE
+int  numi_pown(int b, int n) // OK
 {
 	int i;
-	int xnum = 1;
+	int pown = 1;
 
 	assert(n >= 0);
 
 	for (i = 0; i < n; i++) {
-		xnum *= x;
+		pown *= b;
 	}
 
-	return xnum;
+	return pown;
 }
 
-int  numi_gcd3(int u, int v) // DONE euler algo
+int  numi_gcd3(int u, int v) // OK euler algo
 {
 	int temp;
 

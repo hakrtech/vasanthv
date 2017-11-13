@@ -68,11 +68,11 @@ libnumd.o: libnumd.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
 # array library
-libarray.a: libhelp.o
-	ar crs $@ libhelp.o
+libarray.a: libari.o
+	ar crs $@ libari.o
 
 # array renamed
-libhelp.o: libhelp.c
+libari.o: libari.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
 
 # matrix library
