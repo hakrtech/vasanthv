@@ -32,7 +32,7 @@ void ari_setone(int a[], int n, int pos, int val)
 	return;
 }
 
-void ari_print(int a[], int n)
+void ari_print(int a[], int n) // DONE
 {
 	int i;
 
@@ -58,7 +58,7 @@ void ari_plusk(int a[], int n, int k)
 	}
 }
 
-int ari_sum(int a[], int n)
+int ari_sum(int a[], int n) //DONE
 {
 	int i;
 	int sum = 0;
@@ -133,12 +133,12 @@ void ari_bsortdown(int a[], int n)
 }
 #endif
 
-void ari_swap_elem(int a[], int n, int i, int j)
+void ari_swap_elem(int a[], int n, int i, int j) // DONE
 {
 	int temp;
 
 	assert(n > 0);
-	assert(i >= 0 );
+	assert(i >= 0);
 	assert(i < n);
 	assert(j >= 0);
 	assert(j < n);
@@ -148,7 +148,7 @@ void ari_swap_elem(int a[], int n, int i, int j)
 	a[j] = temp;
 }
 
-void ari_sortup(int a[], int n)
+void ari_sortup(int a[], int n) // DONE
 {
 	int i;
 
@@ -165,7 +165,7 @@ void ari_sortup(int a[], int n)
 	}
 }
 
-void ari_sortdown(int a[], int n)
+void ari_sortdown(int a[], int n) // DONE
 {
 	int i;
 
