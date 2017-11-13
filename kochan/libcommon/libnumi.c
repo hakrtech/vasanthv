@@ -17,31 +17,37 @@ int  numi_trisum_rec(int n) // DOIT
 
 bool numi_isprime(int n) // DONE
 {
-	int d;
-	bool isPrime;
+	int i;
+	bool isprime;
 
-	assert(n > 0);
+	assert(n >= 0);
 
-	isPrime = true;
-	for (d = 2; d < n; ++d) {
-		if (n % d == 0) {
-			isPrime = false;
-			break;
+	if (n <= 1) {
+		isprime = false;
+	} else if (n <= 3) {
+		isprime = true;
+	} else if (n % 2 == 0) {
+		isprime = false;
+	} else {
+		for (i = 3; i < n; i += 2) {
+			isprime = true;
+			if (n % i == 0) {
+				isprime = false;
+				break;
+			}
 		}
 	}
 
-	return isPrime;
+	return isprime;
 }
 
 int  numi_trisum(int n) //DONE
 {
-	int sum;
-	int i;
+	int sum = 0;
+	int i = 1;
 
 	assert(n >= 0);
 
-	sum = 0;
-	i = 1;
        	while (i <= n) {
 		sum += i;
 		++i;
