@@ -65,7 +65,7 @@ int ari_sum(int a[], int n) //DONE
 
 	assert(n > 0);
 
-	for(i = 0; i < n; ++i) {
+	for (i = 0; i < n; ++i) {
 		sum += a[i];
 	}
 
