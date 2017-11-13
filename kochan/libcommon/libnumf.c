@@ -16,7 +16,7 @@ float numf_sqrtf(float f, float accuracy) // DONE
 {
 	float guess;
 
-	assert(f > 0.0f);
+	assert(f >= 0.0f);
 	assert(accuracy > 0.0f);
 
 	guess = 1.0f;
@@ -27,11 +27,11 @@ float numf_sqrtf(float f, float accuracy) // DONE
 	return guess;
 }
 
-float numf_sqrtf1(float f)
+float numf_sqrtf1(float f) // DONE
 {
 	float accuracy = 0.000001f;
 	
-	assert(f > 0.0f);
+	assert(f >= 0.0f);
 
 	return numf_sqrtf(f, accuracy);
 }

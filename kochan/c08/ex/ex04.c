@@ -20,7 +20,7 @@ int main()
 	scanf("%f", &num);
 	printf("num %f ", num);
 
-	assert(num > 0.0f);
+	assert(num >= 0.0f);
 	result = numf_sqrtf(num, epsilon);
 	printf("square root %f\n", result);
 

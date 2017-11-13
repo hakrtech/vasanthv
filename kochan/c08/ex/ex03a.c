@@ -1,7 +1,6 @@
  /* sqrt example */
 #include <stdio.h>
 #include <assert.h>
-
 #include "libreal.h"
 
 #define MAX_STR 200
@@ -27,7 +26,7 @@ int main (void)
 			continue;
 		}
 		
-		assert(param > 0.0f);
+		assert(param >= 0.0f);
 		result = numf_sqrtf(param, EPSILON);
    		printf("sqrt(%f) = %f\n", param, result);
 	}

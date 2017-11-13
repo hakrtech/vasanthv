@@ -15,7 +15,7 @@ int main()
 	
 	printf("compute square root? value> ");
 	scanf("%f", &num);
-	assert(num > 0.0f);
+	assert(num >= 0.0f);
 	printf("num %f sqrt %f\n", num, numf_sqrtf(num, EPSILON));
 
 	return 0;
