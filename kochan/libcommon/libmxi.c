@@ -18,8 +18,8 @@ void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
 	assert(nc > 0);
 	assert(nc <= MXIDIM);
 
-	for(r = 0; r < nr; ++r)	{
-		for(c = 0; c < nc; ++c) {
+	for (r = 0; r < nr; ++r)	{
+		for (c = 0; c < nc; ++c) {
 			printf("%5i ", m[r][c]);
 		}
 		printf("\n");
@@ -36,8 +36,8 @@ void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXID
 	assert(nc > 0);
 	assert(nc <= MXIDIM);
 	
-	for(r = 0; r < nr; ++r) {
-		for(c = 0; c < nc; ++c) {
+	for (r = 0; r < nr; ++r) {
+		for (c = 0; c < nc; ++c) {
 			dst[c][r] = src[r][c];
 		}
 	}
