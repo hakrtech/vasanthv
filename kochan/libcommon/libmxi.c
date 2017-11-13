@@ -8,14 +8,13 @@
 void mxi_printrow(int m[MXIDIM][MXIDIM], int nr, int nc, int r) // DOIT
 */
 
-void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // DOIT
+void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
 {
 	int r;
 	int c;
 
 	assert(nr > 0);
 	assert(nr <= MXIDIM);
-
 	assert(nc > 0);
 	assert(nc <= MXIDIM);
 
@@ -27,14 +26,13 @@ void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // DOIT
 	}
 }
 
-void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXIDIM])
+void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXIDIM]) // DONE
 {
-	int r; // i
-	int c; // j
+	int r;
+	int c;
 
 	assert(nr > 0);
 	assert(nr <= MXIDIM);
-
 	assert(nc > 0);
 	assert(nc <= MXIDIM);
 	
