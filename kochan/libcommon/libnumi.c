@@ -29,8 +29,8 @@ bool numi_isprime(int n) // DONE
 	} else if (n % 2 == 0) {
 		isprime = false;
 	} else {
+		isprime = true;
 		for (i = 3; i < n; i += 2) {
-			isprime = true;
 			if (n % i == 0) {
 				isprime = false;
 				break;
