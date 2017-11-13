@@ -63,7 +63,7 @@ int  numi_pown(int x, int n)	// DONE
 
 	assert(n >= 0);
 
-	for(i = 0; i < n; i++) {
+	for (i = 0; i < n; i++) {
 		xnum *= x;
 	}
 
@@ -77,7 +77,7 @@ int  numi_gcd3(int u, int v) // DONE euler algo
 	assert(u > 0);
 	assert(v > 0);
 
-	while ( v != 0) {
+	while (v != 0) {
 		temp = u % v;
 		u = v;
 		v = temp;
