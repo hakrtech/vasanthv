@@ -18,7 +18,7 @@ void mxi_print(int m[MXIDIM][MXIDIM], int nr, int nc) // OK
 	assert(nc > 0);
 	assert(nc <= MXIDIM);
 
-	for (r = 0; r < nr; ++r)	{
+	for (r = 0; r < nr; ++r) {
 		for (c = 0; c < nc; ++c) {
 			printf("%5i ", m[r][c]);
 		}
@@ -43,11 +43,10 @@ void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXID
 	}
 }
 
-int mxi_sum(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
+void mxi_sum(int x[MXIDIM][MXIDIM],int y[MXIDIM][MXIDIM], int nr, int nc, int z[MXIDIM][MXIDIM]) // DONE
 {
 	int r;
 	int c;
-	int sum = 0;
 
 	assert(nr > 0);
 	assert(nr <= MXIDIM);
@@ -56,18 +55,15 @@ int mxi_sum(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
 
 	for (r = 0; r < nr; ++r) {
 		for (c = 0; c < nc; ++c) {
-			sum += m[r][c];
+			z[r][c] = x[r][c] + y[r][c];
 		}
 	}
-
-	return sum;
 }
 
-int mxi_subtraction(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
+void mxi_subtraction(int x[MXIDIM][MXIDIM],int y[MXIDIM][MXIDIM], int nr, int nc, int z[MXIDIM][MXIDIM]) // DONE
 {
 	int r;
 	int c;
-	int sub = 0;
 
 	assert(nr > 0);
 	assert(nr <= MXIDIM);
@@ -76,10 +72,8 @@ int mxi_subtraction(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
 
 	for (r = 0; r < nr; ++r) {
 		for (c = 0; c < nc; ++c) {
-			sub -= m[r][c];
+			z[r][c] = x[r][c] - y[r][c];
 		}
 	}
-
-	return sub;
 }
 
