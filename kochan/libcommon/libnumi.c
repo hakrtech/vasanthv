@@ -9,7 +9,6 @@
 int  numi_factorial(int n) // DOIT factor array algo
 int  numi_factorial_rec(int n) // DOIT factor array algo
 int  numi_gcd1(int a, int b) // DOIT factor array algo
-int  numi_gcd5(int a, int b) // DOIT recursive algo
 int  numi_pown_rec(int n, int pow) // DOIT
 bool numi_iscomposite(int n) // DOIT
 int  numi_trisum_rec(int n) // DOIT
@@ -138,6 +137,24 @@ int  numi_gcd4(int a, int b) // DONE while loop algo
 		if (a == b) {
 			break;
 		}
+	}
+
+	return a;
+}
+
+int  numi_gcd5(int a, int b) // DONE recursive algo
+{
+	assert (a > 0);
+	assert (b > 0);
+
+	if (a == b) {
+		a = b;
+	}
+	if (a > b) {
+		return numi_gcd5(b, a - b);
+	}
+	if (a < b) {
+		return numi_gcd5(b, b - a);
 	}
 
 	return a;
