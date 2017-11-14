@@ -43,3 +43,37 @@ void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXID
 	}
 }
 
+void mxi_sum(int m[MXIDIM][MXIDIM], int n[MXIDIM][MXIDIM], int nr, int nc) // DONE
+{
+	int r;
+	int c;
+
+	assert(nr > 0);
+	assert(nr <= MXIDIM);
+	assert(nc > 0);
+	assert(nc <= MXIDIM);
+
+	for (r = 0; r < nr; ++r) {
+		for (c = 0; c < nc; ++c) {
+			m[r][c] = m[r][c] + n[r][c];
+		}
+	}
+}
+
+void mxi_subtraction(int m[MXIDIM][MXIDIM], int n[MXIDIM][MXIDIM], int nr, int nc) // DONE
+{
+	int r;
+	int c;
+
+	assert(nr > 0);
+	assert(nr <= MXIDIM);
+	assert(nc > 0);
+	assert(nc <= MXIDIM);
+
+	for (r = 0; r < nr; ++r) {
+		for (c = 0; c < nc; ++c) {
+			m[r][c] = m[r][c] - n[r][c];
+		}
+	}
+}
+
