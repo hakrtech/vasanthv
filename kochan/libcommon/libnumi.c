@@ -78,13 +78,11 @@ int  numi_gcd2(int a, int b) // DONE our - algo
 		int c;
 
 		printf("cmp %d %d\n", a, b);
-		if (a < b) {
-			c = b;
-			b = a;
-			a = c;
-		}
 
 		c = a - b;
+		if (c < 0) {
+			c = -c;
+		}
 		if (b <= c) {
 			a = c;
 		}
