@@ -30,9 +30,10 @@ int main(void)
 		exit(1);
 	}
 
-	gcd_val = numi_gcd3(u, v);
+	gcd_val = numi_gcd2(u, v);
+	printf("gcd>%d ", gcd_val);
 	result =  (u * v) / gcd_val;
-	printf("gcd %d lcm %d\n", gcd_val, result);
+	printf("lcm> %d\n", result);
 
 	return 0;
 }
