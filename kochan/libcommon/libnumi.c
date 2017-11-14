@@ -40,7 +40,7 @@ bool numi_isprime(int n) // OK
 	return isprime;
 }
 
-int  numi_trisum(int n) // OK
+int numi_trisum(int n) // OK
 {
 	int sum = 0;
 	int i = 1;
@@ -55,7 +55,7 @@ int  numi_trisum(int n) // OK
 	return sum;
 }
 
-int  numi_pown(int b, int n) // OK
+int numi_pown(int b, int n) // OK
 {
 	int i;
 	int pown = 1;
@@ -69,20 +69,24 @@ int  numi_pown(int b, int n) // OK
 	return pown;
 }
 
-int  numi_gcd2(int a, int b) // DONE our - algo
+int numi_gcd2(int a, int b) // DONE our - algo
 {
+	int c;
+
 	assert(a > 0);
 	assert(b > 0);
+	
+	if (a < b) {
+		c = b;
+		b = a;
+		a = c;
+	}
 
 	while (a != b) {
-		int c;
 
 		printf("cmp %d %d\n", a, b);
 
 		c = a - b;
-		if (c < 0) {
-			c = -c;
-		}
 		if (b <= c) {
 			a = c;
 		}
@@ -95,7 +99,7 @@ int  numi_gcd2(int a, int b) // DONE our - algo
 	return a;
 }
 
-int  numi_gcd3(int u, int v) // OK euler algo
+int numi_gcd3(int u, int v) // OK euler algo
 {
 	int temp;
 
@@ -111,40 +115,49 @@ int  numi_gcd3(int u, int v) // OK euler algo
 	return u;
 }
 
-int  numi_gcd4(int a, int b) // DONE while loop algo
+int numi_gcd4(int a, int b) // DONE while loop algo
 {
+	int c;
+
 	assert(a > 0);
 	assert(b > 0);
 	
-	while (a != b) {
-	
-		if (a - b >= b) {
-			a = a - b;
-		} else if (a - b <= b) {
-			b = a - b;
-		}
+	if (a < b) {
+		c = b;
+		b = a;
+		a = c;
+	}
 
-		if (a < 0) {
-			a = -a;
-		}
-		if (b < 0) {
-			b = -b;
+	while (a != b) {
+
+		printf("cmp %d %d\n", a, b);
+
+		if (a-b >= b) {
+			a = a - b;
+		} else if (a-b <= b) {
+			b = a - b;
 		}
 	}
 
 	return a;
 }
 
-int  numi_gcd5(int a, int b) // DONE recursive algo
+int numi_gcd5(int a, int b) // DONE recursive algo
 {
+	int diff;
+
 	assert (a > 0);
 	assert (b > 0);
 
+	printf("cmp %d %d\n", a, b);
+
 	if (a > b) {
-		return numi_gcd5(b, a - b);
+		diff = a - b;
+		return numi_gcd5(b, diff);
 	}
 	if (a < b) {
-		return numi_gcd5(b, b - a);
+		diff = b - a;
+		return numi_gcd5(b, diff);
 	}
 
 	return a;
