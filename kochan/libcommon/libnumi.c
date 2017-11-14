@@ -113,27 +113,22 @@ int  numi_gcd3(int u, int v) // OK euler algo
 
 int  numi_gcd4(int a, int b) // DONE while loop algo
 {
-	int c;
-
 	assert(a > 0);
 	assert(b > 0);
 	
-	if (a < b){
-		c = b;
-		b = a;
-		a = c;
-	}
-
-	while (a > b) {
-		
+	while (a != b) {
+	
 		if (a - b >= b) {
 			a = a - b;
 		} else if (a - b <= b) {
 			b = a - b;
 		}
-	
-		if (a == b) {
-			break;
+
+		if (a < 0) {
+			a = -a;
+		}
+		if (b < 0) {
+			b = -b;
 		}
 	}
 
@@ -145,9 +140,6 @@ int  numi_gcd5(int a, int b) // DONE recursive algo
 	assert (a > 0);
 	assert (b > 0);
 
-	if (a == b) {
-		a = b;
-	}
 	if (a > b) {
 		return numi_gcd5(b, a - b);
 	}
