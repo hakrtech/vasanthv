@@ -43,10 +43,11 @@ void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXID
 	}
 }
 
-void mxi_sum(int m[MXIDIM][MXIDIM], int n[MXIDIM][MXIDIM], int nr, int nc) // DONE
+int mxi_sum(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
 {
 	int r;
 	int c;
+	int sum = 0;
 
 	assert(nr > 0);
 	assert(nr <= MXIDIM);
@@ -55,15 +56,18 @@ void mxi_sum(int m[MXIDIM][MXIDIM], int n[MXIDIM][MXIDIM], int nr, int nc) // DO
 
 	for (r = 0; r < nr; ++r) {
 		for (c = 0; c < nc; ++c) {
-			m[r][c] = m[r][c] + n[r][c];
+			sum += m[r][c];
 		}
 	}
+
+	return sum;
 }
 
-void mxi_subtraction(int m[MXIDIM][MXIDIM], int n[MXIDIM][MXIDIM], int nr, int nc) // DONE
+int mxi_subtraction(int m[MXIDIM][MXIDIM], int nr, int nc) // DONE
 {
 	int r;
 	int c;
+	int sub = 0;
 
 	assert(nr > 0);
 	assert(nr <= MXIDIM);
@@ -72,8 +76,10 @@ void mxi_subtraction(int m[MXIDIM][MXIDIM], int n[MXIDIM][MXIDIM], int nr, int n
 
 	for (r = 0; r < nr; ++r) {
 		for (c = 0; c < nc; ++c) {
-			m[r][c] = m[r][c] - n[r][c];
+			sub -= m[r][c];
 		}
 	}
+
+	return sub;
 }
 
