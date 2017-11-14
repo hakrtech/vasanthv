@@ -1,3 +1,5 @@
+
+#include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
 
@@ -68,6 +70,34 @@ int  numi_pown(int b, int n) // OK
 	}
 
 	return pown;
+}
+
+int  numi_gcd2(int a, int b) // DONE our - algo
+{
+	assert(a > 0);
+	assert(b > 0);
+
+	while (a != b) {
+		int c;
+
+		printf("cmp %d %d\n", a, b);
+		if (a < b) {
+			c = b;
+			b = a;
+			a = c;
+		}
+
+		c = a - b;
+		if (b <= c) {
+			a = c;
+		}
+		if (b > c) {
+			a = b;
+			b = c;
+		}
+	}
+	
+	return a;
 }
 
 int  numi_gcd3(int u, int v) // OK euler algo
