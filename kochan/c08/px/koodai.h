@@ -94,9 +94,6 @@ void koodai_sortdown(int k[], int klim, int nk);
  */
 void koodai_sortdown(int k[], int klim, int nk);
 
-
-
-
 /* OPERATION: koodai take unique value and it's remove more than one value.
  * self operation i.e. modifies itself 
   [2, 3, 7, 7, 9, 10, 11] -> [2, 3, 7, 9, 10, 11] return size
@@ -133,19 +130,25 @@ void koodai_print(int k[100], int n);
 int koodai_max(int k[100], int n);
 int koodai_min(int k[100], int n);
 
-10 = [ 1, 2, 5, 10 ] onnu kooda_add(onnu, 10)
-15 = [ 1, 3, 5, 15 ] rendu
-[ 1, 2, 5, 10 ] commonof  [ 1, 3, 5, 15 ]
-mudhal minus rendavathu
-[ 1, 2, 5, 10 ] minus  [ 1, 3, 5, 15 ]
-c = a - b
-[ 2, 10 ] c
-edutha item = 1, 5
-a - b = anew + edutha item
-d = a - c
-koodai a, 
+if (a == b)
+a[2, 3, 4, 5] == b[2, 3, 4, 5] -> true 
+a[2, 3, 4, 5] == b[4, 2, 3, 5] -> true 
+a[1, 1]       == b[1]          -> false
+koodai_is_samam(a, b)
 
-abstract data type  // interface // api
-implement using array 
-[ 1 next ] -> 2 -> 
+[2, 3] any overlap with [3, 4] -> true because overlap is 3
+[2, 3] any overlap with [4, 5] -> false because no overlap
+koodai_any_overlap_with(a, b)
 
+if (a > b)
+[2, 3, 4, 5] is_perisu [2, 3, 4] -> true
+[2, 3, 4, 5] is_perisu [2, 3, 4, 5] -> false because they are equal 
+[2, 3, 4, 5, 5] is_perisu [2, 3, 4, 5] -> true because of second 5
+bool koodai_is_perisu(a, b)
+
+if (a < b)
+[2, 3] is_chinnadhu [2, 3, 4] -> true
+[2, 3, 4, 5] is_chinnadu [2, 3, 4, 5] -> false because they are equal
+[2, 2] is_chinnadhu [2, 3, 4, 5] -> false because of second 2
+[2, 2] is_chinnadhu [2, 2, 4, 5] -> true
+bool kooda_is_chinnadhu()
