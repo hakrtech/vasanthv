@@ -152,3 +152,15 @@ if (a < b)
 [2, 2] is_chinnadhu [2, 3, 4, 5] -> false because of second 2
 [2, 2] is_chinnadhu [2, 2, 4, 5] -> true
 bool kooda_is_chinnadhu()
+
+can koodai b be put into koodai a i.e.
+a. is koodai a extensible for contents of b or
+b. does koodai have enough space for contents of b
+bool koodai_canfit(a, b)
+
+addto
+add contents of koodai b into kooda a 
+a += b
+b = 0
+size koodai_roppidu(a, b) i.e. koodai_add_also_koodai(a, b)
+koodai_gaali_pannidu(b) i.e. koodai_reset(b)
