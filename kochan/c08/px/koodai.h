@@ -3,11 +3,11 @@
 -> []
 koodai_init()
 // a [100] but n = 0
-void koodai_init(int k[100], int n);
+void koodai_init(int k[100], int n); // cproto
 
 [] + 6 -> [6]
 koodai_add_elem(6)
-void koodai_add_element(int k[100], int n, int value);
+void koodai_add_element(int k[100], int n, int value); // cproto
 
 [6, 7, 8] - 6 if present -> [7, 8]
 [6, 7, 8] - 9 if present -> [6, 7, 8]
@@ -65,9 +65,14 @@ koodai_min()
 
 10 = [ 1, 2, 5, 10 ] onnu kooda_add(onnu, 10)
 15 = [ 1, 3, 5, 15 ] rendu
-[ 1, 2, 5, 10 ] commonof 15 = [ 1, 3, 5, 15 ]
-[1, 5]
-
+[ 1, 2, 5, 10 ] commonof  [ 1, 3, 5, 15 ]
+mudhal minus rendavathu
+[ 1, 2, 5, 10 ] minus  [ 1, 3, 5, 15 ]
+c = a - b
+[ 2, 10 ] c
+edutha item = 1, 5
+a - b = anew + edutha item
+d = a - c
 koodai a, 
 
 abstract data type  // interface // api
