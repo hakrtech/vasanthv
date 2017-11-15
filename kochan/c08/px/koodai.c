@@ -106,6 +106,7 @@ int koodai_add_item(int k[], int kcap, int kn, int value) // API DONE
 	return kn;
 }
 
+#if 0
 int main(void)
 {
 	int kcapacity = 5;
@@ -146,4 +147,4 @@ int main(void)
 
 	return 0;
 }
-
+#endif

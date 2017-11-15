@@ -55,8 +55,8 @@ clean:
 #
 
 #binary
-factor_table: factor_table.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
+factor_table: factor_table.c koodai.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $^ $(LINK.FLAGS)
 
 gcd: 	gcd.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)

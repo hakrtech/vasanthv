@@ -4,15 +4,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
+//#include <assert.h>
 
 #include "libarray.h"
+#include "koodai.h"
 
-void factor(int n)
+void factor(int n, int koodai[], int kcap, int *pknitems)
 {	
 	int divisor;
-	int a[100];
-	int i = 0;
+	int knitems = *pknitems;
+	printf("f1 koodai no of items %d\n", knitems);
+
+	knitems = koodai_initialise(koodai, kcap);
+	printf("f2 koodai no of items %d\n", knitems);
 
 	divisor = n;
 	while (divisor > 0) {
@@ -20,19 +24,24 @@ void factor(int n)
 
 		remainder = n % divisor;
 		if (remainder == 0) {
-			/* a[i] = divisor; */
-			ari_setone(a, n, i, divisor);
-			++i;
+			knitems = koodai_add_item(koodai, kcap, knitems, divisor);
+			printf("f3 koodai no of items %d\n", knitems);
 		}
 		--divisor;
 	}
-	
-	ari_print(a, i);
+	printf("f4 koodai no of items %d\n", knitems);
+	koodai_print(koodai, kcap, knitems);
+	printf("f5 koodai no of items %d\n", knitems);
+
+	*pknitems = knitems;
 }
 
 int main(void)
 {
 	int num;
+	int kcap = 100;
+	int koodai[kcap];
+	int knitems = -1;
 	int d;
 
 	d = scanf("%d",&num);
@@ -42,8 +51,13 @@ int main(void)
 	}
 	printf("num %d factor> ", num);
 
-	assert(num > 0);
-	factor(num);
+	printf("m1 koodai no of items %d\n", knitems);
+	factor(num, koodai, kcap, &knitems);
+	printf("m2 koodai no of items %d\n", knitems);
+
+	koodai_print(koodai, kcap, knitems);
+
+	//assert(num > 0);
 	
 	return 0;
 }
