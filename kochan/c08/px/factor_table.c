@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "libhelp.h"
+#include "libarray.h"
 
 void factor(int n)
 {	
