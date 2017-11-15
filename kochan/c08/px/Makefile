@@ -25,7 +25,7 @@ LINK.LIBS=-larray
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
-BIN=factor_table gcd
+BIN=factor_table gcd koodai
 
 # list of libraries to be built
 LIB=
@@ -61,3 +61,6 @@ factor_table: factor_table.c
 gcd: 	gcd.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
+koodai: koodai.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
+	

@@ -1,4 +1,7 @@
 /* koodai library - unordered, non unique items in an array */
+#pragma once
+
+#include <stdbool.h>
 
 #define CAPACITY (100)
 
@@ -38,13 +41,13 @@ int koodai_initialise(int k[], int kcap); // API DOIT
    [2, 3, 7, 7, 9, 10, 11] -> [] return 0
    koodai reset items
  */
-int koodai_reset(int k[], int kcap); // API DOIT
+int koodai_reset(int k[], int kcap, int knitems); // API DOIT
 
 /* OPERATION: koodai get numer of items
    [2, 3, 7, 7, 9, 10, 11] -> 7 return 7 num of items
    koodai size
  */
-int koodai_nitems(int k[], int kcap); // API DOIT
+int koodai_nitems(int k[], int kcap, int knitems); // API DOIT
 
 /* OPERATION: check koodai empty
    [] -> if kn == 1 true
@@ -54,7 +57,7 @@ int koodai_nitems(int k[], int kcap); // API DOIT
    return 1 koodai empty
    return 0 koodai half or full
 */
-bool koodai_empty(int k[], int kcap, int kn); // API DOIT
+bool koodai_is_empty(int k[], int kcap, int kn); // API DOIT
 
 /* OPERATION: check koodai full
    [1, 2, 3, 4] -> if kcap == kn ( 4 == 4) true
@@ -64,7 +67,7 @@ bool koodai_empty(int k[], int kcap, int kn); // API DOIT
    return 1 koodai full
    return 0 koodai half or empty
 */
-bool koodai_full(int k[], int kcap, int kn); // API DOIT
+bool koodai_is_full(int k[], int kcap, int kn); // API DOIT
 
 /* OPERATION: print koodai items
    [2, 3, 7, 7, 9, 10, 11] -> 2 3 7 7 9 10 11
@@ -78,3 +81,4 @@ void koodai_print(int k[], int kcap, int kn); // API DOIT
    size koodai add item(koodai , item) 
 */
 int koodai_add_item(int k[], int kcap, int kn, int value); // API DOIT
+
