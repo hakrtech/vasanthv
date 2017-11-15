@@ -1,6 +1,6 @@
 # choice of compiles
-CC=gcc 
 CC=clang
+CC=gcc 
 
 # preprocess with these options usually called CPPFLAGS
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG

@@ -1,10 +1,11 @@
 
 # choice of compiles
-CC=gcc 
 CC=clang
+CC=gcc 
 
 # preprocess with these options usually called CPPFLAGS
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG
+TEST.PREPROCESSOR.FLAGS=$(PREPROCESSOR.FLAGS) -DTEST
 
 # compile with these options usually called CFLAGS
 COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
@@ -19,29 +20,39 @@ COMPILE.FLAGS+=$(INCDIR)
 LINK.LIBDIRS=-L ../../libcommon
 
 # list of libraries to link with 
-LINK.LIBS=-larray
+LINK.LIBS=-larray 
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
-BIN=factor_table gcd koodai
+BIN=factor_table gcd
+TESTBIN=koodai
 
 # list of libraries to be built
-LIB=
-LIBDIR= ../../libcommon
+LIB.LOCAL.INC=-L .
+LIB.LOCAL.LNK=-lkoodai
+LIB.LOCAL.FLAGS=$(LIB.LOCAL.INC) $(LIB.LOCAL.LNK)
+LIB.LOCAL=libkoodai.a
+LIBCOMMONDIR= ../../libcommon
 RETURNPATH= ../c08/px
 
 #
 # default target - compile libraries and then binaries
 #
 
-all: 	lib bin 
+all: 	lib bin testbin
 
-lib: 	$(LIB)
-	cd $(LIBDIR) && make && cd $(RETURNPATH)
+lib:	libcommon liblocal
+
+libcommon: 	$(LIBCOMMON)
+	cd $(LIBCOMMONDIR) && make && cd $(RETURNPATH)
+
+liblocal:	$(LIB.LOCAL)
 
 bin:	$(BIN)
+
+testbin: $(TESTBIN)
 
 # clean up and build everything again
 rebuild: build
@@ -49,18 +60,27 @@ rebuild: build
 build:	clean all
 
 clean:
-	/bin/rm -f a.out *.o *.a $(BIN) $(LIB)
+	/bin/rm -f a.out *.o *.a $(BIN) $(TESTBIN)
 #
 # end of Makefile template
 #
 
-#binary
-factor_table: factor_table.c koodai.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $^ $(LINK.FLAGS)
+# local libraries
+LIBOBJ=koodai.o
+libkoodai.a: $(LIBOBJ)
+	ar rcs $@ $(LIBOBJ)
+
+koodai.o: koodai.c 
+	$(CC) -c -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $<
+
+# binaries
+factor_table: factor_table.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LIB.LOCAL.FLAGS) $(LINK.FLAGS)
 
 gcd: 	gcd.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LIB.LOCAL.FLAGS) $(LINK.FLAGS)
 
+# test binaries
 koodai: koodai.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
-	
+	$(CC) -o $@ $(TEST.PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
+
