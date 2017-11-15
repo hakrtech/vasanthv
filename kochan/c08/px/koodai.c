@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "koodai.h"
 #include "libarray.h"
@@ -69,21 +70,16 @@ bool koodai_is_full(int k[], int kcap, int kn) // API DONE
 void koodai_print(int k[], int kcap, int kn) // API DONE
 {
 	bool a;
-	bool b;
-	int c;
+	int item;
 
 	a = koodai_is_empty(k, kcap, kn);
-	b = koodai_is_full(k, kcap, kn);
-	c = koodai_nitems(k, kcap, kn);
+	item = koodai_nitems(k, kcap, kn);
 	if (a == true) {
 		printf("[]\n");
 	}
-	if (b == true) {
-		printf("koodai full!!!\n");
-	}
 	if (a == false) {
 		ari_print(k, kn);
-		printf("koodai number of items> %d\n", c);
+		printf("koodai number of items> %d\n", item);
 	}
 
 	return;
@@ -96,30 +92,57 @@ void koodai_print(int k[], int kcap, int kn) // API DONE
 */
 int koodai_add_item(int k[], int kcap, int kn, int value) // API DONE
 {
-	k[kn] = value;
-	kn += 1;
+	bool full;
+
+	full = koodai_is_full(k, kcap, kn);
+	if (full) {
+		printf("koodai full!!!\n");
+		exit(1);
+	} else {
+		k[kn] = value;
+		kn += 1;
+	}
 
 	return kn;
 }
 
 int main(void)
 {
-	int kcapacity = 100;
+	int kcapacity = 5;
 	int koodai[kcapacity];
-	int knitems;
+	int knitems = -1;
+
+	int zcapacity = 10;
+	int z[zcapacity];
+	int znitems = -1;
+	
+        knitems = koodai_initialise(koodai, kcapacity);
+	koodai_print(koodai, kcapacity, knitems);
 	
         knitems = koodai_initialise(koodai, kcapacity);
 	koodai_print(koodai, kcapacity, knitems);
 
 	knitems = koodai_add_item(koodai, kcapacity, knitems, 10);
+	koodai_print(koodai, kcapacity, knitems);
 	knitems = koodai_add_item(koodai, kcapacity, knitems, 6);
+	koodai_print(koodai, kcapacity, knitems);
 	knitems = koodai_add_item(koodai, kcapacity, knitems, 2);
+	koodai_print(koodai, kcapacity, knitems);
 	knitems = koodai_add_item(koodai, kcapacity, knitems, 3);
+	koodai_print(koodai, kcapacity, knitems);
 	knitems = koodai_add_item(koodai, kcapacity, knitems, 7);
 	koodai_print(koodai, kcapacity, knitems);
-
-	knitems = koodai_reset(koodai, kcapacity, knitems);
+	knitems = koodai_add_item(koodai, kcapacity, knitems, 777);
 	koodai_print(koodai, kcapacity, knitems);
+
+	znitems = koodai_initialise(z, zcapacity);
+	koodai_print(z, zcapacity, znitems);
+
+	znitems = koodai_add_item(z, zcapacity, znitems, 11);
+	koodai_print(z, zcapacity, znitems);
+
+	znitems = koodai_add_item(z, zcapacity, znitems, 111);
+	koodai_print(z, zcapacity, znitems);
 
 	return 0;
 }
