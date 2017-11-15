@@ -43,7 +43,7 @@ void mxi_transpose(int src[MXIDIM][MXIDIM], int nr, int nc, int dst[MXIDIM][MXID
 	}
 }
 
-void mxi_sum(int x[MXIDIM][MXIDIM],int y[MXIDIM][MXIDIM], int nr, int nc, int z[MXIDIM][MXIDIM]) // DONE
+void mxi_add(int x[MXIDIM][MXIDIM],int y[MXIDIM][MXIDIM], int nr, int nc, int z[MXIDIM][MXIDIM]) // DONE
 {
 	int r;
 	int c;
@@ -60,7 +60,7 @@ void mxi_sum(int x[MXIDIM][MXIDIM],int y[MXIDIM][MXIDIM], int nr, int nc, int z[
 	}
 }
 
-void mxi_subtraction(int x[MXIDIM][MXIDIM],int y[MXIDIM][MXIDIM], int nr, int nc, int z[MXIDIM][MXIDIM]) // DONE
+void mxi_subtract(int x[MXIDIM][MXIDIM],int y[MXIDIM][MXIDIM], int nr, int nc, int z[MXIDIM][MXIDIM]) // DONE
 {
 	int r;
 	int c;
