@@ -181,3 +181,24 @@ void ari_sortdown(int a[], int n) // OK
 	}
 }
 
+int ari_factor(int a[], int n)
+{
+	int divisor = n;
+	int count = 0;
+
+	assert(n > 0);
+
+	while (divisor > 0) {
+		int remainder;
+
+		remainder = n % divisor;
+		if (remainder == 0) {
+			ari_setone(a, n, count, divisor);
+			++count;
+		}
+		--divisor;
+	}
+
+	return count;
+}
+

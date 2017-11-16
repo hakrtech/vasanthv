@@ -9,6 +9,7 @@ void ari_sortup(int a[], int n); // DONE
 void ari_swap_elem(int a[], int n, int i, int j); // DONE
 int  ari_sumall(int a[], int n); // DOIT
 int  ari_sumrange(int a[], int n, int start, int end); // DOIT
+int  ari_factor(int a[], int n);
 
 int  ari_isvalpresent(int a[], int n, int val);
 int  ari_getposbyval(int a[], int n, int pos);
