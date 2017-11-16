@@ -119,7 +119,29 @@ int koodai_add_item(int k[], int kcap, int kn, int value) // API DONE
  */
 int koodai_remove_item(int k[], int kcap, int kn, int value) // API DOIT
 {
-	return 1;
+	int i = 0;
+
+	while (i < kn) {
+		if (k[i] == value) {		/* check item present into koodai */
+			if (i == kn-1) {	/* koodai item last position means removed[-1], no swap */
+				k[i] = -1;
+			} else {
+				while (i < kn-1) {	/* otherwise remove and swap koodai item upto less than last item position */
+					int swp;
+
+					ari_setone(k, kn, i, -1);
+					swp = i + 1;
+					ari_swap_elem(k, kn, i, swp);
+					++i;
+				}
+			}
+			kn -= 1;
+			break;
+		}
+		i++;
+	}
+
+	return kn;
 }
 
 /* OPERATION: add two koodais 
@@ -235,6 +257,10 @@ int main(void)
 	koodai_print(koodai, kcapacity, knitems);
 	knitems = koodai_add_item(koodai, kcapacity, knitems, 7);
 	koodai_print(koodai, kcapacity, knitems);
+
+	knitems = koodai_remove_item(koodai, kcapacity, knitems, 2);
+	koodai_print(koodai, kcapacity, knitems);
+
 	knitems = koodai_add_item(koodai, kcapacity, knitems, 777);
 	koodai_print(koodai, kcapacity, knitems);
 
@@ -243,7 +269,6 @@ int main(void)
 
 	znitems = koodai_add_item(z, zcapacity, znitems, 11);
 	koodai_print(z, zcapacity, znitems);
-
 	znitems = koodai_add_item(z, zcapacity, znitems, 111);
 	koodai_print(z, zcapacity, znitems);
 
