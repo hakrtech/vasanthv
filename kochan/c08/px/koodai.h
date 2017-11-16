@@ -93,7 +93,7 @@ int koodai_add_item(int k[], int kcap, int kn, int value); // API DONE
    return n-1 if element removed 
    return n   if element !removed
  */
-int koodai_remove_item(int k[], int klim, int nk, int value); // API DOIT
+int koodai_remove_item(int k[], int kcap, int kn, int value); // API DOIT
 
 /* OPERATION: add two koodais 
    c = a + b
@@ -104,9 +104,9 @@ int koodai_remove_item(int k[], int klim, int nk, int value); // API DOIT
    return n+1 if element removed 
    return n   if element !removed
  */
-int koodai_add(int a[], int alim, int na,
-	       int b[], int blim, int nb,		
-	       int c[], int clim);	// API DOIT
+int koodai_add(int a[], int acap, int an,
+	       int b[], int bcap, int bn,		
+	       int c[], int ccap);	// API DOIT
 
 /* OPERATION: subtract two koodais i.e. remove matching items of 2nd koodai from first koodai and store in third koodai
    c = a - b
@@ -115,9 +115,9 @@ int koodai_add(int a[], int alim, int na,
    return size of koodai c i.e. nc = na - nb
    size koodai_minus(kodai a, kodai b, kodai c)
 */
-int koodai_subtract_koodai(int a[], int alim, int na,
-		  	   int b[], int blim, int nb,
-		  	   int c[], int clim);	// API DOIT 
+int koodai_subtract_koodai(int a[], int acap, int an,
+		  	   int b[], int bcap, int bn,
+		  	   int c[], int ccap);	// API DOIT 
 
 /* OPERATION: commonitems items of two koodais
    [2, 7, 9, 10]    commonitems [3, 7, 9, 11]   -> [7, 9] return 2
@@ -135,23 +135,23 @@ int koodai_subtract_koodai(int a[], int alim, int na,
    really common matching items but we will call it common items for now
    return size of koodai c i.e. nc = na - nb
  */
-int koodai_commonitems(int a[], int alim, int na,
-		       int b[], int blim, int nb,
-		       int c[], int clim);	// API DOIT
+int koodai_commonitems(int a[], int acap, int an,
+		       int b[], int bcap, int bn,
+		       int c[], int ccap);	// API DOIT
 
 /* OPERATION: koodai item sort size min to max
    [5, 4, 8, 2, 9, 6]         -> [2, 4, 5, 6, 8, 9] 
    [2, 7, 9, 10, 3, 7, 9, 11] -> [2, 3, 7, 7, 9, 10, 11]
    koodai_sortup(koodai)
  */
-void koodai_sortup(int k[], int klim, int nk);	// API DOIT	
+void koodai_sortup(int k[], int kcap, int kn);	// API DOIT	
 
 /* OPERATION: koodai item sort size max to min
    [5, 4, 8, 2, 9, 6]      -> [9, 8, 6, 5, 4, 2] 
    [2, 7, 9, 10, 3, 7, 9, 11] -> [11, 10, 9, 7, 7, 3, 2]
    koodai_sordown(koodai)
  */
-void koodai_sortdown(int k[], int klim, int nk); // API DOIT
+void koodai_sortdown(int k[], int kcap, int kn); // API DOIT
 
 /* OPERATION: koodai take unique value and it's remove more than one value.
    self operation i.e. modifies itself 
@@ -160,5 +160,5 @@ void koodai_sortdown(int k[], int klim, int nk); // API DOIT
    return n   if element !removed
    koodai_unique(int k[100], int n)
 */
-int koodai_unique(int a[], int alim, int na); // API DOIT
+int koodai_unique(int k[], int kcap, int kn); // API DOIT
 
