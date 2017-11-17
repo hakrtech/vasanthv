@@ -145,7 +145,7 @@ void ari_range_divk(int a[], int n, int rstart, int rend, int k) // OKR
 	}
 }
 
-int ari_sum(int a[], int n)
+int ari_sum(int a[], int n) // OK
 {
 	int sum = 0;
 
@@ -156,7 +156,7 @@ int ari_sum(int a[], int n)
 	return sum;
 }
 
-int  ari_range_sum(int a[], int n, int rstart, int rend)
+int  ari_range_sum(int a[], int n, int rstart, int rend) // OK
 {
 	int i;
 	int sum = 0;
@@ -175,34 +175,45 @@ int  ari_range_sum(int a[], int n, int rstart, int rend)
 // return maximum of a[]
 int  ari_getmax(int a[], int n)
 {
+	int i;
 	int maxval;
 
 	assert(n > 0);
 
-	ari_sortdown(a, n);
-	maxval = a[0];
+	maxval = ari_get(a, n, 0);
+	for (i = 1; i < n; ++i) {
+		if (maxval < a[i]) {
+			maxval = a[i];
+		}
+	}
 
 	return maxval;
 }
 
 // return first leftmost pos of maximum
 // return -1 if not found
-int  ari_getmaxpos(int a[], int n, int pos);
+int  ari_getmaxpos(int a[], int n, int maxval);
 
 // similarly for minimum
 int  ari_getmin(int a[], int n)
 {
+	int i;
 	int minval;
 
 	assert(n > 0);
 
-	ari_sortup(a, n);
-	minval = a[0];
+	minval = ari_get(a, n, 0);
+	for (i =1; i < n; ++i) {
+		if (minval > a[i]) {
+			minval = a[i];
+		}
+	}
 
 	return minval;
 }
 
-int  ari_getminpos(int a[], int n, int val);
+int  ari_getminpos(int a[], int n, int minval);
+
 
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb);
