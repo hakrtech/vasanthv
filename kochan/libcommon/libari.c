@@ -240,6 +240,34 @@ int  ari_getminpos(int a[], int n)
 	return pos;
 }
 
+// left shift by 1 and let last value remain
+void ari_lshift1(int a[], int n) // DOTHIS
+{
+	int i;
+	int lhrange;
+
+	assert(n > 0);
+
+	lhrange = n - 1;
+	for (i = 0; i < lhrange; ++i) {
+		a[i] = a[i+1];
+	}
+}
+
+// right shift by 1 and let first value remain
+void ari_rshift1(int a[], int n)
+{
+	int i;
+	int rhrange;
+
+	assert(n > 0);
+
+	rhrange = n - 1;
+	for (i = rhrange; i > 0; --i) {
+		a[i] = a[i-1];
+	}
+}
+
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);
 
@@ -259,11 +287,6 @@ int  ari_copy(int a[], int na,
 int  ari_range_copy(int a[], int an, int rstarta, int rend, 
                     int b[], int bn, int rstartb);
 
-// left shift by 1 and let last value remain 
-void ari_lshift1(int a[], int n); // DOTHIS
-
-// right shift by 1 and let first value remain
-void ari_rshift1(int a[], int n);
 // left shift by jump and let last jump values remain
 
 
