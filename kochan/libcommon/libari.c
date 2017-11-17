@@ -7,7 +7,7 @@
 
 #include "libari.h"
 
-void ari_setall(int a[], int n, int val) // OK
+void ari_setall(int a[], int n, int val) // OKR
 {
 	int i;
 
@@ -20,18 +20,18 @@ void ari_setall(int a[], int n, int val) // OK
 	return;
 }
 
-void ari_setone(int a[], int n, int pos, int val) // OK
+void ari_setone(int a[], int n, int pos, int val) // OKR
 {
 	assert(n > 0);
-	assert(pos >= 0);
-	assert(pos < n);
+
+	assert((0 <= pos) && (pos < n));
 
 	a[pos] = val;
 
 	return;
 }
 
-void ari_print(int a[], int n) // OK
+void ari_print(int a[], int n) // OKR
 {
 	int i;
 
@@ -45,7 +45,7 @@ void ari_print(int a[], int n) // OK
 	return;
 }
 
-void ari_plusk(int a[], int n, int k) // OK
+void ari_plusk(int a[], int n, int k) // OKR
 {
 	int i = 0;
 
@@ -57,7 +57,7 @@ void ari_plusk(int a[], int n, int k) // OK
 	}
 }
 
-int ari_sum(int a[], int n) // OK
+int ari_sum(int a[], int n) // OKR
 {
 	int i;
 	int sum = 0;
@@ -71,83 +71,66 @@ int ari_sum(int a[], int n) // OK
 	return sum;
 }
 
-#if 0
-int ari_isvalpresent(int a[], int n, int val)
+bool ari_isvalpresent(int a[], int n, int val) // OKR
 {
-	return 1;
+	int i;
+
+	assert(n > 0);
+
+	for (i = 0; i < n; ++i) {
+		if (a[i] == val) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
-int ari_getposbyval(int a[], int n, int pos)
+int ari_get(int a[], int n, int pos) // OKR
 {
-	return 1;
+	int val;
+
+	assert(n > 0);
+	assert((0 <= pos) && (pos < n));
+
+	val = a[pos];
+
+	return val;
 }
 
-int ari_get(int a[], int n, int i)
+int ari_getpos(int a[], int n, int val) // OKR
 {
-	return 1;
-}
+	int i;
+	int pos = -1;
 
-int ari_getmaxval(int a[], int n)
-{
-	return 1;
-}
+	assert(n > 0);
 
-int ari_getmaxpos(int a[], int n, int pos)
-{
-	return 1;
-}
+	for (i = 0; i < n; ++i) {
+		if (a[i] == val) {
+			pos = i;
+			break;
+		}
+	}
 
-int ari_getminval(int a[], int n)
-{
-	return 1;
-}
+	assert((pos == -1) || ((0 <= pos) && (pos < n)));
 
-int ari_getminpos(int a[], int n, int pos)
-{
-	return 1;
+	return pos;
 }
-void ari_subk(int a[], int n, int k)
-{
-	return;
-}
-
-void ari_mulk(int a[], int n, int k)
-{
-	return;
-}
-
-void ari_divk(int a[], int n, int k)
-{
-	return;
-}
-
-void ari_bsortup(int a[], int n)
-{
-	return;
-}
-
-void ari_bsortdown(int a[], int n)
-{
-	return;
-}
-#endif
 
 void ari_swap_elem(int a[], int n, int i, int j) // OK
 {
 	int temp;
 
 	assert(n > 0);
-	assert(i >= 0);
-	assert(i < n);
-	assert(j >= 0);
-	assert(j < n);
+	assert((0 <= i) && (i < n));
+	assert((0 <= j) && (j < n));
 
 	temp = a[i];
 	a[i] = a[j];
 	a[j] = temp;
 }
 
-void ari_sortup(int a[], int n) // OK
+void ari_sortup(int a[], int n) // OKR
 {
 	int i;
 
@@ -164,7 +147,7 @@ void ari_sortup(int a[], int n) // OK
 	}
 }
 
-void ari_sortdown(int a[], int n) // OK
+void ari_sortdown(int a[], int n) // OKR
 {
 	int i;
 

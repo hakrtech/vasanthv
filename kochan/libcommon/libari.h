@@ -1,3 +1,6 @@
+
+#include <stdbool.h>
+
 // a[0..n-1] = val
 void ari_setall(int a[], int n, int val);
 // a[pos] = val
