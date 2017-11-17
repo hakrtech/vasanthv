@@ -82,3 +82,9 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);
 bool ari_isequal(int a[], int na, int b[], int nb);
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
 		       int b[], int nb, int rstartb, int rendb);
+
+double ari_mean(int a[], int n);
+int    ari_median(int a[], int n, int median[2]);
+int    ari_mode(int a[], int n, int mode[], int freq[]);
+double ari_stddev(int a[], int n);
+double ari_variance(int a[], int n);
