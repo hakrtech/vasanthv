@@ -173,13 +173,35 @@ int  ari_range_sum(int a[], int n, int rstart, int rend)
 }
 
 // return maximum of a[]
-int  ari_getmax(int a[], int n);
+int  ari_getmax(int a[], int n)
+{
+	int maxval;
+
+	assert(n > 0);
+
+	ari_sortdown(a, n);
+	maxval = a[0];
+
+	return maxval;
+}
+
 // return first leftmost pos of maximum
 // return -1 if not found
 int  ari_getmaxpos(int a[], int n, int pos);
 
 // similarly for minimum
-int  ari_getmin(int a[], int n);
+int  ari_getmin(int a[], int n)
+{
+	int minval;
+
+	assert(n > 0);
+
+	ari_sortup(a, n);
+	minval = a[0];
+
+	return minval;
+}
+
 int  ari_getminpos(int a[], int n, int val);
 
 // true if all values are equal across a[] and b[]
