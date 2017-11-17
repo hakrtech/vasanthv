@@ -1,22 +1,22 @@
 
 #include <stdbool.h>
 
-// a[0..n-1] = val DONE
-void ari_setall(int a[], int n, int val);
-// a[pos] = val DONE
-void ari_setone(int a[], int n, int pos, int val);
+// a[0..n-1] = val
+void ari_setall(int a[], int n, int val); // DONE
+// a[pos] = val
+void ari_setone(int a[], int n, int pos, int val); // DONE
 // a[rstart..rend] = val 
-void ari_range_set(int a[], int n, int rstart, int rend, int val);
+void ari_range_set(int a[], int n, int rstart, int rend, int val); // DONE
 
 // a[0..n-1] = random number from randbot to randtop both included
 void ari_setall_random(int a[], int n, int randbot, int randtop);
 // a[rstart..rend] = random number from randbot to randtop both included
 void ari_range_set_random(int a[], int n, int rstart, int rend, int randbot, int randtop);
 
-// 5 3 4 9 DONE
-void ari_print(int a[], int n);
+// 5 3 4 9 
+void ari_print(int a[], int n); // DONE
 // print a[rstart..rend]
-void ari_range_print(int a[], int n, int rstart, int rend);
+void ari_range_print(int a[], int n, int rstart, int rend); // DONE
 // (5,3,4,9) leading=(, trailing=), separator=,
 // (5 3 4 9) leading=(, trailing=), separator=' '
 // [5 3 4 9] leading=[, trailing=], separator=' '
@@ -27,7 +27,7 @@ void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, 
 // int  ari_sum(int a[], int n);
 // sum = sum of a[rstart..rend]
 int  ari_sum(int a[], int n); // DONE
-int  ari_range_sum(int a[], int n, int rstart, int rend);
+int  ari_range_sum(int a[], int n, int rstart, int rend); // DONE
 
 void ari_sortdown(int a[], int n); // DONE
 void ari_sortup(int a[], int n); // DONE
@@ -39,23 +39,23 @@ void ari_range_sortup(int a[], int n, int rstart, int rend);
 
 int  ari_factor(int a[], int n); // ?
 
-// is val present in a[] DONE
-bool ari_isvalpresent(int a[], int n, int val);
-// a[pos] DONE
-int  ari_get(int a[], int n, int pos);
+// is val present in a[]
+bool ari_isvalpresent(int a[], int n, int val); // DONE
+// a[pos]
+int  ari_get(int a[], int n, int pos); // DONE
 // return first leftmost pos where a[pos] == val
-// return -1 if not found DONE
-int  ari_getpos(int a[], int n, int val);
+// return -1 if not found
+int  ari_getpos(int a[], int n, int val); // DONE
 
 // return maximum of a[]
-int  ari_getmax(int a[], int n);
+int  ari_getmax(int a[], int n); // DONE
 // return first leftmost pos of maximum
 // return -1 if not found
-int  ari_getmaxpos(int a[], int n, int pos);
+int  ari_getmaxpos(int a[], int n, int maxval); // DONE
 
 // similarly for minimum
-int  ari_getmin(int a[], int n);
-int  ari_getminpos(int a[], int n, int val);
+int  ari_getmin(int a[], int n); // DONE
+int  ari_getminpos(int a[], int n, int minval); // DONE
 
 // copy range a[rstart..rend] to start onwards 
 int  ari_range_copy_l2r(int a[], int n, int start, int rstart, int rend);
@@ -96,19 +96,19 @@ void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump);
 void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump);
 
 // a[] += k 
-void ari_addk(int a[], int n, int k);
+void ari_addk(int a[], int n, int k); // DONE
 // a[] -= k 
-void ari_subk(int a[], int n, int k);
+void ari_subk(int a[], int n, int k); // DONE
 // a[] *= k 
-void ari_mulk(int a[], int n, int k);
+void ari_mulk(int a[], int n, int k); // DONE
 // a[] /= k for k != 0
-void ari_divk(int a[], int n, int k);
+void ari_divk(int a[], int n, int k); // DONE
 
 // similarly for range
-void ari_range_addk(int a[], int n, int rstart, int rend, int k);
-void ari_range_subk(int a[], int n, int rstart, int rend, int k);
-void ari_range_mulk(int a[], int n, int rstart, int rend, int k);
-void ari_range_divk(int a[], int n, int rstart, int rend, int k);
+void ari_range_addk(int a[], int n, int rstart, int rend, int k); // DONE
+void ari_range_subk(int a[], int n, int rstart, int rend, int k); // DONE
+void ari_range_mulk(int a[], int n, int rstart, int rend, int k); // DONE
+void ari_range_divk(int a[], int n, int rstart, int rend, int k); // DONE
 
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);

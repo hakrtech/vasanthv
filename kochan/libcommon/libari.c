@@ -182,7 +182,7 @@ int  ari_getmax(int a[], int n)
 
 	maxval = ari_get(a, n, 0);
 	for (i = 1; i < n; ++i) {
-		if (maxval < a[i]) {
+		if (a[i] > maxval) {
 			maxval = a[i];
 		}
 	}
@@ -192,7 +192,17 @@ int  ari_getmax(int a[], int n)
 
 // return first leftmost pos of maximum
 // return -1 if not found
-int  ari_getmaxpos(int a[], int n, int maxval);
+int  ari_getmaxpos(int a[], int n, int maxval)
+{
+	int pos = -1;
+
+	assert(n > 0);
+
+	pos = ari_getpos(a, n, maxval);
+
+	assert((pos == -1) || ((0 <= pos) && (pos < n)));
+	return pos;
+}
 
 // similarly for minimum
 int  ari_getmin(int a[], int n)
@@ -203,8 +213,8 @@ int  ari_getmin(int a[], int n)
 	assert(n > 0);
 
 	minval = ari_get(a, n, 0);
-	for (i =1; i < n; ++i) {
-		if (minval > a[i]) {
+	for (i = 1; i < n; ++i) {
+		if (a[i] < minval) {
 			minval = a[i];
 		}
 	}
@@ -212,8 +222,18 @@ int  ari_getmin(int a[], int n)
 	return minval;
 }
 
-int  ari_getminpos(int a[], int n, int minval);
+int  ari_getminpos(int a[], int n, int minval)
+{
+	int pos = -1;
 
+	assert(n > 0);
+
+	pos = ari_getpos(a, n, minval);
+
+	assert((pos == -1) || ((0 <= pos) && (pos < n)));
+	return pos;
+
+}
 
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb);
