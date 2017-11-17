@@ -51,11 +51,11 @@ int  ari_getpos(int a[], int n, int val); // DONE
 int  ari_getmax(int a[], int n); // DONE
 // return first leftmost pos of maximum
 // return -1 if not found
-int  ari_getmaxpos(int a[], int n, int maxval); // DONE
+int  ari_getmaxpos(int a[], int n); // DONE
 
 // similarly for minimum
 int  ari_getmin(int a[], int n); // DONE
-int  ari_getminpos(int a[], int n, int minval); // DONE
+int  ari_getminpos(int a[], int n); // DONE
 
 // copy range a[rstart..rend] to start onwards 
 int  ari_range_copy_l2r(int a[], int n, int start, int rstart, int rend);

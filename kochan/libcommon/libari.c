@@ -173,7 +173,7 @@ int  ari_range_sum(int a[], int n, int rstart, int rend) // OK
 }
 
 // return maximum of a[]
-int  ari_getmax(int a[], int n)
+int  ari_getmax(int a[], int n) // OKR
 {
 	int i;
 	int maxval;
@@ -192,20 +192,23 @@ int  ari_getmax(int a[], int n)
 
 // return first leftmost pos of maximum
 // return -1 if not found
-int  ari_getmaxpos(int a[], int n, int maxval)
+int  ari_getmaxpos(int a[], int n)
 {
-	int pos = -1;
+	int maxval;
+	int pos;
 
 	assert(n > 0);
 
+	maxval = ari_getmax(a, n);
 	pos = ari_getpos(a, n, maxval);
 
-	assert((pos == -1) || ((0 <= pos) && (pos < n)));
+	assert((0 <= pos) && (pos < n));
+
 	return pos;
 }
 
 // similarly for minimum
-int  ari_getmin(int a[], int n)
+int  ari_getmin(int a[], int n) // OKR
 {
 	int i;
 	int minval;
@@ -222,18 +225,47 @@ int  ari_getmin(int a[], int n)
 	return minval;
 }
 
-int  ari_getminpos(int a[], int n, int minval)
+int  ari_getminpos(int a[], int n) 
 {
-	int pos = -1;
+	int minval;
+	int pos;
 
 	assert(n > 0);
 
+	minval = ari_getmin(a, n);
 	pos = ari_getpos(a, n, minval);
 
-	assert((pos == -1) || ((0 <= pos) && (pos < n)));
-	return pos;
+	assert((0 <= pos) && (pos < n));
 
+	return pos;
 }
+
+// copy a into c, append b to c
+void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);
+
+// true if all values are equal across a[] and b[]
+bool ari_isequal(int a[], int na, int b[], int nb);
+bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
+		       int b[], int nb, int rstartb, int rendb);
+
+// sort a[rstart..rend]
+void ari_range_sortdown(int a[], int n, int rstart, int rend);
+void ari_range_sortup(int a[], int n, int rstart, int rend);
+
+// b = a 
+int  ari_copy(int a[], int na, 
+	      int b[], int nb);
+// b[range] = a[range]
+int  ari_range_copy(int a[], int an, int rstarta, int rend, 
+                    int b[], int bn, int rstartb);
+
+// left shift by 1 and let last value remain 
+void ari_lshift1(int a[], int n); // DOTHIS
+
+// right shift by 1 and let first value remain
+void ari_rshift1(int a[], int n);
+// left shift by jump and let last jump values remain
+
 
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb);
@@ -282,6 +314,7 @@ int ari_getpos(int a[], int n, int val) // OKR
 	}
 
 	assert((pos == -1) || ((0 <= pos) && (pos < n)));
+
 	return pos;
 }
 
