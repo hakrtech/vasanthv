@@ -1,11 +1,11 @@
 
 #include <stdbool.h>
 
-// a[0..n-1] = val
+// a[0..n-1] = val DONE
 void ari_setall(int a[], int n, int val);
-// a[pos] = val
+// a[pos] = val DONE
 void ari_setone(int a[], int n, int pos, int val);
-// a[rstart..rend] = val
+// a[rstart..rend] = val 
 void ari_range_set(int a[], int n, int rstart, int rend, int val);
 
 // a[0..n-1] = random number from randbot to randtop both included
@@ -13,10 +13,10 @@ void ari_setall_random(int a[], int n, int randbot, int randtop);
 // a[rstart..rend] = random number from randbot to randtop both included
 void ari_range_set_random(int a[], int n, int rstart, int rend, int randbot, int randtop);
 
-// 5 3 4 9
+// 5 3 4 9 DONE
 void ari_print(int a[], int n);
 // print a[rstart..rend]
-void ari_range_print(int a[], int n, int rstart, int end);
+void ari_range_print(int a[], int n, int rstart, int rend);
 // (5,3,4,9) leading=(, trailing=), separator=,
 // (5 3 4 9) leading=(, trailing=), separator=' '
 // [5 3 4 9] leading=[, trailing=], separator=' '
@@ -26,7 +26,7 @@ void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, 
 
 // int  ari_sum(int a[], int n);
 // sum = sum of a[rstart..rend]
-int  ari_sum(int a[], int n); // DOIT
+int  ari_sum(int a[], int n); // DONE
 int  ari_range_sum(int a[], int n, int rstart, int rend);
 
 void ari_sortdown(int a[], int n); // DONE
@@ -39,12 +39,12 @@ void ari_range_sortup(int a[], int n, int rstart, int rend);
 
 int  ari_factor(int a[], int n); // ?
 
-// is val present in a[]
+// is val present in a[] DONE
 bool ari_isvalpresent(int a[], int n, int val);
-// a[pos]
+// a[pos] DONE
 int  ari_get(int a[], int n, int pos);
 // return first leftmost pos where a[pos] == val
-// return -1 if not found
+// return -1 if not found DONE
 int  ari_getpos(int a[], int n, int val);
 
 // return maximum of a[]

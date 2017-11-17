@@ -23,10 +23,25 @@ void ari_setall(int a[], int n, int val) // OKR
 void ari_setone(int a[], int n, int pos, int val) // OKR
 {
 	assert(n > 0);
-
 	assert((0 <= pos) && (pos < n));
 
 	a[pos] = val;
+
+	return;
+}
+
+// a[rstart..rend] = val 
+void ari_range_set(int a[], int n, int rstart, int rend, int val)
+{
+	int i;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend));
+	assert(rend < n);
+
+	for (i = rstart; i <= rend; ++i) {
+		a[i] = val;
+	}
 
 	return;
 }
@@ -71,6 +86,28 @@ int ari_sum(int a[], int n) // OKR
 	return sum;
 }
 
+
+#if 0
+
+// a[0..n-1] = random number from randbot to randtop both included
+void ari_setall_random(int a[], int n, int randbot, int randtop);
+// a[rstart..rend] = random number from randbot to randtop both included
+void ari_range_set_random(int a[], int n, int rstart, int rend, int randbot, int randtop);
+
+// print a[rstart..rend]
+void ari_range_print(int a[], int n, int rstart, int rend);
+// (5,3,4,9) leading=(, trailing=), separator=,
+// (5 3 4 9) leading=(, trailing=), separator=' '
+// [5 3 4 9] leading=[, trailing=], separator=' '
+void ari_print_format(int a[], int n, char leading, char trailing, char separator);
+// print a[rstart..rend] with format characters
+void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator);
+
+// sum = sum of a[rstart..rend]
+int  ari_range_sum(int a[], int n, int rstart, int rend);
+#endif
+
+
 bool ari_isvalpresent(int a[], int n, int val) // OKR
 {
 	int i;
@@ -113,7 +150,6 @@ int ari_getpos(int a[], int n, int val) // OKR
 	}
 
 	assert((pos == -1) || ((0 <= pos) && (pos < n)));
-
 	return pos;
 }
 
