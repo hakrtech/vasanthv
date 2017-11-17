@@ -1,9 +1,9 @@
-
 void ari_setall(int a[], int n, int val);
 void ari_setone(int a[], int n, int pos, int val);
 void ari_range_set(int a[], int n, int rstart, int rend, int val);
 
 void ari_setall_random(int a[], int n, int randbot, int randtop);
+void ari_range_set_random(int a[], int n, int rstart, int rend, int randbot, int randtop);
 
 void ari_print(int a[], int n);
 void ari_range_print(int a[], int n, int rstart, int end);
@@ -46,16 +46,25 @@ int  ari_copy(int a[], int na,
 int  ari_range_copy(int a[], int an, int rstarta, int rend, 
                     int b[], int bn, int rstartb);
 
-void ari_left_rotate1(int a[], int n);
-void ari_right_rotate1(int a[], int n);
-void ari_left_rotaten(int a[], int n, int jump);
-void ari_right_rotaten(int a[], int n, int jump);
+void ari_lshift1(int a[], int n);
+void ari_rshift1(int a[], int n);
+void ari_lshiftn(int a[], int n, int jump);
+void ari_rshiftn(int a[], int n, int jump);
 
-void ari_range_left_rotate1(int a[], int n, int rstart, int rend);
-void ari_range_right_rotate1(int a[], int n, int rstart, int rend);
-void ari_range_left_rotaten(int a[], int n, int rstart, int rend, int jump);
-void ari_range_right_rotaten(int a[], int n, int rstart, int rend, int jump);
+void ari_lrotat1(int a[], int n);
+void ari_rrotat1(int a[], int n);
+void ari_lrotatn(int a[], int n, int jump);
+void ari_rrotatn(int a[], int n, int jump);
 
+void ari_range_lshift1(int a[], int n, int rstart, int rend); // GCD 
+void ari_range_rshift1(int a[], int n, int rstart, int rend);
+void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump);
+void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump);
+
+void ari_range_lrotat1(int a[], int n, int rstart, int rend); // GCD 
+void ari_range_rrotat1(int a[], int n, int rstart, int rend);
+void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump);
+void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump);
 
 void ari_addk(int a[], int n, int k);
 void ari_subk(int a[], int n, int k);
@@ -67,3 +76,9 @@ void ari_range_subk(int a[], int n, int rstart, int rend, int k);
 void ari_range_mulk(int a[], int n, int rstart, int rend, int k);
 void ari_range_divk(int a[], int n, int rstart, int rend, int k);
 
+// c = a + b
+void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);
+
+bool ari_isequal(int a[], int na, int b[], int nb);
+bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
+		       int b[], int nb, int rstartb, int rendb);
