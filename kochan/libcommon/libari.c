@@ -145,7 +145,7 @@ void ari_range_divk(int a[], int n, int rstart, int rend, int k) // OKR
 	}
 }
 
-int ari_sum(int a[], int n) // OK
+int ari_sum(int a[], int n) // OKR
 {
 	int sum = 0;
 
@@ -156,7 +156,7 @@ int ari_sum(int a[], int n) // OK
 	return sum;
 }
 
-int  ari_range_sum(int a[], int n, int rstart, int rend) // OK
+int  ari_range_sum(int a[], int n, int rstart, int rend) // OKR
 {
 	int i;
 	int sum = 0;
@@ -269,7 +269,7 @@ void ari_rshift1(int a[], int n) // OKR
 }
 
 // true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb) // OK BUT IMPROVE
+bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
 {
 	int i;
 	int found = 0;
@@ -359,7 +359,7 @@ int ari_getpos(int a[], int n, int val) // OKR
 	return pos;
 }
 
-void ari_swap_elem(int a[], int n, int i, int j) // OK
+void ari_swap_elem(int a[], int n, int i, int j) // OKR
 {
 	int temp;
 
