@@ -269,18 +269,18 @@ void ari_rshift1(int a[], int n) // OKR
 }
 
 // true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb)
+bool ari_isequal(int a[], int na, int b[], int nb) // OK BUT IMPROVE
 {
 	int i;
 	int found = 0;
 
 	assert((na > 0) && (nb > 0));
-	assert(na == nb);
+	assert(na == nb); //?
 
 	for (i = 0; i < na; ++i) {
 		if (a[i] == b[i]) {
 			found += 1;
-		}
+		} // else ?
 	}
 	if (found == na) {
 		return true;
@@ -372,14 +372,14 @@ void ari_swap_elem(int a[], int n, int i, int j) // OK
 	a[j] = temp;
 }
 
-void ari_sortup(int a[], int n)
+void ari_sortup(int a[], int n) // OKR
 {
 	assert(n > 0);
 
 	ari_range_sortup(a, n, 0, n-1);
 }
 
-void ari_range_sortup(int a[], int n, int rstart, int rend)
+void ari_range_sortup(int a[], int n, int rstart, int rend) // OKR
 {
 	int i;
 
@@ -398,7 +398,7 @@ void ari_range_sortup(int a[], int n, int rstart, int rend)
 	}
 }
 
-void ari_sortdown(int a[], int n)
+void ari_sortdown(int a[], int n) // OKR
 {
 	assert(n > 0);
 
@@ -406,7 +406,7 @@ void ari_sortdown(int a[], int n)
 }
 
 // sort a[rstart..rend]
-void ari_range_sortdown(int a[], int n, int rstart, int rend)
+void ari_range_sortdown(int a[], int n, int rstart, int rend) // OKR
 {
 	int i;
 
