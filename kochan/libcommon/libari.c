@@ -271,28 +271,13 @@ void ari_rshift1(int a[], int n) // OKR
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb)
 {
-	bool boolval;
-	int range;
-
-	assert((na > 0) && (nb > 0));
-	assert(na == nb);
-
-	range = na - 1;
-	boolval = ari_range_isequal(a, na, 0, range, b, nb, 0, range);
-
-	return boolval;
-}
-
-bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
-		       int b[], int nb, int rstartb, int rendb)
-{
 	int i;
 	int found = 0;
 
 	assert((na > 0) && (nb > 0));
 	assert(na == nb);
 
-	for (i = rstarta; i <= renda; ++i) {
+	for (i = 0; i < na; ++i) {
 		if (a[i] == b[i]) {
 			found += 1;
 		}
@@ -300,6 +285,17 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	if (found == na) {
 		return true;
 	}
+
+	return false;
+}
+
+bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
+		       int b[], int nb, int rstartb, int rendb)
+{
+	assert((na > 0) && (nb > 0));
+	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
+	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
+	// do somthing
 
 	return false;
 }
