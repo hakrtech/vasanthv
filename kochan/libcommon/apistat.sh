@@ -9,7 +9,6 @@ rm -f $HOUT $COUT
 # echo -n "$HSRC	"
 # cat $HOUT | egrep '^void|^int|^bool' | cat -n 
 
-<<<<<<< HEAD
 cat $HSRC | egrep '^void|^int|^bool|^double' | awk -F\; '{ print $1; }' | sed -e 's/  [ ]*/ /g' | sed -e 's/)//' | sort -u > $HOUT
 
 echo "$COUT	"
