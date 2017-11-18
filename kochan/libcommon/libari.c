@@ -268,13 +268,44 @@ void ari_rshift1(int a[], int n)
 	}
 }
 
+// true if all values are equal across a[] and b[]
+bool ari_isequal(int a[], int na, int b[], int nb)
+{
+	bool boolval;
+	int range;
+
+	assert((na > 0) && (nb > 0));
+	assert(na == nb);
+
+	range = na - 1;
+	boolval = ari_range_isequal(a, na, 0, range, b, nb, 0, range);
+
+	return boolval;
+}
+
+bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
+		       int b[], int nb, int rstartb, int rendb)
+{
+	int i;
+	int found = 0;
+
+	assert((na > 0) && (nb > 0));
+	assert(na == nb);
+
+	for (i = rstarta; i <= renda; ++i) {
+		if (a[i] == b[i]) {
+			found += 1;
+		}
+	}
+	if (found == na) {
+		return true;
+	}
+
+	return false;
+}
+
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);
-
-// true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb);
-bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
-		       int b[], int nb, int rstartb, int rendb);
 
 // sort a[rstart..rend]
 void ari_range_sortdown(int a[], int n, int rstart, int rend);
@@ -289,11 +320,6 @@ int  ari_range_copy(int a[], int an, int rstarta, int rend,
 
 // left shift by jump and let last jump values remain
 
-
-// true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb);
-bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
-		       int b[], int nb, int rstartb, int rendb);
 
 bool ari_isvalpresent(int a[], int n, int val) // OKR
 {
