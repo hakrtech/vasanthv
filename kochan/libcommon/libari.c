@@ -192,7 +192,7 @@ int  ari_getmax(int a[], int n) // OKR
 
 // return first leftmost pos of maximum
 // return -1 if not found
-int  ari_getmaxpos(int a[], int n)
+int  ari_getmaxpos(int a[], int n) // OKR
 {
 	int maxval;
 	int pos;
@@ -225,7 +225,7 @@ int  ari_getmin(int a[], int n) // OKR
 	return minval;
 }
 
-int  ari_getminpos(int a[], int n) 
+int  ari_getminpos(int a[], int n) // OKR
 {
 	int minval;
 	int pos;
@@ -241,7 +241,7 @@ int  ari_getminpos(int a[], int n)
 }
 
 // left shift by 1 and let last value remain
-void ari_lshift1(int a[], int n) // DOTHIS
+void ari_lshift1(int a[], int n) // OKR
 {
 	int i;
 	int lhrange;
@@ -255,7 +255,7 @@ void ari_lshift1(int a[], int n) // DOTHIS
 }
 
 // right shift by 1 and let first value remain
-void ari_rshift1(int a[], int n)
+void ari_rshift1(int a[], int n) // OKR
 {
 	int i;
 	int rhrange;
