@@ -303,10 +303,6 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);
 
-// sort a[rstart..rend]
-void ari_range_sortdown(int a[], int n, int rstart, int rend);
-void ari_range_sortup(int a[], int n, int rstart, int rend);
-
 // b = a 
 int  ari_copy(int a[], int na, 
 	      int b[], int nb);
@@ -376,16 +372,25 @@ void ari_swap_elem(int a[], int n, int i, int j) // OK
 	a[j] = temp;
 }
 
-void ari_sortup(int a[], int n) // OKR
+void ari_sortup(int a[], int n)
+{
+	assert(n > 0);
+
+	ari_range_sortup(a, n, 0, n-1);
+}
+
+void ari_range_sortup(int a[], int n, int rstart, int rend)
 {
 	int i;
 
 	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend));
+	assert(rend < n);
 
-	for (i = 0; i < n-1; ++i) {
+	for (i = rstart; i < rend; ++i) {
 		int j;
 
-		for (j = i+1; j < n; ++j) {
+		for (j = i+1; j <= rend; ++j) {
 			if (a[i] > a[j]) {
 				ari_swap_elem(a, n, i, j);
 			}
@@ -393,16 +398,26 @@ void ari_sortup(int a[], int n) // OKR
 	}
 }
 
-void ari_sortdown(int a[], int n) // OKR
+void ari_sortdown(int a[], int n)
+{
+	assert(n > 0);
+
+	ari_range_sortdown(a, n, 0, n-1);
+}
+
+// sort a[rstart..rend]
+void ari_range_sortdown(int a[], int n, int rstart, int rend)
 {
 	int i;
 
 	assert(n > 0);
-	
-	for (i = 0; i < n-1; ++i) {
+	assert((0 <= rstart) && (rstart <= rend));
+	assert(rend < n);
+
+	for (i = rstart; i < rend; ++i) {
 		int j;
 
-		for (j = i+1; j < n; ++j) {
+		for (j = i+1; j <= rend; ++j) {
 			if (a[i] < a[j]) {
 				ari_swap_elem(a, n, i, j);
 			}
