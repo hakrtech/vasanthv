@@ -452,16 +452,20 @@ int ari_copy(int a[], int na,
 {
 	int i;
 	int j;
-	int start;
-	int end;
+	int starta;
+	int enda;
+	int startb;
+	int endb;
 
 	assert(na > 0);
 	assert(nb > 0);
 	assert(na <= nb);
 
-	start = 0; 
-	end = na - 1;
-	for (i = start, j = start; i <= end; ++i, ++j) {
+	starta = 0; 
+	enda = na - 1;
+	startb = 0;
+	endb = nb - 1;
+	for (i = starta, j = startb; i <= enda; ++i, ++j) {
 		b[j] = a[i];
 	}
 
