@@ -451,6 +451,7 @@ int ari_copy(int a[], int na,
 	     int b[], int nb)
 {
 	int i;
+	int j;
 	int start;
 	int end;
 
@@ -460,8 +461,8 @@ int ari_copy(int a[], int na,
 
 	start = 0; 
 	end = na - 1;
-	for (i = start; i <= end; ++i) {
-		b[i] = a[i];
+	for (i = start, j = start; i <= end; ++i, ++j) {
+		b[j] = a[i];
 	}
 
 	return 0;
