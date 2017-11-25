@@ -450,6 +450,7 @@ int ari_factor(int a[], int n)
 int ari_copy(int a[], int na,
 	     int b[], int nb)
 {
+	int i;
 	int start;
 	int end;
 
@@ -457,9 +458,10 @@ int ari_copy(int a[], int na,
 	assert(nb > 0);
 	assert(na <= nb);
 
+	start = 0; 
 	end = na - 1;
-	for (start = 0; start <= end; ++start) {
-		b[start] = a[start];
+	for (i = start; i <= end; ++i) {
+		b[i] = a[i];
 	}
 
 	return 0;
