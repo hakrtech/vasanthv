@@ -454,11 +454,12 @@ int ari_copy(int a[], int na,
 
 	assert(na > 0);
 	assert(nb > 0);
+	assert(na <= nb);
 
 	for (i = 0; i < na; ++i) {
 		b[i] = a[i];
 	}
-	
+
 	return 0;
 }
 
