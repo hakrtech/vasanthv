@@ -277,6 +277,7 @@ bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
 	assert((na > 0) && (nb > 0));
 	assert(na == nb); //?
 
+
 	for (i = 0; i < na; ++i) {
 		if (a[i] == b[i]) {
 			found += 1;
@@ -446,4 +447,18 @@ int ari_factor(int a[], int n)
 	return count;
 }
 
+int ari_copy(int a[], int na,
+	     int b[], int nb)
+{
+	int i;
+
+	assert(na > 0);
+	assert(nb > 0);
+
+	for (i = 0; i < na; ++i) {
+		b[i] = a[i];
+	}
+	
+	return 0;
+}
 
