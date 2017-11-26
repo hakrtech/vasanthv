@@ -241,29 +241,33 @@ int  ari_getminpos(int a[], int n) // OKR
 }
 
 // left shift by 1 and let last value remain
-void ari_lshift1(int a[], int n) // OKR
+void ari_lshift1(int a[], int n)
 {
 	int i;
-	int lhrange;
+	int start;
+	int end;
 
 	assert(n > 0);
 
-	lhrange = n - 1;
-	for (i = 0; i < lhrange; ++i) {
+	start = 0;
+	end = n - 1;
+	for (i = start; i < end; ++i) {
 		a[i] = a[i+1];
 	}
 }
 
 // right shift by 1 and let first value remain
-void ari_rshift1(int a[], int n) // OKR
+void ari_rshift1(int a[], int n)
 {
 	int i;
-	int rhrange;
+	int start;
+	int end;
 
 	assert(n > 0);
 
-	rhrange = n - 1;
-	for (i = rhrange; i > 0; --i) {
+	start = 0;
+	end = n - 1;
+	for (i = end; i > start; --i) {
 		a[i] = a[i-1];
 	}
 }
