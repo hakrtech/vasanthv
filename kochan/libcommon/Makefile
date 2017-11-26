@@ -6,7 +6,7 @@ CC=gcc
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG
 
 # compile with these options usually called CFLAGS
-COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99 -Werror=unused-but-set-variable
+COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99 # -Werror=unused-but-set-variable
 
 # search for user header files in these directories
 INCDIR=-I.

@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/sh 
 LIB=ari
 HSRC=lib${LIB}.h
 CSRC=lib${LIB}.c

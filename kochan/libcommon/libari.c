@@ -515,7 +515,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 }
 
 // circular rotate
-void ari_lrotat1(int a[], int n)
+void ari_lrotat1(int a[], int n) // OKR
 {
 	int val;
 	int first;
@@ -531,7 +531,7 @@ void ari_lrotat1(int a[], int n)
 	a[last] = val;
 }
 
-void ari_rrotat1(int a[], int n)
+void ari_rrotat1(int a[], int n) // OKR
 {
 	int val;
 	int first;

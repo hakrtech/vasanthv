@@ -77,8 +77,8 @@ void ari_lshiftn(int a[], int n, int jump);
 void ari_rshiftn(int a[], int n, int jump);
 
 // circular rotate
-void ari_lrotat1(int a[], int n);
-void ari_rrotat1(int a[], int n);
+void ari_lrotat1(int a[], int n); // DONE
+void ari_rrotat1(int a[], int n); // DONE
 void ari_lrotatn(int a[], int n, int jump);
 void ari_rrotatn(int a[], int n, int jump);
 
