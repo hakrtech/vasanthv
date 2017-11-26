@@ -246,12 +246,14 @@ void ari_lshift1(int a[], int n)
 	int i;
 	int start;
 	int end;
+	int stop;
 
 	assert(n > 0);
 
 	start = 0;
 	end = n - 1;
-	for (i = start; i < end; ++i) {
+	stop = end - 1;
+	for (i = start; i <= stop; ++i) {
 		a[i] = a[i+1];
 	}
 }
@@ -260,14 +262,26 @@ void ari_lshift1(int a[], int n)
 void ari_rshift1(int a[], int n)
 {
 	int i;
+	int left;
+	int right;
 	int start;
-	int end;
+	int stop;
 
 	assert(n > 0);
+	// 0 .. n
+	// 0 .. n-1
+	// left .. right
+        //         start .. stop
 
-	start = 0;
-	end = n - 1;
-	for (i = end; i > start; --i) {
+	// define range limits
+	left = 0;	// usually start, but we are ending here, so call it left
+	right = n - 1; // usually end, but we are starting here, so call it right
+
+	// define start .. stop of loop index
+	start = right;
+	stop = left + 1;
+
+	for (i = start; i >= stop; --i) {
 		a[i] = a[i-1];
 	}
 }
