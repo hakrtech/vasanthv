@@ -241,7 +241,7 @@ int  ari_getminpos(int a[], int n) // OKR
 }
 
 // left shift by 1 and let last value remain
-void ari_lshift1(int a[], int n)
+void ari_lshift1(int a[], int n) // OKR
 {
 	int i;
 	int start;
@@ -259,7 +259,7 @@ void ari_lshift1(int a[], int n)
 }
 
 // right shift by 1 and let first value remain
-void ari_rshift1(int a[], int n)
+void ari_rshift1(int a[], int n) // OKR
 {
 	int i;
 	int left;
