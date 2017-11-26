@@ -435,7 +435,7 @@ int ari_factor(int a[], int n)
 }
 
 // b = a 
-void ari_copy(int a[], int na, int b[], int nb)
+void ari_copy(int a[], int na, int b[], int nb) // OKR
 {
 	int i;
 	int j;
@@ -462,7 +462,7 @@ void ari_range_copy(int a[], int an, int rstarta, int rend,
                     int b[], int bn, int rstartb);
 
 // copy a into c, append b to c
-void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
+void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 {
 	int i;
 	int j;
@@ -489,7 +489,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
 
 	startb = 0;
 	endb = nb - 1;
-	startc = na;
+	startc = enda + 1;
 	endc = nc - 1;
 	for (j = startb, k = startc; j <= endb; ++j, ++k) {
 		c[k] = b[j];

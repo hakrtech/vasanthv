@@ -34,8 +34,8 @@ void ari_sortup(int a[], int n); // DONE
 void ari_swap_elem(int a[], int n, int i, int j); // DONE
 
 // sort a[rstart..rend]
-void ari_range_sortdown(int a[], int n, int rstart, int rend);
-void ari_range_sortup(int a[], int n, int rstart, int rend);
+void ari_range_sortdown(int a[], int n, int rstart, int rend); // DONE
+void ari_range_sortup(int a[], int n, int rstart, int rend); // DONE
 
 int  ari_factor(int a[], int n); // ?
 
@@ -68,9 +68,9 @@ void ari_range_copy(int a[], int an, int rstarta, int rend,
                     int b[], int bn, int rstartb);
 
 // left shift by 1 and let last value remain 
-void ari_lshift1(int a[], int n);
+void ari_lshift1(int a[], int n); // DONE
 // right shift by 1 and let first value remain
-void ari_rshift1(int a[], int n);
+void ari_rshift1(int a[], int n); // DONE
 // left shift by jump and let last jump values remain
 void ari_lshiftn(int a[], int n, int jump);
 // right shift by jump and let first jump values remain
@@ -110,7 +110,7 @@ void ari_range_mulk(int a[], int n, int rstart, int rend, int k); // DONE
 void ari_range_divk(int a[], int n, int rstart, int rend, int k); // DONE
 
 // copy a into c, append b to c
-void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);
+void ari_concat(int a[], int na, int b[], int nb, int c[], int nc); // DONE
 
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb);
