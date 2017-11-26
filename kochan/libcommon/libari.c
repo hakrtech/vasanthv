@@ -514,3 +514,34 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 	}
 }
 
+// circular rotate
+void ari_lrotat1(int a[], int n)
+{
+	int val;
+	int start;
+	int end;
+
+	assert(n > 0);
+
+	start = 0;
+	end = n - 1;
+	val = a[start];
+	ari_lshift1(a, n);
+	a[end] = val;
+}
+
+void ari_rrotate1(int a[], int n)
+{
+	int val;
+	int start;
+	int end;
+
+	assert(n > 0);
+
+	start = n - 1;
+	end = 0;
+	val = a[start];
+	ari_rshift1(a, n);
+	a[end] = val;
+}
+
