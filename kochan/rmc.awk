@@ -11,6 +11,7 @@
 /^[ 	]*\/\//		{ stop_printing = 1; }
 /^#include[ 	]*</	{ stop_printing = 1; }
 /^[ 	]*printf/	{ stop_printing = 1; }
+/^[ 	][ 	]*int [a-z][_a-z0-9]*\;/	{ stop_printing = 1; }
 /./			{ if (!comment_inside) {
 				if (stop_printing) {
 					stop_printing = 0
