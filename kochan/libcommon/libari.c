@@ -301,19 +301,6 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	return false;
 }
 
-// copy a into c, append b to c
-void ari_concat(int a[], int na, int b[], int nb, int c[], int nc);
-
-// b = a 
-int  ari_copy(int a[], int na, 
-	      int b[], int nb);
-// b[range] = a[range]
-int  ari_range_copy(int a[], int an, int rstarta, int rend, 
-                    int b[], int bn, int rstartb);
-
-// left shift by jump and let last jump values remain
-
-
 bool ari_isvalpresent(int a[], int n, int val) // OKR
 {
 	int i;
@@ -447,8 +434,8 @@ int ari_factor(int a[], int n)
 	return count;
 }
 
-int ari_copy(int a[], int na,
-	     int b[], int nb)
+// b = a 
+void ari_copy(int a[], int na, int b[], int nb)
 {
 	int i;
 	int j;
@@ -468,7 +455,44 @@ int ari_copy(int a[], int na,
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
 		b[j] = a[i];
 	}
+}
 
-	return 0;
+// b[range] = a[range]
+void ari_range_copy(int a[], int an, int rstarta, int rend, 
+                    int b[], int bn, int rstartb);
+
+// copy a into c, append b to c
+void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
+{
+	int i;
+	int j;
+	int k;
+	int starta;
+	int startb;
+	int startc;
+	int enda;
+	int endb;
+	int endc;
+
+	assert(na > 0);
+	assert(nb > 0);
+	assert(nc > 0);
+	assert((na+nb) <= nc);
+
+	starta = 0;
+	enda = na - 1;
+	startc = 0;
+	endc = nc - 1;
+	for (i = starta, k = startc; i <= enda; ++i, ++k) {
+		c[k] = a[i];
+	}
+
+	startb = 0;
+	endb = nb - 1;
+	startc = na;
+	endc = nc - 1;
+	for (j = startb, k = startc; j <= endb; ++j, ++k) {
+		c[k] = b[j];
+	}
 }
 
