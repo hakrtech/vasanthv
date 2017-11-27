@@ -58,6 +58,19 @@ void ari_range_print(int a[], int n, int rstart, int rend) // OKR
 	printf("\n");
 }
 
+void ari_print_format(int a[], int n, char leading, char trailing, char separator)
+{
+	int i;
+
+	assert(n > 0);
+
+	printf("%c ", leading);
+	for (i = 0; i < n; ++i) {
+		printf("%d%c ", a[i], separator);
+	}
+	printf("%c\n", trailing);
+}
+
 // a[] += k 
 void ari_addk(int a[], int n, int k) // OKR
 {
