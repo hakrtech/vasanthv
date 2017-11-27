@@ -24,3 +24,6 @@ diff $HOUT $COUT | egrep '^<' | grep _range_ | sed -e 's/^< //' | cat -n
 
 echo "$HSRC Statistics API - TODO"
 diff $HOUT $COUT | egrep '^<' | grep _stat_ | sed -e 's/^< //' | cat -n
+
+echo "$HSRC Today Targets - TODO"
+grep TODO $HSRC

@@ -20,7 +20,7 @@ void ari_range_print(int a[], int n, int rstart, int rend); // DONE
 // (5,3,4,9) leading=(, trailing=), separator=,
 // (5 3 4 9) leading=(, trailing=), separator=' '
 // [5 3 4 9] leading=[, trailing=], separator=' '
-void ari_print_format(int a[], int n, char leading, char trailing, char separator);
+void ari_print_format(int a[], int n, char leading, char trailing, char separator); // TODO
 // print a[rstart..rend] with format characters
 void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator);
 
@@ -72,19 +72,21 @@ void ari_lshift1(int a[], int n); // DONE
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n); // DONE
 // left shift by jump and let last jump values remain
-void ari_lshiftn(int a[], int n, int jump);
+void ari_lshiftn(int a[], int n, int jump); // TODO
 // right shift by jump and let first jump values remain
-void ari_rshiftn(int a[], int n, int jump);
+void ari_rshiftn(int a[], int n, int jump); // TODO
 
 // circular rotate
 void ari_lrotat1(int a[], int n); // DONE
 void ari_rrotat1(int a[], int n); // DONE
-void ari_lrotatn(int a[], int n, int jump);
-void ari_rrotatn(int a[], int n, int jump);
+// jump values will be <= size of array
+void ari_lrotatn(int a[], int n, int jump); // TODO
+void ari_rrotatn(int a[], int n, int jump); // TODO
 
 // range related shifts
 void ari_range_lshift1(int a[], int n, int rstart, int rend); // GCD 
 void ari_range_rshift1(int a[], int n, int rstart, int rend);
+// jump values will be <= size of array
 void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump);
 void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump);
 
@@ -113,7 +115,7 @@ void ari_range_divk(int a[], int n, int rstart, int rend, int k); // DONE
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc); // DONE
 
 // true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb);
+bool ari_isequal(int a[], int na, int b[], int nb); // TODO
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
 		       int b[], int nb, int rstartb, int rendb);
 
