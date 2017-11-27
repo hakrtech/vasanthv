@@ -269,7 +269,7 @@ void ari_lshift1(int a[], int n)
 	ari_lshiftn(a, n, 1);
 }
 
-// left shift by jump and last values remain
+// left shift by jump and let right values remain
 void ari_lshiftn(int a[], int n, int jump)
 {
 	int i;
@@ -289,7 +289,15 @@ void ari_lshiftn(int a[], int n, int jump)
 }
 
 // right shift by 1 and let first value remain
-void ari_rshift1(int a[], int n) // OKR
+void ari_rshift1(int a[], int n)
+{
+	assert(n > 0);
+
+	ari_rshiftn(a, n, 1);
+}
+
+//right shift by jump and let left values remain
+void  ari_rshiftn(int a[], int n, int jump)
 {
 	int i;
 	int left;
@@ -298,10 +306,7 @@ void ari_rshift1(int a[], int n) // OKR
 	int stop;
 
 	assert(n > 0);
-	// 0 .. n
-	// 0 .. n-1
-	// left .. right
-        //         start .. stop
+	assert((0 < jump) && (jump < n));
 
 	// define range limits
 	left = 0;	// usually start, but we are ending here, so call it left
@@ -309,10 +314,10 @@ void ari_rshift1(int a[], int n) // OKR
 
 	// define start .. stop of loop index
 	start = right;
-	stop = left + 1;
+	stop = left + jump;
 
 	for (i = start; i >= stop; --i) {
-		a[i] = a[i-1];
+		a[i] = a[i-jump];
 	}
 }
 
