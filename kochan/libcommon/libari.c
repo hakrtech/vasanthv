@@ -273,16 +273,22 @@ void ari_lshift1(int a[], int n)
 void ari_lshiftn(int a[], int n, int jump)
 {
 	int i;
+	int left;
+	int right;
 	int start;
 	int stop;
-	int end;
 
 	assert(n > 0);
 	assert((0 < jump) && (jump < n));
 
-	start = 0;
-	end = n - 1;
-	stop = end - jump;
+	// define range limits
+	left = 0;
+	right = n - 1;
+
+	// define start .. stop of loop index
+	start = left;
+	stop = right - jump;
+
 	for (i = start; i <= stop; ++i) {
 		a[i] = a[i+jump];
 	}
