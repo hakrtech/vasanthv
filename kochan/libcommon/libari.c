@@ -290,7 +290,13 @@ void ari_lshiftn(int a[], int n, int jump)
 	stop = right - jump;
 
 	for (i = start; i <= stop; ++i) {
-		a[i] = a[i+jump];
+		int j = i + jump;
+
+		// simple range check of array index i and j
+		assert((left <= i) && (i <= right));
+		assert((left <= j) && (j <= right));
+
+		a[i] = a[j];
 	}
 }
 
@@ -323,7 +329,12 @@ void  ari_rshiftn(int a[], int n, int jump)
 	stop = left + jump;
 
 	for (i = start; i >= stop; --i) {
-		a[i] = a[i-jump];
+		int j = i - jump;
+
+		assert((left <= i) && (i <= right));
+		assert((left <= j) && (j <= right));
+
+		a[i] = a[j];
 	}
 }
 
