@@ -62,7 +62,7 @@ void ari_range_print(int a[], int n, int rstart, int rend)
 	printf("\n");
 }
 
-void ari_print_format(int a[], int n, char leading, char trailing, char separator)
+void ari_print_format(int a[], int n, char leading, char trailing, char separator) // OKR
 {
 	int i;
 	int start;
@@ -262,7 +262,7 @@ int  ari_getminpos(int a[], int n) // OKR
 }
 
 // left shift by 1 and let last value remain
-void ari_lshift1(int a[], int n)
+void ari_lshift1(int a[], int n) // OKR
 {
 	assert(n > 0);
 
@@ -270,7 +270,7 @@ void ari_lshift1(int a[], int n)
 }
 
 // left shift by jump and let right values remain
-void ari_lshiftn(int a[], int n, int jump)
+void ari_lshiftn(int a[], int n, int jump) // OKR
 {
 	int i;
 	int left;
@@ -301,7 +301,7 @@ void ari_lshiftn(int a[], int n, int jump)
 }
 
 // right shift by 1 and let first value remain
-void ari_rshift1(int a[], int n)
+void ari_rshift1(int a[], int n) // OKR
 {
 	assert(n > 0);
 
@@ -309,7 +309,7 @@ void ari_rshift1(int a[], int n)
 }
 
 //right shift by jump and let left values remain
-void  ari_rshiftn(int a[], int n, int jump)
+void  ari_rshiftn(int a[], int n, int jump) // OKR
 {
 	int i;
 	int left;

@@ -20,7 +20,7 @@ void ari_range_print(int a[], int n, int rstart, int rend); // DONE
 // (5,3,4,9) leading=(, trailing=), separator=,
 // (5 3 4 9) leading=(, trailing=), separator=' '
 // [5 3 4 9] leading=[, trailing=], separator=' '
-void ari_print_format(int a[], int n, char leading, char trailing, char separator); // TODO
+void ari_print_format(int a[], int n, char leading, char trailing, char separator); // DONE
 // print a[rstart..rend] with format characters
 void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator);
 
@@ -72,9 +72,9 @@ void ari_lshift1(int a[], int n); // DONE
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n); // DONE
 // left shift by jump and let last jump values remain
-void ari_lshiftn(int a[], int n, int jump); // TODO
+void ari_lshiftn(int a[], int n, int jump); // DONE
 // right shift by jump and let first jump values remain
-void ari_rshiftn(int a[], int n, int jump); // TODO
+void ari_rshiftn(int a[], int n, int jump); // DONE
 
 // circular rotate
 void ari_lrotat1(int a[], int n); // DONE
