@@ -44,15 +44,19 @@ void ari_print(int a[], int n) // OKR
 }
 
 // print a[rstart..rend]
-void ari_range_print(int a[], int n, int rstart, int rend) // OKR
+void ari_range_print(int a[], int n, int rstart, int rend)
 {
 	int i;
+	int start;
+	int end;
 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend));
 	assert(rend < n);
 
-	for (i = rstart; i <= rend; ++i) {
+	start = rstart;
+	end = rend;
+	for (i = start; i <= end; ++i) {
 		printf("%d ", a[i]);
 	}
 	printf("\n");
@@ -61,11 +65,15 @@ void ari_range_print(int a[], int n, int rstart, int rend) // OKR
 void ari_print_format(int a[], int n, char leading, char trailing, char separator)
 {
 	int i;
+	int start;
+	int end;
 
 	assert(n > 0);
 
 	printf("%c ", leading);
-	for (i = 0; i < n; ++i) {
+	start = 0;
+	end = n - 1;
+	for (i = start; i <= end; ++i) {
 		printf("%d%c ", a[i], separator);
 	}
 	printf("%c\n", trailing);
@@ -254,20 +262,29 @@ int  ari_getminpos(int a[], int n) // OKR
 }
 
 // left shift by 1 and let last value remain
-void ari_lshift1(int a[], int n) // OKR
+void ari_lshift1(int a[], int n)
+{
+	assert(n > 0);
+
+	ari_lshiftn(a, n, 1);
+}
+
+// left shift by jump and last values remain
+void ari_lshiftn(int a[], int n, int jump)
 {
 	int i;
 	int start;
-	int end;
 	int stop;
+	int end;
 
 	assert(n > 0);
+	assert((0 < jump) && (jump < n));
 
 	start = 0;
 	end = n - 1;
-	stop = end - 1;
+	stop = end - jump;
 	for (i = start; i <= stop; ++i) {
-		a[i] = a[i+1];
+		a[i] = a[i+jump];
 	}
 }
 
@@ -321,6 +338,7 @@ bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
 	return false;
 }
 
+/* 
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
 		       int b[], int nb, int rstartb, int rendb)
 {
@@ -331,6 +349,7 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 
 	return false;
 }
+*/
 
 bool ari_isvalpresent(int a[], int n, int val) // OKR
 {
