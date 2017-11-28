@@ -26,7 +26,7 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
 BIN=
-TBIN=test_libari
+TESTBIN=test_libari
 
 # list of libraries to be built
 LIB=libinteger.a libreal.a libarray.a libmatrix.a
@@ -39,7 +39,7 @@ all: 	lib bin
 
 lib: 	$(LIB)
 
-bin:	$(BIN) $(TBIN)
+bin:	$(BIN) $(TESTBIN)
 
 # clean up and build everything again
 rebuild: build
@@ -47,7 +47,7 @@ rebuild: build
 build:	clean all
 
 clean:
-	/bin/rm -f a.out *.o *.a $(BIN) $(LIB)
+	/bin/rm -f a.out *.o *.a $(BIN) $(TESTBIN) $(LIB)
 #
 # end of Makefile template
 #
