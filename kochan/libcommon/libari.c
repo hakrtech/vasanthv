@@ -36,6 +36,58 @@ void ari_range_set(int a[], int n, int rstart, int rend, int val) // OKR
 	}
 }
 
+// a[i] = i
+void ari_setall_linear(int a[], int n)
+{
+	assert(n > 0);
+
+	ari_range_set_linear(a, n, 0, n-1);
+}
+
+// a[rstart..rend] = i
+void ari_range_set_linear(int a[], int n, int rstart, int rend)
+{
+	int i;
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend));
+	assert(rend < n);
+
+	start = rstart;
+	end = rend;
+	for (i = start; i <= end; ++i) {
+		ari_setone(a, n, i, i);
+	}
+}
+
+//a[i] = i*i
+void ari_setall_square(int a[], int n)
+{
+	assert(n > 0);
+
+	ari_range_set_square(a, n, 0, n-1);
+}
+
+// a[rstart..rend] = i*i
+void ari_range_set_square(int a[], int n, int rstart, int rend)
+{
+	int i;
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend));
+	assert(rend < n);
+
+	start = rstart;
+	end = rend;
+	for (i = start; i <= end; ++i) {
+		ari_setone(a, n, i, i*i);
+	}
+}
+
 void ari_print(int a[], int n) // OKR
 {
 	assert(n > 0);
