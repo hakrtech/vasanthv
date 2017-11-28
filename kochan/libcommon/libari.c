@@ -298,7 +298,7 @@ int  ari_getmin(int a[], int n) // OKR
 	return minval;
 }
 
-int  ari_getminpos(int a[], int n) // OKR
+int ari_getminpos(int a[], int n) // OKR
 {
 	int minval;
 	int pos;
@@ -685,4 +685,23 @@ void ari_rrotatn(int a[], int n, int jump)
 		ari_rrotat1(a, n);
 	}
 } 
+
+void ari_reverse(int a[], int n)
+{
+	int i;
+	int j;
+	int start;
+	int end;
+
+	assert(n > 0);
+
+	start = 0;
+	end = n - 1;
+	for (i = start, j = end; i < j; ++i, --j) {
+		assert((start <= i) && (i <= end));
+		assert((start <= j) && (j <= end));
+
+		ari_swap_elem(a, n, i, j);
+	}
+}
 
