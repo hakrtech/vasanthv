@@ -37,7 +37,7 @@ void ari_range_set(int a[], int n, int rstart, int rend, int val) // OKR
 }
 
 // a[i] = i
-void ari_setall_linear(int a[], int n)
+void ari_setall_linear(int a[], int n) // OKR
 {
 	assert(n > 0);
 
@@ -45,7 +45,7 @@ void ari_setall_linear(int a[], int n)
 }
 
 // a[rstart..rend] = i
-void ari_range_set_linear(int a[], int n, int rstart, int rend)
+void ari_range_set_linear(int a[], int n, int rstart, int rend) // OKR
 {
 	int i;
 	int start;
@@ -63,7 +63,7 @@ void ari_range_set_linear(int a[], int n, int rstart, int rend)
 }
 
 //a[i] = i*i
-void ari_setall_square(int a[], int n)
+void ari_setall_square(int a[], int n) // OKR
 {
 	assert(n > 0);
 
@@ -71,7 +71,7 @@ void ari_setall_square(int a[], int n)
 }
 
 // a[rstart..rend] = i*i
-void ari_range_set_square(int a[], int n, int rstart, int rend)
+void ari_range_set_square(int a[], int n, int rstart, int rend) // OKR
 {
 	int i;
 	int start;
@@ -390,6 +390,7 @@ void  ari_rshiftn(int a[], int n, int jump) // OKR
 	}
 }
 
+#if 0
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
 {
@@ -411,6 +412,7 @@ bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
 
 	return false;
 }
+#endif
 
 /* 
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
@@ -558,6 +560,7 @@ int ari_factor(int a[], int n)
 	return count;
 }
 
+#if 0
 // b = a 
 void ari_copy(int a[], int na, int b[], int nb) // OKR
 {
@@ -580,11 +583,13 @@ void ari_copy(int a[], int na, int b[], int nb) // OKR
 		b[j] = a[i];
 	}
 }
+#endif
 
 // b[range] = a[range]
 void ari_range_copy(int a[], int an, int rstarta, int rend, 
                     int b[], int bn, int rstartb);
 
+#if 0
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 {
@@ -619,6 +624,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 		c[k] = b[j];
 	}
 }
+#endif
 
 // circular rotate
 void ari_lrotat1(int a[], int n) // OKR
@@ -654,7 +660,7 @@ void ari_rrotat1(int a[], int n) // OKR
 }
 
 // jump values will be <= size of array
-void ari_lrotatn(int a[], int n, int jump)
+void ari_lrotatn(int a[], int n, int jump) // OKR
 {
 	int i;
 	int start;
@@ -670,7 +676,7 @@ void ari_lrotatn(int a[], int n, int jump)
 	}
 }
 
-void ari_rrotatn(int a[], int n, int jump)
+void ari_rrotatn(int a[], int n, int jump) // OKR
 {
 	int i;
 	int start;
@@ -686,7 +692,7 @@ void ari_rrotatn(int a[], int n, int jump)
 	}
 } 
 
-void ari_reverse(int a[], int n)
+void ari_reverse(int a[], int n) // OKR
 {
 	int i;
 	int j;
