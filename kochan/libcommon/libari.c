@@ -653,3 +653,36 @@ void ari_rrotat1(int a[], int n) // OKR
 	a[first] = val;
 }
 
+// jump values will be <= size of array
+void ari_lrotatn(int a[], int n, int jump)
+{
+	int i;
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 < jump) && (jump < n));
+
+	start = 1;
+	end = jump;
+	for (i = start; i <= end; ++i) {
+		ari_lrotat1(a, n);
+	}
+}
+
+void ari_rrotatn(int a[], int n, int jump)
+{
+	int i;
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 < jump) && (jump < n));
+
+	start = 1;
+	end = jump;
+	for (i = start; i <= end; ++i) {
+		ari_rrotat1(a, n);
+	}
+} 
+
