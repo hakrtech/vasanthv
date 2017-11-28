@@ -390,7 +390,6 @@ void  ari_rshiftn(int a[], int n, int jump) // OKR
 	}
 }
 
-#if 0
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
 {
@@ -399,7 +398,6 @@ bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
 
 	assert((na > 0) && (nb > 0));
 	assert(na == nb); //?
-
 
 	for (i = 0; i < na; ++i) {
 		if (a[i] == b[i]) {
@@ -412,7 +410,6 @@ bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
 
 	return false;
 }
-#endif
 
 /* 
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
@@ -560,7 +557,6 @@ int ari_factor(int a[], int n)
 	return count;
 }
 
-#if 0
 // b = a 
 void ari_copy(int a[], int na, int b[], int nb) // OKR
 {
@@ -569,7 +565,7 @@ void ari_copy(int a[], int na, int b[], int nb) // OKR
 	int starta;
 	int enda;
 	int startb;
-	int endb;
+	// DT int endb;
 
 	assert(na > 0);
 	assert(nb > 0);
@@ -578,12 +574,12 @@ void ari_copy(int a[], int na, int b[], int nb) // OKR
 	starta = 0; 
 	enda = na - 1;
 	startb = 0;
-	endb = nb - 1;
+	// DT endb = nb - 1;
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
+		// range check for i and j
 		b[j] = a[i];
 	}
 }
-#endif
 
 // b[range] = a[range]
 void ari_range_copy(int a[], int an, int rstarta, int rend, 
@@ -711,3 +707,49 @@ void ari_reverse(int a[], int n) // OKR
 	}
 }
 
+static void tstart(char *s)
+{
+	assert(s != NULL);
+	printf("testing %s ...\n", s);
+}
+
+static void tend(char *s)
+{
+	assert(s != NULL);
+	printf("testing %s ... OK\n", s);
+}
+
+void test_ari_reverse()
+{
+	char *fname = "ari_reverse";
+	int a[10], b[10];
+	int n = 10;
+
+	tstart(fname);
+
+	ari_setall_linear(a, n);
+	ari_print(a, n);
+
+	ari_copy(a, n, b, n);
+	assert(ari_isequal(a, n, b, n));
+	ari_print(b, n);
+
+	ari_reverse(a, n);
+	ari_print(a, n);
+
+	ari_reverse(a, n);
+	ari_print(a, n);
+
+	assert(ari_isequal(a, n, b, n));
+
+	tend(fname);
+}
+
+#ifdef LIBTEST
+int main(void)
+{
+	test_ari_reverse();
+
+	return 0;
+}
+#endif

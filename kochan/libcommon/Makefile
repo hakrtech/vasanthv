@@ -4,6 +4,7 @@ CC=gcc
 
 # preprocess with these options usually called CPPFLAGS
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG
+TESTBIN.PREPROCESSOR.FLAGS=-DLIBTEST
 
 # compile with these options usually called CFLAGS
 COMPILE.FLAGS+=-g -Wall -Wextra -Werror -pedantic -ansi --std=c99 # -Werror=unused-but-set-variable
@@ -25,6 +26,7 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
 BIN=
+TBIN=test_libari
 
 # list of libraries to be built
 LIB=libinteger.a libreal.a libarray.a libmatrix.a
@@ -37,7 +39,7 @@ all: 	lib bin
 
 lib: 	$(LIB)
 
-bin:	$(BIN)
+bin:	$(BIN) $(TBIN)
 
 # clean up and build everything again
 rebuild: build
@@ -49,6 +51,9 @@ clean:
 #
 # end of Makefile template
 #
+
+test_libari: libari.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) $< 
 
 # integer number library
 libinteger.a: libnumi.o
