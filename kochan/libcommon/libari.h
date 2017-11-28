@@ -3,6 +3,27 @@
 
 // a[0..n-1] = val
 void ari_setall(int a[], int n, int val); // DONE
+
+// a[i] = i
+void ari_setall_linear(int a[], int n); // TODO
+// a[rstart..rend] = i
+void ari_range_set_linear(int a[], int n, int rstart, int rend); // TODO
+
+// a[i] = i*i
+void ari_setall_square(int a[], int n); // TODO
+// a[rstart..rend] = i*i
+void ari_range_set_square(int a[], int n, int rstart, int rend); // TODO
+
+// a[i] = factorial(i)
+void ari_setall_factorial(int a[], int n); // TODO
+// a[rstart..rend] = factorial(i)
+void ari_range_set_factorial(int a[], int n); // TODO
+
+// a[i] = prime(i) i'th prime 2,3,5,7,11 ...
+void ari_setall_prime(int a[], int n); // TODO
+// a[rstart..rend] = prime(i)
+void ari_range_set_prime(int a[], int n, int rstart, int rend); // TODO
+
 // a[pos] = val
 void ari_setone(int a[], int n, int pos, int val); // DONE
 // a[rstart..rend] = val 
@@ -82,6 +103,12 @@ void ari_rrotat1(int a[], int n); // DONE
 // jump values will be <= size of array
 void ari_lrotatn(int a[], int n, int jump); // TODO
 void ari_rrotatn(int a[], int n, int jump); // TODO
+
+void ari_rrotatn_chain(int a[], int n, int jump, int cstart); // TODO
+void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int cstart); // TODO
+
+void ari_reverse(int a[], int n); // TODO
+void ari_range_reverse(int a[], int n, int rstart, int rend); // TODO
 
 // range related shifts
 void ari_range_lshift1(int a[], int n, int rstart, int rend); // GCD 
