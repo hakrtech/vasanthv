@@ -5,22 +5,27 @@
 void ari_setall(int a[], int n, int val); // DONE
 
 // a[i] = i
-void ari_setall_linear(int a[], int n); // TODO
+void ari_setall_linear(int a[], int n); // DONE
 // a[rstart..rend] = i
-void ari_range_set_linear(int a[], int n, int rstart, int rend); // TODO
+void ari_range_set_linear(int a[], int n, int rstart, int rend); // DONE
 
 // a[i] = i*i
-void ari_setall_square(int a[], int n); // TODO
+void ari_setall_square(int a[], int n); // DONE
 // a[rstart..rend] = i*i
-void ari_range_set_square(int a[], int n, int rstart, int rend); // TODO
+void ari_range_set_square(int a[], int n, int rstart, int rend); // DONE
+
+// a[i] = fibonacci(i) 0,1,1,2,3,5,8 ...
+void ari_setall_fibonacci(int a[], int n); // LATER
+// a[rstart..rend] = fibonacci(i)
+void ari_range_set_factorial(int a[], int n); // TODO
 
 // a[i] = factorial(i)
-void ari_setall_factorial(int a[], int n); // TODO
+void ari_setall_factorial(int a[], int n); // LATER
 // a[rstart..rend] = factorial(i)
 void ari_range_set_factorial(int a[], int n); // TODO
 
-// a[i] = prime(i) i'th prime 2,3,5,7,11 ...
-void ari_setall_prime(int a[], int n); // TODO
+// a[i] = prime(i) i'th prime prime(0)=2,prime(1)=3,prime(2)=5,7,11 ...
+void ari_setall_prime(int a[], int n); // LATER
 // a[rstart..rend] = prime(i)
 void ari_range_set_prime(int a[], int n, int rstart, int rend); // TODO
 
@@ -34,8 +39,8 @@ void ari_setall_random(int a[], int n, int randbot, int randtop);
 // a[rstart..rend] = random number from randbot to randtop both included
 void ari_range_set_random(int a[], int n, int rstart, int rend, int randbot, int randtop);
 
-// 5 3 4 9 
-void ari_print(int a[], int n); // DONE
+// 5 3 4 9 , pass helpful array name as string
+void ari_print(int a[], int n, char *prefix); // DONE
 // print a[rstart..rend]
 void ari_range_print(int a[], int n, int rstart, int rend); // DONE
 // (5,3,4,9) leading=(, trailing=), separator=,
@@ -89,25 +94,25 @@ void ari_range_copy(int a[], int an, int rstarta, int rend,
                     int b[], int bn, int rstartb);
 
 // left shift by 1 and let last value remain 
-void ari_lshift1(int a[], int n); // DONE
+void ari_lshift1(int a[], int n); // DONE QATHIS
 // right shift by 1 and let first value remain
-void ari_rshift1(int a[], int n); // DONE
+void ari_rshift1(int a[], int n); // DONE QATHIS
 // left shift by jump and let last jump values remain
-void ari_lshiftn(int a[], int n, int jump); // DONE
+void ari_lshiftn(int a[], int n, int jump); // DONE QATHIS
 // right shift by jump and let first jump values remain
-void ari_rshiftn(int a[], int n, int jump); // DONE
+void ari_rshiftn(int a[], int n, int jump); // DONE QATHIS
 
 // circular rotate
-void ari_lrotat1(int a[], int n); // DONE
-void ari_rrotat1(int a[], int n); // DONE
+void ari_lrotat1(int a[], int n); // DONE QATHIS
+void ari_rrotat1(int a[], int n); // DONE QATHIS
 // jump values will be <= size of array
-void ari_lrotatn(int a[], int n, int jump); // TODO
-void ari_rrotatn(int a[], int n, int jump); // TODO
+void ari_lrotatn(int a[], int n, int jump); // DONE QATHIS
+void ari_rrotatn(int a[], int n, int jump); // DONE QATHIS
 
-void ari_rrotatn_chain(int a[], int n, int jump, int cstart); // TODO
-void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int cstart); // TODO
+void ari_rrotatn_chain(int a[], int n, int jump, int cstart); // LATER
+void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int cstart); // LATER
 
-void ari_reverse(int a[], int n); // TODO
+void ari_reverse(int a[], int n); // DONE
 void ari_range_reverse(int a[], int n, int rstart, int rend); // TODO
 
 // range related shifts
@@ -142,7 +147,7 @@ void ari_range_divk(int a[], int n, int rstart, int rend, int k); // DONE
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc); // DONE
 
 // true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb); // TODO
+bool ari_isequal(int a[], int na, int b[], int nb); // LATER
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
 		       int b[], int nb, int rstartb, int rendb);
 
