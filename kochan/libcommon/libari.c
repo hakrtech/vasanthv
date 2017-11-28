@@ -88,9 +88,12 @@ void ari_range_set_square(int a[], int n, int rstart, int rend) // OKR
 	}
 }
 
-void ari_print(int a[], int n) // OKR
+void ari_print(int a[], int n, char *s) // OKR
 {
 	assert(n > 0);
+	assert(s != NULL);
+
+	printf("%s = ", s);
 
 	ari_range_print(a, n, 0, n-1);
 }
@@ -352,6 +355,21 @@ void ari_lshiftn(int a[], int n, int jump) // OKR
 	}
 }
 
+#ifdef LIBTEST
+// left shift test function
+void test_lshift(bool yes)
+{
+	int a[10], b[10], c[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+	int n = 10;
+
+	ari_setall_square(a, n);
+	ari_print(a, n, "a[] = ");
+	
+	ari_lshift1(a, n);
+	ari_print(a, n, "a[lsh1] = ");
+}
+#endif
+
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n) // OKR
 {
@@ -419,6 +437,8 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
 	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
 	// do somthing
+
+	assert(0);
 
 	return false;
 }
@@ -579,6 +599,8 @@ void ari_copy(int a[], int na, int b[], int nb) // OKR
 		// range check for i and j
 		b[j] = a[i];
 	}
+	// verify post condition
+	assert(i == enda+1);
 }
 
 // b[range] = a[range]
@@ -656,17 +678,27 @@ void ari_rrotat1(int a[], int n) // OKR
 }
 
 // jump values will be <= size of array
+// if jump is more than array length we cycle back, 
+// so we can spin the array contents
 void ari_lrotatn(int a[], int n, int jump) // OKR
 {
 	int i;
 	int start;
 	int end;
+	int j;
 
 	assert(n > 0);
-	assert((0 < jump) && (jump < n));
+	assert(0 < jump);
+
+	j = jump;
+	if (j >= n) {
+		j = jump % n;
+	}
+
+	assert(j < n);
 
 	start = 1;
-	end = jump;
+	end = j;
 	for (i = start; i <= end; ++i) {
 		ari_lrotat1(a, n);
 	}
@@ -707,48 +739,71 @@ void ari_reverse(int a[], int n) // OKR
 	}
 }
 
-static void tstart(char *s)
+
+#ifdef LIBTEST
+static void test_start(char *s)
 {
 	assert(s != NULL);
 	printf("testing %s ...\n", s);
 }
+#endif
 
-static void tend(char *s)
+#ifdef LIBTEST
+static void test_end(char *s)
 {
 	assert(s != NULL);
 	printf("testing %s ... OK\n", s);
 }
+#endif
 
-void test_ari_reverse()
+#ifdef LIBTEST
+static void test_ari_reverse(bool noisy)
 {
-	char *fname = "ari_reverse";
-	int a[10], b[10];
-	int n = 10;
+#define dbg if (noisy)
+	// size 10, size 3, size 2, mentally size 1
+	// test first for good case
+	// test next  for bounday case
+	// test expect to pass and it passes that mean ok
+	// test expect to fail and it fails  that mean ok
+	
+	char *fname = "ari_rotatn";
+	// int a[10], b[10], c[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	// int n = 10;
+	int a[2], b[2], c[2] = { 1, 0 };
+	int n = 2;
 
-	tstart(fname);
+	test_start(fname);
 
 	ari_setall_linear(a, n);
-	ari_print(a, n);
+	dbg ari_print(a, n, "a");
+	ari_setall_square(b, n);
+	dbg ari_print(b, n, "b");
+	dbg ari_print(c, n, "c");
 
-	ari_copy(a, n, b, n);
-	assert(ari_isequal(a, n, b, n));
-	ari_print(b, n);
+	ari_lrotatn(a, n, 1);
+	ari_print(a, n, "a");
 
-	ari_reverse(a, n);
-	ari_print(a, n);
+	ari_rrotatn(b, n, 1);
+	ari_print(b, n, "b");
 
-	ari_reverse(a, n);
-	ari_print(a, n);
+	ari_reverse(c, n);
+	ari_lrotat1(a, n);
+	dbg ari_print(a, n, "a");
 
-	assert(ari_isequal(a, n, b, n));
+	assert(ari_isequal(a, n, c, n));
 
-	tend(fname);
+	test_end(fname);
 }
+#endif
 
 #ifdef LIBTEST
 int main(void)
 {
-	test_ari_reverse();
+	bool verbose = true;
+	// bool silent = false;
+	test_ari_reverse(verbose);
+	// test_ari_reverse(silent);
+	test_lshift(verbose);
 
 	return 0;
 }
