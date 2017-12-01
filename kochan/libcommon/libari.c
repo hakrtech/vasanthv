@@ -355,35 +355,30 @@ void ari_lshiftn(int a[], int n, int jump) // OKR
 	}
 }
 
-//#ifdef LIBTEST
-void test(void)
+#ifdef LIBTEST
+// left shift test function
+void test_lshift(void)
 {
-	int a[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+	int a[10], b[10], c[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 	int n = 10;
 
 	ari_setall_square(a, n);
 	ari_print(a, n, "a[]");
-}
-/*
-// left shift test function
-void test_lshift(bool yes)
-{
-	if(yes) {
-		printf("test ok");
-	}
-
-	int a[10], b[10], c[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-	int n = 10;
-
-	
 	ari_setall_square(b, n);
-	ari_print(b, n, "a[] = ");
+	ari_print(b, n, "b[]");
+	ari_print(c, n, "c[]");
 
 	ari_lshift1(a, n);
-	ari_print(a, n, "a[lsh1] = ");
+	ari_print(a, n, "a[lsh1]");
+	ari_lshiftn(b, n, 2);
+	ari_print(b, n, "b[lsh2]");
+	ari_lshiftn(c, n, 3);
+	ari_print(c, n, "c[lsh3]");
+	ari_setall_square(a, n);
+	ari_lshiftn(a, n, 7);
+	ari_print(a, n, "a[lsh7]");
 }
-*/
-//#endif
+#endif
 
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n) // OKR
@@ -815,7 +810,11 @@ static void test_ari_reverse(bool noisy)
 	dbg ari_print(a, n, "a");
 
 	assert(ari_isequal(a, n, c, n));
+	test_end(fname);
 
+	fname = "ari_lshift";
+	test_start(fname);
+	test_lshift();
 	test_end(fname);
 }
 #endif
@@ -827,8 +826,8 @@ int main(void)
 	// bool silent = false;
 	test_ari_reverse(verbose);
 	// test_ari_reverse(silent);
-	test();
 
 	return 0;
 }
 #endif
+
