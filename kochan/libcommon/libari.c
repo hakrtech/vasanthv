@@ -116,6 +116,34 @@ void ari_range_set_even(int a[], int n, int rstart, int rend)
 	}
 }
 
+// a[i] = 1,3,5,7 ...
+void ari_setall_odd(int a[], int n)
+{
+	assert(n > 0);
+	ari_range_set_odd(a, n, 0, n-1);
+}
+
+// a[rstart..rend] = same
+void ari_range_set_odd(int a[], int n, int rstart, int rend)
+{
+	int i;
+	int start;
+	int end;
+	int odd;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend));
+	assert(rend < n);
+
+	start = rstart;
+	end = rend;
+	odd = 1;
+	for (i = start; i <= end; ++i) {
+		ari_setone(a, n, i, odd);
+		odd += 2;
+	}
+}
+
 void ari_print(int a[], int n, char *s) // OKR
 {
 	assert(n > 0);
