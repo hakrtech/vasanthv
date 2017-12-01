@@ -513,49 +513,50 @@ void test_rshift(void)
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb)
 {
+	bool found = false;
+
+	assert((na > 0) && (nb > 0));
+
+	if (na == nb) {
+		found = ari_range_isequal(a, na, 0, na-1, b, nb, 0, nb-1);
+	}
+
+	assert((found == true) || (found == false));
+	return found;
+}
+
+bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
+		       int b[], int nb, int rstartb, int rendb)
+{
 	int i;
 	int j;
 	int starta;
 	int startb;
 	int enda;
 	int endb;
-	bool found = false;
+	bool found;
 
-	assert((na > 0) && (nb > 0));
-
-	if (na == nb) {
-		starta = 0;
-		enda = na - 1;
-		startb = 0;
-		endb = nb - 1;
-		found = true;
-		for (i = starta,j = startb; i <= enda; ++i, ++j) {
-			if (a[i] == b[j]) {
-				continue;
-			} else {
-				found = false;
-				break;
-			}
-		}
-	}
-
-	return found;
-}
-
-/*
-bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
-		       int b[], int nb, int rstartb, int rendb)
-{
 	assert((na > 0) && (nb > 0));
 	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
 	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
-	// do somthing
 
-	assert(0);
+	starta = rstarta;
+	enda = renda;
+	startb = rstartb;
+	endb = rendb;
+	for (i = starta, j = startb; i <= enda; ++i, ++j) {
+		if (a[i] == b[j]) {
+			found = true;
+			continue;
+		} else {
+			found = false;
+			break;
+		}
+	}
 
-	return false;
+	assert((found == true) || (found == false));
+	return found;
 }
-*/
 
 bool ari_isvalpresent(int a[], int n, int val) // OKR
 {
