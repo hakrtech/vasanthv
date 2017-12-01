@@ -1,6 +1,21 @@
 
 #include <stdbool.h>
 
+#ifdef LIBARC
+// char line[] = "this is a simple line of text with a lot of words in it so you can count it to imrporve your c programming skills"
+// char line[] = "this is    a    simple    line of text with a lot of words in it so you can count it to imrporve your c programming skills"
+// char line[] = "this is	   a    simple    line of text with a lot of words in it so you can count it to imrporve your c programming skills"
+// char line[] = "this is	   a    simple    line of text, with a lot of words in it!!! so you can count it to imrporve your c programming skills"
+
+int arc_print(char line[]);
+int arc_wc(char line[]);
+int arc_len(char line[]);
+void arc_print_longest_word(char line[]);
+void arc_print_all_longest_word(char line[]);
+void arc_print_first_shortest_word((char line[]);
+void arc_print_all_shortest_word((char line[]);
+#endif // LIBARC
+
 // a[0..n-1] = val
 void ari_setall(int a[], int n, int val); // DONE
 
@@ -13,6 +28,16 @@ void ari_range_set_linear(int a[], int n, int rstart, int rend); // DONE
 void ari_setall_square(int a[], int n); // DONE
 // a[rstart..rend] = i*i
 void ari_range_set_square(int a[], int n, int rstart, int rend); // DONE
+
+// a[i] = 0,2,4,6
+void ari_setall_even(int a[], int n); // TODO
+// a[rstart..rend] = same 
+void ari_range_set_even(int a[], int n, int rstart, int rend); // TODO
+
+// a[i] = 1,3,5,7 ...
+void ari_setall_odd(int a[], int n); // TODO
+// a[rstart..rend] = same 
+void ari_range_set_odd(int a[], int n, int rstart, int rend); // TODO
 
 // a[i] = fibonacci(i) 0,1,1,2,3,5,8 ...
 void ari_setall_fibonacci(int a[], int n); // LATER

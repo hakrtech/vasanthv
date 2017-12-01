@@ -93,7 +93,7 @@ void ari_print(int a[], int n, char *s) // OKR
 	assert(n > 0);
 	assert(s != NULL);
 
-	printf("%s = ", s);
+	printf("%s\t= ", s);
 
 	ari_range_print(a, n, 0, n-1);
 }
@@ -112,7 +112,7 @@ void ari_range_print(int a[], int n, int rstart, int rend)
 	start = rstart;
 	end = rend;
 	for (i = start; i <= end; ++i) {
-		printf("%d ", a[i]);
+		printf("%3d ", a[i]);
 	}
 	printf("\n");
 }
@@ -125,13 +125,13 @@ void ari_print_format(int a[], int n, char leading, char trailing, char separato
 
 	assert(n > 0);
 
-	printf("%c ", leading);
+	printf("%3c", leading);
 	start = 0;
 	end = n - 1;
 	for (i = start; i <= end; ++i) {
-		printf("%d%c ", a[i], separator);
+		printf("%3d%c", a[i], separator);
 	}
-	printf("%c\n", trailing);
+	printf("%3c\n", trailing);
 }
 
 // a[] += k 
@@ -417,6 +417,42 @@ void  ari_rshiftn(int a[], int n, int jump) // OKR
 		a[i] = a[j];
 	}
 }
+
+#ifdef LIBTEST
+// right shift test function
+void test_rshift(void)
+{
+	int i;
+	int a[10], b[10], c[10] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+	int n = 10;
+
+	ari_setall_square(a, n);
+	ari_print(a, n, "a[]");
+	ari_setall_linear(b, n);
+	ari_print(b, n, "b[]");
+	ari_print(c, n, "c[]");
+
+	ari_rshift1(a, n);
+	ari_print(a, n, "a[rsh1]");
+	ari_rshiftn(b, n, 2);
+	ari_print(b, n, "b[rsh2]");
+	ari_rshiftn(c, n, 4);
+	ari_print(c, n, "c[rsh4]");
+	ari_setall_linear(b, n);
+	ari_rshiftn(b, n, 9);
+	ari_print(b, n, "b[rsh9]");
+
+	printf("array b[] right shift 1 to 9>");
+	ari_setall_linear(b, n);
+	ari_print_format(b, n, '[', ']', ',');
+	for(i = 1; i < n; ++i) {
+		assert((0 < i) && (i < n));
+		ari_rshift1(b, n);
+		printf("b[rsh%d] = ", i);
+		ari_print_format(b, n, '[', ']', ',');
+	}
+}
+#endif
 
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb)
@@ -815,6 +851,11 @@ static void test_ari_reverse(bool noisy)
 	fname = "ari_lshift";
 	test_start(fname);
 	test_lshift();
+	test_end(fname);
+
+	fname = "ari_rshift";
+	test_start(fname);
+	test_rshift();
 	test_end(fname);
 }
 #endif

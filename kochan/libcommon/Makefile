@@ -52,7 +52,7 @@ clean:
 # end of Makefile template
 #
 
-test_libari: libari.c
+test_libari: libari.c libari.h
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libari.c
 
 # integer number library
