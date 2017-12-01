@@ -356,9 +356,22 @@ void ari_lshiftn(int a[], int n, int jump) // OKR
 }
 
 #ifdef LIBTEST
+
+void test(bool chk)
+{
+	if(chk) {
+		printf("yes ok\n");
+	} else {
+		printf("no ok\n");
+	}
+}
+/*
 // left shift test function
 void test_lshift(bool yes)
 {
+	if(yes) {
+		printf("test ok");
+	}
 	int a[10], b[10], c[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 	int n = 10;
 
@@ -368,6 +381,7 @@ void test_lshift(bool yes)
 	ari_lshift1(a, n);
 	ari_print(a, n, "a[lsh1] = ");
 }
+*/
 #endif
 
 // right shift by 1 and let first value remain
@@ -409,27 +423,38 @@ void  ari_rshiftn(int a[], int n, int jump) // OKR
 }
 
 // true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb) // OKR BUT IMPROVE
+bool ari_isequal(int a[], int na, int b[], int nb)
 {
 	int i;
-	int found = 0;
+	int j;
+	int starta;
+	int startb;
+	int enda;
+	int endb;
+	bool found = false;
 
 	assert((na > 0) && (nb > 0));
-	assert(na == nb); //?
 
-	for (i = 0; i < na; ++i) {
-		if (a[i] == b[i]) {
-			found += 1;
-		} // else ?
-	}
-	if (found == na) {
-		return true;
+	if (na == nb) {
+		starta = 0;
+		enda = na - 1;
+		startb = 0;
+		endb = nb - 1;
+		found = true;
+		for (i = starta,j = startb; i <= enda; ++i, ++j) {
+			if (a[i] == b[j]) {
+				continue;
+			} else {
+				found = false;
+				break;
+			}
+		}
 	}
 
-	return false;
+	return found;
 }
 
-/* 
+/*
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
 		       int b[], int nb, int rstartb, int rendb)
 {
@@ -803,7 +828,7 @@ int main(void)
 	// bool silent = false;
 	test_ari_reverse(verbose);
 	// test_ari_reverse(silent);
-	test_lshift(verbose);
+	test(verbose);
 
 	return 0;
 }
