@@ -88,6 +88,34 @@ void ari_range_set_square(int a[], int n, int rstart, int rend) // OKR
 	}
 }
 
+// a[i] = 0,2,4,6
+void ari_setall_even(int a[], int n)
+{
+	assert(n > 0);
+	ari_range_set_even(a, n, 0, n-1);
+}
+
+// a[rstart..rend] = same
+void ari_range_set_even(int a[], int n, int rstart, int rend)
+{
+	int i;
+	int start;
+	int end;
+	int even;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend));
+	assert(rend < n);
+
+	start = rstart;
+	end = rend;
+	even = 0;
+	for (i = start; i <= end; ++i) {
+		ari_setone(a, n, i, even);
+		even += 2;
+	}
+}
+
 void ari_print(int a[], int n, char *s) // OKR
 {
 	assert(n > 0);
