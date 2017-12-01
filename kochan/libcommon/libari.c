@@ -355,15 +355,14 @@ void ari_lshiftn(int a[], int n, int jump) // OKR
 	}
 }
 
-#ifdef LIBTEST
-
-void test(bool chk)
+//#ifdef LIBTEST
+void test(void)
 {
-	if(chk) {
-		printf("yes ok\n");
-	} else {
-		printf("no ok\n");
-	}
+	int a[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+	int n = 10;
+
+	ari_setall_square(a, n);
+	ari_print(a, n, "a[]");
 }
 /*
 // left shift test function
@@ -372,17 +371,19 @@ void test_lshift(bool yes)
 	if(yes) {
 		printf("test ok");
 	}
+
 	int a[10], b[10], c[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 	int n = 10;
 
-	ari_setall_square(a, n);
-	ari_print(a, n, "a[] = ");
 	
+	ari_setall_square(b, n);
+	ari_print(b, n, "a[] = ");
+
 	ari_lshift1(a, n);
 	ari_print(a, n, "a[lsh1] = ");
 }
 */
-#endif
+//#endif
 
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n) // OKR
@@ -392,7 +393,7 @@ void ari_rshift1(int a[], int n) // OKR
 	ari_rshiftn(a, n, 1);
 }
 
-//right shift by jump and let left values remain
+// right shift by jump and let left values remain
 void  ari_rshiftn(int a[], int n, int jump) // OKR
 {
 	int i;
@@ -632,7 +633,6 @@ void ari_copy(int a[], int na, int b[], int nb) // OKR
 void ari_range_copy(int a[], int an, int rstarta, int rend, 
                     int b[], int bn, int rstartb);
 
-#if 0
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 {
@@ -667,7 +667,6 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 		c[k] = b[j];
 	}
 }
-#endif
 
 // circular rotate
 void ari_lrotat1(int a[], int n) // OKR
@@ -828,7 +827,7 @@ int main(void)
 	// bool silent = false;
 	test_ari_reverse(verbose);
 	// test_ari_reverse(silent);
-	test(verbose);
+	test();
 
 	return 0;
 }
