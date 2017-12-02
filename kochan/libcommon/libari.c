@@ -173,21 +173,11 @@ void ari_range_print(int a[], int n, int rstart, int rend)
 	printf("\n");
 }
 
-void ari_print_format(int a[], int n, char leading, char trailing, char separator) // OKR
+void ari_print_format(int a[], int n, char leading, char trailing, char separator)
 {
-	int i;
-	int start;
-	int end;
-
 	assert(n > 0);
 
-	printf("%c", leading);
-	start = 0;
-	end = n - 1;
-	for (i = start; i <= end; ++i) {
-		printf("%3d%c", a[i], separator);
-	}
-	printf(" %c\n", trailing);
+	ari_range_print_format(a, n, 0, n-1, leading, trailing, separator);
 }
 
 // print a[rstart..rend] with format characters
@@ -519,7 +509,7 @@ void test_rshift(void)
 
 	printf("array b[] right shift 1 to 9>");
 	ari_setall_linear(b, n);
-	ari_print_format(b, n, '[', ']', ',');
+	ari_range_print_format(b, n, 0, n-1, '[', ']', ',');
 	for(i = 1; i < n; ++i) {
 		assert((0 < i) && (i < n));
 		ari_rshift1(b, n);
