@@ -181,13 +181,13 @@ void ari_print_format(int a[], int n, char leading, char trailing, char separato
 
 	assert(n > 0);
 
-	printf("%3c", leading);
+	printf("%c", leading);
 	start = 0;
 	end = n - 1;
 	for (i = start; i <= end; ++i) {
 		printf("%3d%c", a[i], separator);
 	}
-	printf("%3c\n", trailing);
+	printf(" %c\n", trailing);
 }
 
 // a[] += k 
@@ -513,16 +513,15 @@ void test_rshift(void)
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb)
 {
-	bool found = false;
+	bool isequal = false;
 
 	assert((na > 0) && (nb > 0));
 
 	if (na == nb) {
-		found = ari_range_isequal(a, na, 0, na-1, b, nb, 0, nb-1);
+		isequal = ari_range_isequal(a, na, 0, na-1, b, nb, 0, nb-1);
 	}
 
-	assert((found == true) || (found == false));
-	return found;
+	return isequal;
 }
 
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
@@ -534,7 +533,7 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	int startb;
 	int enda;
 	int endb;
-	bool found;
+	bool isequal = true;
 
 	assert((na > 0) && (nb > 0));
 	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
@@ -545,17 +544,13 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	startb = rstartb;
 	endb = rendb;
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
-		if (a[i] == b[j]) {
-			found = true;
-			continue;
-		} else {
-			found = false;
+		if (a[i] != b[j]) {
+			isequal = false;
 			break;
 		}
 	}
 
-	assert((found == true) || (found == false));
-	return found;
+	return isequal;
 }
 
 bool ari_isvalpresent(int a[], int n, int val) // OKR
