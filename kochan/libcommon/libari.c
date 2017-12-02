@@ -696,14 +696,14 @@ int ari_factor(int a[], int n)
 }
 
 // b = a 
-void ari_copy(int a[], int na, int b[], int nb) // OKR
+void ari_copy(int a[], int na, int b[], int nb)
 {
 	int i;
 	int j;
 	int starta;
 	int enda;
 	int startb;
-	// DT int endb;
+	int endb;
 
 	assert(na > 0);
 	assert(nb > 0);
@@ -712,7 +712,7 @@ void ari_copy(int a[], int na, int b[], int nb) // OKR
 	starta = 0; 
 	enda = na - 1;
 	startb = 0;
-	// DT endb = nb - 1;
+	endb = nb - 1;
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
 		// range check for i and j
 		b[j] = a[i];
@@ -723,7 +723,30 @@ void ari_copy(int a[], int na, int b[], int nb) // OKR
 
 // b[range] = a[range]
 void ari_range_copy(int a[], int an, int rstarta, int rend, 
-                    int b[], int bn, int rstartb);
+                    int b[], int bn, int rstartb)
+{
+	int i;
+	int j;
+	int starta;
+	int enda;
+	int startb;
+	int endb;
+
+	assert(an > 0);
+	assert(bn > 0);
+	assert(an <= bn);
+	assert((0 <= rstarta) && (rstarta <= rend) && (rend < an));
+	assert((0 <= rstartb) && (rstartb < bn));
+
+	starta = rstarta;
+	enda = rend;
+	startb = rstartb;
+	endb = bn-1;
+	for (i = starta, j = startb; i <= enda; ++i, ++j) {
+		b[j] = a[i];
+	}
+	assert(i == enda+1);
+}
 
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
@@ -847,6 +870,26 @@ void ari_reverse(int a[], int n) // OKR
 
 	start = 0;
 	end = n - 1;
+	for (i = start, j = end; i < j; ++i, --j) {
+		assert((start <= i) && (i <= end));
+		assert((start <= j) && (j <= end));
+
+		ari_swap_elem(a, n, i, j);
+	}
+}
+
+void ari_range_reverse(int a[], int n, int rstart, int rend)
+{
+	int i;
+	int j;
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	start = rstart;
+	end = rend;
 	for (i = start, j = end; i < j; ++i, --j) {
 		assert((start <= i) && (i <= end));
 		assert((start <= j) && (j <= end));
