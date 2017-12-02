@@ -445,6 +445,9 @@ void test_lshift(void)
 }
 #endif
 
+// range related shifts
+void ari_range_lshift1(int a[], int n, int rstart, int rend); // GCD 
+
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n) // OKR
 {
@@ -730,22 +733,27 @@ void ari_range_copy(int a[], int an, int rstarta, int rend,
 	int starta;
 	int enda;
 	int startb;
-	int endb;
+	int rna;
+	int count_rb;
 
 	assert(an > 0);
 	assert(bn > 0);
-	assert(an <= bn);
 	assert((0 <= rstarta) && (rstarta <= rend) && (rend < an));
 	assert((0 <= rstartb) && (rstartb < bn));
 
 	starta = rstarta;
 	enda = rend;
 	startb = rstartb;
-	endb = bn-1; // do something
-	for (i = starta, j = startb; i <= enda; ++i, ++j) {
-		b[j] = a[i];
+	rna = (rend - rstarta) + 1; /* counted number of range ra[] array */
+	count_rb = bn-rstartb; /* counted range b[] array to end of b[] array */
+	if (rna <= count_rb) {
+		for (i = starta, j = startb; i <= enda; ++i, ++j) {
+			b[j] = a[i];
+		}
+		assert(i == enda+1);
+	} else {
+		printf("array range start or size error\n");
 	}
-	assert(i == enda+1);
 }
 
 // copy a into c, append b to c
