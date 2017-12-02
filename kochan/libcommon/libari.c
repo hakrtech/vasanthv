@@ -741,7 +741,7 @@ void ari_range_copy(int a[], int an, int rstarta, int rend,
 	starta = rstarta;
 	enda = rend;
 	startb = rstartb;
-	endb = bn-1;
+	endb = bn-1; // do something
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
 		b[j] = a[i];
 	}
@@ -859,23 +859,11 @@ void ari_rrotatn(int a[], int n, int jump) // OKR
 	}
 } 
 
-void ari_reverse(int a[], int n) // OKR
+void ari_reverse(int a[], int n)
 {
-	int i;
-	int j;
-	int start;
-	int end;
-
 	assert(n > 0);
 
-	start = 0;
-	end = n - 1;
-	for (i = start, j = end; i < j; ++i, --j) {
-		assert((start <= i) && (i <= end));
-		assert((start <= j) && (j <= end));
-
-		ari_swap_elem(a, n, i, j);
-	}
+	ari_range_reverse(a, n, 0, n-1);
 }
 
 void ari_range_reverse(int a[], int n, int rstart, int rend)
