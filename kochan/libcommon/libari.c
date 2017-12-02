@@ -190,6 +190,25 @@ void ari_print_format(int a[], int n, char leading, char trailing, char separato
 	printf(" %c\n", trailing);
 }
 
+// print a[rstart..rend] with format characters
+void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator)
+{
+	int i;
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	printf("%c", leading);
+	start = rstart;
+	end = rend;
+	for (i = start; i <= end; ++i) {
+		printf("%3d%c", a[i], separator);
+	}
+	printf(" %c\n", trailing);
+}
+
 // a[] += k 
 void ari_addk(int a[], int n, int k) // OKR
 {
