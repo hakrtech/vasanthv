@@ -964,6 +964,23 @@ void ari_rrotatn(int a[], int n, int jump) // OKR
 	}
 } 
 
+// range related rotate
+void ari_range_lrotat1(int a[], int n, int rstart, int rend)
+{
+	int val;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	val = a[rstart];
+	ari_range_lshift1(a, n, rstart, rend);
+	a[rend] = val;
+}
+
+void ari_range_rrotat1(int a[], int n, int rstart, int rend);
+void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump);
+void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump);
+
 void ari_reverse(int a[], int n)
 {
 	assert(n > 0);
