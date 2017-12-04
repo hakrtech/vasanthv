@@ -420,6 +420,23 @@ void ari_lshiftn(int a[], int n, int jump) // OKR
 	}
 }
 
+// range related shifts
+void ari_range_lshift1(int a[], int n, int rstart, int rend)
+{
+	int i;
+	int start;
+	int stop;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	start = rstart;
+	stop = rend - 1;
+	for (i = rstart; i <= stop; ++i) {
+		a[i] = a[i+1];
+	}
+}
+
 #ifdef LIBTEST
 // left shift test function
 void test_lshift(void)
@@ -444,23 +461,6 @@ void test_lshift(void)
 	ari_print(a, n, "a[lsh7]");
 }
 #endif
-
-// range related shifts
-void ari_range_lshift1(int a[], int n, int rstart, int rend)
-{
-	int i;
-	int start;
-	int stop;
-
-	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
-
-	start = rstart;
-	stop = rend - 1;
-	for (i = rstart; i <= stop; ++i) {
-		a[i] = a[i+1];
-	}
-}
 
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n) // OKR
@@ -497,6 +497,30 @@ void  ari_rshiftn(int a[], int n, int jump) // OKR
 		assert((left <= j) && (j <= right));
 
 		a[i] = a[j];
+	}
+}
+
+void ari_range_rshift1(int a[], int n, int rstart, int rend)
+{
+	int i;
+	int left;
+	int right;
+	int start;
+	int stop;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	// define range limits
+	left = rstart;
+	right = rend;
+
+	//define start .. stop of loop index
+	start = right;
+	stop = left + 1;
+
+	for (i = start; i >= stop; --i) {
+		a[i] = a[i-1];
 	}
 }
 
