@@ -441,11 +441,15 @@ void ari_range_lshift1(int a[], int n, int rstart, int rend)
 void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump)
 {
 	int i;
+	int rna;
 	int start;
 	int stop;
 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	rna = (rend - rstart) + 1; /* counted number of range ra[] array */
+	assert((0 < jump) && (jump < rna));
 
 	start = rstart;
 	stop = rend - jump;
@@ -544,6 +548,40 @@ void ari_range_rshift1(int a[], int n, int rstart, int rend)
 
 	for (i = start; i >= stop; --i) {
 		a[i] = a[i-1];
+	}
+}
+
+void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump)
+{
+	int i;
+	int rna;
+	int left;
+	int right;
+	int start;
+	int stop;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	rna = (rend - rstart) + 1; /* counted number of range ra[] array */
+	assert((0 < jump) && (jump < rna));
+
+	// define range limits
+	left = rstart;
+	right = rend;
+
+	//define start .. stop of loop index
+	start = right;
+	stop = left + jump;
+
+	for (i = start; i >= stop; --i) {
+		int j = i - jump;
+
+		// range check of array index i and j
+		assert((left <= i) && (i <= right));
+		assert((left <= j) && (j <= right));
+
+		a[i] = a[j];
 	}
 }
 
