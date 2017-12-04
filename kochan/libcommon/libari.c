@@ -432,7 +432,7 @@ void ari_range_lshift1(int a[], int n, int rstart, int rend)
 
 	start = rstart;
 	stop = rend - 1;
-	for (i = rstart; i <= stop; ++i) {
+	for (i = start; i <= stop; ++i) {
 		a[i] = a[i+1];
 	}
 }
@@ -636,7 +636,7 @@ bool ari_isequal(int a[], int na, int b[], int nb)
 }
 
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
-		       int b[], int nb, int rstartb, int rendb)
+		       int b[], int nb, int rstartb, int rendb) // LATER
 {
 	int i;
 	int j;
@@ -824,7 +824,7 @@ void ari_copy(int a[], int na, int b[], int nb)
 }
 
 // b[range] = a[range]
-void ari_range_copy(int a[], int an, int rstarta, int rend, 
+void ari_range_copy(int a[], int an, int rstarta, int renda, 
                     int b[], int bn, int rstartb)
 {
 	int i;
@@ -832,21 +832,23 @@ void ari_range_copy(int a[], int an, int rstarta, int rend,
 	int starta;
 	int enda;
 	int startb;
-	int rna;
-	int spaceb;
+	int endb;
+	int rlena;
+	int rlenb;
 
 	assert(an > 0);
 	assert(bn > 0);
-	assert((0 <= rstarta) && (rstarta <= rend) && (rend < an));
+	assert((0 <= rstarta) && (rstarta <= renda) && (renda < an));
 	assert((0 <= rstartb) && (rstartb < bn));
 
 	starta = rstarta;
-	enda = rend;
+	enda = renda;
 	startb = rstartb;
-	rna = (rend - rstarta) + 1; /* counted number of range ra[] array */
-	spaceb = bn-rstartb; /* counted available space range start b[] array to end of b[] array */
+	endb = bn - 1;
+	rlena = (renda - rstarta) + 1; /* counted range of array ra[] length */
+	rlenb = (endb - rstartb) + 1; /* counted length of range start to end array b[] */
 
-	assert(rna <= spaceb);
+	assert(rlena <= rlenb);
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
 		b[j] = a[i];
 	}
@@ -989,7 +991,26 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend)
 	a[rstart] = val;
 }
 
-void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump);
+void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump)
+{
+	int i;
+	int rlen;
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	rlen = (rend - rstart) + 1; /* counted range of array ra[] length */
+	assert((0 < jump) && (jump < rlen));
+
+	start = 1;
+	end = jump;
+	for (i = start; i <= end; ++i) {
+		ari_range_lrotat1(a, n, rstart, rend);
+	}
+}
+
 void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump);
 
 void ari_reverse(int a[], int n)

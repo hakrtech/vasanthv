@@ -115,7 +115,7 @@ int  ari_range_copy_r2l(int a[], int n, int start, int rstart, int rend);
 // b = a 
 void ari_copy(int a[], int na, int b[], int nb); // DONE
 // b[range] = a[range]
-void ari_range_copy(int a[], int an, int rstarta, int rend, 
+void ari_range_copy(int a[], int an, int rstarta, int renda, 
                     int b[], int bn, int rstartb);
 
 // left shift by 1 and let last value remain 
