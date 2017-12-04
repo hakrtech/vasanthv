@@ -977,7 +977,18 @@ void ari_range_lrotat1(int a[], int n, int rstart, int rend)
 	a[rend] = val;
 }
 
-void ari_range_rrotat1(int a[], int n, int rstart, int rend);
+void ari_range_rrotat1(int a[], int n, int rstart, int rend)
+{
+	int val;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	val = a[rend];
+	ari_range_rshift1(a, n, rstart, rend);
+	a[rstart] = val;
+}
+
 void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump);
 void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump);
 
