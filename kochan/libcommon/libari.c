@@ -734,7 +734,7 @@ void ari_range_copy(int a[], int an, int rstarta, int rend,
 	int enda;
 	int startb;
 	int rna;
-	int count_rb;
+	int spaceb;
 
 	assert(an > 0);
 	assert(bn > 0);
@@ -745,15 +745,13 @@ void ari_range_copy(int a[], int an, int rstarta, int rend,
 	enda = rend;
 	startb = rstartb;
 	rna = (rend - rstarta) + 1; /* counted number of range ra[] array */
-	count_rb = bn-rstartb; /* counted range b[] array to end of b[] array */
-	if (rna <= count_rb) {
-		for (i = starta, j = startb; i <= enda; ++i, ++j) {
-			b[j] = a[i];
-		}
-		assert(i == enda+1);
-	} else {
-		printf("array range start or size error\n");
+	spaceb = bn-rstartb; /* counted available space range start b[] array to end of b[] array */
+
+	assert(rna <= spaceb);
+	for (i = starta, j = startb; i <= enda; ++i, ++j) {
+		b[j] = a[i];
 	}
+	assert(i == enda+1);
 }
 
 // copy a into c, append b to c
