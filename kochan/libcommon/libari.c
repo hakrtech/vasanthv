@@ -437,6 +437,29 @@ void ari_range_lshift1(int a[], int n, int rstart, int rend)
 	}
 }
 
+// jump values will be <= size of array
+void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump)
+{
+	int i;
+	int start;
+	int stop;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	start = rstart;
+	stop = rend - jump;
+	for (i = start; i <= stop; ++i) {
+		int j = i + jump;
+
+		//range check of array index i and j
+		assert((rstart <= i) && (i <= rend));
+		assert((rstart <= j) && (j <= rend));
+
+		a[i] = a[j];
+	}
+}
+
 #ifdef LIBTEST
 // left shift test function
 void test_lshift(void)
