@@ -446,7 +446,21 @@ void test_lshift(void)
 #endif
 
 // range related shifts
-void ari_range_lshift1(int a[], int n, int rstart, int rend); // GCD 
+void ari_range_lshift1(int a[], int n, int rstart, int rend)
+{
+	int i;
+	int start;
+	int stop;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	start = rstart;
+	stop = rend - 1;
+	for (i = rstart; i <= stop; ++i) {
+		a[i] = a[i+1];
+	}
+}
 
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n) // OKR
