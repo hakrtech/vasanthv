@@ -879,7 +879,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 }
 
 // circular rotate
-void ari_lrotat1(int a[], int n) // OKR
+void ari_lrotat1(int a[], int n) // FIXIT
 {
 	int val;
 	int first;
@@ -895,7 +895,7 @@ void ari_lrotat1(int a[], int n) // OKR
 	a[last] = val;
 }
 
-void ari_rrotat1(int a[], int n) // OKR
+void ari_rrotat1(int a[], int n) // FIXIT
 {
 	int val;
 	int first;
@@ -914,7 +914,7 @@ void ari_rrotat1(int a[], int n) // OKR
 // jump values will be <= size of array
 // if jump is more than array length we cycle back, 
 // so we can spin the array contents
-void ari_lrotatn(int a[], int n, int jump) // OKR
+void ari_lrotatn(int a[], int n, int jump) // FIXIT
 {
 	int i;
 	int start;
@@ -938,7 +938,7 @@ void ari_lrotatn(int a[], int n, int jump) // OKR
 	}
 }
 
-void ari_rrotatn(int a[], int n, int jump) // OKR
+void ari_rrotatn(int a[], int n, int jump) // FIXIT
 {
 	int i;
 	int start;
@@ -955,7 +955,7 @@ void ari_rrotatn(int a[], int n, int jump) // OKR
 } 
 
 // range related rotate
-void ari_range_lrotat1(int a[], int n, int rstart, int rend)
+void ari_range_lrotat1(int a[], int n, int rstart, int rend) // OKR
 {
 	int val;
 
@@ -967,7 +967,7 @@ void ari_range_lrotat1(int a[], int n, int rstart, int rend)
 	a[rend] = val;
 }
 
-void ari_range_rrotat1(int a[], int n, int rstart, int rend)
+void ari_range_rrotat1(int a[], int n, int rstart, int rend) // OKR
 {
 	int val;
 
@@ -979,7 +979,10 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend)
 	a[rstart] = val;
 }
 
-void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump)
+// void ari_range_lrotatn_usecopy(int a[], int n, int rstart, int rend, int jump); // TODO
+// void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
+// void ari_range_lrotatn_repeat_rotat1(int a[], int n, int rstart, int rend, int jump); // DONE
+void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 {
 	int i;
 	int rlen;
@@ -999,7 +1002,10 @@ void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump)
 	}
 }
 
-void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump)
+// void ari_range_rrotatn_usecopy(int a[], int n, int rstart, int rend, int jump); // TODO
+// void ari_range_rrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
+// void ari_range_rrotatn_repeat_rotat1(int a[], int n, int rstart, int rend, int jump); // DONE
+void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 {
 	int i;
 	int rlen;
@@ -1064,7 +1070,7 @@ static void test_end(char *s)
 #endif
 
 #ifdef LIBTEST
-static void test_ari_reverse(bool noisy)
+static void test_ari_general(bool noisy)
 {
 #define dbg if (noisy)
 	// size 10, size 3, size 2, mentally size 1
@@ -1122,8 +1128,8 @@ int main(void)
 {
 	bool verbose = true;
 	// bool silent = false;
-	test_ari_reverse(verbose);
-	// test_ari_reverse(silent);
+	test_ari_general(verbose);
+	// test_ari_general(silent);
 
 	return 0;
 }
