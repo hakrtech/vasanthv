@@ -430,35 +430,27 @@ void ari_lshiftn(int a[], int n, int jump) // OKR
 }
 
 // range related shifts
-void ari_range_lshift1(int a[], int n, int rstart, int rend) // OKR
+void ari_range_lshift1(int a[], int n, int rstart, int rend)
 {
-	int i;
-	int start;
-	int stop;
-
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	start = rstart;
-	stop = rend - 1;
-	for (i = start; i <= stop; ++i) {
-		a[i] = a[i+1];
-	}
+	ari_range_lshiftn(a, n, rstart, rend, 1);
 }
 
 // jump values will be <= size of array
-void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump) // OKR
+void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump)
 {
 	int i;
-	int rna;
+	int rlen;
 	int start;
 	int stop;
 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	rna = (rend - rstart) + 1; /* counted number of range ra[] array */
-	assert((0 < jump) && (jump < rna));
+	rlen = (rend - rstart) + 1; /* counted range of array ra[] length */
+	assert((0 < jump) && (jump < rlen));
 
 	start = rstart;
 	stop = rend - jump;
@@ -538,33 +530,16 @@ void  ari_rshiftn(int a[], int n, int jump) // OKR
 
 void ari_range_rshift1(int a[], int n, int rstart, int rend)
 {
-// #warning call rshiftn with jump = 1
-	int i;
-	int left;
-	int right;
-	int start;
-	int stop;
-
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	// define range limits
-	left = rstart;
-	right = rend;
-
-	//define start .. stop of loop index
-	start = right;
-	stop = left + 1;
-
-	for (i = start; i >= stop; --i) {
-		a[i] = a[i-1];
-	}
+	ari_range_rshiftn(a, n, rstart, rend, 1);
 }
 
 void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump)
 {
 	int i;
-	int rna;
+	int rlen;
 	int left;
 	int right;
 	int start;
@@ -573,8 +548,8 @@ void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump)
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	rna = (rend - rstart) + 1; /* counted number of range ra[] array */
-	assert((0 < jump) && (jump < rna));
+	rlen = (rend - rstart) + 1; /* counted range of array ra[] length */
+	assert((0 < jump) && (jump < rlen));
 
 	// define range limits
 	left = rstart;
@@ -644,10 +619,12 @@ bool ari_isequal(int a[], int na, int b[], int nb)
 }
 
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
-		       int b[], int nb, int rstartb, int rendb) // LATER
+		       int b[], int nb, int rstartb, int rendb)
 {
 	int i;
 	int j;
+	int rlena;
+	int rlenb;
 	int starta;
 	int startb;
 	int enda;
@@ -658,7 +635,9 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
 	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
 
-// #warning rlen equality check
+	rlena = (renda - rstarta) + 1; /* counted range of array ra[] length */
+	rlenb = (rendb - rstartb) + 1; /* counted range of array rb[] length */
+	assert(rlena == rlenb); /* lenght of array equal means. allow to check values equal or not */
 
 	starta = rstarta;
 	enda = renda;
@@ -670,7 +649,6 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 			break;
 		}
 	}
-
 	return isequal;
 }
 
