@@ -189,25 +189,6 @@ void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, 
 	printf(" %c\n", trailing);
 }
 
-#ifdef LIBTEST
-// all print test
-void test_print(void)
-{
-	int a[10], b[10], c[10], d[10];
-	int n = 10;
-
-	ari_setall_linear(a, n);
-	ari_setall_square(b, n);
-	ari_setall_even(c, n);
-	ari_setall_odd(d, n);
-
-	ari_print(a, n, "a[]");
-	ari_range_print(b, n, 0, n-1);
-	ari_print_format(c, n, '{', '}', ',');
-	ari_range_print_format(d, n, 0, n-1, '[', ']', ',');
-}
-#endif
-
 // a[] += k 
 void ari_addk(int a[], int n, int k) // OKR
 {
@@ -339,6 +320,7 @@ int  ari_getmax(int a[], int n) // OKR
 
 	return maxval;
 }
+int ari_range_getmax(int a[], int na, int rstart, int rend); // TODO
 
 // return first leftmost pos of maximum
 // return -1 if not found
@@ -356,6 +338,7 @@ int  ari_getmaxpos(int a[], int n) // OKR
 
 	return pos;
 }
+int ari_range_getmaxpos(int a[], int na, int rstart, int rend); // TODO
 
 // similarly for minimum
 int  ari_getmin(int a[], int n) // OKR
@@ -374,6 +357,7 @@ int  ari_getmin(int a[], int n) // OKR
 
 	return minval;
 }
+int ari_range_getmin(int a[], int na, int rstart, int rend); // TODO
 
 int ari_getminpos(int a[], int n) // OKR
 {
@@ -389,6 +373,7 @@ int ari_getminpos(int a[], int n) // OKR
 
 	return pos;
 }
+int ari_range_getminpos(int a[], int na, int rstart, int rend); // TODO
 
 // left shift by 1 and let last value remain
 void ari_lshift1(int a[], int n) // OKR
@@ -399,34 +384,8 @@ void ari_lshift1(int a[], int n) // OKR
 }
 
 // left shift by jump and let right values remain
-void ari_lshiftn(int a[], int n, int jump) // OKR
+void ari_lshiftn(int a[], int n, int jump)
 {
-	int i;
-	int left;
-	int right;
-	int start;
-	int stop;
-
-	assert(n > 0);
-	assert((0 < jump) && (jump < n));
-
-	// define range limits
-	left = 0;
-	right = n - 1;
-
-	// define start .. stop of loop index
-	start = left;
-	stop = right - jump;
-
-	for (i = start; i <= stop; ++i) {
-		int j = i + jump;
-
-		// simple range check of array index i and j
-		assert((left <= i) && (i <= right));
-		assert((left <= j) && (j <= right));
-
-		a[i] = a[j];
-	}
 }
 
 // range related shifts
@@ -465,31 +424,6 @@ void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump)
 	}
 }
 
-#ifdef LIBTEST
-// left shift test function
-void test_lshift(void)
-{
-	int a[10], b[10], c[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-	int n = 10;
-
-	ari_setall_square(a, n);
-	ari_print(a, n, "a[]");
-	ari_setall_square(b, n);
-	ari_print(b, n, "b[]");
-	ari_print(c, n, "c[]");
-
-	ari_lshift1(a, n);
-	ari_print(a, n, "a[lsh1]");
-	ari_lshiftn(b, n, 2);
-	ari_print(b, n, "b[lsh2]");
-	ari_lshiftn(c, n, 3);
-	ari_print(c, n, "c[lsh3]");
-	ari_setall_square(a, n);
-	ari_lshiftn(a, n, 7);
-	ari_print(a, n, "a[lsh7]");
-}
-#endif
-
 // right shift by 1 and let first value remain
 void ari_rshift1(int a[], int n) // OKR
 {
@@ -499,33 +433,8 @@ void ari_rshift1(int a[], int n) // OKR
 }
 
 // right shift by jump and let left values remain
-void  ari_rshiftn(int a[], int n, int jump) // OKR
+void  ari_rshiftn(int a[], int n, int jump)
 {
-	int i;
-	int left;
-	int right;
-	int start;
-	int stop;
-
-	assert(n > 0);
-	assert((0 < jump) && (jump < n));
-
-	// define range limits
-	left = 0;	// usually start, but we are ending here, so call it left
-	right = n - 1; // usually end, but we are starting here, so call it right
-
-	// define start .. stop of loop index
-	start = right;
-	stop = left + jump;
-
-	for (i = start; i >= stop; --i) {
-		int j = i - jump;
-
-		assert((left <= i) && (i <= right));
-		assert((left <= j) && (j <= right));
-
-		a[i] = a[j];
-	}
 }
 
 void ari_range_rshift1(int a[], int n, int rstart, int rend)
@@ -569,42 +478,6 @@ void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump)
 		a[i] = a[j];
 	}
 }
-
-#ifdef LIBTEST
-// right shift test function
-void test_rshift(void)
-{
-	int i;
-	int a[10], b[10], c[10] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
-	int n = 10;
-
-	ari_setall_square(a, n);
-	ari_print(a, n, "a[]");
-	ari_setall_linear(b, n);
-	ari_print(b, n, "b[]");
-	ari_print(c, n, "c[]");
-
-	ari_rshift1(a, n);
-	ari_print(a, n, "a[rsh1]");
-	ari_rshiftn(b, n, 2);
-	ari_print(b, n, "b[rsh2]");
-	ari_rshiftn(c, n, 4);
-	ari_print(c, n, "c[rsh4]");
-	ari_setall_linear(b, n);
-	ari_rshiftn(b, n, 9);
-	ari_print(b, n, "b[rsh9]");
-
-	printf("array b[] right shift 1 to 9>");
-	ari_setall_linear(b, n);
-	ari_range_print_format(b, n, 0, n-1, '[', ']', ',');
-	for(i = 1; i < n; ++i) {
-		assert((0 < i) && (i < n));
-		ari_rshift1(b, n);
-		printf("b[rsh%d] = ", i);
-		ari_print_format(b, n, '[', ']', ',');
-	}
-}
-#endif
 
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb)
@@ -788,27 +661,6 @@ int ari_factor(int a[], int n)
 // b = a 
 void ari_copy(int a[], int na, int b[], int nb)
 {
-	int i;
-	int j;
-	int starta;
-	int enda;
-	int startb;
-	int endb;
-
-	assert(na > 0);
-	assert(nb > 0);
-	assert(na <= nb);
-
-	starta = 0; 
-	enda = na - 1;
-	startb = 0;
-	endb = nb - 1;
-	for (i = starta, j = startb; i <= enda; ++i, ++j) {
-		// range check for i and j
-		b[j] = a[i];
-	}
-	// verify post condition
-	assert(i == enda+1);
 }
 
 // b[range] = a[range]
@@ -877,81 +729,28 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 		c[k] = b[j];
 	}
 }
+void ari_range_concat(int a[], int na, int rstarta, int renda, 
+		      int b[], int nb, int rstartb, int rendb,
+		      int c[], int nc, int rstartc); // TODO
 
 // circular rotate
-void ari_lrotat1(int a[], int n) // FIXIT
+void ari_lrotat1(int a[], int n)
 {
-	int val;
-	int first;
-	int last;
-
-	assert(n > 0);
-
-	first = 0; // rstart
-	last = n - 1; // rend
-
-	val = a[first];
-	ari_lshift1(a, n);
-	a[last] = val;
 }
 
-void ari_rrotat1(int a[], int n) // FIXIT
+void ari_rrotat1(int a[], int n)
 {
-	int val;
-	int first;
-	int last;
-
-	assert(n > 0);
-
-	first = 0;
-	last =  n - 1;
-
-	val = a[last];
-	ari_rshift1(a, n);
-	a[first] = val;
 }
 
 // jump values will be <= size of array
 // if jump is more than array length we cycle back, 
 // so we can spin the array contents
-void ari_lrotatn(int a[], int n, int jump) // FIXIT
+void ari_lrotatn(int a[], int n, int jump)
 {
-	int i;
-	int start;
-	int end;
-	int j;
-
-	assert(n > 0);
-	assert(0 < jump);
-
-	j = jump;
-	if (j >= n) {
-		j = jump % n;
-	}
-
-	assert(j < n);
-
-	start = 1;
-	end = j;
-	for (i = start; i <= end; ++i) {
-		ari_lrotat1(a, n);
-	}
 }
 
-void ari_rrotatn(int a[], int n, int jump) // FIXIT
+void ari_rrotatn(int a[], int n, int jump)
 {
-	int i;
-	int start;
-	int end;
-
-	assert(n > 0);
-	assert((0 < jump) && (jump < n));
-
-	start = 1;
-	end = jump;
-	for (i = start; i <= end; ++i) {
-		ari_rrotat1(a, n);
-	}
 } 
 
 // range related rotate
@@ -979,9 +778,9 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend) // OKR
 	a[rstart] = val;
 }
 
-// void ari_range_lrotatn_usecopy(int a[], int n, int rstart, int rend, int jump); // TODO
-// void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
-// void ari_range_lrotatn_repeat_rotat1(int a[], int n, int rstart, int rend, int jump); // DONE
+void ari_range_lrotatn_usecopy(int a[], int n, int rstart, int rend, int jump); // TODO
+void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
+void ari_range_lrotatn_repeat_rotat1(int a[], int n, int rstart, int rend, int jump); // DONE
 void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 {
 	int i;
@@ -1002,9 +801,14 @@ void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 	}
 }
 
-// void ari_range_rrotatn_usecopy(int a[], int n, int rstart, int rend, int jump); // TODO
-// void ari_range_rrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
-// void ari_range_rrotatn_repeat_rotat1(int a[], int n, int rstart, int rend, int jump); // DONE
+void ari_range_rrotatn_usecopy(int a[], int n, int rstart, int rend, int jump) // NEW
+{
+}
+
+void ari_range_rrotatn_inplace(int a[], int n, int rstart, int rend, int jump) // NEW
+{
+}
+
 void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 {
 	int i;
@@ -1052,24 +856,93 @@ void ari_range_reverse(int a[], int n, int rstart, int rend) // OKR
 	}
 }
 
-
 #ifdef LIBTEST
 static void test_start(char *s)
 {
 	assert(s != NULL);
 	printf("testing %s ...\n", s);
 }
-#endif
 
-#ifdef LIBTEST
 static void test_end(char *s)
 {
 	assert(s != NULL);
 	printf("testing %s ... OK\n", s);
 }
-#endif
 
-#ifdef LIBTEST
+// all print test
+void test_print(void)
+{
+	int a[10], b[10], c[10], d[10];
+	int n = 10;
+
+	ari_setall_linear(a, n);
+	ari_setall_square(b, n);
+	ari_setall_even(c, n);
+	ari_setall_odd(d, n);
+
+	ari_print(a, n, "a[]");
+	ari_range_print(b, n, 0, n-1);
+	ari_print_format(c, n, '{', '}', ',');
+	ari_range_print_format(d, n, 0, n-1, '[', ']', ',');
+}
+
+// left shift test function
+void test_lshift(void)
+{
+	int a[10], b[10], c[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+	int n = 10;
+
+	ari_setall_square(a, n);
+	ari_print(a, n, "a[]");
+	ari_setall_square(b, n);
+	ari_print(b, n, "b[]");
+	ari_print(c, n, "c[]");
+
+	ari_lshift1(a, n);
+	ari_print(a, n, "a[lsh1]");
+	ari_lshiftn(b, n, 2);
+	ari_print(b, n, "b[lsh2]");
+	ari_lshiftn(c, n, 3);
+	ari_print(c, n, "c[lsh3]");
+	ari_setall_square(a, n);
+	ari_lshiftn(a, n, 7);
+	ari_print(a, n, "a[lsh7]");
+}
+
+// right shift test function
+void test_rshift(void)
+{
+	int i;
+	int a[10], b[10], c[10] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+	int n = 10;
+
+	ari_setall_square(a, n);
+	ari_print(a, n, "a[]");
+	ari_setall_linear(b, n);
+	ari_print(b, n, "b[]");
+	ari_print(c, n, "c[]");
+
+	ari_rshift1(a, n);
+	ari_print(a, n, "a[rsh1]");
+	ari_rshiftn(b, n, 2);
+	ari_print(b, n, "b[rsh2]");
+	ari_rshiftn(c, n, 4);
+	ari_print(c, n, "c[rsh4]");
+	ari_setall_linear(b, n);
+	ari_rshiftn(b, n, 9);
+	ari_print(b, n, "b[rsh9]");
+
+	printf("array b[] right shift 1 to 9>");
+	ari_setall_linear(b, n);
+	ari_range_print_format(b, n, 0, n-1, '[', ']', ',');
+	for(i = 1; i < n; ++i) {
+		assert((0 < i) && (i < n));
+		ari_rshift1(b, n);
+		printf("b[rsh%d] = ", i);
+		ari_print_format(b, n, '[', ']', ',');
+	}
+}
+
 static void test_ari_general(bool noisy)
 {
 #define dbg if (noisy)
@@ -1121,15 +994,11 @@ static void test_ari_general(bool noisy)
 	test_rshift();
 	test_end(fname);
 }
-#endif
 
-#ifdef LIBTEST
 int main(void)
 {
 	bool verbose = true;
-	// bool silent = false;
 	test_ari_general(verbose);
-	// test_ari_general(silent);
 
 	return 0;
 }

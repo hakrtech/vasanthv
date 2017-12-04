@@ -1,13 +1,14 @@
 # choice of compiles
-CC=clang
 CC=gcc 
+CC=clang
 
 # preprocess with these options usually called CPPFLAGS
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG
 TESTBIN.PREPROCESSOR.FLAGS=-DLIBTEST
 
 # compile with these options usually called CFLAGS
-COMPILE.FLAGS+=-g -Wall -Wextra -Werror -pedantic -ansi --std=c99 # -Werror=unused-but-set-variable
+COMPILE.FLAGS+=-g -Wall -pedantic -ansi --std=c99 # -Werror=unused-but-set-variable
+# COMPILE.FLAGS+=-g -Wall -Wextra -Werror -pedantic -ansi --std=c99 # -Werror=unused-but-set-variable
 
 # search for user header files in these directories
 INCDIR=-I.
@@ -86,5 +87,3 @@ libmatrix.a: libmxi.o
 
 libmxi.o: libmxi.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
-
-
