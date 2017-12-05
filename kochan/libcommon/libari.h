@@ -97,23 +97,23 @@ int  ari_get(int a[], int n, int pos); // DONE
 // return first leftmost pos where a[pos] == val
 // return -1 if not found
 int  ari_getpos(int a[], int n, int val); // DONE
-int ari_range_getpos(int a[], int na, int rstart, int rend, int val); // TODO
+int ari_range_getpos(int a[], int na, int rstart, int rend, int val); // DONE
 
 // return maximum of a[]
 int  ari_getmax(int a[], int n); // DONE
-int ari_range_getmax(int a[], int na, int rstart, int rend); // TODO
+int ari_range_getmax(int a[], int na, int rstart, int rend); // DONE
 
 // return first leftmost pos of maximum
 // return -1 if not found
 int  ari_getmaxpos(int a[], int n); // DONE
-int ari_range_getmaxpos(int a[], int na, int rstart, int rend); // TODO
+int ari_range_getmaxpos(int a[], int na, int rstart, int rend); // DONE
 
 // similarly for minimum
 int  ari_getmin(int a[], int n); // DONE
-int ari_range_getmin(int a[], int na, int rstart, int rend); // TODO
+int ari_range_getmin(int a[], int na, int rstart, int rend); // DONE
 
 int  ari_getminpos(int a[], int n); // DONE
-int ari_range_getminpos(int a[], int na, int rstart, int rend); // TODO
+int ari_range_getminpos(int a[], int na, int rstart, int rend); // DONE
 
 // copy range a[rstart..rend] to start onwards 
 int  ari_range_copy_l2r(int a[], int n, int start, int rstart, int rend);

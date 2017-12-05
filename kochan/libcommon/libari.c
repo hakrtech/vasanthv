@@ -1023,7 +1023,7 @@ void test_get(void)
 	minval = ari_getmin(a, n);
 	maxpos = ari_getmaxpos(a, n);
 	minpos = ari_getminpos(a, n);
-	printf("array maxval = %d minval = %d maxpos = %d minpos = %d\n", maxval, minval, maxpos, minpos);
+	printf("array ->\n maxval = %d\n minval = %d\n maxpos = %d\n minpos = %d\n", maxval, minval, maxpos, minpos);
 }
 
 // left shift test function
