@@ -333,7 +333,30 @@ int  ari_getmax(int a[], int n) // OKR
 
 	return maxval;
 }
-int ari_range_getmax(int a[], int na, int rstart, int rend); // TODO
+
+int ari_range_getmax(int a[], int na, int rstart, int rend)
+{
+	int i;
+	int maxval;
+	int start;
+	int end;
+
+	assert(na > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < na));
+
+	maxval = ari_get(a, na, rstart);
+
+	// define loop start .. end
+	start = rstart + 1;
+	end = rend;
+	for (i = start; i <= end; ++i) {
+		if (a[i] > maxval) {
+			maxval = a[i];
+		}
+	}
+
+	return maxval;
+}
 
 // return first leftmost pos of maximum
 // return -1 if not found
@@ -351,7 +374,21 @@ int  ari_getmaxpos(int a[], int n) // OKR
 
 	return pos;
 }
-int ari_range_getmaxpos(int a[], int na, int rstart, int rend); // TODO
+int ari_range_getmaxpos(int a[], int na, int rstart, int rend)
+{
+	int maxval;
+	int pos;
+
+	assert(na > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < na));
+
+	maxval = ari_range_getmax(a, na, rstart, rend);
+	pos = ari_getpos(a, na, maxval);
+
+	assert((rstart <= pos) && (pos < na));
+
+	return pos;
+}
 
 // similarly for minimum
 int  ari_getmin(int a[], int n) // OKR

@@ -30,14 +30,14 @@ void ari_setall_square(int a[], int n); // DONE
 void ari_range_set_square(int a[], int n, int rstart, int rend); // DONE
 
 // a[i] = 0,2,4,6
-void ari_setall_even(int a[], int n); // TODO
+void ari_setall_even(int a[], int n); // DONE
 // a[rstart..rend] = same 
-void ari_range_set_even(int a[], int n, int rstart, int rend); // TODO
+void ari_range_set_even(int a[], int n, int rstart, int rend); // DONE
 
 // a[i] = 1,3,5,7 ...
-void ari_setall_odd(int a[], int n); // TODO
+void ari_setall_odd(int a[], int n); // DONE
 // a[rstart..rend] = same 
-void ari_range_set_odd(int a[], int n, int rstart, int rend); // TODO
+void ari_range_set_odd(int a[], int n, int rstart, int rend); // DONE
 
 // a[i] = fibonacci(i) 0,1,1,2,3,5,8 ...
 void ari_setall_fibonacci(int a[], int n); // LATER
@@ -73,7 +73,7 @@ void ari_range_print(int a[], int n, int rstart, int rend); // DONE
 // [5 3 4 9] leading=[, trailing=], separator=' '
 void ari_print_format(int a[], int n, char leading, char trailing, char separator); // DONE
 // print a[rstart..rend] with format characters
-void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator);
+void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator); // DONE
 
 // int  ari_sum(int a[], int n);
 // sum = sum of a[rstart..rend]
@@ -100,6 +100,8 @@ int  ari_getpos(int a[], int n, int val); // DONE
 
 // return maximum of a[]
 int  ari_getmax(int a[], int n); // DONE
+int ari_range_getmax(int a[], int na, int rstart, int rend); // TODO
+
 // return first leftmost pos of maximum
 // return -1 if not found
 int  ari_getmaxpos(int a[], int n); // DONE
@@ -116,7 +118,7 @@ int  ari_range_copy_r2l(int a[], int n, int start, int rstart, int rend);
 void ari_copy(int a[], int na, int b[], int nb); // DONE
 // b[range] = a[range]
 void ari_range_copy(int a[], int an, int rstarta, int renda, 
-                    int b[], int bn, int rstartb);
+                    int b[], int bn, int rstartb); // DONE
 
 // left shift by 1 and let last value remain 
 void ari_lshift1(int a[], int n); // DONE QATHIS
@@ -138,20 +140,20 @@ void ari_rrotatn_chain(int a[], int n, int jump, int cstart); // LATER
 void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int cstart); // LATER
 
 void ari_reverse(int a[], int n); // DONE
-void ari_range_reverse(int a[], int n, int rstart, int rend); // TODO
+void ari_range_reverse(int a[], int n, int rstart, int rend); // DONE
 
 // range related shifts
-void ari_range_lshift1(int a[], int n, int rstart, int rend); // GCD 
-void ari_range_rshift1(int a[], int n, int rstart, int rend);
+void ari_range_lshift1(int a[], int n, int rstart, int rend); // DONE
+void ari_range_rshift1(int a[], int n, int rstart, int rend); // DONE
 // jump values will be <= size of array
-void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump);
-void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump);
+void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump); // DONE
+void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump); // DONE
 
 // range related rotate
-void ari_range_lrotat1(int a[], int n, int rstart, int rend); // GCD 
-void ari_range_rrotat1(int a[], int n, int rstart, int rend);
-void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump);
-void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump);
+void ari_range_lrotat1(int a[], int n, int rstart, int rend); // DONE
+void ari_range_rrotat1(int a[], int n, int rstart, int rend); // DONE
+void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump); // DONE
+void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump); // DONE
 
 // a[] += k 
 void ari_addk(int a[], int n, int k); // DONE
@@ -172,9 +174,9 @@ void ari_range_divk(int a[], int n, int rstart, int rend, int k); // DONE
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc); // DONE
 
 // true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb); // LATER
+bool ari_isequal(int a[], int na, int b[], int nb); // DONE
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
-		       int b[], int nb, int rstartb, int rendb);
+		       int b[], int nb, int rstartb, int rendb); // DONE
 
 // calculate average
 double ari_stat_mean(int a[], int n);
