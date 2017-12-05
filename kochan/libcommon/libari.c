@@ -343,9 +343,12 @@ int ari_range_getmax(int a[], int na, int rstart, int rend)
 	// define loop start .. end
 	start = rstart + 1;
 	end = rend;
+
 	for (i = start; i <= end; ++i) {
-		if (a[i] > maxval) {
-			maxval = a[i];
+		register int v = a[i];
+
+		if (v > maxval) {
+			maxval = v;
 		}
 	}
 
@@ -376,11 +379,15 @@ int ari_range_getmin(int a[], int na, int rstart, int rend)
 
 	minval = ari_get(a, na, rstart);
 
+	// define loop start .. end
 	start = rstart + 1;
 	end = rend;
+
 	for (i = rstart; i <= rend; ++i) {
-		if (a[i] < minval) {
-			minval = a[i];
+		register int v = a[i];
+
+		if (v < minval) {
+			minval = v;
 		}
 	}
 
@@ -390,13 +397,18 @@ int ari_range_getmin(int a[], int na, int rstart, int rend)
 int ari_range_getpos(int a[], int na, int rstart, int rend, int val)
 {
 	int i;
+	int start;
+	int end;
 	int pos = -1;
 
 	assert(na > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < na));
 
-	for (i = rstart; i <= rend; ++i) {
-		int v = a[i];
+	start = rstart;
+	end = rend;
+
+	for (i = start; i <= end; ++i) {
+		register int v = a[i];
 
 		if (v == val) {
 			pos = i;
@@ -411,17 +423,13 @@ int ari_range_getpos(int a[], int na, int rstart, int rend, int val)
 
 // return first leftmost pos of maximum
 // return -1 if not found
-int  ari_getmaxpos(int a[], int n) // OKR
+int  ari_getmaxpos(int a[], int n)
 {
-	int maxval;
 	int pos;
 
 	assert(n > 0);
 
-	maxval = ari_getmax(a, n);
-	pos = ari_getpos(a, n, maxval);
-
-	assert((0 <= pos) && (pos < n));
+	pos = ari_range_getmaxpos(a, n, 0, n-1);
 
 	return pos;
 }
@@ -434,27 +442,24 @@ int ari_range_getmaxpos(int a[], int na, int rstart, int rend)
 	assert((0 <= rstart) && (rstart <= rend) && (rend < na));
 
 	maxval = ari_range_getmax(a, na, rstart, rend);
-	pos = ari_range_getpos(a, na, rstart, rend, maxval); // wait
+	pos = ari_range_getpos(a, na, rstart, rend, maxval);
 
-	assert((rstart <= pos) && (pos < na));
+	assert((rstart <= pos) && (pos <= rend));
 
 	return pos;
 }
 
-int ari_getminpos(int a[], int n) // OKR
+int ari_getminpos(int a[], int n)
 {
-	int minval;
 	int pos;
 
 	assert(n > 0);
 
-	minval = ari_getmin(a, n);
-	pos = ari_getpos(a, n, minval);
-
-	assert((0 <= pos) && (pos < n));
+	pos = ari_range_getminpos(a, n, 0, n-1);
 
 	return pos;
 }
+
 int ari_range_getminpos(int a[], int na, int rstart, int rend)
 {
 	int minval;
@@ -464,7 +469,9 @@ int ari_range_getminpos(int a[], int na, int rstart, int rend)
 	assert((0 <= rstart) && (rstart <= rend) && (rend < na));
 
 	minval = ari_range_getmin(a, na, rstart, rend);
-	pos = ari_range_getpos(a, na, rstart, rend, minval); // wait
+	pos = ari_range_getpos(a, na, rstart, rend, minval);
+
+	assert((rstart <= pos) && (pos <= rend));
 
 	return pos;
 }
@@ -654,25 +661,16 @@ int ari_get(int a[], int n, int pos) // OKR
 	return val;
 }
 
-int ari_getpos(int a[], int n, int val) // OKR
+int ari_getpos(int a[], int n, int val)
 {
-	int i;
-	int pos = -1;
+	int pos;
 
 	assert(n > 0);
 
-	for (i = 0; i < n; ++i) {
-		if (a[i] == val) {
-			pos = i;
-			break;
-		}
-	}
-
-	assert((pos == -1) || ((0 <= pos) && (pos < n)));
+	pos = ari_range_getpos(a, n, 0, n-1, val);
 
 	return pos;
 }
-
 
 void ari_swap_elem(int a[], int n, int i, int j) // OKR
 {
@@ -1010,16 +1008,22 @@ void test_print(void)
 // all array get test
 void test_get(void)
 {
-	int a[10] = { 5, -4, 4, 6, 7, 6, 24, -78, 12, 10 };
+	int a[10] = { 5, -9, 4, 6, 7, -6, 24, 8, 12, 10 };
 	int n = 10;
-	//int maxval;
-	//int minval;
-	//int maxpos;
-	//int minpos;
-
+	int pos;
+	int maxval;
+	int minval;
+	int maxpos;
+	int minpos;
 
 	ari_print(a, n, "a[]");
-
+	pos = ari_getpos(a, n, 10);
+	printf("array value 10 possession-> %d\n", pos);
+	maxval = ari_getmax(a, n);
+	minval = ari_getmin(a, n);
+	maxpos = ari_getmaxpos(a, n);
+	minpos = ari_getminpos(a, n);
+	printf("array maxval = %d minval = %d maxpos = %d minpos = %d\n", maxval, minval, maxpos, minpos);
 }
 
 // left shift test function
