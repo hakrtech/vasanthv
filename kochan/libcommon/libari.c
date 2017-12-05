@@ -7,14 +7,27 @@
 
 #include "libari.h"
 
-void ari_setall(int a[], int n, int val) // OKR
+#if 0
+void arT_setall(TYPE a[], int n, TYPE val);
+void ard_setall(double a[], int n, double val);
+void arl_setall(long a[], int n, long val);
+void ari_setall(int a[], int n, int val);
+void arc_setall(char a[], int n, char val);
+#endif
+
+// #define TYPE char
+// #define TYPE long
+// #define TYPE double
+#define TYPE int
+
+void ari_setall(TYPE a[], int n, TYPE val) // OKR
 {
 	assert(n > 0);
 
 	ari_range_set(a, n, 0, n-1, val);
 }
 
-void ari_setone(int a[], int n, int pos, int val) // OKR
+void ari_setone(TYPE a[], int n, int pos, TYPE val) // OKR
 {
 	assert(n > 0);
 	assert((0 <= pos) && (pos < n));
@@ -386,6 +399,10 @@ void ari_lshift1(int a[], int n) // OKR
 // left shift by jump and let right values remain
 void ari_lshiftn(int a[], int n, int jump)
 {
+	assert(n > 0);
+	assert((0 < jump) && (jump < n));
+
+	ari_range_lshiftn(a, n, 0, n-1, jump);
 }
 
 // range related shifts
@@ -435,6 +452,10 @@ void ari_rshift1(int a[], int n) // OKR
 // right shift by jump and let left values remain
 void  ari_rshiftn(int a[], int n, int jump)
 {
+	assert(n > 0);
+	assert((0 < jump) && (jump < n));
+
+	ari_range_rshiftn(a, n, 0, n-1, jump);
 }
 
 void ari_range_rshift1(int a[], int n, int rstart, int rend)
@@ -661,6 +682,10 @@ int ari_factor(int a[], int n)
 // b = a 
 void ari_copy(int a[], int na, int b[], int nb)
 {
+	assert(na > 0);
+	assert(nb > 0);
+
+	ari_range_copy(a, na, 0, na-1, b, nb, 0);
 }
 
 // b[range] = a[range]
@@ -736,10 +761,16 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 // circular rotate
 void ari_lrotat1(int a[], int n)
 {
+	assert(n > 0);
+
+	ari_range_lrotat1(a, n, 0, n-1);
 }
 
 void ari_rrotat1(int a[], int n)
 {
+	assert(n > 0);
+
+	ari_range_rrotat1(a, n, 0, n-1);
 }
 
 // jump values will be <= size of array
@@ -747,10 +778,18 @@ void ari_rrotat1(int a[], int n)
 // so we can spin the array contents
 void ari_lrotatn(int a[], int n, int jump)
 {
+	assert(n > 0);
+	assert((0 < jump) && (jump < n));
+
+	ari_range_lrotatn(a, n, 0, n-1, jump);
 }
 
 void ari_rrotatn(int a[], int n, int jump)
 {
+	assert(n > 0);
+	assert((0 < jump) && (jump < n));
+
+	ari_range_rrotatn(a, n, 0, n-1, jump);
 } 
 
 // range related rotate
@@ -912,7 +951,6 @@ void test_lshift(void)
 // right shift test function
 void test_rshift(void)
 {
-	int i;
 	int a[10], b[10], c[10] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
 	int n = 10;
 
@@ -931,16 +969,6 @@ void test_rshift(void)
 	ari_setall_linear(b, n);
 	ari_rshiftn(b, n, 9);
 	ari_print(b, n, "b[rsh9]");
-
-	printf("array b[] right shift 1 to 9>");
-	ari_setall_linear(b, n);
-	ari_range_print_format(b, n, 0, n-1, '[', ']', ',');
-	for(i = 1; i < n; ++i) {
-		assert((0 < i) && (i < n));
-		ari_rshift1(b, n);
-		printf("b[rsh%d] = ", i);
-		ari_print_format(b, n, '[', ']', ',');
-	}
 }
 
 static void test_ari_general(bool noisy)
