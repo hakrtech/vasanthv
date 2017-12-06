@@ -1012,7 +1012,47 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend) // OKR
 	a[rstart] = val;
 }
 
-void ari_range_lrotatn_usecopy(int a[], int n, int rstart, int rend, int jump); // TODO
+void ari_range_lrotatn_usecopy(int a[], int n, int rstart, int rend, int jump)
+{
+#define MAX 100
+	int b[MAX];
+	int nb = MAX;
+	int rlen;
+	int starta;
+	int enda;
+	int startb;
+	int endb;
+
+	assert(n > 0);
+	assert(nb > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	ari_setall(b, nb, -1);
+
+	rlen = (rend - rstart) + 1; /* length of array ra[] */
+	assert((0 < jump) && (jump < rlen));
+	assert(rlen <= nb);
+
+	starta = rstart;
+	enda = jump - 1;
+	startb = rlen-jump;
+	endb = rlen-1;
+	ari_range_copy(a, n, starta, enda, b, nb, startb);
+
+	starta = jump;
+	enda = rend;
+	startb = 0;
+	endb = jump - 1;
+	ari_range_copy(a, n, starta, enda, b, nb, startb);
+
+	startb = 0;
+	endb = rlen-1;
+	starta = rstart;
+	enda = rend;
+	ari_range_copy(b, nb, startb, endb, a, n, rstart);
+
+}
+
 void ari_range_lrotatn_reverse(int a[], int n, int rstart, int rend, int jump); // TODO
 void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
 void ari_range_lrotatn_repeat_rotat1(int a[], int n, int rstart, int rend, int jump); // DONE
@@ -1149,8 +1189,9 @@ void test_get(void)
 // test factor array
 void test_factor(void)
 {
-	int a[100];
-	int n = 100;
+#define MAX 100
+	int a[MAX];
+	int n = MAX;
 	int val = 33;
 	int nfactor;
 
