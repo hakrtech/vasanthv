@@ -197,7 +197,7 @@ void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	printf("%c", leading);
+	printf("%c ", leading);
 	start = rstart;
 	end = rend;
 
@@ -807,6 +807,7 @@ int ari_factor(int a[], int n, int num)
 	register int count = 0;
 
 	assert(n > 0);
+	assert(num > 0);
 
 	while (divisor > 0) {
 		register int remainder;
@@ -900,9 +901,57 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
 		c[k] = b[j];
 	}
 }
+
 void ari_range_concat(int a[], int na, int rstarta, int renda, 
 		      int b[], int nb, int rstartb, int rendb,
-		      int c[], int nc, int rstartc); // TODO
+		      int c[], int nc, int rstartc)
+{
+	register int i;
+	register int j;
+	register int k;
+	int starta;
+	int startb;
+	int startc;
+	register int enda;
+	register int endb;
+	int endc;
+	int rendc;
+	int rlena;
+	int rlenb;
+	int rlenc;
+
+	assert(na > 0);
+	assert(nb > 0);
+	assert(nc > 0);
+	assert((na+nb) <= nc);
+	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
+	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
+	assert((0 <= rstartc) && (rstartc < na));
+
+	rlena = (renda - rstarta) + 1; /* length of array ra[] */
+	rlenb = (rendb - rstarta) + 1; /* length of array rb[] */
+	rendc = nc - 1;
+	rlenc = (rendc - rstartc) + 1; /* length of array rc[] */
+	assert((rlena + rlenb) <= rlenc);
+
+	starta = rstarta;
+	enda = renda;
+	startc = rstartc;
+	endc = rendc;
+
+	for (i = starta, k = rstartc; i <= enda; ++i, ++k) {
+		c[k] = a[i];
+	}
+
+	startb = rstartb;
+	endb = rendb;
+	startc = enda + 1;
+	endc = rendc;
+
+	for (j = startb, k = startc; j <= endb; ++j, ++k) {
+		c[k] = b[j];
+	}
+}
 
 // circular rotate
 void ari_lrotat1(int a[], int n) // OKR
@@ -1100,11 +1149,12 @@ void test_get(void)
 // test factor array
 void test_factor(void)
 {
-	int a[10];
-	int n = 10;
-	int val = 91;
+	int a[100];
+	int n = 100;
+	int val = 33;
 	int nfactor;
 
+	ari_setall(a, n, -1);
 	nfactor = ari_factor(a, n, val);
 	ari_print(a, nfactor, "a[factor]");
 }

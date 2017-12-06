@@ -180,6 +180,11 @@ void ari_range_divk(int a[], int n, int rstart, int rend, int k); // DONE
 
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc); // DONE
+void ari_range_concat(int a[], int na, int rstarta, int renda, 
+		      int b[], int nb, int rstartb, int rendb,
+		      int c[], int nc, int rstartc); // DONE
+
+// circular rotate
 
 // true if all values are equal across a[] and b[]
 bool ari_isequal(int a[], int na, int b[], int nb); // DONE
