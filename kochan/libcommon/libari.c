@@ -254,9 +254,7 @@ void ari_range_addk(int a[], int n, int rstart, int rend, int k)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int val = a[i];
-
-		a[i] = val + k;
+		a[i] = a[i] + k;
 	}
 }
 
@@ -273,9 +271,7 @@ void ari_range_subk(int a[], int n, int rstart, int rend, int k)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int val = a[i];
-
-		a[i] = val - k;
+		a[i] = a[i] - k;
 	}
 }
 
@@ -292,9 +288,7 @@ void ari_range_mulk(int a[], int n, int rstart, int rend, int k)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int val = a[i];
-
-		a[i] = val * k;
+		a[i] = a[i] * k;
 	}
 }
 
@@ -312,9 +306,7 @@ void ari_range_divk(int a[], int n, int rstart, int rend, int k)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int val = a[i];
-
-		a[i] = val / k;
+		a[i] = a[i] / k;
 	}
 }
 
@@ -667,10 +659,7 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	endb = rendb;
 
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
-		register int vala = a[i];
-		register int valb = b[j];
-
-		if (vala != valb) {
+		if (a[i] != b[i]) {
 			isequal = false;
 			break;
 		}
@@ -739,16 +728,16 @@ void ari_swap_elem(int a[], int n, int i, int j)
 }
 void ari_range_swap_elem(int a[], int n, int rstart, int rend, int relposi, int relposj)
 {
-	int temp;
+	int val;
 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 	assert((rstart <= relposi) && (relposi <= rend));
 	assert((rstart <= relposj) && (relposj <= rend));
 
-	temp = a[relposi];
+	val = a[relposi];
 	a[relposi] = a[relposj];
-	a[relposj] = temp;
+	a[relposj] = val;
 }
 
 void ari_sortup(int a[], int n) // OKR
@@ -774,10 +763,7 @@ void ari_range_sortup(int a[], int n, int rstart, int rend)
 		register int j;
 
 		for (j = i+1; j <= end; ++j) {
-			register int valai = a[i];
-			register int valaj = a[j];
-
-			if (valai > valaj) {
+			if (a[i] > a[j]) {
 				ari_swap_elem(a, n, i, j);
 			}
 		}
@@ -808,19 +794,16 @@ void ari_range_sortdown(int a[], int n, int rstart, int rend)
 		register int j;
 
 		for (j = i+1; j <= end; ++j) {
-			register int valai = a[i];
-			register int valaj = a[j];
-
-			if (valai < valaj) {
+			if (a[i] < a[j]) {
 				ari_swap_elem(a, n, i, j);
 			}
 		}
 	}
 }
 
-int ari_factor(int a[], int n, int val)
+int ari_factor(int a[], int n, int num)
 {
-	register int divisor = val;
+	register int divisor = num;
 	register int count = 0;
 
 	assert(n > 0);
@@ -828,7 +811,7 @@ int ari_factor(int a[], int n, int val)
 	while (divisor > 0) {
 		register int remainder;
 
-		remainder = val % divisor;
+		remainder = num % divisor;
 		if (remainder == 0) {
 			ari_setone(a, n, count, divisor);
 			++count;
@@ -850,12 +833,12 @@ void ari_copy(int a[], int na, int b[], int nb)
 
 // b[range] = a[range]
 void ari_range_copy(int a[], int an, int rstarta, int renda, 
-                    int b[], int bn, int rstartb) // ?
+                    int b[], int bn, int rstartb)
 {
-	int i;
-	int j;
+	register int i;
+	register int j;
 	int starta;
-	int enda;
+	register int enda;
 	int startb;
 	int endb;
 	int rlena;
@@ -870,8 +853,9 @@ void ari_range_copy(int a[], int an, int rstarta, int renda,
 	enda = renda;
 	startb = rstartb;
 	endb = bn - 1;
+
 	rlena = (renda - rstarta) + 1; /* length of array ra[] */
-	rlenb = (endb - rstartb) + 1; /* length of array b[] */
+	rlenb = (endb - rstartb) + 1; /* length of array rb[] */
 
 	assert(rlena <= rlenb);
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
@@ -881,16 +865,16 @@ void ari_range_copy(int a[], int an, int rstarta, int renda,
 }
 
 // copy a into c, append b to c
-void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
+void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
 {
-	int i;
-	int j;
-	int k;
+	register int i;
+	register int j;
+	register int k;
 	int starta;
 	int startb;
 	int startc;
-	int enda;
-	int endb;
+	register int enda;
+	register int endb;
 	int endc;
 
 	assert(na > 0);
@@ -902,6 +886,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 	enda = na - 1;
 	startc = 0;
 	endc = nc - 1;
+
 	for (i = starta, k = startc; i <= enda; ++i, ++k) {
 		c[k] = a[i];
 	}
@@ -910,6 +895,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc) // OKR
 	endb = nb - 1;
 	startc = enda + 1;
 	endc = nc - 1;
+
 	for (j = startb, k = startc; j <= endb; ++j, ++k) {
 		c[k] = b[j];
 	}
