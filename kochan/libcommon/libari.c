@@ -650,19 +650,28 @@ bool ari_isvalpresent(int a[], int n, int val) // OKR
 	return false;
 }
 
-int ari_get(int a[], int n, int pos) // OKR
+int ari_get(int a[], int n, int pos)
 {
 	int val;
 
 	assert(n > 0);
-	assert((0 <= pos) && (pos < n));
 
-	val = a[pos];
+	val = ari_range_get(a, n, 0, n-1, pos);
 
 	return val;
 }
+
 int ari_range_get(int a[], int n, int rstart, int rend, int rpos)
 {
+	int val;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+	assert((rstart <= rpos) && (rpos <= rend));
+
+	val = a[rpos];
+
+	return val;
 }
 
 int ari_getpos(int a[], int n, int val)
@@ -1018,6 +1027,7 @@ void test_get(void)
 {
 	int a[10] = { 5, -9, 4, 6, 7, -6, 24, 8, 12, 10 };
 	int n = 10;
+	int val;
 	int pos;
 	int maxval;
 	int minval;
@@ -1027,6 +1037,9 @@ void test_get(void)
 	ari_print(a, n, "a[]");
 	pos = ari_getpos(a, n, 10);
 	printf("array value 10 possession-> %d\n", pos);
+	val = ari_get(a, n, 2);
+	printf("array possession 2 value-> %d\n", val);
+
 	maxval = ari_getmax(a, n);
 	minval = ari_getmin(a, n);
 	maxpos = ari_getmaxpos(a, n);

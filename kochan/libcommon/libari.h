@@ -94,6 +94,8 @@ int  ari_factor(int a[], int n); // ?
 bool ari_isvalpresent(int a[], int n, int val); // DONE
 // a[pos]
 int  ari_get(int a[], int n, int pos); // DONE
+int ari_range_get(int a[], int n, int rstart, int rend, int rpos); // DONE
+
 // return first leftmost pos where a[pos] == val
 // return -1 if not found
 int  ari_getpos(int a[], int n, int val); // DONE
