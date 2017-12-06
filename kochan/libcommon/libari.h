@@ -89,7 +89,7 @@ void ari_range_swap_elem(int a[], int n, int rstart, int rend, int relposi, int 
 void ari_range_sortdown(int a[], int n, int rstart, int rend); // DONE
 void ari_range_sortup(int a[], int n, int rstart, int rend); // DONE
 
-int  ari_factor(int a[], int n); // ?
+int  ari_factor(int a[], int n, int val); // DONE
 
 // is val present in a[]
 bool ari_isvalpresent(int a[], int n, int val); // DONE

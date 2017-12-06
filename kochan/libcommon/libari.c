@@ -758,19 +758,26 @@ void ari_sortup(int a[], int n) // OKR
 	ari_range_sortup(a, n, 0, n-1);
 }
 
-void ari_range_sortup(int a[], int n, int rstart, int rend) // OKR
+void ari_range_sortup(int a[], int n, int rstart, int rend)
 {
-	int i;
+	register int i;
+	int start;
+	register int end;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	for (i = rstart; i < rend; ++i) {
-		int j;
+	start = rstart;
+	end = rend;
 
-		for (j = i+1; j <= rend; ++j) {
-			if (a[i] > a[j]) {
+	for (i = start; i < end; ++i) {
+		register int j;
+
+		for (j = i+1; j <= end; ++j) {
+			register int valai = a[i];
+			register int valaj = a[j];
+
+			if (valai > valaj) {
 				ari_swap_elem(a, n, i, j);
 			}
 		}
@@ -785,36 +792,43 @@ void ari_sortdown(int a[], int n) // OKR
 }
 
 // sort a[rstart..rend]
-void ari_range_sortdown(int a[], int n, int rstart, int rend) // OKR
+void ari_range_sortdown(int a[], int n, int rstart, int rend)
 {
-	int i;
+	register int i;
+	int start;
+	register int end;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	for (i = rstart; i < rend; ++i) {
-		int j;
+	start = rstart;
+	end = rend;
 
-		for (j = i+1; j <= rend; ++j) {
-			if (a[i] < a[j]) {
+	for (i = start; i < end; ++i) {
+		register int j;
+
+		for (j = i+1; j <= end; ++j) {
+			register int valai = a[i];
+			register int valaj = a[j];
+
+			if (valai < valaj) {
 				ari_swap_elem(a, n, i, j);
 			}
 		}
 	}
 }
 
-int ari_factor(int a[], int n) // FIX
+int ari_factor(int a[], int n, int val)
 {
-	int divisor = n;
-	int count = 0;
+	register int divisor = val;
+	register int count = 0;
 
 	assert(n > 0);
 
 	while (divisor > 0) {
-		int remainder;
+		register int remainder;
 
-		remainder = n % divisor;
+		remainder = val % divisor;
 		if (remainder == 0) {
 			ari_setone(a, n, count, divisor);
 			++count;
@@ -1097,6 +1111,18 @@ void test_get(void)
 	printf("array ->\n maxval = %d\n minval = %d\n maxpos = %d\n minpos = %d\n", maxval, minval, maxpos, minpos);
 }
 
+// test factor array
+void test_factor(void)
+{
+	int a[10];
+	int n = 10;
+	int val = 91;
+	int nfactor;
+
+	nfactor = ari_factor(a, n, val);
+	ari_print(a, nfactor, "a[factor]");
+}
+
 // left shift test function
 void test_lshift(void)
 {
@@ -1163,6 +1189,12 @@ static void test_ari_general(bool noisy)
 	test_get();
 	test_end(fname);
 
+	fname = "ari_factor";
+	test_start(fname);
+	test_factor();
+	test_end(fname);
+
+	fname = "ari_rotatn";
 	test_start(fname);
 
 	ari_setall_linear(a, n);
