@@ -36,15 +36,19 @@ void ari_setone(TYPE a[], int n, int pos, TYPE val) // OKR
 }
 
 // a[rstart..rend] = val 
-void ari_range_set(int a[], int n, int rstart, int rend, int val) // OKR
+void ari_range_set(int a[], int n, int rstart, int rend, int val)
 {
-	int i;
+	register int i;
+	int start;
+	register int end;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	for (i = rstart; i <= rend; ++i) {
+	start = rstart;
+	end = rend;
+
+	for (i = start; i <= end; ++i) {
 		ari_setone(a, n, i, val);
 	}
 }
@@ -58,18 +62,18 @@ void ari_setall_linear(int a[], int n) // OKR
 }
 
 // a[rstart..rend] = i
-void ari_range_set_linear(int a[], int n, int rstart, int rend) // OKR
+void ari_range_set_linear(int a[], int n, int rstart, int rend)
 {
-	int i;
+	register int i;
 	int start;
-	int end;
+	register int end;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
 	start = rstart;
 	end = rend;
+
 	for (i = start; i <= end; ++i) {
 		ari_setone(a, n, i, i);
 	}
@@ -84,18 +88,18 @@ void ari_setall_square(int a[], int n) // OKR
 }
 
 // a[rstart..rend] = i*i
-void ari_range_set_square(int a[], int n, int rstart, int rend) // OKR
+void ari_range_set_square(int a[], int n, int rstart, int rend)
 {
-	int i;
+	register int i;
 	int start;
-	int end;
+	register int end;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
 	start = rstart;
 	end = rend;
+
 	for (i = start; i <= end; ++i) {
 		ari_setone(a, n, i, i*i);
 	}
@@ -109,19 +113,19 @@ void ari_setall_even(int a[], int n) // OKR
 }
 
 // a[rstart..rend] = same
-void ari_range_set_even(int a[], int n, int rstart, int rend) // OKR
+void ari_range_set_even(int a[], int n, int rstart, int rend)
 {
-	int i;
+	register int i;
 	int start;
-	int end;
-	int even;
+	register int end;
+	register int even;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
 	start = rstart;
 	end = rend;
+
 	even = 0;
 	for (i = start; i <= end; ++i) {
 		ari_setone(a, n, i, even);
@@ -137,19 +141,19 @@ void ari_setall_odd(int a[], int n) // OKR
 }
 
 // a[rstart..rend] = same
-void ari_range_set_odd(int a[], int n, int rstart, int rend) // OKR
+void ari_range_set_odd(int a[], int n, int rstart, int rend)
 {
-	int i;
+	register int i;
 	int start;
-	int end;
-	int odd;
+	register int end;
+	register int odd;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
 	start = rstart;
 	end = rend;
+
 	odd = 1;
 	for (i = start; i <= end; ++i) {
 		ari_setone(a, n, i, odd);
@@ -184,11 +188,11 @@ void ari_print_format(int a[], int n, char leading, char trailing, char separato
 }
 
 // print a[rstart..rend] with format characters
-void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator) // OKR
+void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator)
 {
-	int i;
+	register int i;
 	int start;
-	int end;
+	register int end;
 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
@@ -196,6 +200,7 @@ void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, 
 	printf("%c", leading);
 	start = rstart;
 	end = rend;
+
 	for (i = start; i <= end; ++i) {
 		printf("%3d%c", a[i], separator);
 	}
@@ -236,56 +241,80 @@ void ari_divk(int a[], int n, int k) // OKR
 }
 
 // similarly for range
-void ari_range_addk(int a[], int n, int rstart, int rend, int k) // OKR
+void ari_range_addk(int a[], int n, int rstart, int rend, int k)
 {
-	int i;
+	register int i;
+	int start;
+	register int end;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	for (i = rstart; i <= rend; ++i) {
-		a[i] = a[i] + k;
+	start = rstart;
+	end = rend;
+
+	for (i = start; i <= end; ++i) {
+		register int val = a[i];
+
+		a[i] = val + k;
 	}
 }
 
-void ari_range_subk(int a[], int n, int rstart, int rend, int k) // OKR
+void ari_range_subk(int a[], int n, int rstart, int rend, int k)
 {
-	int i;
+	register int i;
+	int start;
+	register int end;
 	
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	for (i = rstart; i <= rend; ++i) {
-		a[i] = a[i] - k;
+	start = rstart;
+	end = rend;
+
+	for (i = start; i <= end; ++i) {
+		register int val = a[i];
+
+		a[i] = val - k;
 	}
 }
 
-void ari_range_mulk(int a[], int n, int rstart, int rend, int k) // OKR
+void ari_range_mulk(int a[], int n, int rstart, int rend, int k)
 {
-	int i;
+	register int i;
+	int start;
+	register int end;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	for (i = rstart; i <= rend; ++i) {
-		a[i] = a[i] * k;
+	start = rstart;
+	end = rend;
+
+	for (i = start; i <= end; ++i) {
+		register int val = a[i];
+
+		a[i] = val * k;
 	}
 }
 
-void ari_range_divk(int a[], int n, int rstart, int rend, int k) // OKR
+void ari_range_divk(int a[], int n, int rstart, int rend, int k)
 {
-	int i;
+	register int i;
+	int start;
+	register int end;
 
 	assert(n > 0);
 	assert(k != 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	for (i = rstart; i <= rend; ++i) {
-		a[i] = a[i] / k;
+	start = rstart;
+	end = rend;
+
+	for (i = start; i <= end; ++i) {
+		register int val = a[i];
+
+		a[i] = val / k;
 	}
 }
 
@@ -300,17 +329,23 @@ int ari_sum(int a[], int n) // OKR
 	return sum;
 }
 
-int  ari_range_sum(int a[], int n, int rstart, int rend) // OKR
+int  ari_range_sum(int a[], int n, int rstart, int rend)
 {
-	int i;
-	int sum = 0;
+	register int i;
+	int start;
+	register int end;
+	register int sum = 0;
 
 	assert(n > 0);
-	assert((0 <= rstart) && (rstart <= rend));
-	assert(rend < n);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	for (i = rstart; i <= rend; ++i) {
-		sum += a[i];
+	start = rstart;
+	end = rend;
+
+	for (i = start; i <= end; ++i) {
+		register int val = a[i];
+
+		sum += val;
 	}
 
 	return sum;
@@ -328,12 +363,12 @@ int  ari_getmax(int a[], int n) // OKR
 	return maxval;
 }
 
-int ari_range_getmax(int a[], int na, int rstart, int rend) // OKR
+int ari_range_getmax(int a[], int na, int rstart, int rend)
 {
-	int i;
-	int maxval;
+	register int i;
+	register int maxval;
 	int start;
-	int end;
+	register int end;
 
 	assert(na > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < na));
@@ -367,12 +402,12 @@ int  ari_getmin(int a[], int n) // OKR
 	return minval;
 }
 
-int ari_range_getmin(int a[], int na, int rstart, int rend) // OKR
+int ari_range_getmin(int a[], int na, int rstart, int rend)
 {
-	int i;
-	int minval;
+	register int i;
+	register int minval;
 	int start;
-	int end;
+	register int end;
 
 	assert(na > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < na));
@@ -394,11 +429,11 @@ int ari_range_getmin(int a[], int na, int rstart, int rend) // OKR
 	return minval;
 }
 
-int ari_range_getpos(int a[], int na, int rstart, int rend, int val) // OKR
+int ari_range_getpos(int a[], int na, int rstart, int rend, int val)
 {
-	int i;
+	register int i;
 	int start;
-	int end;
+	register int end;
 	int pos = -1;
 
 	assert(na > 0);
@@ -504,23 +539,24 @@ void ari_range_lshift1(int a[], int n, int rstart, int rend) // OKR
 }
 
 // jump values will be <= size of array
-void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump) // OKR
+void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump)
 {
-	int i;
+	register int i;
 	int rlen;
 	int start;
-	int stop;
+	register int stop;
 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	rlen = (rend - rstart) + 1; /* counted range of array ra[] length ???*/
+	rlen = (rend - rstart) + 1; /* length of array ra[] */
 	assert((0 < jump) && (jump < rlen));
 
 	start = rstart;
 	stop = rend - jump;
+
 	for (i = start; i <= stop; ++i) {
-		int j = i + jump;
+		register int j = i + jump;
 
 		//range check of array index i and j
 		assert((rstart <= i) && (i <= rend));
@@ -555,19 +591,19 @@ void ari_range_rshift1(int a[], int n, int rstart, int rend) // OKR
 	ari_range_rshiftn(a, n, rstart, rend, 1);
 }
 
-void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump) // OKR
+void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump)
 {
-	int i;
+	register int i;
 	int rlen;
 	int left;
 	int right;
 	int start;
-	int stop;
+	register int stop;
 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	rlen = (rend - rstart) + 1; /* counted range of array ra[] length ??? */
+	rlen = (rend - rstart) + 1; /* length of array ra[] */
 	assert((0 < jump) && (jump < rlen));
 
 	// define range limits
@@ -579,7 +615,7 @@ void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump) // OKR
 	stop = left + jump;
 
 	for (i = start; i >= stop; --i) {
-		int j = i - jump;
+		register int j = i - jump;
 
 		// range check of array index i and j
 		assert((left <= i) && (i <= right));
@@ -602,15 +638,15 @@ bool ari_isequal(int a[], int na, int b[], int nb)
 }
 
 bool ari_range_isequal(int a[], int na, int rstarta, int renda, 
-		       int b[], int nb, int rstartb, int rendb) // FIX
+		       int b[], int nb, int rstartb, int rendb)
 {
-	int i;
-	int j;
+	register int i;
+	register int j;
 	int rlena;
 	int rlenb;
 	int starta;
 	int startb;
-	int enda;
+	register int enda;
 	int endb;
 	bool isequal = true;
 
@@ -618,31 +654,41 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
 	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
 
-	rlena = (renda - rstarta) + 1; /* counted range of array ra[] length */
-	rlenb = (rendb - rstartb) + 1; /* counted range of array rb[] length */
-	assert(rlena == rlenb); /* ??? lenght of array equal means. allow to check values equal or not */
+	rlena = (renda - rstarta) + 1; /* length of array ra[] */
+	rlenb = (rendb - rstartb) + 1; /* length of array rb[] */
+
+	if (rlena != rlenb) { /* check length of array equal or not */
+		return false;
+	}
 
 	starta = rstarta;
 	enda = renda;
 	startb = rstartb;
 	endb = rendb;
+
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
-		if (a[i] != b[j]) {
+		register int vala = a[i];
+		register int valb = b[j];
+
+		if (vala != valb) {
 			isequal = false;
 			break;
 		}
 	}
+
 	return isequal;
 }
 
-bool ari_isvalpresent(int a[], int n, int val) // OKR
+bool ari_isvalpresent(int a[], int n, int val)
 {
-	int i;
+	register int i;
 
 	assert(n > 0);
 
 	for (i = 0; i < n; ++i) {
-		if (a[i] == val) {
+		register int v = a[i];
+
+		if (v == val) {
 			return true;
 		}
 	}
@@ -685,20 +731,24 @@ int ari_getpos(int a[], int n, int val)
 	return pos;
 }
 
-void ari_swap_elem(int a[], int n, int i, int j) // OKR
+void ari_swap_elem(int a[], int n, int i, int j)
+{
+	assert(n > 0);
+
+	ari_range_swap_elem(a, n, 0, n-1, i, j);
+}
+void ari_range_swap_elem(int a[], int n, int rstart, int rend, int relposi, int relposj)
 {
 	int temp;
 
 	assert(n > 0);
-	assert((0 <= i) && (i < n));
-	assert((0 <= j) && (j < n));
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+	assert((rstart <= relposi) && (relposi <= rend));
+	assert((rstart <= relposj) && (relposj <= rend));
 
-	temp = a[i];
-	a[i] = a[j];
-	a[j] = temp;
-}
-void ari_range_swap_elem(int a[], int n, int rstart, int rend, int relposi, int relposj)
-{
+	temp = a[relposi];
+	a[relposi] = a[relposj];
+	a[relposj] = temp;
 }
 
 void ari_sortup(int a[], int n) // OKR
@@ -806,8 +856,8 @@ void ari_range_copy(int a[], int an, int rstarta, int renda,
 	enda = renda;
 	startb = rstartb;
 	endb = bn - 1;
-	rlena = (renda - rstarta) + 1; /* ??? counted range of array ra[] length */
-	rlenb = (endb - rstartb) + 1; /* ? counted length of range start to end array b[] */
+	rlena = (renda - rstarta) + 1; /* length of array ra[] */
+	rlenb = (endb - rstartb) + 1; /* length of array b[] */
 
 	assert(rlena <= rlenb);
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
@@ -927,7 +977,7 @@ void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	rlen = (rend - rstart) + 1; /* counted range of array ra[] length */
+	rlen = (rend - rstart) + 1; /* length of array ra[] */
 	assert((0 < jump) && (jump < rlen));
 
 	start = 1;
@@ -955,7 +1005,7 @@ void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	rlen = (rend - rstart) + 1; /* counted range of array ra[] length */
+	rlen = (rend - rstart) + 1; /* length of array ra[] */
 	assert((0 < jump) && (jump < rlen));
 
 	start = 1;

@@ -83,6 +83,7 @@ int  ari_range_sum(int a[], int n, int rstart, int rend); // DONE
 void ari_sortdown(int a[], int n); // DONE
 void ari_sortup(int a[], int n); // DONE
 void ari_swap_elem(int a[], int n, int i, int j); // DONE
+void ari_range_swap_elem(int a[], int n, int rstart, int rend, int relposi, int relposj); // DONE
 
 // sort a[rstart..rend]
 void ari_range_sortdown(int a[], int n, int rstart, int rend); // DONE
