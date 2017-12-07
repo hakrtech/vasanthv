@@ -144,7 +144,7 @@ void ari_rrotat1(int a[], int n); // DONE QATHIS
 void ari_lrotatn(int a[], int n, int jump); // DONE QATHIS
 void ari_rrotatn(int a[], int n, int jump); // DONE QATHIS
 
-void ari_lrotatn_usecopy(int a[], int n, int jump); // TODO
+void ari_lrotatn_usecopy(int a[], int n, int jump); // DONE
 void ari_range_lrotatn_usecopy(int a[], int n, int rstart, int rend, int jump); // TODO
 void ari_range_lrotatn_reverse(int a[], int n, int rstart, int rend, int jump); // TODO
 void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
@@ -167,6 +167,7 @@ void ari_range_lrotat1(int a[], int n, int rstart, int rend); // DONE
 void ari_range_rrotat1(int a[], int n, int rstart, int rend); // DONE
 void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump); // DONE
 void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump); // DONE
+void ari_rrotatn_usecopy(int a[], int n, int jump); // DONE
 
 // a[] += k 
 void ari_addk(int a[], int n, int k); // DONE

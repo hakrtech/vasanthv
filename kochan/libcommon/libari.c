@@ -1026,7 +1026,7 @@ void ari_lrotatn_usecopy(int a[], int n, int jump)
 	int starta;
 	int startb;
 	register int stopa;
-	int stopb;
+	register int stopb;
 
 	assert(n > 0);
 	assert(nb > 0);
@@ -1066,15 +1066,12 @@ void ari_lrotatn_usecopy(int a[], int n, int jump)
 	}
 
 	//define start .. stop loop
-	starta = lefta;
-	stopa = righta;
 	startb = lefta;
 	stopb = righta;
-	for (i = starta, j = startb; j <= stopb; ++i, ++j) {
-		assert((lefta <= i) &&(i <= righta));
+	for (j = startb; j <= stopb; ++j) {
 		assert((leftb <= j) && (j <= rightb));
 
-		a[i] = b[j];
+		a[j] = b[j];
 	}
 }
 
@@ -1102,6 +1099,69 @@ void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 	end = jump;
 	for (i = start; i <= end; ++i) {
 		ari_range_lrotat1(a, n, rstart, rend);
+	}
+}
+
+void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
+{
+#define MAX 100
+	int b[MAX];
+	int nb = MAX;
+	register int i;
+	register int j;
+	int lefta;
+	int righta;
+	int leftb;
+	int rightb;
+	int starta;
+	int startb;
+	register int stopa;
+	register int stopb;
+
+	assert(n > 0);
+	assert(nb > 0);
+	assert((0 < jump) && (jump < n));
+	assert(n <= nb);
+
+	ari_setall(b, nb, -1);
+
+	// define range of array
+	lefta = 0;
+	righta = n - 1;
+	leftb = 0;
+	rightb = n - 1;
+
+	// define start .. stop loop index i and j
+	starta = lefta;
+	stopa = righta - jump;
+	startb = lefta + jump;
+	stopb = righta;
+	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
+		assert((lefta <= i) &&(i <= righta));
+		assert((leftb <= j) && (j <= rightb));
+
+		b[j] = a[i];
+	}
+
+	// define start .. stop loop index i and j
+	starta = (righta - jump) + 1;
+	stopa = righta;
+	startb = lefta;
+	stopb = lefta + (jump - 1);
+	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
+		assert((lefta <= i) &&(i <= righta));
+		assert((leftb <= j) && (j <= rightb));
+
+		b[j] = a[i];
+	}
+
+	//define start .. stop loop
+	startb = lefta;
+	stopb = righta;
+	for (j = startb; j <= stopb; ++j) {
+		assert((leftb <= j) && (j <= rightb));
+
+		a[j] = b[j];
 	}
 }
 
@@ -1301,6 +1361,33 @@ void test_lrotatncopy(void)
 	ari_print(a, n, "a[linear-lr7]");
 }
 
+
+// right rotatn usecopy test funtion
+void test_rrotatncopy(void)
+{
+	int a[10], b[10], c[10];
+	int n = 10;
+
+	ari_setall_linear(a, n);
+	ari_setall_even(b, n);
+	ari_setall_odd(c, n);
+	ari_print(a, n, "a[]");
+	ari_print(b, n, "b[]");
+	ari_print(c, n, "c[]");
+
+	ari_rrotatn_usecopy(a, n, 1);
+	ari_rrotatn_usecopy(b, n, 2);
+	ari_rrotatn_usecopy(c, n, n-1);
+	ari_print(a, n, "a[linear-rr1]");
+	ari_print(b, n, "b[even-rr2]");
+	ari_print(c, n, "c[odd-rr9]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+	ari_rrotatn_usecopy(a, n, 7);
+	ari_print(a, n, "a[linear-rr7]");
+}
+
 static void test_ari_general(bool noisy)
 {
 #define dbg if (noisy)
@@ -1329,6 +1416,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_lrotatn_usecopy";
 	test_start(fname);
 	test_lrotatncopy();
+	test_end(fname);
+
+	fname = "ari_rrotatn_usecopy";
+	test_start(fname);
+	test_rrotatncopy();
 	test_end(fname);
 
 	fname = "ari_rotatn";
