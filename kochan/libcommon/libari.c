@@ -7,14 +7,7 @@
 
 #include "libari.h"
 
-#define withini_lele(a, i, b) assert( ((a) <= (i)) && ((i) <= (b)) )
-#define withinj_lele(a, j, b) assert( ((a) <= (j)) && ((j) <= (b)) )
-#if 0
-#define within_lelt(a, i, b) within_lele(a, i, ((b)-1)) 
-#define within_ltle(a, i, b) assert( ((a) <  (i)) && ((i) <= (b)) )
-#define within_ltlt(a, i, b) assert( ((a) <  (i)) && ((i) <  (b)) )
-
-#endif
+#define within_lele(a, x, b) assert( ((a) <= (x)) && ((x) <= (b)) )
 
 #if 0
 void arT_setall(TYPE a[], int n, TYPE val);
@@ -1159,10 +1152,10 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	startb = lefta + jump;
 	stopb = righta;
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
-		withini_lele(lefta, i, righta);
-		withini_lele(lefta, i, stopa);
-		withinj_lele(leftb, j, rightb);
-		withinj_lele(lefta, j, stopb);
+		within_lele(lefta, i, righta);
+		within_lele(lefta, i, stopa);
+		within_lele(leftb, j, rightb);
+		within_lele(lefta, j, stopb);
 
 		b[j] = a[i];
 	}
@@ -1180,10 +1173,10 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	startb = lefta;
 	stopb = lefta + (jump - 1);
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
-		withini_lele(lefta, i, righta);
-		withini_lele(lefta, i, stopa);
-		withinj_lele(leftb, j, rightb);
-		withinj_lele(lefta, j, stopb);
+		within_lele(lefta, i, righta);
+		within_lele(lefta, i, stopa);
+		within_lele(leftb, j, rightb);
+		within_lele(lefta, j, stopb);
 
 		b[j] = a[i];
 	}
@@ -1199,9 +1192,8 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	startb = lefta;
 	stopb = righta;
 	for (j = startb; j <= stopb; ++j) {
-		withinj_lele(leftb, j, rightb);
-		withinj_lele(lefta, j, righta);
-		assert((leftb <= j) && (j <= rightb));
+		within_lele(leftb, j, rightb);
+		within_lele(lefta, j, righta);
 
 		a[j] = b[j];
 	}
