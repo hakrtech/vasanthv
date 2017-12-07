@@ -12,7 +12,9 @@
 /^#include[ 	]*</	{ stop_printing = 1; }
 /^[ 	]*printf/	{ stop_printing = 1; }
 # ignore int a;
-/^[ 	][ 	]*int [a-z][_a-z0-9]*\;/	{ stop_printing = 1; }
+/^[ 	][ 	]*int[ 	][ 	]*[a-z][_a-z0-9]*\;/				{ stop_printing = 1; }
+# ignore register int a;
+/^[ 	][ 	]*register[ 	][ 	]*int[ 	][ 	]*[a-z][_a-z0-9]*\;/	{ stop_printing = 1; }
 # ignore return 0
 /^[ 	][ 	]*return[ 	]0\;/		{ stop_printing = 1; }
 /./			{ if (!comment_inside) {
