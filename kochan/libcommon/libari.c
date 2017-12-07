@@ -7,6 +7,15 @@
 
 #include "libari.h"
 
+#define withini_lele(a, i, b) assert( ((a) <= (i)) && ((i) <= (b)) )
+#define withinj_lele(a, j, b) assert( ((a) <= (j)) && ((j) <= (b)) )
+#if 0
+#define within_lelt(a, i, b) within_lele(a, i, ((b)-1)) 
+#define within_ltle(a, i, b) assert( ((a) <  (i)) && ((i) <= (b)) )
+#define within_ltlt(a, i, b) assert( ((a) <  (i)) && ((i) <  (b)) )
+
+#endif
+
 #if 0
 void arT_setall(TYPE a[], int n, TYPE val);
 void ard_setall(double a[], int n, double val);
@@ -1075,6 +1084,10 @@ void ari_lrotatn_usecopy(int a[], int n, int jump)
 	}
 }
 
+void ari_lrotatn_reverse(int a[], int n, int jump)
+{
+}
+
 void ari_range_lrotatn_usecopy(int a[], int n, int rstart, int rend, int jump)
 {
 }
@@ -1117,6 +1130,7 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	int startb;
 	register int stopa;
 	register int stopb;
+	bool debug = false;
 
 	assert(n > 0);
 	assert(nb > 0);
@@ -1125,6 +1139,12 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 
 	ari_setall(b, nb, -1);
 
+	if (debug) {
+		printf("DEBUG: ari_rrotatn_usecopy: before copy1\n");
+		ari_print(a, n, "a[]");
+		ari_print(b, n, "b[]");
+	}
+
 	// define range of array
 	lefta = 0;
 	righta = n - 1;
@@ -1132,36 +1152,64 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	rightb = n - 1;
 
 	// define start .. stop loop index i and j
+	// copy range a[begin..end-jump] to b[begin+jump..end]
+	// copy range a[b..e-j] to b[b+j..e]
 	starta = lefta;
 	stopa = righta - jump;
 	startb = lefta + jump;
 	stopb = righta;
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
-		assert((lefta <= i) &&(i <= righta));
-		assert((leftb <= j) && (j <= rightb));
+		withini_lele(lefta, i, righta);
+		withini_lele(lefta, i, stopa);
+		withinj_lele(leftb, j, rightb);
+		withinj_lele(lefta, j, stopb);
 
 		b[j] = a[i];
 	}
 
+	if (debug) {
+		printf("DEBUG: ari_rrotatn_usecopy: after copy1\n");
+		ari_print(a, n, "a[]");
+		ari_print(b, n, "b[]");
+	}
+
 	// define start .. stop loop index i and j
+	// copy range a[e-j+1..e] to b[b..b+j-1]
 	starta = (righta - jump) + 1;
 	stopa = righta;
 	startb = lefta;
 	stopb = lefta + (jump - 1);
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
-		assert((lefta <= i) &&(i <= righta));
-		assert((leftb <= j) && (j <= rightb));
+		withini_lele(lefta, i, righta);
+		withini_lele(lefta, i, stopa);
+		withinj_lele(leftb, j, rightb);
+		withinj_lele(lefta, j, stopb);
 
 		b[j] = a[i];
 	}
 
+	if (debug) {
+		printf("DEBUG: ari_rrotatn_usecopy: after copy2\n");
+		ari_print(a, n, "a[]");
+		ari_print(b, n, "b[]");
+	}
+
 	//define start .. stop loop
+	//copy range b[b..e] to a[b..e]
 	startb = lefta;
 	stopb = righta;
 	for (j = startb; j <= stopb; ++j) {
+		withinj_lele(leftb, j, rightb);
+		withinj_lele(lefta, j, righta);
 		assert((leftb <= j) && (j <= rightb));
 
 		a[j] = b[j];
+	}
+
+	if (debug) {
+		printf("DEBUG: ari_rrotatn_usecopy: after copy3\n");
+		ari_print(a, n, "a[]");
+		ari_print(b, n, "b[]");
 	}
 }
 
