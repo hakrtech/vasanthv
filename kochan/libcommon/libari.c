@@ -1014,34 +1014,45 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend) // OKR
 	a[rstart] = val;
 }
 
-void ari_lrotatn_using_copybuf(int a[], int n, int jump)
+void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int jump)
 {
+
+	// define range
+	// lefta = 0;
+	// righta = n - 1;
+	// leftb = 0;
+	// rightb = nb - 1;
+
 #define MAX 100
 	int b[MAX];
 	int nb = MAX;
 	register int i;
 	register int j;
-	int lefta;
-	int righta;
-	int leftb;
-	int rightb;
+	// int lefta;
+	// int righta;
+	// int leftb;
+	// int rightb;
 	int starta;
 	int startb;
 	register int stopa;
 	register int stopb;
+	int rlen;
+	bool debug = true;
 
 	assert(n > 0);
 	assert(nb > 0);
-	assert((0 < jump) && (jump < n));
-	assert(n <= nb);
+
+	rlen = (righta - lefta) + 1; /* length of range a[] */
+	assert((0 < jump) && (jump < rlen));
+	assert(rlen <= nb);
 
 	ari_setall(b, nb, -1);
 
-	// define range
-	lefta = 0;
-	righta = n - 1;
-	leftb = 0;
-	rightb = nb - 1;
+	if (debug) {
+		printf("DEBUG: ari_range_lrotatn_using_copybuf: before copy1\n");
+		ari_print(a, n, "a[]");
+		ari_print(b, rlen, "b[]");
+	}
 
 	// define start .. stop loop
 	starta = lefta;
@@ -1050,9 +1061,15 @@ void ari_lrotatn_using_copybuf(int a[], int n, int jump)
 	stopb = righta;
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
 		assert((lefta <= i) &&(i <= righta));
-		assert((leftb <= j) && (j <= rightb));
+		// assert((leftb <= j) && (j <= rightb));
 
 		b[j] = a[i];
+	}
+
+	if (debug) {
+		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy1\n");
+		ari_print(a, n, "a[]");
+		ari_print(b, rlen, "b[]");
 	}
 
 	//define start .. stop loop
@@ -1062,26 +1079,42 @@ void ari_lrotatn_using_copybuf(int a[], int n, int jump)
 	stopb = righta - jump;
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
 		assert((lefta <= i) &&(i <= righta));
-		assert((leftb <= j) && (j <= rightb));
+		// assert((leftb <= j) && (j <= rightb));
 
 		b[j] = a[i];
 	}
 
-	//define start .. stop loop
+	if (debug) {
+		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy2\n");
+		ari_print(a, n, "a[]");
+		ari_print(b, rlen, "b[]");
+	}
+
+	// define start .. stop loop
 	startb = lefta;
 	stopb = righta;
 	for (j = startb; j <= stopb; ++j) {
-		assert((leftb <= j) && (j <= rightb));
+		// assert((leftb <= j) && (j <= rightb));
 
 		a[j] = b[j];
 	}
+
+	if (debug) {
+		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy3\n");
+		ari_print(a, n, "a[]");
+		ari_print(b, rlen, "b[]");
+	}
+
+}
+
+void ari_lrotatn_using_copybuf(int a[], int n, int jump)
+{
+	assert(n > 0);
+
+	ari_range_lrotatn_using_copybuf(a, n, 0, n-1, jump);
 }
 
 void ari_lrotatn_using_reverse(int a[], int n, int jump)
-{
-}
-
-void ari_range_lrotatn_using_copybuf(int a[], int n, int rstart, int rend, int jump)
 {
 }
 
@@ -1381,7 +1414,7 @@ void test_rshift(void)
 }
 
 // left rotatn using_copybuf test funtion
-void test_lrotatncopy(void)
+void test_lrotatncopybuf(void)
 {
 	int a[10], b[10], c[10];
 	int n = 10;
@@ -1395,17 +1428,16 @@ void test_lrotatncopy(void)
 
 	ari_lrotatn_using_copybuf(a, n, 1);
 	ari_lrotatn_using_copybuf(b, n, 2);
-	ari_lrotatn_using_copybuf(c, n, n-1);
-	ari_print(a, n, "a[linear-lr1]");
-	ari_print(b, n, "b[even-lr2]");
-	ari_print(c, n, "c[odd-lr9]");
+	ari_range_lrotatn_using_copybuf(c, n, 5, 8, 2);
+	ari_print(a, n, "a[lr1]");
+	ari_print(b, n, "b[lr2]");
+	ari_print(c, n, "c[lr9]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
-	ari_lrotatn_using_copybuf(a, n, 7);
-	ari_print(a, n, "a[linear-lr7]");
+	ari_range_lrotatn_using_copybuf(a, n, 0, 6, 5);
+	ari_print(a, n, "a[lr7]");
 }
-
 
 // right rotatn using_copybuf test funtion
 void test_rrotatncopy(void)
@@ -1423,14 +1455,14 @@ void test_rrotatncopy(void)
 	ari_rrotatn_using_copybuf(a, n, 1);
 	ari_rrotatn_using_copybuf(b, n, 2);
 	ari_rrotatn_using_copybuf(c, n, n-1);
-	ari_print(a, n, "a[linear-rr1]");
-	ari_print(b, n, "b[even-rr2]");
-	ari_print(c, n, "c[odd-rr9]");
+	ari_print(a, n, "a[rr1]");
+	ari_print(b, n, "b[rr2]");
+	ari_print(c, n, "c[rr9]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 	ari_rrotatn_using_copybuf(a, n, 7);
-	ari_print(a, n, "a[linear-rr7]");
+	ari_print(a, n, "a[rr7]");
 }
 
 static void test_ari_general(bool noisy)
@@ -1458,9 +1490,9 @@ static void test_ari_general(bool noisy)
 	test_factor();
 	test_end(fname);
 
-	fname = "ari_lrotatn_using_copybuf";
+	fname = "ari_range_lrotatn_using_copybuf";
 	test_start(fname);
-	test_lrotatncopy();
+	test_lrotatncopybuf();
 	test_end(fname);
 
 	fname = "ari_rrotatn_using_copybuf";
