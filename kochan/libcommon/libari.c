@@ -20,7 +20,11 @@ void arc_setall(char a[], int n, char val);
 // #define TYPE char
 // #define TYPE long
 // #define TYPE double
+
 #define TYPE int
+#define LOOPER register int
+#define SIZE int
+#define POS int
 
 void ari_setall(TYPE a[], int n, TYPE val) // OKR
 {
@@ -357,12 +361,12 @@ int  ari_getmax(int a[], int n) // OKR
 	return maxval;
 }
 
-int ari_range_getmax(int a[], int na, int rstart, int rend)
+int ari_range_getmax(TYPE a[], SIZE na, POS rstart, POS rend)
 {
-	register int i;
-	register int maxval;
-	int start;
-	register int end;
+	TYPE maxval;
+	LOOPER i;
+	POS start;
+	POS end;
 
 	assert(na > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < na));
@@ -374,10 +378,8 @@ int ari_range_getmax(int a[], int na, int rstart, int rend)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int v = a[i];
-
-		if (v > maxval) {
-			maxval = v;
+		if (a[i] > maxval) {
+			maxval = a[i];
 		}
 	}
 
@@ -413,10 +415,8 @@ int ari_range_getmin(int a[], int na, int rstart, int rend)
 	end = rend;
 
 	for (i = rstart; i <= rend; ++i) {
-		register int v = a[i];
-
-		if (v < minval) {
-			minval = v;
+		if (a[i] < minval) {
+			minval = a[i];
 		}
 	}
 
@@ -1014,7 +1014,7 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend) // OKR
 	a[rstart] = val;
 }
 
-void ari_lrotatn_usecopy(int a[], int n, int jump)
+void ari_lrotatn_using_copybuf(int a[], int n, int jump)
 {
 #define MAX 100
 	int b[MAX];
@@ -1077,15 +1077,15 @@ void ari_lrotatn_usecopy(int a[], int n, int jump)
 	}
 }
 
-void ari_lrotatn_reverse(int a[], int n, int jump)
+void ari_lrotatn_using_reverse(int a[], int n, int jump)
 {
 }
 
-void ari_range_lrotatn_usecopy(int a[], int n, int rstart, int rend, int jump)
+void ari_range_lrotatn_using_copybuf(int a[], int n, int rstart, int rend, int jump)
 {
 }
 
-void ari_range_lrotatn_reverse(int a[], int n, int rstart, int rend, int jump); // TODO
+void ari_range_lrotatn_using_reverse(int a[], int n, int rstart, int rend, int jump); // TODO
 void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
 void ari_range_lrotatn_repeat_rotat1(int a[], int n, int rstart, int rend, int jump); // DONE
 void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
@@ -1108,7 +1108,7 @@ void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
 	}
 }
 
-void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
+void ari_rrotatn_using_copybuf(int a[], int n, int jump) // NEW
 {
 #define MAX 100
 	int b[MAX];
@@ -1133,7 +1133,7 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	ari_setall(b, nb, -1);
 
 	if (debug) {
-		printf("DEBUG: ari_rrotatn_usecopy: before copy1\n");
+		printf("DEBUG: ari_rrotatn_using_copybuf: before copy1\n");
 		ari_print(a, n, "a[]");
 		ari_print(b, n, "b[]");
 	}
@@ -1151,6 +1151,11 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	stopa = righta - jump;
 	startb = lefta + jump;
 	stopb = righta;
+
+	/* copy range a[lefta      .. righta-jump]
+	   to   range b[lefta+jump .. righta]
+	 */
+
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
 		within_lele(lefta, i, righta);
 		within_lele(lefta, i, stopa);
@@ -1161,7 +1166,7 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	}
 
 	if (debug) {
-		printf("DEBUG: ari_rrotatn_usecopy: after copy1\n");
+		printf("DEBUG: ari_rrotatn_using_copybuf: after copy1\n");
 		ari_print(a, n, "a[]");
 		ari_print(b, n, "b[]");
 	}
@@ -1182,7 +1187,7 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	}
 
 	if (debug) {
-		printf("DEBUG: ari_rrotatn_usecopy: after copy2\n");
+		printf("DEBUG: ari_rrotatn_using_copybuf: after copy2\n");
 		ari_print(a, n, "a[]");
 		ari_print(b, n, "b[]");
 	}
@@ -1199,13 +1204,13 @@ void ari_rrotatn_usecopy(int a[], int n, int jump) // NEW
 	}
 
 	if (debug) {
-		printf("DEBUG: ari_rrotatn_usecopy: after copy3\n");
+		printf("DEBUG: ari_rrotatn_using_copybuf: after copy3\n");
 		ari_print(a, n, "a[]");
 		ari_print(b, n, "b[]");
 	}
 }
 
-void ari_range_rrotatn_usecopy(int a[], int n, int rstart, int rend, int jump) // NEW
+void ari_range_rrotatn_using_copybuf(int a[], int n, int rstart, int rend, int jump) // NEW
 {
 }
 
@@ -1375,7 +1380,7 @@ void test_rshift(void)
 	ari_print(b, n, "b[rsh9]");
 }
 
-// left rotatn usecopy test funtion
+// left rotatn using_copybuf test funtion
 void test_lrotatncopy(void)
 {
 	int a[10], b[10], c[10];
@@ -1388,21 +1393,21 @@ void test_lrotatncopy(void)
 	ari_print(b, n, "b[]");
 	ari_print(c, n, "c[]");
 
-	ari_lrotatn_usecopy(a, n, 1);
-	ari_lrotatn_usecopy(b, n, 2);
-	ari_lrotatn_usecopy(c, n, n-1);
+	ari_lrotatn_using_copybuf(a, n, 1);
+	ari_lrotatn_using_copybuf(b, n, 2);
+	ari_lrotatn_using_copybuf(c, n, n-1);
 	ari_print(a, n, "a[linear-lr1]");
 	ari_print(b, n, "b[even-lr2]");
 	ari_print(c, n, "c[odd-lr9]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
-	ari_lrotatn_usecopy(a, n, 7);
+	ari_lrotatn_using_copybuf(a, n, 7);
 	ari_print(a, n, "a[linear-lr7]");
 }
 
 
-// right rotatn usecopy test funtion
+// right rotatn using_copybuf test funtion
 void test_rrotatncopy(void)
 {
 	int a[10], b[10], c[10];
@@ -1415,16 +1420,16 @@ void test_rrotatncopy(void)
 	ari_print(b, n, "b[]");
 	ari_print(c, n, "c[]");
 
-	ari_rrotatn_usecopy(a, n, 1);
-	ari_rrotatn_usecopy(b, n, 2);
-	ari_rrotatn_usecopy(c, n, n-1);
+	ari_rrotatn_using_copybuf(a, n, 1);
+	ari_rrotatn_using_copybuf(b, n, 2);
+	ari_rrotatn_using_copybuf(c, n, n-1);
 	ari_print(a, n, "a[linear-rr1]");
 	ari_print(b, n, "b[even-rr2]");
 	ari_print(c, n, "c[odd-rr9]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
-	ari_rrotatn_usecopy(a, n, 7);
+	ari_rrotatn_using_copybuf(a, n, 7);
 	ari_print(a, n, "a[linear-rr7]");
 }
 
@@ -1453,12 +1458,12 @@ static void test_ari_general(bool noisy)
 	test_factor();
 	test_end(fname);
 
-	fname = "ari_lrotatn_usecopy";
+	fname = "ari_lrotatn_using_copybuf";
 	test_start(fname);
 	test_lrotatncopy();
 	test_end(fname);
 
-	fname = "ari_rrotatn_usecopy";
+	fname = "ari_rrotatn_using_copybuf";
 	test_start(fname);
 	test_rrotatncopy();
 	test_end(fname);
