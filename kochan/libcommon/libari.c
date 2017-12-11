@@ -1116,6 +1116,44 @@ void ari_lrotatn_using_copybuf(int a[], int n, int jump)
 
 void ari_lrotatn_using_reverse(int a[], int n, int jump)
 {
+	int start;
+	int end;
+	bool debug = true;
+
+	assert(n > 0);
+	assert((0 < jump) && (jump < n));
+
+	// define range
+	start = 0;
+	end = n - 1;
+
+	ari_reverse(a, n);
+
+	if (debug) {
+		printf("DEBUG: ari_lrotatn_using_reverse: before copy1\n");
+		ari_print(a, n, "[]");
+	}
+
+	if (jump == 1) {
+		ari_range_reverse(a, n, start, end-jump);
+	}
+	if (jump == end) {
+		ari_range_reverse(a, n, start+1, end);
+	}
+
+	if ((1 < jump) && (jump < end)) {
+		ari_range_reverse(a, n, start, end-jump);
+		if (debug) {
+			printf("DEBUG: ari_lrotatn_using_reverse: after copy1\n");
+			ari_print(a, n, "[]");
+		}
+
+		ari_range_reverse(a, n, (end-jump)+1, end);
+		if (debug) {
+			printf("DEBUG: ari_lrotatn_using_reverse: after copy2\n");
+			ari_print(a, n, "[]");
+		}
+	}
 }
 
 void ari_range_lrotatn_using_reverse(int a[], int n, int rstart, int rend, int jump); // TODO
@@ -1468,6 +1506,29 @@ void test_rrotatncopybuf(void)
 	ari_print(a, n, "a[0-6rr5]");
 }
 
+// left rotatn using_reverse test funtion
+void test_lrotatn_reverse(void)
+{
+	int a[10], b[10], c[10];
+	int n = 10;
+
+	ari_setall_linear(a, n);
+	ari_setall_even(b, n);
+	ari_setall_odd(c, n);
+
+	ari_print(a, n, "a[]");
+	ari_lrotatn_using_reverse(a, n, 1);
+	ari_print(a, n, "a[lr1]");
+
+	ari_print(b, n, "b[]");
+	ari_lrotatn_using_reverse(b, n, 5);
+	ari_print(b, n, "b[lr5]");
+
+	ari_print(c, n, "c[]");
+	ari_lrotatn_using_reverse(c, n, 9);
+	ari_print(c, n, "c[lr9]");
+}
+
 static void test_ari_general(bool noisy)
 {
 #define dbg if (noisy)
@@ -1501,6 +1562,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_rrotatn_using_copybuf";
 	test_start(fname);
 	test_rrotatncopybuf();
+	test_end(fname);
+
+	fname = "ari_lrotatn_using_reverse";
+	test_start(fname);
+	test_lrotatn_reverse();
 	test_end(fname);
 
 	fname = "ari_rotatn";
