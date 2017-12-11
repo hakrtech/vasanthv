@@ -169,6 +169,8 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend); // DONE
 void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump); // DONE
 void ari_range_rrotatn(int a[], int n, int rstart, int rend, int jump); // DONE
 void ari_rrotatn_using_copybuf(int a[], int n, int jump); // DONE
+void ari_rrotatn_using_reverse(int a[], int n, int jump); // NEW
+void ari_range_rrotatn_using_copybuf(int a[], int n, int lefta, int righta, int jump); // DONE
 
 // a[] += k 
 void ari_addk(int a[], int n, int k); // DONE
