@@ -1128,26 +1128,21 @@ void ari_lrotatn_using_reverse(int a[], int n, int jump)
 	end = n - 1;
 
 	ari_reverse(a, n);
-
 	if (debug) {
 		printf("DEBUG: ari_lrotatn_using_reverse: before copy1\n");
 		ari_print(a, n, "[]");
 	}
 
-	if (jump == end) {
-		ari_range_reverse(a, n, start+1, end);
-	} else {
-		ari_range_reverse(a, n, start, end-jump);
-		if (debug) {
-			printf("DEBUG: ari_lrotatn_using_reverse: after copy1\n");
-			ari_print(a, n, "[]");
-		}
+	ari_range_reverse(a, n, start, end-jump);
+	if (debug) {
+		printf("DEBUG: ari_lrotatn_using_reverse: after copy1\n");
+		ari_print(a, n, "[]");
+	}
 
-		ari_range_reverse(a, n, (end-jump)+1, end);
-		if (debug) {
-			printf("DEBUG: ari_lrotatn_using_reverse: after copy2\n");
-			ari_print(a, n, "[]");
-		}
+	ari_range_reverse(a, n, (end-jump)+1, end);
+	if (debug) {
+		printf("DEBUG: ari_lrotatn_using_reverse: after copy2\n");
+		ari_print(a, n, "[]");
 	}
 }
 
