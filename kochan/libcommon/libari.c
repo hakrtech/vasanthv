@@ -1016,28 +1016,19 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend) // OKR
 
 void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int jump)
 {
-
-	// define range
-	// lefta = 0;
-	// righta = n - 1;
-	// leftb = 0;
-	// rightb = nb - 1;
-
 #define MAX 100
 	int b[MAX];
 	int nb = MAX;
 	register int i;
 	register int j;
-	// int lefta;
-	// int righta;
-	// int leftb;
-	// int rightb;
+	int leftb;
+	int rightb;
 	int starta;
 	int startb;
 	register int stopa;
 	register int stopb;
 	int rlen;
-	bool debug = true;
+	bool debug = false;
 
 	assert(n > 0);
 	assert(nb > 0);
@@ -1047,6 +1038,8 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	assert(rlen <= nb);
 
 	ari_setall(b, nb, -1);
+	leftb = 0;
+	rightb = nb - 1;
 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: before copy1\n");
@@ -1055,13 +1048,16 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	}
 
 	// define start .. stop loop
+	// copy range a[b..b+j-1] to b[e-j+1..e]
 	starta = lefta;
 	stopa = lefta + (jump - 1);
 	startb = (righta - jump) + 1;
 	stopb = righta;
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
-		assert((lefta <= i) &&(i <= righta));
-		// assert((leftb <= j) && (j <= rightb));
+		within_lele(lefta, i, righta);
+		within_lele(lefta, i, stopa);
+		within_lele(leftb, j, rightb);
+		within_lele(lefta, j, stopb);
 
 		b[j] = a[i];
 	}
@@ -1073,13 +1069,16 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	}
 
 	//define start .. stop loop
+	// copy range a[b+j..e] to b[b..e-j]
 	starta = lefta + jump;
 	stopa = righta;
 	startb = lefta;
 	stopb = righta - jump;
 	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
-		assert((lefta <= i) &&(i <= righta));
-		// assert((leftb <= j) && (j <= rightb));
+		within_lele(lefta, i, righta);
+		within_lele(lefta, i, stopa);
+		within_lele(leftb, j, rightb);
+		within_lele(lefta, j, stopb);
 
 		b[j] = a[i];
 	}
@@ -1091,10 +1090,12 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	}
 
 	// define start .. stop loop
+	// copy b[b..e] to a[b..e]
 	startb = lefta;
 	stopb = righta;
 	for (j = startb; j <= stopb; ++j) {
-		// assert((leftb <= j) && (j <= rightb));
+		within_lele(leftb, j, rightb);
+		within_lele(lefta, j, righta);
 
 		a[j] = b[j];
 	}
@@ -1104,7 +1105,6 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 		ari_print(a, n, "a[]");
 		ari_print(b, rlen, "b[]");
 	}
-
 }
 
 void ari_lrotatn_using_copybuf(int a[], int n, int jump)
@@ -1422,21 +1422,23 @@ void test_lrotatncopybuf(void)
 	ari_setall_linear(a, n);
 	ari_setall_even(b, n);
 	ari_setall_odd(c, n);
-	ari_print(a, n, "a[]");
-	ari_print(b, n, "b[]");
-	ari_print(c, n, "c[]");
 
+	ari_print(a, n, "a[]");
 	ari_lrotatn_using_copybuf(a, n, 1);
-	ari_lrotatn_using_copybuf(b, n, 2);
-	ari_range_lrotatn_using_copybuf(c, n, 5, 8, 2);
 	ari_print(a, n, "a[lr1]");
-	ari_print(b, n, "b[lr2]");
-	ari_print(c, n, "c[lr9]");
+
+	ari_print(b, n, "b[]");
+	ari_lrotatn_using_copybuf(b, n, 3);
+	ari_print(b, n, "b[lr3]");
+
+	ari_print(c, n, "c[range 5-8 lr]");
+	ari_range_lrotatn_using_copybuf(c, n, 5, 8, 2);
+	ari_print(c, n, "c[5-8lr2]");
 
 	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
+	ari_print(a, n, "a[range 0-6 lr]");
 	ari_range_lrotatn_using_copybuf(a, n, 0, 6, 5);
-	ari_print(a, n, "a[lr7]");
+	ari_print(a, n, "a[0-6lr5]");
 }
 
 // right rotatn using_copybuf test funtion
@@ -1490,7 +1492,7 @@ static void test_ari_general(bool noisy)
 	test_factor();
 	test_end(fname);
 
-	fname = "ari_range_lrotatn_using_copybuf";
+	fname = "ari_lrotatn_using_copybuf";
 	test_start(fname);
 	test_lrotatncopybuf();
 	test_end(fname);
