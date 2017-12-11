@@ -1118,7 +1118,7 @@ void ari_lrotatn_using_reverse(int a[], int n, int jump)
 {
 	int start;
 	int end;
-	bool debug = true;
+	bool debug = false;
 
 	assert(n > 0);
 	assert((0 < jump) && (jump < n));
@@ -1134,14 +1134,9 @@ void ari_lrotatn_using_reverse(int a[], int n, int jump)
 		ari_print(a, n, "[]");
 	}
 
-	if (jump == 1) {
-		ari_range_reverse(a, n, start, end-jump);
-	}
 	if (jump == end) {
 		ari_range_reverse(a, n, start+1, end);
-	}
-
-	if ((1 < jump) && (jump < end)) {
+	} else {
 		ari_range_reverse(a, n, start, end-jump);
 		if (debug) {
 			printf("DEBUG: ari_lrotatn_using_reverse: after copy1\n");
