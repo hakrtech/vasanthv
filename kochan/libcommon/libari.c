@@ -1116,39 +1116,50 @@ void ari_lrotatn_using_copybuf(int a[], int n, int jump)
 	ari_range_lrotatn_using_copybuf(a, n, 0, n-1, jump);
 }
 
-void ari_lrotatn_using_reverse(int a[], int n, int jump)
+void ari_range_lrotatn_using_reverse(int a[], int n, int rstart, int rend, int jump)
 {
 	int start;
 	int end;
+	int rlen;
 	bool debug = false;
 
+
 	assert(n > 0);
-	assert((0 < jump) && (jump < n));
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	rlen = (rend - rstart) + 1; /* length of range */
+	assert((0 < jump) && (jump < rlen));
 
 	// define range
-	start = 0;
-	end = n - 1;
+	start = rstart;
+	end = rend;
 
-	ari_reverse(a, n);
+	ari_range_reverse(a, n, start, end);
 	if (debug) {
 		printf("DEBUG: ari_lrotatn_using_reverse: before copy1\n");
-		ari_print(a, n, "[]");
+		ari_range_print(a, n, start, end);
 	}
 
 	ari_range_reverse(a, n, start, end-jump);
 	if (debug) {
 		printf("DEBUG: ari_lrotatn_using_reverse: after copy1\n");
-		ari_print(a, n, "[]");
+		ari_range_print(a, n, start, end);
 	}
 
 	ari_range_reverse(a, n, (end-jump)+1, end);
 	if (debug) {
 		printf("DEBUG: ari_lrotatn_using_reverse: after copy2\n");
-		ari_print(a, n, "[]");
+		ari_range_print(a, n, start, end);
 	}
 }
 
-void ari_range_lrotatn_using_reverse(int a[], int n, int rstart, int rend, int jump); // TODO
+void ari_lrotatn_using_reverse(int a[], int n, int jump)
+{
+	assert(n > 0);
+
+	ari_range_lrotatn_using_reverse(a, n, 0, n-1, jump);
+}
+
 void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
 void ari_range_lrotatn_repeat_rotat1(int a[], int n, int rstart, int rend, int jump); // DONE
 void ari_range_lrotatn(int a[], int n, int rstart, int rend, int jump) // OKR
@@ -1282,7 +1293,7 @@ void ari_rrotatn_using_reverse(int a[], int n, int jump) // NEW
 {
 	int start;
 	int end;
-	bool debug = true;
+	bool debug = false;
 
 	assert(n > 0);
 	assert((0 < jump) && (jump < n));
@@ -1549,9 +1560,14 @@ void test_lrotatn_reverse(void)
 	ari_lrotatn_using_reverse(b, n, 5);
 	ari_print(b, n, "b[lr5]");
 
-	ari_print(c, n, "c[]");
-	ari_lrotatn_using_reverse(c, n, 9);
-	ari_print(c, n, "c[lr9]");
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[range 2-8 lr]");
+	ari_range_lrotatn_using_reverse(a, n, 2, 8, 3);
+	ari_print(a, n, "a[2-8lr3]");
+
+	ari_print(c, n, "c[range 0-5 lr]");
+	ari_range_lrotatn_using_reverse(c, n, 0, 5, 2);
+	ari_print(c, n, "c[0-5 lr2]");
 }
 
 // right rotatn using_reverse test funtion
