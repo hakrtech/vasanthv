@@ -119,7 +119,7 @@ void ari_setall_even(int a[], int n) // OKR
 }
 
 // a[rstart..rend] = same
-void ari_range_set_even(int a[], int n, int rstart, int rend)
+void ari_range_set_even(int a[], int n, int rstart, int rend) // OKR
 {
 	register int i;
 	int start;
@@ -147,7 +147,7 @@ void ari_setall_odd(int a[], int n) // OKR
 }
 
 // a[rstart..rend] = same
-void ari_range_set_odd(int a[], int n, int rstart, int rend)
+void ari_range_set_odd(int a[], int n, int rstart, int rend) // OKR
 {
 	register int i;
 	int start;
@@ -194,7 +194,7 @@ void ari_print_format(int a[], int n, char leading, char trailing, char separato
 }
 
 // print a[rstart..rend] with format characters
-void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator)
+void ari_range_print_format(int a[], int n, int rstart, int rend, char leading, char trailing, char separator) // OKR
 {
 	register int i;
 	int start;
@@ -247,7 +247,7 @@ void ari_divk(int a[], int n, int k) // OKR
 }
 
 // similarly for range
-void ari_range_addk(int a[], int n, int rstart, int rend, int k)
+void ari_range_addk(int a[], int n, int rstart, int rend, int k) // OKR
 {
 	register int i;
 	int start;
@@ -264,7 +264,7 @@ void ari_range_addk(int a[], int n, int rstart, int rend, int k)
 	}
 }
 
-void ari_range_subk(int a[], int n, int rstart, int rend, int k)
+void ari_range_subk(int a[], int n, int rstart, int rend, int k) // OKR
 {
 	register int i;
 	int start;
@@ -281,7 +281,7 @@ void ari_range_subk(int a[], int n, int rstart, int rend, int k)
 	}
 }
 
-void ari_range_mulk(int a[], int n, int rstart, int rend, int k)
+void ari_range_mulk(int a[], int n, int rstart, int rend, int k) // OKR
 {
 	register int i;
 	int start;
@@ -298,7 +298,7 @@ void ari_range_mulk(int a[], int n, int rstart, int rend, int k)
 	}
 }
 
-void ari_range_divk(int a[], int n, int rstart, int rend, int k)
+void ari_range_divk(int a[], int n, int rstart, int rend, int k) // OKR
 {
 	register int i;
 	int start;
@@ -341,7 +341,7 @@ int  ari_range_sum(int a[], int n, int rstart, int rend)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int val = a[i];
+		register int val = a[i]; // IMP
 
 		sum += val;
 	}
@@ -361,7 +361,7 @@ int  ari_getmax(int a[], int n) // OKR
 	return maxval;
 }
 
-int ari_range_getmax(TYPE a[], SIZE na, POS rstart, POS rend)
+int ari_range_getmax(TYPE a[], SIZE na, POS rstart, POS rend) // OKR
 {
 	TYPE maxval;
 	LOOPER i;
@@ -398,7 +398,7 @@ int  ari_getmin(int a[], int n) // OKR
 	return minval;
 }
 
-int ari_range_getmin(int a[], int na, int rstart, int rend)
+int ari_range_getmin(int a[], int na, int rstart, int rend) // OKR
 {
 	register int i;
 	register int minval;
@@ -437,7 +437,7 @@ int ari_range_getpos(int a[], int na, int rstart, int rend, int val)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int v = a[i];
+		register int v = a[i]; // IMP
 
 		if (v == val) {
 			pos = i;
@@ -533,7 +533,7 @@ void ari_range_lshift1(int a[], int n, int rstart, int rend) // OKR
 }
 
 // jump values will be <= size of array
-void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump)
+void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump) // OKR
 {
 	register int i;
 	int rlen;
@@ -550,7 +550,7 @@ void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump)
 	stop = rend - jump;
 
 	for (i = start; i <= stop; ++i) {
-		register int j = i + jump;
+		register int j = i + jump; 
 
 		//range check of array index i and j
 		assert((rstart <= i) && (i <= rend));
@@ -585,7 +585,7 @@ void ari_range_rshift1(int a[], int n, int rstart, int rend) // OKR
 	ari_range_rshiftn(a, n, rstart, rend, 1);
 }
 
-void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump)
+void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump) // OKR
 {
 	register int i;
 	int rlen;
@@ -620,7 +620,7 @@ void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump)
 }
 
 // true if all values are equal across a[] and b[]
-bool ari_isequal(int a[], int na, int b[], int nb)
+bool ari_isequal(int a[], int na, int b[], int nb) // OKR
 {
 	bool isequal = false;
 
@@ -651,7 +651,7 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	rlena = (renda - rstarta) + 1; /* length of array ra[] */
 	rlenb = (rendb - rstartb) + 1; /* length of array rb[] */
 
-	if (rlena != rlenb) { /* check length of array equal or not */
+	if (rlena != rlenb) { /* check length of array equal or not */ // IMP
 		return false;
 	}
 
@@ -677,7 +677,7 @@ bool ari_isvalpresent(int a[], int n, int val)
 	assert(n > 0);
 
 	for (i = 0; i < n; ++i) {
-		register int v = a[i];
+		register int v = a[i]; // IMP
 
 		if (v == val) {
 			return true;
@@ -698,7 +698,7 @@ int ari_get(int a[], int n, int pos)
 	return val;
 }
 
-int ari_range_get(int a[], int n, int rstart, int rend, int rpos)
+int ari_range_get(int a[], int n, int rstart, int rend, int rpos) 
 {
 	int val;
 
@@ -706,7 +706,7 @@ int ari_range_get(int a[], int n, int rstart, int rend, int rpos)
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 	assert((rstart <= rpos) && (rpos <= rend));
 
-	val = a[rpos];
+	val = a[rpos]; // FIX 
 
 	return val;
 }
@@ -737,7 +737,7 @@ void ari_range_swap_elem(int a[], int n, int rstart, int rend, int relposi, int 
 	assert((rstart <= relposi) && (relposi <= rend));
 	assert((rstart <= relposj) && (relposj <= rend));
 
-	val = a[relposi];
+	val = a[relposi]; // FIX ...
 	a[relposi] = a[relposj];
 	a[relposj] = val;
 }
@@ -749,7 +749,7 @@ void ari_sortup(int a[], int n) // OKR
 	ari_range_sortup(a, n, 0, n-1);
 }
 
-void ari_range_sortup(int a[], int n, int rstart, int rend)
+void ari_range_sortup(int a[], int n, int rstart, int rend) // OKR
 {
 	register int i;
 	int start;
@@ -780,7 +780,7 @@ void ari_sortdown(int a[], int n) // OKR
 }
 
 // sort a[rstart..rend]
-void ari_range_sortdown(int a[], int n, int rstart, int rend)
+void ari_range_sortdown(int a[], int n, int rstart, int rend) // OKR
 {
 	register int i;
 	int start;
@@ -803,7 +803,7 @@ void ari_range_sortdown(int a[], int n, int rstart, int rend)
 	}
 }
 
-int ari_factor(int a[], int n, int num)
+int ari_factor(int a[], int n, int num) // FIX + IMP in reverse order
 {
 	register int divisor = num;
 	register int count = 0;
@@ -835,8 +835,8 @@ void ari_copy(int a[], int na, int b[], int nb)
 }
 
 // b[range] = a[range]
-void ari_range_copy(int a[], int an, int rstarta, int renda, 
-                    int b[], int bn, int rstartb)
+void ari_range_copy(int a[], int an, int rstarta, int renda, // FIX FIX
+                    int b[], int bn, int rstartb)// int rendb)
 {
 	register int i;
 	register int j;
@@ -857,8 +857,8 @@ void ari_range_copy(int a[], int an, int rstarta, int renda,
 	startb = rstartb;
 	endb = bn - 1;
 
-	rlena = (renda - rstarta) + 1; /* length of array ra[] */
-	rlenb = (endb - rstartb) + 1; /* length of array rb[] */
+	rlena = (renda - rstarta) + 1; /* length of array ra[] */ // FIX
+	rlenb = (endb - rstartb) + 1; /* length of array rb[] */ // FIX
 
 	assert(rlena <= rlenb);
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
@@ -890,6 +890,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
 	startc = 0;
 	endc = nc - 1;
 
+// FIX ari range copy
 	for (i = starta, k = startc; i <= enda; ++i, ++k) {
 		c[k] = a[i];
 	}
@@ -930,12 +931,13 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
 	assert((0 <= rstartc) && (rstartc < na));
 
-	rlena = (renda - rstarta) + 1; /* length of array ra[] */
+	rlena = (renda - rstarta) + 1; /* length of array ra[] */ // FIX
 	rlenb = (rendb - rstarta) + 1; /* length of array rb[] */
 	rendc = nc - 1;
 	rlenc = (rendc - rstartc) + 1; /* length of array rc[] */
 	assert((rlena + rlenb) <= rlenc);
 
+// FIX range copy
 	starta = rstarta;
 	enda = renda;
 	startc = rstartc;
@@ -1014,7 +1016,7 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend) // OKR
 	a[rstart] = val;
 }
 
-void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int jump)
+void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int jump) // FIX
 {
 #define MAX 100
 	int b[MAX];
@@ -1049,6 +1051,7 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 		ari_range_print(b, n, lefta, righta);
 	}
 
+// FIX range2_copy
 	// define start .. stop loop
 	// copy range a[b..b+j-1] to b[e-j+1..e]
 	starta = lefta;
@@ -1109,14 +1112,14 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	}
 }
 
-void ari_lrotatn_using_copybuf(int a[], int n, int jump)
+void ari_lrotatn_using_copybuf(int a[], int n, int jump) // OKR
 {
 	assert(n > 0);
 
 	ari_range_lrotatn_using_copybuf(a, n, 0, n-1, jump);
 }
 
-void ari_lrotatn_using_reverse(int a[], int n, int jump)
+void ari_lrotatn_using_reverse(int a[], int n, int jump) // OKR
 {
 	int start;
 	int end;
@@ -1278,7 +1281,7 @@ void ari_rrotatn_using_copybuf(int a[], int n, int jump) // NEW
 	ari_range_rrotatn_using_copybuf(a, n, 0, n-1, jump);
 }
 
-void ari_rrotatn_using_reverse(int a[], int n, int jump) // NEW
+void ari_rrotatn_using_reverse(int a[], int n, int jump) // OKR
 {
 	int start;
 	int end;
