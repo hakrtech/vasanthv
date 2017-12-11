@@ -1032,19 +1032,21 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 
 	assert(n > 0);
 	assert(nb > 0);
+	assert((0 <= lefta) && (lefta <= righta) && (righta < n));
 
-	rlen = (righta - lefta) + 1; /* length of range a[] */
+	rlen = (righta - lefta) + 1; /* length of range */
 	assert((0 < jump) && (jump < rlen));
 	assert(rlen <= nb);
 
 	ari_setall(b, nb, -1);
+
 	leftb = 0;
 	rightb = nb - 1;
 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: before copy1\n");
 		ari_print(a, n, "a[]");
-		ari_print(b, rlen, "b[]");
+		ari_range_print(b, n, lefta, righta);
 	}
 
 	// define start .. stop loop
@@ -1065,7 +1067,7 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy1\n");
 		ari_print(a, n, "a[]");
-		ari_print(b, rlen, "b[]");
+		ari_range_print(b, n, lefta, righta);
 	}
 
 	//define start .. stop loop
@@ -1086,7 +1088,7 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy2\n");
 		ari_print(a, n, "a[]");
-		ari_print(b, rlen, "b[]");
+		ari_range_print(b, n, lefta, righta);
 	}
 
 	// define start .. stop loop
@@ -1103,7 +1105,7 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy3\n");
 		ari_print(a, n, "a[]");
-		ari_print(b, rlen, "b[]");
+		ari_range_print(b, n, lefta, righta);
 	}
 }
 
@@ -1187,8 +1189,9 @@ void ari_range_rrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 
 	assert(n > 0);
 	assert(nb > 0);
+	assert((0 <= lefta) && (lefta <= righta) && (righta < n));
 
-	rlen = (righta - lefta) + 1; /* length of range a[] */
+	rlen = (righta - lefta) + 1; /* length of range */
 	assert((0 < jump) && (jump < rlen));
 	assert(rlen <= nb);
 
@@ -1200,7 +1203,7 @@ void ari_range_rrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	if (debug) {
 		printf("DEBUG: ari_rrotatn_using_copybuf: before copy1\n");
 		ari_print(a, n, "a[]");
-		ari_print(b, rlen, "b[]");
+		ari_range_print(b, n, lefta, righta);
 	}
 
 	// define start .. stop loop index i and j
@@ -1227,7 +1230,7 @@ void ari_range_rrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	if (debug) {
 		printf("DEBUG: ari_rrotatn_using_copybuf: after copy1\n");
 		ari_print(a, n, "a[]");
-		ari_print(b, rlen, "b[]");
+		ari_range_print(b, n, lefta, righta);
 	}
 
 	// define start .. stop loop index i and j
@@ -1248,7 +1251,7 @@ void ari_range_rrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	if (debug) {
 		printf("DEBUG: ari_rrotatn_using_copybuf: after copy2\n");
 		ari_print(a, n, "a[]");
-		ari_print(b, rlen, "b[]");
+		ari_range_print(b, n, lefta, righta);
 	}
 
 	//define start .. stop loop
@@ -1467,6 +1470,7 @@ void test_lrotatncopybuf(void)
 	ari_print(a, n, "a[range 0-6 lr]");
 	ari_range_lrotatn_using_copybuf(a, n, 0, 6, 5);
 	ari_print(a, n, "a[0-6lr5]");
+
 }
 
 // right rotatn using_copybuf test funtion
