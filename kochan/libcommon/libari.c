@@ -644,8 +644,8 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
 	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
 
-	rlena = (renda - rstarta) + 1; /* length of array ra[] */
-	rlenb = (rendb - rstartb) + 1; /* length of array rb[] */
+	rlena = (renda - rstarta) + 1; /* length of range */
+	rlenb = (rendb - rstartb) + 1; /* length of range */
 
 	if (rlena != rlenb) { /* length of range equal or not */
 		return false;
@@ -797,23 +797,28 @@ void ari_range_sortdown(int a[], int n, int rstart, int rend) // OKR
 	}
 }
 
-int ari_factor(int a[], int n, int num) // FIX + IMP in reverse order
+int ari_factor(int a[], int n, int num)
 {
-	register int divisor = num;
-	register int count = 0;
+	register int i;
+	int start;
+	register int stop;
+	int count = 0;
 
 	assert(n > 0);
 	assert(num > 0);
 
-	while (divisor > 0) {
+	// define loop start .. stop
+	start = 1;
+	stop = num;
+
+	for (i = start; i <= stop; ++i) {
 		register int remainder;
 
-		remainder = num % divisor;
+		remainder = num % i;
 		if (remainder == 0) {
-			ari_setone(a, n, count, divisor);
+			ari_setone(a, n, count, i);
 			++count;
 		}
-		--divisor;
 	}
 
 	return count;
@@ -1446,6 +1451,10 @@ void test_factor(void)
 
 	ari_setall(a, n, -1);
 	nfactor = ari_factor(a, n, val);
+	ari_print(a, nfactor, "a[factor]");
+
+	ari_setall(a, n, -1);
+	nfactor = ari_factor(a, n, 1008);
 	ari_print(a, nfactor, "a[factor]");
 }
 
