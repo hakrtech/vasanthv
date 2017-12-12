@@ -830,12 +830,12 @@ void ari_copy(int a[], int na, int b[], int nb)
 	assert(na > 0);
 	assert(nb > 0);
 
-	ari_range_copy(a, na, 0, na-1, b, nb, 0);
+	ari_range_copy(a, na, 0, na-1, b, nb, 0, nb-1);
 }
 
 // b[range] = a[range]
-void ari_range_copy(int a[], int an, int rstarta, int renda, // FIX FIX
-                    int b[], int bn, int rstartb)// int rendb)
+void ari_range_copy(int a[], int an, int rstarta, int renda,
+                    int b[], int bn, int rstartb, int rendb)
 {
 	register int i;
 	register int j;
@@ -849,15 +849,15 @@ void ari_range_copy(int a[], int an, int rstarta, int renda, // FIX FIX
 	assert(an > 0);
 	assert(bn > 0);
 	assert((0 <= rstarta) && (rstarta <= renda) && (renda < an));
-	assert((0 <= rstartb) && (rstartb < bn));
+	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < bn));
 
 	starta = rstarta;
 	enda = renda;
 	startb = rstartb;
-	endb = bn - 1;
+	endb = rendb;
 
-	rlena = (renda - rstarta) + 1; /* length of array ra[] */ // FIX
-	rlenb = (endb - rstartb) + 1; /* length of array rb[] */ // FIX
+	rlena = (renda - rstarta) + 1; /* length of range */
+	rlenb = (rendb - rstartb) + 1; /* length of range */
 
 	assert(rlena <= rlenb);
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
@@ -1458,6 +1458,30 @@ void test_factor(void)
 	ari_print(a, nfactor, "a[factor]");
 }
 
+// array copy test
+void test_copy(void)
+{
+	int a[10], b[10], c[10], d[10];
+	int n = 10;
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+	ari_setall(b, n, -1);
+	ari_copy(a, n, b, n);
+	ari_print(b, n, "b[]");
+
+	ari_setall_even(c, n);
+	ari_print(c, n, "c[]");
+	ari_setall(d, n, -1);
+	ari_range_copy(c, n, 0, 3, d, n, 6, 9);
+	ari_range_print_format(d, n, 6, 9, '[', ']', ',');
+
+	ari_print(a, n, "a[]");
+	ari_setall(b, n, -1);
+	ari_range_copy(a, n, 5, 9, b, n, 0, 4);
+	ari_range_print(b, n, 0, 4);
+}
+
 // left shift test function
 void test_lshift(void)
 {
@@ -1639,6 +1663,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_factor";
 	test_start(fname);
 	test_factor();
+	test_end(fname);
+
+	fname = "ari_copy";
+	test_start(fname);
+	test_copy();
 	test_end(fname);
 
 	fname = "ari_lrotatn_using_copybuf";

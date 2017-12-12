@@ -126,7 +126,7 @@ int  ari_range_copy_r2l(int a[], int n, int start, int rstart, int rend);
 void ari_copy(int a[], int na, int b[], int nb); // DONE
 // b[range] = a[range]
 void ari_range_copy(int a[], int an, int rstarta, int renda, 
-                    int b[], int bn, int rstartb); // DONE
+                    int b[], int bn, int rstartb, int rendb); // DONE
 
 // left shift by 1 and let last value remain 
 void ari_lshift1(int a[], int n); // DONE QATHIS
@@ -147,7 +147,7 @@ void ari_rrotatn(int a[], int n, int jump); // DONE QATHIS
 void ari_lrotatn_using_copybuf(int a[], int n, int jump); // DONE
 void ari_lrotatn_using_reverse(int a[], int n, int jump); // DONE
 void ari_range_lrotatn_using_copybuf(int a[], int n, int rstart, int rend, int jump); // DONE
-void ari_range_lrotatn_using_reverse(int a[], int n, int rstart, int rend, int jump); // DONE
+void ari_range_lrotatn_using_reverse(int a[], int n, int rstart, int rend, int jump); // DONa
 void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
 
 void ari_rrotatn_chain(int a[], int n, int jump, int cstart); // LATER
