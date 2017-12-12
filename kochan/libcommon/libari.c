@@ -341,9 +341,7 @@ int  ari_range_sum(int a[], int n, int rstart, int rend)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int val = a[i]; // IMP
-
-		sum += val;
+		sum += a[i];
 	}
 
 	return sum;
@@ -437,9 +435,7 @@ int ari_range_getpos(int a[], int na, int rstart, int rend, int val)
 	end = rend;
 
 	for (i = start; i <= end; ++i) {
-		register int v = a[i]; // IMP
-
-		if (v == val) {
+		if (a[i] == val) {
 			pos = i;
 			break;
 		}
@@ -543,7 +539,7 @@ void ari_range_lshiftn(int a[], int n, int rstart, int rend, int jump) // OKR
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	rlen = (rend - rstart) + 1; /* length of array ra[] */
+	rlen = (rend - rstart) + 1; /* length of range */
 	assert((0 < jump) && (jump < rlen));
 
 	start = rstart;
@@ -597,7 +593,7 @@ void ari_range_rshiftn(int a[], int n, int rstart, int rend, int jump) // OKR
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
 
-	rlen = (rend - rstart) + 1; /* length of array ra[] */
+	rlen = (rend - rstart) + 1; /* length of range */
 	assert((0 < jump) && (jump < rlen));
 
 	// define range limits
@@ -651,7 +647,7 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	rlena = (renda - rstarta) + 1; /* length of array ra[] */
 	rlenb = (rendb - rstartb) + 1; /* length of array rb[] */
 
-	if (rlena != rlenb) { /* check length of array equal or not */ // IMP
+	if (rlena != rlenb) { /* length of range equal or not */
 		return false;
 	}
 
@@ -677,9 +673,7 @@ bool ari_isvalpresent(int a[], int n, int val)
 	assert(n > 0);
 
 	for (i = 0; i < n; ++i) {
-		register int v = a[i]; // IMP
-
-		if (v == val) {
+		if (a[i] == val) {
 			return true;
 		}
 	}
