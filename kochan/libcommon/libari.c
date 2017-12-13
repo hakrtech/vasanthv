@@ -1354,6 +1354,32 @@ void ari_rchain1(int a[], int n, int cstart)
 	}
 }
 
+void ari_rchain2(int a[], int n, int cstart)
+{
+	int i;
+	int jump = 2;
+
+	assert(n > 0);
+	assert((0 <= cstart) && (cstart < n));
+
+	for (i = 1; i <= jump; ++i) {
+		ari_rchain1(a, n, cstart);
+	}
+}
+
+void ari_rchain3(int a[], int n, int cstart)
+{
+	int i;
+	int jump = 3;
+
+	assert(n > 0);
+	assert((0 <= cstart) && (cstart < n));
+
+	for (i = 1; i <= jump; ++i) {
+		ari_rchain1(a, n, cstart);
+	}
+}
+
 void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 {
 	assert(n > 0);
@@ -1691,6 +1717,54 @@ void test_rchain(void)
 
 	ari_rchain1(c, n, n-1);
 	ari_print(c, n, "c[cs9]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain2(a, n, 0);
+	ari_print(a, n, "a[2cs0]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain2(a, n, 2);
+	ari_print(a, n, "a[2cs2]");
+
+	ari_setall_even(b, n);
+	ari_print(b, n, "b[]");
+
+	ari_rchain2(b, n, 7);
+	ari_print(b, n, "b[2cs7]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain2(a, n, n-1);
+	ari_print(a, n, "a[2cs9]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain3(a, n, 0);
+	ari_print(a, n, "a[3cs0]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain3(a, n, 2);
+	ari_print(a, n, "a[3cs2]");
+
+	ari_setall_even(b, n);
+	ari_print(b, n, "b[]");
+
+	ari_rchain3(b, n, 7);
+	ari_print(b, n, "b[3cs7]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain3(a, n, n-1);
+	ari_print(a, n, "a[3cs9]");
 }
 
 static void test_ari_general(bool noisy)
