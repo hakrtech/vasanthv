@@ -1334,6 +1334,34 @@ void ari_rrotatn_using_reverse(int a[], int n, int jump)
 	ari_range_rrotatn_using_reverse(a, n, 0, n-1, jump);
 }
 
+void ari_rchain1(int a[], int n, int cstart)
+{
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 <= cstart) && (cstart < n));
+
+	// define range
+	start = 0;
+	end = n - 1;
+
+	if ((cstart != start) && (cstart != end)) {
+		ari_range_rrotat1(a, n, cstart, end);
+		ari_range_rrotat1(a, n, start, cstart);
+	} else {
+		ari_rrotat1(a, n);
+	}
+}
+
+void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
+{
+	assert(n > 0);
+	assert((0 < jump) && (jump < n));
+	assert((0 <= cstart) && (cstart < n));
+	// do somthing
+}
+
 void ari_range_rrotatn_inplace(int a[], int n, int rstart, int rend, int jump) // NEW
 {
 }
@@ -1640,6 +1668,31 @@ void test_rrotatn_reverse(void)
 	ari_print(c, n, "c[5-9 rr3]");
 }
 
+// right rotat1 chain test
+void test_rchain(void)
+{
+	int a[10], b[10], c[10];
+	int n = 10;
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain1(a, n, 5);
+	ari_print(a, n, "a[cs5]");
+
+	ari_setall_even(b, n);
+	ari_print(b, n, "b[]");
+
+	ari_rchain1(b, n, 0);
+	ari_print(b, n, "b[cs0]");
+
+	ari_setall_odd(c, n);
+	ari_print(c, n, "c[]");
+
+	ari_rchain1(c, n, n-1);
+	ari_print(c, n, "c[cs9]");
+}
+
 static void test_ari_general(bool noisy)
 {
 #define dbg if (noisy)
@@ -1725,6 +1778,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_rshift";
 	test_start(fname);
 	test_rshift();
+	test_end(fname);
+
+	fname = "ari_rchain1";
+	test_start(fname);
+	test_rchain();
 	test_end(fname);
 }
 
