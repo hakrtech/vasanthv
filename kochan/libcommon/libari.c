@@ -1382,10 +1382,15 @@ void ari_rchain3(int a[], int n, int cstart)
 
 void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 {
+	int i;
+
 	assert(n > 0);
 	assert((0 < jump) && (jump < n));
 	assert((0 <= cstart) && (cstart < n));
-	// do somthing
+
+	for (i = 1; i <= jump; ++i) {
+		ari_rchain1(a, n, cstart);
+	}
 }
 
 void ari_range_rrotatn_inplace(int a[], int n, int rstart, int rend, int jump) // NEW
@@ -1765,6 +1770,24 @@ void test_rchain(void)
 
 	ari_rchain3(a, n, n-1);
 	ari_print(a, n, "a[3cs9]");
+
+	ari_setall_odd(c, n);
+	ari_print(c, n, "c[]");
+
+	ari_rrotatn_chain(c, n, 1, 0);
+	ari_print(c, n, "c[1cs0]");
+
+	ari_setall_even(b, n);
+	ari_print(b, n, "b[]");
+
+	ari_rrotatn_chain(b, n, 7, 4);
+	ari_print(b, n, "b[7cs4]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rrotatn_chain(a, n, n-1, n-1);
+	ari_print(a, n, "a[9cs9]");
 }
 
 static void test_ari_general(bool noisy)
