@@ -1379,7 +1379,7 @@ void ari_rchain2(int a[], int n, int cstart)
 	stop = left + cstart;
 
 	val = a[start];
-	for (i = start; i >= stop; i-=2) {
+	for (i = start; i > stop; i-=2) {
 		int j = i - 2;
 
 		a[i] = a[j];
@@ -1389,15 +1389,35 @@ void ari_rchain2(int a[], int n, int cstart)
 
 void ari_rchain3(int a[], int n, int cstart)
 {
-	int i;
-	int jump = 3;
+	register int i;
+	int left;
+	int right;
+	int start;
+	int stop;
+	int val;
 
 	assert(n > 0);
 	assert((0 <= cstart) && (cstart < n));
 
-	for (i = 1; i <= jump; ++i) {
-		ari_rchain1(a, n, cstart);
+	// define range
+	left = 0;
+	right = n - 1;
+
+	if (1 < cstart) {
+		cstart = cstart % 3;
 	}
+
+	// define loop start .. stop
+	start = right + (cstart - 2);
+	stop = left + cstart;
+
+	val = a[start];
+	for (i = start; i > stop; i-=3) {
+		int j = i - 3;
+
+		a[i] = a[j];
+	}
+	a[stop] = val;
 }
 
 void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
@@ -1782,31 +1802,40 @@ void test_rchain(void)
 
 	ari_rchain2(a, n, n-1);
 	ari_print(a, n, "a[2cs9]");
-/*
-	ari_setall_even(b, n);
-	ari_print(b, n, "b[]");
 
-	ari_rchain3(b, n, 7);
-	ari_print(b, n, "b[3cs7]");
+	n = 9; /* chain3 works start*/
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain3(a, n, 0);
+	ari_print(a, n, "a[3cs0]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
-	ari_rchain3(a, n, n-1);
-	ari_print(a, n, "a[3cs9]");
+	ari_rchain3(a, n, 1);
+	ari_print(a, n, "a[3cs1]");
 
 	ari_setall_odd(c, n);
 	ari_print(c, n, "c[]");
 
-	ari_rrotatn_chain(c, n, 1, 0);
-	ari_print(c, n, "c[1cs0]");
+	ari_rchain3(c, n, 2);
+	ari_print(c, n, "c[3cs2]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rchain3(a, n, 3);
+	ari_print(a, n, "a[3cs3]");
+
 
 	ari_setall_even(b, n);
 	ari_print(b, n, "b[]");
 
-	ari_rrotatn_chain(b, n, 7, 4);
-	ari_print(b, n, "b[7cs4]");
-
+	ari_rchain3(b, n, 5);
+	ari_print(b, n, "b[3cs5]");
+	n = 10; /* chain3 works end*/
+/*
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
@@ -1901,7 +1930,7 @@ static void test_ari_general(bool noisy)
 	test_rshift();
 	test_end(fname);
 
-	fname = "ari_rchain1";
+	fname = "ari_rchain";
 	test_start(fname);
 	test_rchain();
 	test_end(fname);
