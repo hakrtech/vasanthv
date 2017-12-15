@@ -1336,22 +1336,10 @@ void ari_rrotatn_using_reverse(int a[], int n, int jump)
 
 void ari_rchain1(int a[], int n, int cstart)
 {
-	int start;
-	int end;
-
 	assert(n > 0);
 	assert((0 <= cstart) && (cstart < n));
 
-	// define range
-	start = 0;
-	end = n - 1;
-
-	if ((cstart != start) && (cstart != end)) {
-		ari_range_rrotat1(a, n, cstart, end);
-		ari_range_rrotat1(a, n, start, cstart);
-	} else {
-		ari_rrotat1(a, n);
-	}
+	ari_rrotat1(a, n);
 }
 
 void ari_rchain2(int a[], int n, int cstart)
@@ -1765,19 +1753,19 @@ void test_rchain(void)
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
-	ari_rchain1(a, n, 5);
-	ari_print(a, n, "a[cs5]");
+	ari_rchain1(a, n, 0);
+	ari_print(a, n, "a[cs0]");
 
 	ari_setall_even(b, n);
 	ari_print(b, n, "b[]");
 
-	ari_rchain1(b, n, 0);
-	ari_print(b, n, "b[cs0]");
+	ari_rchain1(b, n, 1);
+	ari_print(b, n, "b[cs1]");
 
 	ari_setall_odd(c, n);
 	ari_print(c, n, "c[]");
 
-	ari_rchain1(c, n, n-1);
+	ari_rchain1(c, n, 9);
 	ari_print(c, n, "c[cs9]");
 
 	n = 9;
