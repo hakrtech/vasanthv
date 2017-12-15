@@ -1351,9 +1351,11 @@ void ari_rchain2(int a[], int n, int cstart)
 	register int stop;
 	int val;
 	int v;
+	int jump = 2;
 
 	assert(n > 0);
 	assert((0 <= cstart) && (cstart < n));
+	assert(jump < n);
 
 	// define range
 	left = 0;
@@ -1362,7 +1364,7 @@ void ari_rchain2(int a[], int n, int cstart)
 	if (n % 2 == 1) {
 		val = a[right];
 		v = a[right - 1];
-		ari_rshiftn(a, n, 2);
+		ari_rshiftn(a, n, jump);
 		a[left+1] = val;
 		a[left] = v;
 	} else {
@@ -1376,7 +1378,7 @@ void ari_rchain2(int a[], int n, int cstart)
 
 		val = a[start];
 		for (i = start; i > stop; i-=2) {
-			int j = i - 2;
+			int j = i - jump;
 
 			// range check of array index i and j
 			assert((left <= i) && (i <= right));
