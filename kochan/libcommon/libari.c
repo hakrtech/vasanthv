@@ -1444,11 +1444,36 @@ void ari_rchain3(int a[], int n, int cstart)
 void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 {
 	int i;
-	int halflen = n / 2; /* half length of range */
+	int left;
+	int right;
+	int start;
+	int stop;
+	int val;
 
 	assert(n > 0);
 	assert((0 < jump) && (jump < n));
 	assert((0 <= cstart) && (cstart < n));
+
+	// define range
+	left = 0;
+	right = n - 1;
+
+	// define loop start .. stop
+	start = left;
+	stop = right;
+
+	val = a[start];
+	a[start] = -1;
+	start = jump;
+	for (i = start; i < stop; i+=jump) {
+		int v = a[i];
+
+		a[i] = val;
+		val = v;
+	}
+	a[left] = val;
+
+/*
 
 	if ((halflen == jump) && (jump > 1)) {
 		if (cstart < jump) {
@@ -1464,11 +1489,8 @@ void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 		for (i = 3; i <= jump; i+=3) {
 			ari_rchain3(a, n, cstart);
 		}
-	} else {
-		for (i = 1; i <= jump; ++i) {
-			ari_rchain1(a, n, cstart);
-		}
 	}
+*/
 }
 
 void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int cstart)
@@ -1883,14 +1905,14 @@ void test_rchain(void)
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
-	ari_rrotatn_chain(a, n, 2, 1);
-	ari_print(a, n, "a[2cs1]");
+	ari_rrotatn_chain(a, n, 2, 0);
+	ari_print(a, n, "a[2cs0]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
-	ari_rrotatn_chain(a, n, 3, 1);
-	ari_print(a, n, "a[3cs1]");
+	ari_rrotatn_chain(a, n, 3, 0);
+	ari_print(a, n, "a[3cs0]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
@@ -1901,20 +1923,32 @@ void test_rchain(void)
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
-	ari_rrotatn_chain(a, n, 5, 3);
-	ari_print(a, n, "a[5cs3]");
+	ari_rrotatn_chain(a, n, 5, 0);
+	ari_print(a, n, "a[5cs0]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
-	ari_rrotatn_chain(a, n, 6, 1);
-	ari_print(a, n, "a[6cs1]");
+	ari_rrotatn_chain(a, n, 6, 0);
+	ari_print(a, n, "a[6cs0]");
+/*
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rrotatn_chain(a, n, 7, 0);
+	ari_print(a, n, "a[7cs0]");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	ari_rrotatn_chain(a, n, 8, 0);
+	ari_print(a, n, "a[8cs0]");
 
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
 	ari_rrotatn_chain(a, n, 9, 2);
-	ari_print(a, n, "a[9cs2]");
+	ari_print(a, n, "a[9cs2]"); */
 }
 
 static void test_ari_general(bool noisy)
