@@ -1449,6 +1449,8 @@ void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 	int start;
 	int stop;
 	int val;
+	int init;
+	int restart = 0;
 
 	assert(n > 0);
 	assert((0 < jump) && (jump < n));
@@ -1460,37 +1462,33 @@ void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 
 	// define loop start .. stop
 	start = left;
-	stop = right;
+	stop = left;
 
 	val = a[start];
-	a[start] = -1;
-	start = jump;
-	for (i = start; i < stop; i+=jump) {
-		int v = a[i];
+	stop = 1;
+	init = jump; /* intial jump value */
+	for (i = 1; start != stop; ++i) {
+		int len;
+		int v = a[jump];
 
-		a[i] = val;
+		a[jump] = val;
 		val = v;
-	}
-	a[left] = val;
+		len = right - jump; /* length of range */
 
-/*
+		if (init > len) {
+			jump = (init - len) - 1; /* jump start loctaion fixied */
+		}
 
-	if ((halflen == jump) && (jump > 1)) {
-		if (cstart < jump) {
-			ari_swap_elem(a, n, cstart, (halflen + cstart) );
+		if (jump == 0){
+			a[start] = val;
+			stop = 0;
+		}
+		if ((jump >= init) || (restart == jump)) {
+			jump += init;
 		} else {
-			ari_swap_elem(a, n, (cstart - halflen), cstart);
-		}
-	}else if (jump % 2 == 0) {
-		for (i = 2; i <= jump; i+=2) {
-			ari_rchain2(a, n, cstart);
-		}
-	} else if (jump % 3 == 0) {
-		for (i = 3; i <= jump; i+=3) {
-			ari_rchain3(a, n, cstart);
+			restart = jump; /* loop of jump restarted */
 		}
 	}
-*/
 }
 
 void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int cstart)
@@ -1895,7 +1893,7 @@ void test_rchain(void)
 	ari_rchain3(b, n, 5);
 	ari_print(b, n, "b[3cs5]");
 
-	n = 10;
+	n = 9;
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
@@ -1931,7 +1929,7 @@ void test_rchain(void)
 
 	ari_rrotatn_chain(a, n, 6, 0);
 	ari_print(a, n, "a[6cs0]");
-/*
+
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
@@ -1947,8 +1945,8 @@ void test_rchain(void)
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
 
-	ari_rrotatn_chain(a, n, 9, 2);
-	ari_print(a, n, "a[9cs2]"); */
+	ari_rrotatn_chain(a, n, 8, 1);
+	ari_print(a, n, "a[8cs1]");
 }
 
 static void test_ari_general(bool noisy)
