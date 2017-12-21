@@ -397,7 +397,7 @@ int  ari_getmin(int a[], int n) // OKR
 	return minval;
 }
 
-int ari_range_getmin(int a[], int na, int rstart, int rend) // OKR
+int ari_range_getmin(int a[], int na, int rstart, int rend)
 {
 	register int i;
 	register int minval;
@@ -413,7 +413,7 @@ int ari_range_getmin(int a[], int na, int rstart, int rend) // OKR
 	start = rstart + 1;
 	end = rend;
 
-	for (i = rstart; i <= rend; ++i) {
+	for (i = start; i <= end; ++i) {
 		if (a[i] < minval) {
 			minval = a[i];
 		}
@@ -638,7 +638,7 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	int starta;
 	int startb;
 	register int enda;
-	int endb;
+	// int endb; // NOTUSED
 	bool isequal = true;
 
 	assert((na > 0) && (nb > 0));
@@ -655,7 +655,7 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 	starta = rstarta;
 	enda = renda;
 	startb = rstartb;
-	endb = rendb;
+	// endb = rendb; // NOTUSED
 
 	for (i = starta, j = startb; i <= enda; ++i, ++j) {
 		if (a[i] != b[i]) {
@@ -843,7 +843,7 @@ void ari_range_copy(int a[], int an, int rstarta, int renda,
 	int starta;
 	register int enda;
 	int startb;
-	int endb;
+	// int endb; // NOTUSED
 	int rlena;
 	int rlenb;
 
@@ -855,7 +855,7 @@ void ari_range_copy(int a[], int an, int rstarta, int renda,
 	starta = rstarta;
 	enda = renda;
 	startb = rstartb;
-	endb = rendb;
+	// endb = rendb; // NOTUSED
 
 	rlena = (renda - rstarta) + 1; /* length of range */
 	rlenb = (rendb - rstartb) + 1; /* length of range */
@@ -878,7 +878,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
 	int startc;
 	register int enda;
 	register int endb;
-	int endc;
+	// int endc; // NOTUSED
 
 	assert(na > 0);
 	assert(nb > 0);
@@ -888,7 +888,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
 	starta = 0;
 	enda = na - 1;
 	startc = 0;
-	endc = nc - 1;
+	// endc = nc - 1; // NOTUSED
 
 // FIX ari range copy
 	for (i = starta, k = startc; i <= enda; ++i, ++k) {
@@ -898,7 +898,7 @@ void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
 	startb = 0;
 	endb = nb - 1;
 	startc = enda + 1;
-	endc = nc - 1;
+	// endc = nc - 1; // NOTUSED
 
 	for (j = startb, k = startc; j <= endb; ++j, ++k) {
 		c[k] = b[j];
@@ -917,7 +917,7 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 	int startc;
 	register int enda;
 	register int endb;
-	int endc;
+	// int endc; // NOTUSED
 	int rendc;
 	int rlena;
 	int rlenb;
@@ -941,7 +941,7 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 	starta = rstarta;
 	enda = renda;
 	startc = rstartc;
-	endc = rendc;
+	// endc = rendc; // NOTUSED
 
 	for (i = starta, k = rstartc; i <= enda; ++i, ++k) {
 		c[k] = a[i];
@@ -950,7 +950,7 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 	startb = rstartb;
 	endb = rendb;
 	startc = enda + 1;
-	endc = rendc;
+	// endc = rendc; // NOTUSED
 
 	for (j = startb, k = startc; j <= endb; ++j, ++k) {
 		c[k] = b[j];
@@ -1462,11 +1462,11 @@ void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 
 	// define loop start .. stop
 	start = cstart;
-	stop = cstart;
+	stop = start;
 
 	begin = a[start];
 	bool first = true;
-	for (i = start; first || (i != start) ; i = new_i) {
+	for (i = start; first || (i != stop) ; i = new_i) {
 		int current;
 		int next;
 

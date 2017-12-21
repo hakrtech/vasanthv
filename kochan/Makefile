@@ -4,6 +4,7 @@ all:
 	cd c07 && make all && cd ..
 	cd c08 && make all && cd ..
 	cd c10 && make all && cd ..
+	cd libcommon && make all && cd ..
 
 clean:
 
@@ -12,3 +13,5 @@ clean:
 	cd c07 && make clean && cd ..
 	cd c08 && make clean && cd ..
 	cd c10 && make clean && cd ..
+	cd libcommon && make clean && cd ..
+	/bin/rm -f o

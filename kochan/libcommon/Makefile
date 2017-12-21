@@ -48,7 +48,7 @@ rebuild: build
 build:	clean all
 
 clean:
-	/bin/rm -f a.out *.o *.a *.core $(BIN) $(TESTBIN) $(LIB)
+	/bin/rm -f a.out *.o *.a *.core *.stackdump $(BIN) $(TESTBIN) $(LIB)
 #
 # end of Makefile template
 #
