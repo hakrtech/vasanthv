@@ -1345,12 +1345,12 @@ void ari_rchain1(int a[], int n, int cstart)
 
 void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 {
-	register int i;
-	int left;
-	int right;
-	int start;
-	register int stop;
-	int current;
+	register int i = -1;
+	int left = -1;
+	int right = -1;
+	int start = -1;
+	register int stop = -1;
+	int current = -1;
 
 	assert(n > 0);
 	assert((0 < jump) && (jump < n));
