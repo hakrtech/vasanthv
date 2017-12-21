@@ -11,7 +11,7 @@ int main(void)
 	int arrayvals[11] = { 1, 3, 5, 7, 9, 0, 9, 7, 5, 3, 1 };
 
 	printf("given array\n");
-	ari_print(arrayvals, 11);
+	ari_print(arrayvals, 11, "arrayvals");
 	printf("sum of array elements> %d\n", ari_sum(arrayvals, 11));
 
 	return 0;
