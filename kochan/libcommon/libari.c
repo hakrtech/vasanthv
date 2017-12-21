@@ -1343,114 +1343,14 @@ void ari_rchain1(int a[], int n, int cstart)
 	ari_rrotat1(a, n);
 }
 
-void ari_rchain2(int a[], int n, int cstart)
-{
-	register int i;
-	int left;
-	int right;
-	int start;
-	register int stop;
-	int val;
-	int v;
-	int jump = 2;
-
-	assert(n > 0);
-	assert((0 <= cstart) && (cstart < n));
-	assert(jump < n);
-
-	// define range
-	left = 0;
-	right = n - 1;
-
-	if (n % 2 == 1) {
-		val = a[right];
-		v = a[right-1];
-		ari_rshiftn(a, n, jump);
-		a[left+1] = val;
-		a[left] = v;
-	} else {
-		if (1 < cstart) {
-			cstart = cstart % 2;
-		}
-
-		// define loop start .. stop
-		start = right + (cstart - 1);
-		stop = left + cstart;
-
-		val = a[start];
-		for (i = start; i > stop; i-=2) {
-			int j = i - jump;
-
-			// range check of array index i and j
-			assert((left <= i) && (i <= right));
-			assert((left <= j) && (j <= right));
-
-			a[i] = a[j];
-		}
-		a[stop] = val;
-	}
-}
-
-void ari_rchain3(int a[], int n, int cstart)
-{
-	register int i;
-	int left;
-	int right;
-	int start;
-	register int stop;
-	int val;
-	int va;
-	int v;
-	int jump = 3;
-
-	assert(n > 0);
-	assert((0 <= cstart) && (cstart < n));
-	assert(jump < n);
-
-	// define range
-	left = 0;
-	right = n - 1;
-
-	if (n % 3 == 1) {
-		val = a[right];
-		va = a[right-1];
-		v = a[right-2];
-		ari_rshiftn(a, n, jump);
-		a[left+2] = val;
-		a[left+1] = va;
-		a[left] = v;
-	} else {
-		if (1 < cstart) {
-			cstart = cstart % 3;
-		}
-
-		// define loop start .. stop
-		start = right + (cstart - 2);
-		stop = left + cstart;
-
-		val = a[start];
-		for (i = start; i > stop; i-=3) {
-			int j = i - jump;
-
-			// range check of array index i and j
-			assert((left <= i) && (i <= right));
-			assert((left <= j) && (j <= right));
-
-			a[i] = a[j];
-		}
-		a[stop] = val;
-	}
-}
-
 void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 {
 	register int i;
-	register int new_i;
 	int left;
 	int right;
-	register int start;
-	int stop;
-	int begin;
+	int start;
+	register int stop;
+	int current;
 
 	assert(n > 0);
 	assert((0 < jump) && (jump < n));
@@ -1462,25 +1362,23 @@ void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 
 	// define loop start .. stop
 	start = cstart;
-	stop = cstart;
+	stop = start;
 
-	begin = a[start];
+	current = a[start];
 	bool first = true;
-	for (i = start; first || (i != start) ; i = new_i) {
-		int current;
+	for (i = start; first || (i != stop); ) {
 		int next;
 
-		if (first){
+		if (first) {
 			first = false;
-			current = begin;
 		}
 
-		new_i = (i + jump) % n;
+		i = (i + jump) % n;
 
-		assert((left <= new_i) && (new_i <= right));
+		assert((left <= i) && (i <= right));
 
-		next = a[new_i];
-		a[new_i] = current;
+		next = a[i];
+		a[i] = current;
 		current = next;
 	}
 }
@@ -1869,74 +1767,6 @@ void test_rchain(void)
 
 	ari_rchain1(c, n, 9);
 	ari_print(c, n, "c[cs9]");
-
-	n = 9;
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_rchain2(a, n, 0);
-	ari_print(a, n, "a[2cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_rchain2(a, n, 1);
-	ari_print(a, n, "a[2cs1]");
-
-	ari_setall_even(b, n);
-	ari_print(b, n, "b[]");
-
-	ari_rchain2(b, n, 2);
-	ari_print(b, n, "b[2cs2]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_rchain2(a, n, 3);
-	ari_print(a, n, "a[2cs3]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_rchain2(a, n, 8);
-	ari_print(a, n, "a[2cs8]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_rchain2(a, n, n-1);
-	ari_print(a, n, "a[2cs9]");
-
-	n = 10;
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_rchain3(a, n, 0);
-	ari_print(a, n, "a[3cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_rchain3(a, n, 1);
-	ari_print(a, n, "a[3cs0]");
-
-	ari_setall_odd(c, n);
-	ari_print(c, n, "c[]");
-
-	ari_rchain3(c, n, 2);
-	ari_print(c, n, "c[3cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_rchain3(a, n, 3);
-	ari_print(a, n, "a[3cs0]");
-
-	ari_setall_even(b, n);
-	ari_print(b, n, "b[]");
-
-	ari_rchain3(b, n, 5);
-	ari_print(b, n, "b[3cs0]");
 }
 
 // right rotat n chain test
