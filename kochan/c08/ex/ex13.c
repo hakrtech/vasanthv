@@ -62,13 +62,13 @@ void user_choice_do_operation(int do_values[], int do_nvalue, int do_case)
 	if (do_case == 1 || do_case == 2) {
 		if (do_case == 1) {
 			ari_sortup(do_values, do_nvalue);
-			ari_print(do_values, do_nvalue);
+			ari_print(do_values, do_nvalue, "do_values");
 		} else {
 			ari_sortdown(do_values, do_nvalue);
-			ari_print(do_values, do_nvalue);
+			ari_print(do_values, do_nvalue, "do_values");
 		}
 	} else {
-		ari_print(do_values, do_nvalue);
+		ari_print(do_values, do_nvalue, "do_values");
 	}
 }
 

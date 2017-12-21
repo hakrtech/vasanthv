@@ -78,7 +78,7 @@ void koodai_print(int k[], int kcap, int kn) // API DONE
 		printf("[]\n");
 	}
 	if (a == false) {
-		ari_print(k, kn);
+		ari_print(k, kn, "k");
 		printf("koodai number of items> %d\n", item);
 	}
 
