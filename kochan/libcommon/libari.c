@@ -1383,59 +1383,52 @@ void ari_rrotatn_chain(int a[], int n, int jump, int cstart)
 	}
 }
 
-void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int cstart)
+void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int startat)
 {
-	register int j;
+	register int i;
 	int left;
 	int right;
-	register int start;
+	int start;
 	register int stop;
+	int current;
 	int rlen;
-	int val;
 
 	assert(n > 0);
 	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
-	assert((rstart <= cstart) && (cstart <= rend));
+	assert((rstart <= startat) && (startat <= rend));
 
 	rlen = (rend - rstart) + 1;
 	assert((0 < jump) && (jump < rlen));
 
-	// define range
+	// range
 	left = rstart;
 	right = rend;
 
 	// define loop
-	start = cstart;
-	stop = cstart;
+	start = startat;
+	stop = start;
 
-	val = a[start];
-	stop = -1;
-	j = start;
-	for (; start != stop ;) {
-		int v;
-		int len = (right - j) + 1; /* length of range */
+	current = a[start];
+	bool first = true;
+	for (i = start; first || (i != stop); ) {
+		int next;
 
-		ari_print(a, n, "chk1");
-		if (jump >= len) {
-			j = jump - len; // do something
-		} else {
-			j += jump;
-		}
-		v = a[j];
-
-		if (j == start) {
-			stop = start;
-			break;
+		if (first) {
+			first = false;
 		}
 
-		assert((left <= j) && (j <= right));
+		i = i + jump;
+		if (i > right) {
+			int extra = i - right;
+			i = left + extra - 1;
+		}
 
-		ari_print(a, n, "chk2");
-		a[j] = val;
-		val = v;
-		ari_print(a, n, "chk3");
+		assert((left <= i) && (i <= right));
+
+		next = a[i];
+		a[i] = current;
+		current = next;
 	}
-	a[stop] = val;
 }
 
 void ari_range_rrotatn_inplace(int a[], int n, int rstart, int rend, int jump) // NEW
@@ -1836,14 +1829,37 @@ void test_range_rrotatn_chain(void)
 {
 	int a[10];
 	int n = 10;
+	int rstart = 1;
+	int rstop = 5;
+	int chain = 1;
 
-	// n = 8;
 	ari_setall(a, n, -1);
-	ari_range_set_linear(a, n, 1, 4);
+	ari_range_set_linear(a, n, rstart, rstop);
 	ari_print(a, n, "a[j1c1]");
 
-	ari_range_rrotatn_chain(a, n, 1, 1, 4, 1);
-	ari_range_print(a, n, 1, 4);
+	ari_range_rrotatn_chain(a, n, 1, rstart, rstop, chain);
+	ari_range_print(a, n, rstart, rstop);
+
+	ari_setall(a, n, -1);
+	ari_range_set_linear(a, n, rstart, rstop);
+	ari_print(a, n, "a[j2c1]");
+
+	ari_range_rrotatn_chain(a, n, 2, rstart, rstop, chain);
+	ari_range_print(a, n, rstart, rstop);
+
+	ari_setall(a, n, -1);
+	ari_range_set_linear(a, n, rstart, rstop);
+	ari_print(a, n, "a[j3c1]");
+
+	ari_range_rrotatn_chain(a, n, 3, rstart, rstop, chain);
+	ari_range_print(a, n, rstart, rstop);
+
+	ari_setall(a, n, -1);
+	ari_range_set_linear(a, n, rstart, rstop);
+	ari_print(a, n, "a[j4c1]");
+
+	ari_range_rrotatn_chain(a, n, 4, rstart, rstop, chain);
+	ari_range_print(a, n, rstart, rstop);
 }
 
 static void test_ari_general(bool noisy)
