@@ -901,15 +901,12 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 		      int b[], int nb, int rstartb, int rendb,
 		      int c[], int nc, int rstartc)
 {
-	register int i;
-	register int j;
-	register int k;
 	int starta;
 	int startb;
 	int startc;
-	register int enda;
-	register int endb;
-	// int endc; // NOTUSED
+	int enda;
+	int endb;
+	int endc;
 	int rendc;
 	int rlena;
 	int rlenb;
@@ -923,30 +920,25 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
 	assert((0 <= rstartc) && (rstartc < na));
 
-	rlena = (renda - rstarta) + 1; /* length of array ra[] */ // FIX
-	rlenb = (rendb - rstarta) + 1; /* length of array rb[] */
+	rlena = (renda - rstarta) + 1; /* length of range */
+	rlenb = (rendb - rstarta) + 1; /* length of range */
 	rendc = nc - 1;
-	rlenc = (rendc - rstartc) + 1; /* length of array rc[] */
+	rlenc = (rendc - rstartc) + 1; /* length of range */
 	assert((rlena + rlenb) <= rlenc);
 
-// FIX range copy
+	// define range a[rstarta .. renda] to c[rstartc .. rendc]
 	starta = rstarta;
 	enda = renda;
 	startc = rstartc;
-	// endc = rendc; // NOTUSED
+	endc = rendc;
+	ari_range_copy(a, na, starta, enda, c, nc, startc, endc);
 
-	for (i = starta, k = rstartc; i <= enda; ++i, ++k) {
-		c[k] = a[i];
-	}
-
+	// define range a[rstartb .. rendb] to c[rlena .. rendc]
 	startb = rstartb;
 	endb = rendb;
-	startc = enda + 1;
-	// endc = rendc; // NOTUSED
-
-	for (j = startb, k = startc; j <= endb; ++j, ++k) {
-		c[k] = b[j];
-	}
+	startc = rlena;
+	endc = rendc;
+	ari_range_copy(b, nb, startb, endb, c, nc, startc, endc);
 }
 
 // circular rotate
@@ -1591,6 +1583,15 @@ void test_concat(void)
 
 	ari_concat(a, n, b, n, c, nc);
 	ari_print(c, nc, "concat>");
+
+	ari_print(a, n, "a[]");
+	ari_print(b, n, "b[]");
+
+	nc = n+n;
+	ari_setall(c, nc, -1);
+	ari_print(c, nc, "c[]");
+	ari_range_concat(a, n, 5, n-1, b, n, 5, n-1, c, nc, 0);
+	ari_print(c, nc, "rcncat>");
 }
 
 // left shift test function
