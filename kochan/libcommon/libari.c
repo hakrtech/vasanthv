@@ -915,10 +915,9 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 	assert(na > 0);
 	assert(nb > 0);
 	assert(nc > 0);
-	assert((na+nb) <= nc);
 	assert((0 <= rstarta) && (rstarta <= renda) && (renda < na));
 	assert((0 <= rstartb) && (rstartb <= rendb) && (rendb < nb));
-	assert((0 <= rstartc) && (rstartc < na));
+	assert((0 <= rstartc) && (rstartc < nc));
 
 	rlena = (renda - rstarta) + 1; /* length of range */
 	rlenb = (rendb - rstarta) + 1; /* length of range */
@@ -933,7 +932,7 @@ void ari_range_concat(int a[], int na, int rstarta, int renda,
 	endc = rendc;
 	ari_range_copy(a, na, starta, enda, c, nc, startc, endc);
 
-	// define range a[rstartb .. rendb] to c[rlena .. rendc]
+	// define range b[rstartb .. rendb] to c[rlena .. rendc]
 	startb = rstartb;
 	endb = rendb;
 	startc = rlena;
@@ -1591,6 +1590,15 @@ void test_concat(void)
 	ari_setall(c, nc, -1);
 	ari_print(c, nc, "c[]");
 	ari_range_concat(a, n, 5, n-1, b, n, 5, n-1, c, nc, 0);
+	ari_print(c, nc, "rcncat>");
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+
+	nc = n;
+	ari_setall(c, nc, -1);
+	ari_print(c, nc, "c[]");
+	ari_range_concat(a, n, 5, n-1, a, n, 0, 4, c, nc, 0);
 	ari_print(c, nc, "rcncat>");
 }
 
