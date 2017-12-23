@@ -870,39 +870,31 @@ void ari_range_copy(int a[], int an, int rstarta, int renda,
 // copy a into c, append b to c
 void ari_concat(int a[], int na, int b[], int nb, int c[], int nc)
 {
-	register int i;
-	register int j;
-	register int k;
 	int starta;
 	int startb;
 	int startc;
-	register int enda;
-	register int endb;
-	// int endc; // NOTUSED
+	int enda;
+	int endb;
+	int endc;
 
 	assert(na > 0);
 	assert(nb > 0);
 	assert(nc > 0);
 	assert((na+nb) <= nc);
 
+	// define range a[0 .. na-1] to c[0 .. nc-1]
 	starta = 0;
 	enda = na - 1;
 	startc = 0;
-	// endc = nc - 1; // NOTUSED
+	endc = nc - 1;
+	ari_range_copy(a, na, starta, enda, c, nc, startc, endc);
 
-// FIX ari range copy
-	for (i = starta, k = startc; i <= enda; ++i, ++k) {
-		c[k] = a[i];
-	}
-
+	// define range b[0 .. nb-1] to c[na .. nc-1]
 	startb = 0;
 	endb = nb - 1;
 	startc = enda + 1;
-	// endc = nc - 1; // NOTUSED
-
-	for (j = startb, k = startc; j <= endb; ++j, ++k) {
-		c[k] = b[j];
-	}
+	endc = nc - 1;
+	ari_range_copy(b, nb, startb, endb, c, nc, startc, endc);
 }
 
 void ari_range_concat(int a[], int na, int rstarta, int renda, 
@@ -1579,6 +1571,28 @@ void test_copy(void)
 	ari_range_print(b, n, 0, 4);
 }
 
+// array concatenate test function
+void test_concat(void)
+{
+	int a[10], b[10];
+	int n = 10;
+#define MAX 100
+	int c[MAX];
+	int nc = MAX;
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[]");
+	ari_setall_square(b, n);
+	ari_print(b, n, "b[]");
+
+	nc = n+n;
+	ari_setall(c, nc, -1);
+	ari_print(c, nc, "c[]");
+
+	ari_concat(a, n, b, n, c, nc);
+	ari_print(c, nc, "concat>");
+}
+
 // left shift test function
 void test_lshift(void)
 {
@@ -1925,6 +1939,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_copy";
 	test_start(fname);
 	test_copy();
+	test_end(fname);
+
+	fname = "ari_concat";
+	test_start(fname);
+	test_concat();
 	test_end(fname);
 
 	fname = "ari_lrotatn_using_copybuf";
