@@ -215,6 +215,27 @@ void ari_range_set_fibonacci(int a[], int n, int rstart, int rend)
 	}
 }
 
+// a[i] = factorial(i)
+void ari_setall_factorial(int a[], int n)
+{
+	register int i;
+	int start;
+	register int end;
+
+	assert(n > 0);
+
+	// initial factorial value
+	a[0] = 1;
+
+	// define loop start .. end
+	start = 1;
+	end = n - 1;
+
+	for (i = start; i <= end; i++) {
+		a[i] = i * a[i-1]; /* factorial[i] = i * factorial[i-1]; */
+	}
+}
+
 void ari_print(int a[], int n, char *s) // OKR
 {
 	assert(n > 0);
@@ -1507,6 +1528,16 @@ void test_setall_fibo(void)
 	ari_range_print(a, n, 5, 8);
 }
 
+// array setall factorial test
+void test_setall_fact(void)
+{
+	int a[10];
+	int n = 10;
+
+	ari_setall_factorial(a, n);
+	ari_print(a, n, "a[fact]");
+}
+
 // all print test
 void test_print(void)
 {
@@ -1967,6 +1998,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_setall_fibonacci";
 	test_start(fname);
 	test_setall_fibo();
+	test_end(fname);
+
+	fname = "ari_setall_factorial";
+	test_start(fname);
+	test_setall_fact();
 	test_end(fname);
 
 	fname = "ari_get";
