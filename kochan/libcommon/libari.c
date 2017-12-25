@@ -232,7 +232,30 @@ void ari_setall_factorial(int a[], int n)
 	end = n - 1;
 
 	for (i = start; i <= end; i++) {
-		a[i] = i * a[i-1]; /* factorial[i] = i * factorial[i-1]; */
+		a[i] = i * a[i-1]; /* factorial[i] = i * factorial[i-1] */
+	}
+}
+
+// a[rstart..rend] = factorial(i)
+void ari_range_set_factorial(int a[], int n, int rstart, int rend)
+{
+	register int i;
+	int j;
+	int start;
+	int end;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	// initial factorial value
+	a[rstart] = 1;
+
+	// define loop start .. end
+	start = rstart + 1;
+	end =  rend;
+
+	for (i = start, j = 1; i <= end; i++, j++) {
+		a[i] = j * a[i-1]; /* factorial[i] = j * factorial[i-1] */
 	}
 }
 
@@ -1536,6 +1559,24 @@ void test_setall_fact(void)
 
 	ari_setall_factorial(a, n);
 	ari_print(a, n, "a[fact]");
+
+	ari_setall(a, n, -1);
+	ari_print(a, n, "a[]");
+	ari_range_set_factorial(a, n, 2, 5);
+	ari_print(a, n, "a[2ft5]");
+	ari_range_print(a, n, 2, 5);
+
+	ari_setall(a, n, -1);
+	ari_print(a, n, "a[]");
+	ari_range_set_factorial(a, n, 5, 5);
+	ari_print(a, n, "a[5ft5]");
+	ari_range_print(a, n, 5, 5);
+
+	ari_setall_linear(a, n);
+	ari_print(a, n, "a[lin]");
+	ari_range_set_factorial(a, n, 4, 9);
+	ari_print(a, n, "a[4ft9]");
+	ari_range_print(a, n, 4, 9);
 }
 
 // all print test
