@@ -168,6 +168,27 @@ void ari_range_set_odd(int a[], int n, int rstart, int rend) // OKR
 	}
 }
 
+// a[i] = fibonacci(i) 0,1,1,2,3,5,8 ...
+void ari_setall_fibonacci(int a[], int n)
+{
+	register int i;
+	int start;
+	register int end;
+
+	assert(n > 0);
+
+	a[0] = 0;
+	a[1] = 1;
+
+	// define loop start .. stop
+	start = 2;
+	end = n - 1;
+
+	for (i = start; i <= end; i++) {
+		a[i] = a[i-2] + a[i-1]; /* fibonacci[i] = fibonacci[i-2] + fibonacci[i-1] */
+	}
+}
+
 void ari_print(int a[], int n, char *s) // OKR
 {
 	assert(n > 0);
@@ -1432,6 +1453,16 @@ static void test_end(char *s)
 	printf("testing %s ... OK\n", s);
 }
 
+// array setall fibonacci test
+void test_setall_fibo(void)
+{
+	int a[10];
+	int n = 10;
+
+	ari_setall_fibonacci(a, n);
+	ari_print(a, n, "a[fibo]");
+}
+
 // all print test
 void test_print(void)
 {
@@ -1888,6 +1919,11 @@ static void test_ari_general(bool noisy)
 	// int n = 10;
 	int a[2], b[2], c[2] = { 1, 0 };
 	int n = 2;
+
+	fname = "ari_setall_fibonacci";
+	test_start(fname);
+	test_setall_fibo();
+	test_end(fname);
 
 	fname = "ari_get";
 	test_start(fname);
