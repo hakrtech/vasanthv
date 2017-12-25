@@ -177,12 +177,38 @@ void ari_setall_fibonacci(int a[], int n)
 
 	assert(n > 0);
 
+	// initial fibonacci values
 	a[0] = 0;
 	a[1] = 1;
 
-	// define loop start .. stop
+	// define loop start .. end
 	start = 2;
 	end = n - 1;
+
+	for (i = start; i <= end; i++) {
+		a[i] = a[i-2] + a[i-1]; /* fibonacci[i] = fibonacci[i-2] + fibonacci[i-1] */
+	}
+}
+
+// a[rstart..rend] = fibonacci(i)
+void ari_range_set_fibonacci(int a[], int n, int rstart, int rend)
+{
+	register int i;
+	int start;
+	register int end;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	// initial fibonacci values
+	a[rstart] = 0;
+	if (rstart != rend) {
+		a[rstart+1] = 1;
+	}
+
+	// define loop start .. end
+	start = rstart + 2;
+	end = rend;
 
 	for (i = start; i <= end; i++) {
 		a[i] = a[i-2] + a[i-1]; /* fibonacci[i] = fibonacci[i-2] + fibonacci[i-1] */
@@ -1461,6 +1487,24 @@ void test_setall_fibo(void)
 
 	ari_setall_fibonacci(a, n);
 	ari_print(a, n, "a[fibo]");
+
+	ari_setall(a, n, -1);
+	ari_print(a, n, "a[]");
+	ari_range_set_fibonacci(a, n, 3, 7);
+	ari_print(a, n, "a[3fb7]");
+	ari_range_print(a, n, 3, 7);
+
+	ari_setall(a, n, -1);
+	ari_print(a, n, "a[]");
+	ari_range_set_fibonacci(a, n, 3, 3);
+	ari_print(a, n, "a[3fb3]");
+	ari_range_print(a, n, 3, 3);
+
+	ari_setall_square(a, n);
+	ari_print(a, n, "a[sqr]");
+	ari_range_set_fibonacci(a, n, 5, 8);
+	ari_print(a, n, "a[5fb8]");
+	ari_range_print(a, n, 5, 8);
 }
 
 // all print test

@@ -40,9 +40,9 @@ void ari_setall_odd(int a[], int n); // DONE
 void ari_range_set_odd(int a[], int n, int rstart, int rend); // DONE
 
 // a[i] = fibonacci(i) 0,1,1,2,3,5,8 ...
-void ari_setall_fibonacci(int a[], int n); // LATER
+void ari_setall_fibonacci(int a[], int n); // DONE
 // a[rstart..rend] = fibonacci(i)
-void ari_range_set_factorial(int a[], int n); // TODO
+void ari_range_set_fibonacci(int a[], int n, int rstart, int rend); // DONE
 
 // a[i] = factorial(i)
 void ari_setall_factorial(int a[], int n); // LATER
