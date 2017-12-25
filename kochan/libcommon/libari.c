@@ -999,19 +999,17 @@ void ari_range_rrotat1(int a[], int n, int rstart, int rend) // OKR
 	a[rstart] = val;
 }
 
-void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int jump) // FIX
+void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int jump)
 {
 #define MAX 100
 	int b[MAX];
 	int nb = MAX;
-	register int i;
-	register int j;
 	int leftb;
 	int rightb;
 	int starta;
 	int startb;
-	register int stopa;
-	register int stopb;
+	int stopa;
+	int stopb;
 	int rlen;
 	bool debug = false;
 
@@ -1025,6 +1023,7 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 
 	ari_setall(b, nb, -1);
 
+	// define range
 	leftb = 0;
 	rightb = nb - 1;
 
@@ -1034,21 +1033,12 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 		ari_range_print(b, n, lefta, righta);
 	}
 
-// FIX range2_copy
-	// define start .. stop loop
 	// copy range a[b..b+j-1] to b[e-j+1..e]
 	starta = lefta;
 	stopa = lefta + (jump - 1);
 	startb = (righta - jump) + 1;
 	stopb = righta;
-	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
-		within_lele(lefta, i, righta);
-		within_lele(lefta, i, stopa);
-		within_lele(leftb, j, rightb);
-		within_lele(lefta, j, stopb);
-
-		b[j] = a[i];
-	}
+	ari_range_copy(a, n, starta, stopa, b, nb, startb, stopb);
 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy1\n");
@@ -1056,20 +1046,12 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 		ari_range_print(b, n, lefta, righta);
 	}
 
-	//define start .. stop loop
 	// copy range a[b+j..e] to b[b..e-j]
 	starta = lefta + jump;
 	stopa = righta;
 	startb = lefta;
 	stopb = righta - jump;
-	for (i = starta, j = startb; i <= stopa; ++i, ++j) {
-		within_lele(lefta, i, righta);
-		within_lele(lefta, i, stopa);
-		within_lele(leftb, j, rightb);
-		within_lele(lefta, j, stopb);
-
-		b[j] = a[i];
-	}
+	ari_range_copy(a, n, starta, stopa, b, nb, startb, stopb);
 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy2\n");
@@ -1077,16 +1059,10 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 		ari_range_print(b, n, lefta, righta);
 	}
 
-	// define start .. stop loop
 	// copy b[b..e] to a[b..e]
 	startb = lefta;
 	stopb = righta;
-	for (j = startb; j <= stopb; ++j) {
-		within_lele(leftb, j, rightb);
-		within_lele(lefta, j, righta);
-
-		a[j] = b[j];
-	}
+	ari_range_copy(b, nb, startb, stopb, a, n, startb, stopb);
 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: after copy3\n");
