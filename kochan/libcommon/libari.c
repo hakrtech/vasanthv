@@ -400,7 +400,7 @@ int  ari_getmin(int a[], int n) // OKR
 int ari_range_getmin(int a[], int na, int rstart, int rend)
 {
 	register int i;
-	register int minval;
+	int minval;
 	int start;
 	register int end;
 
@@ -1155,7 +1155,7 @@ void ari_range_rrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	int stopa;
 	int stopb;
 	int rlen;
-	bool debug = true;
+	bool debug = false;
 
 	assert(n > 0);
 	assert(nb > 0);
