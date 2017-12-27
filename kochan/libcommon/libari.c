@@ -2254,68 +2254,6 @@ void test_lrotatn_chain(void)
 	ari_print(a, n, "a[9cs0]");
 }
 
-// left rotat n newchain test
-void test_lrotatn_newchain(void)
-{
-	int a[10];
-	int n = 10;
-
-	// n = 9;
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 1, 0);
-	ari_print(a, n, "a[1cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 2, 0);
-	ari_print(a, n, "a[2cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 3, 0);
-	ari_print(a, n, "a[3cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 4, 0);
-	ari_print(a, n, "a[4cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 5, 0);
-	ari_print(a, n, "a[5cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 6, 0);
-	ari_print(a, n, "a[6cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 7, 0);
-	ari_print(a, n, "a[7cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 8, 0);
-	ari_print(a, n, "a[8cs0]");
-
-	ari_setall_linear(a, n);
-	ari_print(a, n, "a[]");
-
-	ari_lrotatn_newchain(a, n, 9, 0);
-	ari_print(a, n, "a[9cs0]");
-}
-
 static void test_ari_general(bool noisy)
 {
 #define dbg if (noisy)
@@ -2441,11 +2379,6 @@ static void test_ari_general(bool noisy)
 	fname = "ari_lrotatn_chain";
 	test_start(fname);
 	test_lrotatn_chain();
-	test_end(fname);
-
-	fname = "ari_lrotatn_newchain";
-	test_start(fname);
-	test_lrotatn_newchain();
 	test_end(fname);
 }
 
