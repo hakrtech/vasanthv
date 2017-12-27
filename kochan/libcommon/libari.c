@@ -179,7 +179,9 @@ void ari_setall_fibonacci(int a[], int n)
 
 	// initial fibonacci values
 	a[0] = 0;
-	a[1] = 1;
+	if (n > 1) {
+		a[1] = 1;
+	}
 
 	// define loop start .. end
 	start = 2;
@@ -1618,12 +1620,12 @@ void test_setall_fact(void)
 // array setall prime test
 void test_setall_prime(void)
 {
-	int a[20];
-	int n = 20;
+	int a[10];
+	int n = 10;
 
 	ari_setall(a, n, -1);
 	ari_setall_prime(a, n);
-	ari_print(a, n, "a[prime]");
+	ari_print(a, n, "a[prm]");
 }
 
 // all print test
