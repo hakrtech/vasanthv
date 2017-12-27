@@ -50,9 +50,9 @@ void ari_setall_factorial(int a[], int n); // DONE
 void ari_range_set_factorial(int a[], int n, int rstart, int rend); // DONE
 
 // a[i] = prime(i) i'th prime prime(0)=2,prime(1)=3,prime(2)=5,7,11 ...
-void ari_setall_prime(int a[], int n); // LATER
+void ari_setall_prime(int a[], int n); // DONE
 // a[rstart..rend] = prime(i)
-void ari_range_set_prime(int a[], int n, int rstart, int rend); // TODO
+void ari_range_set_prime(int a[], int n, int rstart, int rend); // DONE
 
 // a[pos] = val
 void ari_setone(int a[], int n, int pos, int val); // DONE

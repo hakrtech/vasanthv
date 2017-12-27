@@ -279,11 +279,48 @@ void ari_setall_prime(int a[], int n)
 	start = 1;
 	end = n - 1;
 
-	for (i = start, j = 3; i <= end; j+=2) { /* In even number two only prime. Otherwise even numbers are not prime depends upon proof.
-						    So eliminate even numbers */
+	for (i = start, j = 3; i <= end; j+=2) { /* In even number two only prime. otherwise even numbers are not prime depends upon proof.
+						    so eliminate even numbers */
 		bool isprime = true;
 
-		for (k = 3; k < j; k++) {
+		for (k = 3; k < j; k+=2) {
+			if (j % k == 0) {
+				isprime = false;
+				break;
+			}
+		}
+
+		if (isprime) {
+			a[i] = j;
+			i++;
+		}
+	}
+}
+
+// a[rstart..rend] = prime(i)
+void ari_range_set_prime(int a[], int n, int rstart, int rend)
+{
+	register int i;
+	register int j;
+	register int k;
+	int start;
+	register int end;
+
+	assert(n > 0);
+	assert((0 <= rstart) && (rstart <= rend) && (rend < n));
+
+	// initial prime value
+	a[rstart] = 2;
+
+	// define loop start .. end
+	start = rstart + 1;
+	end = rend;
+
+	for (i = start, j = 3; i <= end; j+=2) { /* In even number two only prime. otherwise even numbers are not prime depends upon proof.
+						    so eliminate even numbers */
+		bool isprime = true;
+
+		for (k = 3; k < j; k+=2) {
 			if (j % k == 0) {
 				isprime = false;
 				break;
@@ -1625,7 +1662,25 @@ void test_setall_prime(void)
 
 	ari_setall(a, n, -1);
 	ari_setall_prime(a, n);
-	ari_print(a, n, "a[prm]");
+	ari_print(a, n, "a[prim]");
+
+	ari_setall(a, n, -1);
+	ari_print(a, n, "a[]");
+	ari_range_set_prime(a, n, 3, 7);
+	ari_print(a, n, "a[3pm7]");
+	ari_range_print(a, n, 3, 7);
+
+	ari_setall(a, n, -1);
+	ari_print(a, n, "a[]");
+	ari_range_set_prime(a, n, 9, 9);
+	ari_print(a, n, "a[9pm9]");
+	ari_range_print(a, n, 9, 9);
+
+	ari_setall(a, n, -1);
+	ari_print(a, n, "a[lin]");
+	ari_range_set_prime(a, n, 0, 8);
+	ari_print(a, n, "a[0pm8]");
+	ari_range_print(a, n, 0, 8);
 }
 
 // all print test
