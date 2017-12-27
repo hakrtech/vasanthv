@@ -259,6 +259,42 @@ void ari_range_set_factorial(int a[], int n, int rstart, int rend)
 	}
 }
 
+// a[i] = prime(i) i'th prime prime(0)=2,prime(1)=3,prime(2)=5,7,11 ...
+void ari_setall_prime(int a[], int n)
+{
+	register int i;
+	register int j;
+	register int k;
+	int start;
+	register int end;
+
+	assert(n > 0);
+
+	// initial prime value
+	a[0] = 2;
+
+	// define loop start .. end
+	start = 1;
+	end = n - 1;
+
+	for (i = start, j = 3; i <= end; j+=2) { /* In even number two only prime. Otherwise even numbers are not prime depends upon proof.
+						    So eliminate even numbers */
+		bool isprime = true;
+
+		for (k = 3; k < j; k++) {
+			if (j % k == 0) {
+				isprime = false;
+				break;
+			}
+		}
+
+		if (isprime) {
+			a[i] = j;
+			i++;
+		}
+	}
+}
+
 void ari_print(int a[], int n, char *s) // OKR
 {
 	assert(n > 0);
@@ -1579,6 +1615,17 @@ void test_setall_fact(void)
 	ari_range_print(a, n, 4, 9);
 }
 
+// array setall prime test
+void test_setall_prime(void)
+{
+	int a[20];
+	int n = 20;
+
+	ari_setall(a, n, -1);
+	ari_setall_prime(a, n);
+	ari_print(a, n, "a[prime]");
+}
+
 // all print test
 void test_print(void)
 {
@@ -2044,6 +2091,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_setall_factorial";
 	test_start(fname);
 	test_setall_fact();
+	test_end(fname);
+
+	fname = "ari_setall_prime";
+	test_start(fname);
+	test_setall_prime();
 	test_end(fname);
 
 	fname = "ari_get";
