@@ -54,7 +54,7 @@ clean:
 #
 
 test_libari: libari.c libari.h
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libari.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libari.c -L. -linteger
 
 # integer number library
 libinteger.a: libnumi.o

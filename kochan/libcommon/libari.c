@@ -6,6 +6,7 @@
 #include <assert.h>
 
 #include "libari.h"
+#include "libinteger.h"
 
 #define within_lele(a, x, b) assert( ((a) <= (x)) && ((x) <= (b)) )
 
@@ -265,8 +266,7 @@ void ari_range_set_factorial(int a[], int n, int rstart, int rend)
 void ari_setall_prime(int a[], int n)
 {
 	register int i;
-	register int j;
-	register int k;
+	int j;
 	int start;
 	register int end;
 
@@ -279,17 +279,9 @@ void ari_setall_prime(int a[], int n)
 	start = 1;
 	end = n - 1;
 
-	for (i = start, j = 3; i <= end; j+=2) { /* In even number two only prime. otherwise even numbers are not prime depends upon proof.
-						    so eliminate even numbers */
-		bool isprime = true;
-
-		for (k = 3; k < j; k+=2) {
-			if (j % k == 0) {
-				isprime = false;
-				break;
-			}
-		}
-
+	bool isprime = true;
+	for (i = start, j = 3; i <= end; j+=2) { /* two only prime and other even numbers are not prime depend upon proof. so eliminate even numbers */
+		isprime = numi_isprime(j);
 		if (isprime) {
 			a[i] = j;
 			i++;
@@ -301,8 +293,7 @@ void ari_setall_prime(int a[], int n)
 void ari_range_set_prime(int a[], int n, int rstart, int rend)
 {
 	register int i;
-	register int j;
-	register int k;
+	int j;
 	int start;
 	register int end;
 
@@ -316,17 +307,9 @@ void ari_range_set_prime(int a[], int n, int rstart, int rend)
 	start = rstart + 1;
 	end = rend;
 
-	for (i = start, j = 3; i <= end; j+=2) { /* In even number two only prime. otherwise even numbers are not prime depends upon proof.
-						    so eliminate even numbers */
-		bool isprime = true;
-
-		for (k = 3; k < j; k+=2) {
-			if (j % k == 0) {
-				isprime = false;
-				break;
-			}
-		}
-
+	bool isprime = true;
+	for (i = start, j = 3; i <= end; j+=2) { /* two only prime and other even numbers are not prime depend upon proof. so eliminate even numbers */
+		isprime = numi_isprime(j);
 		if (isprime) {
 			a[i] = j;
 			i++;
