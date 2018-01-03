@@ -497,6 +497,20 @@ int  ari_range_sum(int a[], int n, int rstart, int rend)
 	return sum;
 }
 
+// calculate average
+double ari_stat_mean(int a[], int n)
+{
+	int sum = -1;
+	double avg = -0.1;
+
+	assert(n > 0);
+
+	sum = ari_sum(a, n);
+	avg = sum / n;
+
+	return avg;
+}
+
 // return maximum of a[]
 int  ari_getmax(int a[], int n) // OKR
 {
@@ -2334,6 +2348,24 @@ void test_range_lrotatn_chain(void)
 	ari_range_print(a, n, rstart, rstop);
 }
 
+// test array calculation
+void test_ari_calculation(void)
+{
+	int a[10];
+	int n = 10;
+	int sum = -1;
+	double mean = -0.01;
+
+	ari_setall_odd(a, n);
+	ari_print(a, n, "a[]");
+
+	sum = ari_sum(a, n);
+	printf("sum of array %d\n", sum);
+
+	mean = ari_stat_mean(a, n);
+	printf("mean of array %lf\n", mean);
+}
+
 static void test_ari_general(bool noisy)
 {
 #define dbg if (noisy)
@@ -2464,6 +2496,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_range_lrotatn_chain";
 	test_start(fname);
 	test_range_lrotatn_chain();
+	test_end(fname);
+
+	fname = "ari_calculation";
+	test_start(fname);
+	test_ari_calculation();
 	test_end(fname);
 }
 
