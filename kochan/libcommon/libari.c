@@ -1272,55 +1272,12 @@ void ari_lrotatn_using_reverse(int a[], int n, int jump)
 
 void ari_lrotatn_chain(int a[], int n, int jump, int cstart)
 {
-	register int i;
-	register int newi;
-	int left;
-	int right;
-	int start;
-	register int stop;
-	int begin;
-
-	assert(n > 0);
-	assert((0 <= cstart) && (cstart < n));
-	assert((0 < jump) && (jump < n));
-
-	// define range
-	left = 0;
-	right = n - 1;
-
-	// deine loop start .. stop
-	start = cstart;
-	stop = start;
-
-	begin = a[start];
-	bool first = true;
-	for (i = start; first || (i != stop); i = newi) {
-		if (first) {
-			first = false;
-		}
-
-		newi = i + jump;
-		newi = newi % n;
-		int next = a[newi];
-
-		if (newi == start) {
-			next = begin;
-		}
-
-		assert((left <= i) && (i <= right));
-
-		a[i] = next;
-	}
-}
-
-void ari_lrotatn_newchain(int a[], int n, int jump, int cstart)
-{
-	register int i;
-	int left;
-	int right;
-	int start;
-	register int stop;
-	int current;
+	register int i = -1;
+	int left = -1;
+	int right = -1;
+	int start = -1;
+	register int stop = -1;
+	int current = -1;
 
 	assert(n > 0);
 	assert((0 <= cstart) && (cstart < n));
@@ -1337,18 +1294,20 @@ void ari_lrotatn_newchain(int a[], int n, int jump, int cstart)
 	current = a[start];
 	bool first = true;
 	for (i = start; first || (i != stop); i=i) {
+		int next = -1;
+
 		if (first) {
 			first = false;
 		}
 
 		i = i - jump;
-		if (i < 0) {
-			i = n + i;
+		if (i < left) {
+			i = right + i + 1;
 		}
 
 		assert((left <= i) && (i <= right));
 
-		int next = a[i];
+		next = a[i];
 		a[i] = current;
 		current = next;
 	}
