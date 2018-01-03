@@ -511,6 +511,28 @@ double ari_stat_mean(int a[], int n)
 	return avg;
 }
 
+// calculate median
+double ari_stat_median(int a[], int n, int median[2])
+{
+	int middle = -1;
+	double val = -0.1;
+
+	assert(n > 0);
+
+	ari_sortup(a, n);
+	if (n % 2 == 0) {
+		middle = n / 2;
+		median[0] = a[middle - 1];
+		median[1] = a[middle];
+		val = (median[0] + median[1]) / 2.0;
+	} else {
+		middle = (n - 1) / 2;
+		val = a[middle];
+	}
+
+	return val;
+}
+
 // return maximum of a[]
 int  ari_getmax(int a[], int n) // OKR
 {
@@ -2364,6 +2386,21 @@ void test_ari_calculation(void)
 
 	mean = ari_stat_mean(a, n);
 	printf("mean of array %lf\n", mean);
+
+	int b[10] = { 23, 4, 35, 56, 90, 2, -12, 7, 93, 32 };
+	double median = -0.1;
+	int med[2];
+
+	n = 10;
+	ari_print(b, n, "b[]");
+
+	ari_setall(med, 2, -1);
+	ari_print(med, 2, "med[]");
+
+	median = ari_stat_median(b, n, med);
+	printf("median of array %lf\n", median);
+	ari_print(b, n, "b[]");
+	ari_print(med, 2, "m[val]");
 }
 
 static void test_ari_general(bool noisy)
