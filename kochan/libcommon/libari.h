@@ -151,6 +151,7 @@ void ari_range_lrotatn_using_reverse(int a[], int n, int rstart, int rend, int j
 void ari_range_lrotatn_inplace(int a[], int n, int rstart, int rend, int jump); // TODO
 
 void ari_lrotatn_chain(int a[], int n, int jump, int cstart); // DONE
+void ari_range_lrotatn_chain(int a[], int n, int jump, int rstart, int rend, int cstart); // DONE
 
 void ari_rchain1(int a[], int n, int cstart); // DONE
 void ari_rrotatn_chain(int a[], int n, int jump, int cstart); // DONE
