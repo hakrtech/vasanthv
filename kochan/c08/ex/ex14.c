@@ -25,6 +25,10 @@ int d;
 
 void prime(void)
 {
+	printf("num prime or not > ");
+	scanf("%d", &num);
+	printf(" %d\n", num);
+
 	isprime = numi_isprime(num);
 	if(isprime) {
 		printf("return 1 num %d is prime\n", num);
@@ -79,7 +83,7 @@ void sort(void)
 	case 3:
 		exit(1);
 	default:
-		printf("choice incorrect!!!\n");
+		printf("incorrect! choice again\n");
 	}
 
 	sort();
@@ -87,11 +91,9 @@ void sort(void)
 
 int main(void)
 {
-	num = 2;
+	prime();
 	n = 10;
-	prime();
 	arraysum();
-	prime();
 	r = 4;
 	c = 5;
 	tposmatrix();
