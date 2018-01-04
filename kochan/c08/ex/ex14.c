@@ -78,7 +78,6 @@ void sort(void)
 		break;
 	case 3:
 		exit(1);
-		break;
 	default:
 		printf("choice incorrect!!!\n");
 	}
