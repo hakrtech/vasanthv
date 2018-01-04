@@ -3,6 +3,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "libinteger.h"
 #include "libarray.h"
@@ -20,6 +21,7 @@ int m[100][100] = {
  };
 int tpos_n[100][100];
 int r, c;
+int d;
 
 void prime(void)
 {
@@ -50,12 +52,20 @@ void tposmatrix(void)
 
 void sort(void)
 {
-	ari_range_set_square(a, n, 3, 6);
-	printf("Choice:\n 1. ascending order\n 2. descending order\n 3. print array\t > ");
-	scanf("%d", &num);
+	printf("Choice:\n 0. print array\n 1. ascending order\n 2. descending order\n 3. exit\t > ");
+	d = scanf("%d", &num);
 	printf("%d\n", num);
 
+	if (d != 1) {
+		printf("scanf error %d\n", d);
+		exit(1);
+	}
+
 	switch (num) {
+	case 0:
+		printf("printed array\n");
+		ari_print(a, n, "a[]");
+		break;
 	case 1:
 		printf("sorted ascending order\n");
 		ari_sortup(a, n);
@@ -67,12 +77,13 @@ void sort(void)
 		ari_print(a, n, "a[des]");
 		break;
 	case 3:
-		printf("printed array\n");
-		ari_print(a, n, "a[]");
+		exit(1);
 		break;
 	default:
 		printf("choice incorrect!!!\n");
 	}
+
+	sort();
 }
 
 int main(void)
@@ -85,6 +96,7 @@ int main(void)
 	r = 4;
 	c = 5;
 	tposmatrix();
+	ari_range_set_square(a, n, 3, 6);
 	sort();
 
 	return 0;
