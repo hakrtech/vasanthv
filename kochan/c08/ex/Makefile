@@ -49,7 +49,7 @@ rebuild: build
 build:	clean all
 
 clean:
-	/bin/rm -f a.out *.o *.a $(BIN) $(LIB)
+	/bin/rm -f a.out *.o *.a *.core $(BIN) $(LIB)
 #
 # end of Makefile template
 #
