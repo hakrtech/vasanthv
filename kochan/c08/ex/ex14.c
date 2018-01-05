@@ -40,7 +40,7 @@ void chk_prime(void)
 	ask_input();
 
 	isprime = numi_isprime(num);
-	if(isprime) {
+	if (isprime) {
 		printf("return 1 num %d is prime\n", num);
 	} else {
 		printf("return 0 num %d is composite\n", num);

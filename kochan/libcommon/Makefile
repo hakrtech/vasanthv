@@ -74,8 +74,8 @@ libnumd.o: libnumd.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
 # array library
-libarray.a: libari.o libnumi.o
-	ar crs $@ libari.o libnumi.o
+libarray.a: libari.o
+	ar crs $@ libari.o
 
 # array renamed
 libari.o: libari.c

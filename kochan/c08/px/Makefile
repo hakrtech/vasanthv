@@ -20,7 +20,7 @@ COMPILE.FLAGS+=$(INCDIR)
 LINK.LIBDIRS=-L ../../libcommon
 
 # list of libraries to link with 
-LINK.LIBS=-larray 
+LINK.LIBS=-larray
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
@@ -75,12 +75,12 @@ koodai.o: koodai.c
 
 # binaries
 factor_table: factor_table.c
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LIB.LOCAL.FLAGS) $(LINK.FLAGS)
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LIB.LOCAL.FLAGS) $(LINK.FLAGS) -linteger
 
 gcd: 	gcd.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LIB.LOCAL.FLAGS) $(LINK.FLAGS)
 
 # test binaries
 koodai: koodai.c
-	$(CC) -o $@ $(TEST.PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS)
+	$(CC) -o $@ $(TEST.PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS) -linteger
 
