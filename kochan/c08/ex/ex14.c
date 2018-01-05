@@ -23,11 +23,21 @@ int tpos_n[100][100];
 int r, c;
 int d;
 
-void prime(void)
+void ask_input(void)
+{
+	d = scanf("%d", &num);
+	printf("%d\n", num);
+
+	if (d != 1) {
+		printf("scanf error %d\n", d);
+		exit(1);
+	}
+}
+
+void chk_prime(void)
 {
 	printf("num prime or not > ");
-	scanf("%d", &num);
-	printf(" %d\n", num);
+	ask_input();
 
 	isprime = numi_isprime(num);
 	if(isprime) {
@@ -37,7 +47,7 @@ void prime(void)
 	}
 }
 
-void arraysum(void)
+void array_sum(void)
 {
 	ari_setall_linear(a, n);
 	ari_print(a, n, "a[]");
@@ -45,7 +55,7 @@ void arraysum(void)
 	printf("sum of array %d\n", num);
 }
 
-void tposmatrix(void)
+void tpos_matrix(void)
 {
 	printf("M[4*5] matrix>\n");
 	mxi_print(m, r, c);
@@ -54,16 +64,10 @@ void tposmatrix(void)
 	mxi_print(tpos_n, c, r);
 }
 
-void sort(void)
+void array_sort(void)
 {
 	printf("Choice:\n 0. print array\n 1. ascending order\n 2. descending order\n 3. exit\t > ");
-	d = scanf("%d", &num);
-	printf("%d\n", num);
-
-	if (d != 1) {
-		printf("scanf error %d\n", d);
-		exit(1);
-	}
+	ask_input();
 
 	switch (num) {
 	case 0:
@@ -82,23 +86,24 @@ void sort(void)
 		break;
 	case 3:
 		exit(1);
+		break;
 	default:
 		printf("incorrect! choice again\n");
 	}
 
-	sort();
+	array_sort();
 }
 
 int main(void)
 {
-	prime();
+	chk_prime();
 	n = 10;
-	arraysum();
+	array_sum();
 	r = 4;
 	c = 5;
-	tposmatrix();
+	tpos_matrix();
 	ari_range_set_square(a, n, 3, 6);
-	sort();
+	array_sort();
 
 	return 0;
 }
