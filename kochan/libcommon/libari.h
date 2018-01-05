@@ -208,7 +208,7 @@ bool ari_range_isequal(int a[], int na, int rstarta, int renda,
 // calculate average
 double ari_stat_mean(int a[], int n);
 // calculate median
-double ari_stat_median(int a[], int n, int median[2]);
+int ari_stat_median(int a[], int n, int median[2]);
 // calculate modes
 int ari_stat_mode(int a[], int n, int mode[], int freq[]);
 // standard deviation

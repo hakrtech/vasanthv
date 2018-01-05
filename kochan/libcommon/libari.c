@@ -512,25 +512,29 @@ double ari_stat_mean(int a[], int n)
 }
 
 // calculate median
-double ari_stat_median(int a[], int n, int median[2])
+int ari_stat_median(int a[], int n, int median[2])
 {
 	int middle = -1;
-	double val = -0.1;
+#define MAX 100
+	int b[MAX];
+	int mn;
 
 	assert(n > 0);
 
-	ari_sortup(a, n);
+	ari_copy(a, n, b, n);
+	ari_sortup(b, n);
 	if (n % 2 == 0) {
 		middle = n / 2;
-		median[0] = a[middle - 1];
-		median[1] = a[middle];
-		val = (median[0] + median[1]) / 2.0;
+		median[0] = b[middle - 1];
+		median[1] = b[middle];
+		mn = 2;
 	} else {
 		middle = (n - 1) / 2;
-		val = a[middle];
+		median[0] = b[middle];
+		mn = 1;
 	}
 
-	return val;
+	return mn;
 }
 
 // return maximum of a[]
@@ -2388,19 +2392,17 @@ void test_ari_calculation(void)
 	printf("mean of array %lf\n", mean);
 
 	int b[10] = { 23, 4, 35, 56, 90, 2, -12, 7, 93, 32 };
-	double median = -0.1;
 	int med[2];
+	int mn = 2;
 
 	n = 10;
 	ari_print(b, n, "b[]");
 
-	ari_setall(med, 2, -1);
-	ari_print(med, 2, "med[]");
+	ari_setall(med, mn, -1);
+	ari_print(med, mn, "med[]");
 
-	median = ari_stat_median(b, n, med);
-	printf("median of array %lf\n", median);
-	ari_print(b, n, "b[]");
-	ari_print(med, 2, "m[val]");
+	mn = ari_stat_median(b, n, med);
+	ari_print(med, mn, "med[]");
 }
 
 static void test_ari_general(bool noisy)
