@@ -3,4 +3,5 @@
  */
 
 int nbase(int num, int base, int a[]);
+int anybase_nten(int ab[], int nb, int base);
 
