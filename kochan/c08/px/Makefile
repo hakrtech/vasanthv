@@ -33,7 +33,7 @@ TESTBIN=koodai
 LIB.LOCAL.INC=-L .
 LIB.LOCAL.LNK=-lkoodai
 LIB.LOCAL.FLAGS=$(LIB.LOCAL.INC) $(LIB.LOCAL.LNK)
-LIB.LOCAL=libkoodai.a
+LIB.LOCAL=libkoodai.a libbase.a
 LIBCOMMONDIR= ../../libcommon
 RETURNPATH= ../c08/px
 
@@ -71,6 +71,13 @@ libkoodai.a: $(LIBOBJ)
 	ar rcs $@ $(LIBOBJ)
 
 koodai.o: koodai.c 
+	$(CC) -c -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $<
+
+# base library
+libbase.a: base.o
+	ar rcs $@ base.o
+
+base.o: base.c
 	$(CC) -c -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $<
 
 # binaries
