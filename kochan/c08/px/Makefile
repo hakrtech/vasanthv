@@ -27,11 +27,11 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
 BIN=factor_table gcd
-TESTBIN=koodai
+TESTBIN=koodai base
 
 # list of libraries to be built
 LIB.LOCAL.INC=-L .
-LIB.LOCAL.LNK=-lkoodai
+LIB.LOCAL.LNK=-lkoodai -lbase
 LIB.LOCAL.FLAGS=$(LIB.LOCAL.INC) $(LIB.LOCAL.LNK)
 LIB.LOCAL=libkoodai.a libbase.a
 LIBCOMMONDIR= ../../libcommon
@@ -60,7 +60,7 @@ rebuild: build
 build:	clean all
 
 clean:
-	/bin/rm -f a.out *.o *.a $(BIN) $(TESTBIN)
+	/bin/rm -f a.out *.o *.a *.core $(BIN) $(TESTBIN)
 #
 # end of Makefile template
 #
@@ -89,5 +89,8 @@ gcd: 	gcd.c
 
 # test binaries
 koodai: koodai.c
+	$(CC) -o $@ $(TEST.PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS) -linteger
+
+base: base.c
 	$(CC) -o $@ $(TEST.PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS) -linteger
 

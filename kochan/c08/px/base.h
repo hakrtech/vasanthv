@@ -2,5 +2,5 @@
  * Vasanth 06-01-2018
  */
 
-int nbase(int num, int base);
+int nbase(int num, int base, int a[]);
 
