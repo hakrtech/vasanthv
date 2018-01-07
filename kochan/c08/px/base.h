@@ -10,8 +10,7 @@ int baseconv_basen_to_base10(int a[], int asize, int alen, int abase);
 // returns length of range a[0..whatever]
 // e.g. convers number 12 to base 2
 // a[] = [ 1, 1, 0, 0 ] returns 4 length of values in a[] 
-int baseconv_base10_to_basen(int number, int a[], int asize, int abase);
+int baseconv_base10_to_basen(int number, int a[], int asize, int abase); // DONE
 
-int nbase(int num, int base, int a[]);
 int anybase_nten(int ab[], int nb, int base);
 

@@ -9,29 +9,52 @@
 #include "base.h"
 #include "libarray.h"
 
-int nbase(int num, int base, int a[])
+// convert (number) in base 10 to (a[0..alen]) to base abase
+// returns length of range a[0..whatever]
+// e.g. convers number 12 to base 2
+// a[] = [ 1, 1, 0, 0 ] returns 4 length of values in a[]
+int baseconv_base10_to_basen(int number, int a[], int asize, int abase)
 {
-	int i;
+	register int i;
 	int j;
+	int left;
+	int right;
 	int start;
-	int stop;
+	register int stop;
 
-	assert(num > 1);
-	assert((1 < base) && (base <= num));
+	assert(number > 1);
+	assert(asize > 1);
+	assert((1 < abase) && (abase <= number));
 
-	// define loop
-	start = num;
+	ari_setall(a, asize, -1);
+
+	// define range
+	left = 0;
+	right = asize - 1;
+
+	// define loop number .. 0
+	start = number;
 	stop = 0;
 
-	for (i = start, j = 0; i != stop; i = num, j++) {
-		a[j] = num % base;
-		num = num / base;
-	}
-	ari_reverse(a, j);
+	for (i = start, j = left; i != stop; i = number, j++) {
 
-	return j;
+		assert((left <= j) && (j <= right));
+		a[j] = number % abase;
+		number = number / abase;
+	}
+
+	asize = j;
+	ari_reverse(a, asize);
+
+	return asize;
 }
 
+// convert (a[0..alen]) in base abase to (return value) in base 10
+// e.g. calling with ([1,1,0,0], 100, 4, 10) will return 12
+int baseconv_basen_to_base10(int a[], int asize, int alen, int abase)
+{
+	return 0;
+}
 /*
 int anybase_nten(int ab[], int nb, int base)
 {
@@ -63,7 +86,7 @@ int main(void)
 	int base;
 #define MAX 100
 	int a[MAX];
-	int n;
+	int n = -1;
 	int d;
 
 	// input num
@@ -75,18 +98,15 @@ int main(void)
 		exit(1);
 	}
 
-	ari_setall(a, MAX, -1);
-
 	// output base 2 .. 10
 	base = 2;
 	for (i = base; i <= 10; i++) {
 		printf("base %d", i);
-
-		n = nbase(num, i, a);
+		n = baseconv_base10_to_basen(num, a, MAX, i);
 		ari_print(a, n, "");
-		ari_setall(a, n, -1);
-		// ari_print(a, n, "a[rset]");
 	}
+	n = baseconv_base10_to_basen(num, a, MAX, 3);
+	ari_print(a, n, "base 3");
 
 	return 0;
 }
