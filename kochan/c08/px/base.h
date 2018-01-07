@@ -14,3 +14,5 @@ int baseconv_base10_to_basen(int number, int a[], int asize, int abase); // DONE
 
 int anybase_nten(int ab[], int nb, int base);
 
+void ari_base_print(int a[], int n, char *s);
+

@@ -9,6 +9,28 @@
 #include "base.h"
 #include "libarray.h"
 
+void ari_base_print(int a[], int n, char *s)
+{
+	register int i;
+	int start;
+	register int stop;
+
+	assert(n > 0);
+	assert(s != NULL);
+
+	printf("%s\t= ", s);
+
+	// define loop 0 .. n-1
+	start = 0;
+	stop = n-1;
+
+	printf("[ ");
+	for (i = start; i <= stop; i++) {
+		printf("%3x ", a[i]);
+	}
+	printf(" ]\n");
+}
+
 // convert (number) in base 10 to (a[0..alen]) to base abase
 // returns length of range a[0..whatever]
 // e.g. convers number 12 to base 2
@@ -98,15 +120,17 @@ int main(void)
 		exit(1);
 	}
 
-	// output base 2 .. 10
+	// output base 2 .. 16
 	base = 2;
-	for (i = base; i <= 10; i++) {
+	for (i = base; i <= 16; i++) {
 		printf("base %d", i);
 		n = baseconv_base10_to_basen(num, a, MAX, i);
-		ari_print(a, n, "");
+		ari_base_print(a, n, "");
 	}
-	n = baseconv_base10_to_basen(num, a, MAX, 3);
-	ari_print(a, n, "base 3");
+
+	n = baseconv_base10_to_basen(num, a, MAX, 14);
+	ari_base_print(a, n, "base 14");
+	ari_print(a, n, "base 14");
 
 	return 0;
 }
