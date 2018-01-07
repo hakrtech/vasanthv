@@ -31,6 +31,45 @@ void ari_base_print(int a[], int n, char *s)
 	printf(" ]\n");
 }
 
+void ari_reverse_copy(int a[], int na, int b[], int nb)
+{
+	register int i;
+	int j;
+	int lefta;
+	int righta;
+	int leftb;
+	int rightb;
+	int starta;
+	register int stopa;
+	int startb;
+	int stopb;
+
+	assert(na > 0);
+	assert(nb > 0);
+	assert(na <= nb);
+
+	ari_setall(b, nb, -1);
+
+	// define range
+	lefta = 0;
+	righta = na - 1;
+	leftb = 0;
+	rightb = nb - 1;
+
+	// define loop a[0 .. na-1] to b[na-1 .. 0]
+	starta = lefta;
+	stopa = righta;
+	startb = righta;
+	stopb = lefta;
+
+	for (i = starta, j = startb; i <= stopa; i++, j--) {
+		assert((lefta <= i) && (i <= righta));
+		assert((leftb <= j) && (j <= rightb));
+
+		b[j] = a[i];
+	}
+}
+
 // convert (number) in base 10 to (a[0..alen]) to base abase
 // returns length of range a[0..whatever]
 // e.g. convers number 12 to base 2
@@ -108,6 +147,7 @@ int main(void)
 	int base;
 #define MAX 100
 	int a[MAX];
+	int b[MAX];
 	int n = -1;
 	int d;
 
@@ -128,9 +168,14 @@ int main(void)
 		ari_base_print(a, n, "");
 	}
 
-	n = baseconv_base10_to_basen(num, a, MAX, 14);
-	ari_base_print(a, n, "base 14");
-	ari_print(a, n, "base 14");
+	n = baseconv_base10_to_basen(num, a, MAX, 2);
+	ari_base_print(a, n, "base 2");
+
+	char *s = "reverse copy";
+	printf("%s..\n", s);
+	ari_setall(b, MAX, -1);
+	ari_reverse_copy(a, n, b, n);
+	ari_base_print(b, n, "base 2");
 
 	return 0;
 }
