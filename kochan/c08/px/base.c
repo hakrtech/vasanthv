@@ -126,7 +126,7 @@ void array_char_reverse(char c[], int n)
 	start = 0;
 	stop = n - 1;
 
-	for ( i = start, j = stop; i < stop; i++, j--) {
+	for ( i = start, j = stop; i < j; i++, j--) {
 		assert((start <= i) && (i <= stop));
 		assert((start <= j) && (j <= stop));
 
