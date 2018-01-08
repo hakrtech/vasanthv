@@ -9,7 +9,7 @@
 #include "base.h"
 #include "libarray.h"
 
-void ari_base_print(int a[], int n, char *s)
+void array_base_print(char a[], int n, char *s)
 {
 	register int i;
 	int start;
@@ -26,7 +26,7 @@ void ari_base_print(int a[], int n, char *s)
 
 	printf("[ ");
 	for (i = start; i <= stop; i++) {
-		printf("%3x ", a[i]);
+		printf("%3c ", a[i]);
 	}
 	printf(" ]\n");
 }
@@ -70,42 +70,102 @@ void ari_reverse_copy(int a[], int na, int b[], int nb)
 	}
 }
 
+void array_char_setall(char c[], int n, char l)
+{
+	int i;
+	int start;
+	int stop;
+
+	assert(n > 0);
+
+	// define loop
+	start = 0;
+	stop = n - 1;
+
+	for (i = start; i <= stop; i++) {
+		c[i] = l;
+	}
+}
+
+char num_to_char(int num)
+{
+	char c[100] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+		        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+		        'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+		        'u', 'v', 'w', 'x', 'y', 'z'
+		      };
+
+	assert((0 <= num) && (num <= 35));
+
+	return c[num];
+}
+
+void array_char_swap(char c[], int n, int i, int j)
+{
+	char x;
+
+	assert(n > 0);
+	assert((0 <= i) && (i < n));
+	assert((0 <= j) && (j < n));
+
+	x = c[i];
+	c[i] = c[j];
+	c[j] = x;
+}
+
+void array_char_reverse(char c[], int n)
+{
+	int i;
+	int j;
+	int start;
+	int stop;
+
+	assert(n > 0);
+
+	// define loop
+	start = 0;
+	stop = n - 1;
+
+	for ( i = start, j = stop; i < stop; i++, j--) {
+		assert((start <= i) && (i <= stop));
+		assert((start <= j) && (j <= stop));
+
+		array_char_swap(c, n, i, j);
+	}
+}
+
 // convert (number) in base 10 to (a[0..alen]) to base abase
 // returns length of range a[0..whatever]
 // e.g. convers number 12 to base 2
 // a[] = [ 1, 1, 0, 0 ] returns 4 length of values in a[]
-int baseconv_base10_to_basen(int number, int a[], int asize, int abase)
+int baseconv_base10_to_basen(int number, char c[], int asize, int abase)
 {
-	register int i;
-	int j;
+	int i;
 	int left;
 	int right;
-	int start;
-	register int stop;
 
 	assert(number > 1);
 	assert(asize > 1);
-	assert((1 < abase) && (abase <= number));
+	assert((abase > 1) && (abase <= 36));
 
-	ari_setall(a, asize, -1);
+	array_char_setall(c, asize, '-');
 
 	// define range
 	left = 0;
 	right = asize - 1;
 
-	// define loop number .. 0
-	start = number;
-	stop = 0;
+	i = left;
+	while (number > 0) {
+		int remainder = number % abase;
 
-	for (i = start, j = left; i != stop; i = number, j++) {
+		assert((left <= i) && (i <= right));
 
-		assert((left <= j) && (j <= right));
-		a[j] = number % abase;
-		number = number / abase;
+		c[i++] = num_to_char(remainder);
+		number /= abase;
 	}
 
-	asize = j;
-	ari_reverse(a, asize);
+	asize = i;
+	array_char_reverse(c, asize);
 
 	return asize;
 }
@@ -116,28 +176,6 @@ int baseconv_basen_to_base10(int a[], int asize, int alen, int abase)
 {
 	return 0;
 }
-/*
-int anybase_nten(int ab[], int nb, int base)
-{
-	int i;
-	int left;
-	int right;
-	int start;
-	int stop;
-	int sum;
-
-	assert(nb > 0);
-
-	// define range
-	left = 0;
-	right = nb-1;
-
-	// define loop
-	start = right;
-	stop = left;
-
-}
-*/
 
 #ifdef TEST
 int main(void)
@@ -146,8 +184,7 @@ int main(void)
 	int num;
 	int base;
 #define MAX 100
-	int a[MAX];
-	int b[MAX];
+	char a[MAX];
 	int n = -1;
 	int d;
 
@@ -160,23 +197,24 @@ int main(void)
 		exit(1);
 	}
 
-	// output base 2 .. 16
+	// output base 2 .. 36
 	base = 2;
-	for (i = base; i <= 16; i++) {
+	for (i = base; i <= 36; i++) {
 		printf("base %d", i);
 		n = baseconv_base10_to_basen(num, a, MAX, i);
-		ari_base_print(a, n, "");
+		array_base_print(a, n, "");
 	}
 
-	n = baseconv_base10_to_basen(num, a, MAX, 2);
-	ari_base_print(a, n, "base 2");
+	n = baseconv_base10_to_basen(num, a, MAX, 11);
+	array_base_print(a, n, "base 11");
 
+/*
 	char *s = "reverse copy";
-	printf("%s..\n", s);
-	ari_setall(b, MAX, -1);
+	printf("%s\n", s);
 	ari_reverse_copy(a, n, b, n);
-	ari_base_print(b, n, "base 2");
-
+	ari_base_print(b, n, "base 11");
+	printf("%s..ok\n", s);
+*/
 	return 0;
 }
 #endif //TEST
