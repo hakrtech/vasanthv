@@ -147,7 +147,7 @@ int baseconv_base10_to_basen(int num, char a[], int asize, int abase)
 
 	assert(num > 1);
 	assert(asize > 1);
-	assert((abase > 1) && (abase <= 36));
+	assert((1 < abase) && (abase <= 36));
 
 	arc_setall(a, asize, '-');
 
@@ -174,7 +174,59 @@ int baseconv_base10_to_basen(int num, char a[], int asize, int abase)
 // e.g. calling with ([1,1,0,0], 100, 4, 10) will return 12
 int baseconv_basen_to_base10(int a[], int asize, int alen, int abase)
 {
-	return 0;
+	int i;
+	int j;
+	int left;
+	int right;
+	int start;
+	int stop;
+	int sum = 0;
+	int pow = -1;
+
+	assert(asize > 0);
+	assert((0 < alen) && (alen <= asize));
+	assert(abase > 1);
+
+	// define range
+	left = 0;
+	right = asize - 1;
+
+	// define loop a[alen-1 .. 0]
+	start = alen - 1;
+	stop = left;
+
+	for (i = start, j = 1; i >= stop; i--, j = pow) {
+	       int val;
+
+	       val = a[i] * j;
+	       sum = sum + val;
+	       pow = abase * j;
+	       // printf("val %d sum %d pow %d\n", val, sum, pow);
+	}
+
+	return sum;
+}
+
+// test basen to base10 function
+void test_basen_to_base10(void)
+{
+/* base conversion base n to base 10 */
+#define MAX 100
+	int a[MAX] = { 1, 0, 1, 0, 0, 1 };
+	int b[4] = { 1, 1, 1, 2 };
+	int n = 4;
+	int base = 3;
+	int val;
+
+	val = baseconv_basen_to_base10(b, MAX, n, base);
+	ari_print(b, n, "base 3");
+	printf("num %d\n", val);
+
+	n = 6;
+	base = 2;
+	val = baseconv_basen_to_base10(a, MAX, n, base);
+	ari_print(a, n, "base 2");
+	printf("num %d\n", val);
 }
 
 #ifdef TEST
@@ -200,18 +252,17 @@ int main(void)
 	// output base 2 .. 36
 	base = 2;
 	for (i = base; i <= 36; i++) {
-		printf("base %d", i);
+		printf("%d base %d", num, i);
 		n = baseconv_base10_to_basen(num, a, MAX, i);
 		arc_base_print(a, n, "");
 	}
 
-/*
-	char *s = "reverse copy";
+	char *s = "baseconv_basen_to_base10";
+
 	printf("%s\n", s);
-	ari_reverse_copy(a, n, b, n);
-	ari_base_print(b, n, "base 11");
+	test_basen_to_base10();
 	printf("%s..ok\n", s);
-*/
+
 	return 0;
 }
 #endif //TEST
