@@ -9,7 +9,7 @@
 #include "base.h"
 #include "libarray.h"
 
-void array_base_print(char a[], int n, char *s)
+void arc_base_print(char a[], int n, char *s)
 {
 	register int i;
 	int start;
@@ -70,7 +70,7 @@ void ari_reverse_copy(int a[], int na, int b[], int nb)
 	}
 }
 
-void array_char_setall(char c[], int n, char l)
+void arc_setall(char a[], int n, char c)
 {
 	int i;
 	int start;
@@ -83,40 +83,40 @@ void array_char_setall(char c[], int n, char l)
 	stop = n - 1;
 
 	for (i = start; i <= stop; i++) {
-		c[i] = l;
+		a[i] = c;
 	}
 }
 
 char num_to_char(int num)
 {
-	char c[100] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-		        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-		        'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-		        'u', 'v', 'w', 'x', 'y', 'z'
-		      };
+	char c[36] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+		       'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+		       'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+		       'u', 'v', 'w', 'x', 'y', 'z'
+		     };
 
 	assert((0 <= num) && (num <= 35));
 
 	return c[num];
 }
 
-void array_char_swap(char c[], int n, int i, int j)
+void arc_swap(char a[], int n, int i, int j)
 {
-	char x;
+	char c;
 
 	assert(n > 0);
 	assert((0 <= i) && (i < n));
 	assert((0 <= j) && (j < n));
 
-	x = c[i];
-	c[i] = c[j];
-	c[j] = x;
+	c = a[i];
+	a[i] = a[j];
+	a[j] = c;
 }
 
-void array_char_reverse(char c[], int n)
+void arc_reverse(char a[], int n)
 {
-	int i;
-	int j;
+	register int i;
+	register int j;
 	int start;
 	int stop;
 
@@ -126,11 +126,11 @@ void array_char_reverse(char c[], int n)
 	start = 0;
 	stop = n - 1;
 
-	for ( i = start, j = stop; i < j; i++, j--) {
+	for (i = start, j = stop; i < j; i++, j--) {
 		assert((start <= i) && (i <= stop));
 		assert((start <= j) && (j <= stop));
 
-		array_char_swap(c, n, i, j);
+		arc_swap(a, n, i, j);
 	}
 }
 
@@ -138,34 +138,34 @@ void array_char_reverse(char c[], int n)
 // returns length of range a[0..whatever]
 // e.g. convers number 12 to base 2
 // a[] = [ 1, 1, 0, 0 ] returns 4 length of values in a[]
-int baseconv_base10_to_basen(int number, char c[], int asize, int abase)
+int baseconv_base10_to_basen(int num, char a[], int asize, int abase)
 {
-	int i;
+	register int i;
+	int j;
 	int left;
 	int right;
 
-	assert(number > 1);
+	assert(num > 1);
 	assert(asize > 1);
 	assert((abase > 1) && (abase <= 36));
 
-	array_char_setall(c, asize, '-');
+	arc_setall(a, asize, '-');
 
 	// define range
 	left = 0;
 	right = asize - 1;
 
-	i = left;
-	while (number > 0) {
-		int remainder = number % abase;
+	for (i = num, j = left; i > 0; j++) {
+		int remainder = i % abase;
 
-		assert((left <= i) && (i <= right));
+		assert((left <= j) && (j <= right));
 
-		c[i++] = num_to_char(remainder);
-		number /= abase;
+		a[j] = num_to_char(remainder);
+		i /= abase;
 	}
 
-	asize = i;
-	array_char_reverse(c, asize);
+	asize = j;
+	arc_reverse(a, asize);
 
 	return asize;
 }
@@ -202,11 +202,8 @@ int main(void)
 	for (i = base; i <= 36; i++) {
 		printf("base %d", i);
 		n = baseconv_base10_to_basen(num, a, MAX, i);
-		array_base_print(a, n, "");
+		arc_base_print(a, n, "");
 	}
-
-	n = baseconv_base10_to_basen(num, a, MAX, 11);
-	array_base_print(a, n, "base 11");
 
 /*
 	char *s = "reverse copy";
