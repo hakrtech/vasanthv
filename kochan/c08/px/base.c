@@ -89,15 +89,16 @@ void arc_setall(char a[], int n, char c)
 
 char num_to_char(int num)
 {
-	char c[36] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-		       'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-		       'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-		       'u', 'v', 'w', 'x', 'y', 'z'
+#define MAX 100
+	char a[MAX] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+		        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+		        'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+		        'u', 'v', 'w', 'x', 'y', 'z'
 		     };
 
-	assert((0 <= num) && (num <= 35));
+	assert((0 <= num) && (num < 36));
 
-	return c[num];
+	return a[num];
 }
 
 void arc_swap(char a[], int n, int i, int j)
@@ -140,28 +141,23 @@ void arc_reverse(char a[], int n)
 // a[] = [ 1, 1, 0, 0 ] returns 4 length of values in a[]
 int baseconv_base10_to_basen(int num, char a[], int asize, int abase)
 {
-	register int i;
-	int j;
-	int left;
-	int right;
+	register int i, j;
+	int left, right;
 
 	assert(num > 1);
 	assert(asize > 1);
 	assert((1 < abase) && (abase <= 36));
 
-	arc_setall(a, asize, '-');
-
 	// define range
 	left = 0;
 	right = asize - 1;
 
-	for (i = num, j = left; i > 0; j++) {
+	for (i = num, j = left; i > 0; i /= abase, j++) {
 		int remainder = i % abase;
 
 		assert((left <= j) && (j <= right));
 
 		a[j] = num_to_char(remainder);
-		i /= abase;
 	}
 
 	asize = j;
@@ -174,14 +170,11 @@ int baseconv_base10_to_basen(int num, char a[], int asize, int abase)
 // e.g. calling with ([1,1,0,0], 100, 4, 10) will return 12
 int baseconv_basen_to_base10(int a[], int asize, int alen, int abase)
 {
-	int i;
-	int j;
-	int left;
-	int right;
-	int start;
-	int stop;
+	int i, j;
+	int left, right;
+	int start, stop;
 	int sum = 0;
-	int pow = -1;
+	bool debug = false;
 
 	assert(asize > 0);
 	assert((0 < alen) && (alen <= asize));
@@ -195,13 +188,15 @@ int baseconv_basen_to_base10(int a[], int asize, int alen, int abase)
 	start = alen - 1;
 	stop = left;
 
-	for (i = start, j = 1; i >= stop; i--, j = pow) {
-	       int val;
+	for (i = start, j = 1; i >= stop; i--, j *= abase) {
+		int val;
 
 	       val = a[i] * j;
-	       sum = sum + val;
-	       pow = abase * j;
-	       // printf("val %d sum %d pow %d\n", val, sum, pow);
+	       sum += val;
+
+	       if (debug) {
+		       printf("val %d sum %d power %d\n", val, sum, j);
+	       }
 	}
 
 	return sum;
@@ -212,8 +207,7 @@ void test_basen_to_base10(void)
 {
 /* base conversion base n to base 10 */
 #define MAX 100
-	int a[MAX] = { 1, 0, 1, 0, 0, 1 };
-	int b[4] = { 1, 1, 1, 2 };
+	int b[MAX] = { 1, 1, 1, 2 };
 	int n = 4;
 	int base = 3;
 	int val;
@@ -222,10 +216,18 @@ void test_basen_to_base10(void)
 	ari_print(b, n, "base 3");
 	printf("num %d\n", val);
 
+	int a[MAX] = { 1, 0, 1, 0, 0, 1 };
 	n = 6;
 	base = 2;
 	val = baseconv_basen_to_base10(a, MAX, n, base);
 	ari_print(a, n, "base 2");
+	printf("num %d\n", val);
+
+	int c[MAX] = { 2, 13 };
+	n = 2;
+	base = 14;
+	val = baseconv_basen_to_base10(c, MAX, n, base);
+	ari_print(c, n, "base 14");
 	printf("num %d\n", val);
 }
 
@@ -248,6 +250,8 @@ int main(void)
 		printf("scanf error %d\n", d);
 		exit(1);
 	}
+
+	arc_setall(a, MAX, '-');
 
 	// output base 2 .. 36
 	base = 2;
