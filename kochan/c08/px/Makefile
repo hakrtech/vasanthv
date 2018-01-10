@@ -27,13 +27,13 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
 BIN=factor_table gcd
-TESTBIN=koodai base
+TESTBIN=koodai
 
 # list of libraries to be built
 LIB.LOCAL.INC=-L .
-LIB.LOCAL.LNK=-lkoodai -lbase
+LIB.LOCAL.LNK=-lkoodai
 LIB.LOCAL.FLAGS=$(LIB.LOCAL.INC) $(LIB.LOCAL.LNK)
-LIB.LOCAL=libkoodai.a libbase.a
+LIB.LOCAL=libkoodai.a
 LIBCOMMONDIR= ../../libcommon
 RETURNPATH= ../c08/px
 
@@ -73,13 +73,6 @@ libkoodai.a: $(LIBOBJ)
 koodai.o: koodai.c 
 	$(CC) -c -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $<
 
-# base library
-libbase.a: base.o
-	ar rcs $@ base.o
-
-base.o: base.c
-	$(CC) -c -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $<
-
 # binaries
 factor_table: factor_table.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LIB.LOCAL.FLAGS) $(LINK.FLAGS) -linteger
@@ -89,8 +82,5 @@ gcd: 	gcd.c
 
 # test binaries
 koodai: koodai.c
-	$(CC) -o $@ $(TEST.PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS) -linteger
-
-base: base.c
 	$(CC) -o $@ $(TEST.PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $< $(LINK.FLAGS) -linteger
 
