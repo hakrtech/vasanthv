@@ -4,7 +4,7 @@ CC=gcc
 
 # preprocess with these options usually called CPPFLAGS
 PREPROCESSOR.FLAGS=-DLAB -DDEBUG
-TESTBIN.PREPROCESSOR.FLAGS=-DLIBTEST
+TESTBIN.PREPROCESSOR.FLAGS=-DLIBTEST -DTEST
 
 # compile with these options usually called CFLAGS
 COMPILE.FLAGS+=-g -Wall -pedantic -ansi --std=c99 # -Werror=unused-but-set-variable
@@ -27,10 +27,10 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
 BIN=
-TESTBIN=test_libari
+TESTBIN=test_libari test_libbase
 
 # list of libraries to be built
-LIB=libinteger.a libreal.a libarray.a libmatrix.a
+LIB=libinteger.a libreal.a libarray.a libmatrix.a libbase.a
 
 #
 # default target - compile libraries and then binaries
@@ -55,6 +55,9 @@ clean:
 
 test_libari: libari.c libari.h
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libari.c -L. -linteger
+
+test_libbase: base.c base.h
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) base.c -L. -larray -linteger
 
 # integer number library
 libinteger.a: libnumi.o
@@ -87,3 +90,11 @@ libmatrix.a: libmxi.o
 
 libmxi.o: libmxi.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
+
+# base library
+libbase.a: base.o
+	ar crs $@ base.o
+
+base.o: base.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
+
