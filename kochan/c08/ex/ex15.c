@@ -85,20 +85,19 @@ int input_decimal_ints_until_exitval(int a[], int asize, int exitval)
 
 	// define loop a[0 .. exitval]
 	i = 0;
-	val = input_decimal_int("enter input: ");
 
-	while (val != exitval) {
+	do {
+		val = input_decimal_int("enter input: ");
 		assert((left <= i) && (i <= right));
 		a[i++] = val;
-		val = input_decimal_int("enter input: ");
-	}
+	} while (val != exitval);
 
 	if (debug) {
 		ari_print(a, asize, "chk");
 		printf("%d\n", i);
 	}
 
-	return i;
+	return i-1;
 }
 
 int main(void)
@@ -126,7 +125,11 @@ int main(void)
 
 	// input array until exitval
 	nelm = input_decimal_ints_until_exitval(inputs, MAX, exitval);
-	ari_print(inputs, nelm, "inputs");
+	printf("nelm %d\n", nelm);
+
+	if (nelm > 0) {
+		ari_print(inputs, nelm, "inputs");
+	}
 
 	// arc_setall(a, MAX, '-');
 
