@@ -22,8 +22,6 @@ int input_decimal_int(char *prompt)
 		exit(1);
 	}
 
-	//printf(" %d\n", val);
-
 	return val;
 }
 
@@ -59,7 +57,6 @@ int input_decimal_ints(int a[], int asize, int ninputs)
 
 	for (i = start; i <= stop; i++) {
 		assert((left <= i) && (i <= right));
-
 		a[i] = input_decimal_int("enter input: ");
 	}
 
@@ -71,7 +68,38 @@ int input_decimal_ints(int a[], int asize, int ninputs)
 	return i;
 }
 
-// int input_decimal_ints_until_exitval(int a[], int asize);
+int input_decimal_ints_until_exitval(int a[], int asize, int exitval)
+{
+	int i;
+	int left, right;
+	bool debug = false;
+	int val;
+
+	assert(asize > 0);
+
+	// define range
+	left = 0;
+	right = asize - 1;
+
+	printf("exit!!! use val %d\n", exitval);
+
+	// define loop a[0 .. exitval]
+	i = 0;
+	val = input_decimal_int("enter input: ");
+
+	while (val != exitval) {
+		assert((left <= i) && (i <= right));
+		a[i++] = val;
+		val = input_decimal_int("enter input: ");
+	}
+
+	if (debug) {
+		ari_print(a, asize, "chk");
+		printf("%d\n", i);
+	}
+
+	return i;
+}
 
 int main(void)
 {
@@ -82,19 +110,25 @@ int main(void)
 	int inputs[MAX];
 	char a[MAX];
 	int n;
-	int ninput;
+	//int ninput;
 	int nelm;
+	int exitval;
 
 	printf("convert base of value >\n");
-	ninput = input_decimal_int("enter no of input> ");
+
+	base = input_decimal_int_until_within_range(2, 36, "enter output base");
+	exitval = input_decimal_int("enter exitval: ");
+	// ninput = input_decimal_int("enter no of inputs> ");
 
 	// input array
-	ari_setall(inputs, MAX, -1);
-	nelm = input_decimal_ints(inputs, MAX, ninput);
+	// ari_setall(inputs, MAX, -1);
+	// nelm = input_decimal_ints(inputs, MAX, ninput);
+
+	// input array until exitval
+	nelm = input_decimal_ints_until_exitval(inputs, MAX, exitval);
 	ari_print(inputs, nelm, "inputs");
 
-	base = input_decimal_int_until_within_range(2, 36, "enter base");
-	arc_setall(a, MAX, '-');
+	// arc_setall(a, MAX, '-');
 
 	// define loop 0 .. nelm
 	start = 0;
@@ -104,8 +138,8 @@ int main(void)
 		int num = inputs[i];
 
 		n = baseconv_base10_to_basen(num, a, MAX, base);
-		printf("num %d\nbase %d\n", num, base);
-		arc_base_print(a, n, "values");
+		printf("base %d num %d ", base, num);
+		arc_base_print(a, n, "");
 	}
 
 	return 0;
