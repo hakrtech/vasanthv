@@ -8,17 +8,20 @@
 
 #include "libbase.h"
 
-int input_decimal_int(void)
+int input_decimal_int(char *prompt)
 {
 	int val;
 	int d;
 
+	printf("%s: ", prompt);
+
 	d = scanf("%d", &val);
-	printf(" %d\n", val);
 	if (d != 1) {
 		printf("scanf error %d\n", d);
 		exit(1);
 	}
+
+	printf(" %d\n", val);
 
 	return val;
 }
@@ -27,16 +30,16 @@ int input_decimal_int_until_within_range(int minrange, int maxrange, char *promp
 {
 	int val;
 
-	printf("range %d to %d> %s", minrange, maxrange, prompt);
-
-	val = input_decimal_int();
-	while ((val < minrange) || (val > maxrange)) {
-		printf("invalid val %d choice again!\n", val);
-		val = input_decimal_int();
-	}
+	do {
+		printf("%s(%d..%d)", prompt, minrange, maxrange);
+		val = input_decimal_int("");
+	} while ((val < minrange) || (val > maxrange));
 
 	return val;
 }
+
+// int input_decimal_ints(int a[], int asize, int ninputs);
+// int input_decimal_ints_until_exitval(int a[], int asize);
 
 int main(void)
 {
@@ -47,10 +50,9 @@ int main(void)
 	int n;
 
 	printf("convert base of value >\n");
-	printf("enter num: ");
 
-	num = input_decimal_int();
-	base = input_decimal_int_until_within_range(2, 36, "enter base: ");
+	num = input_decimal_int("enter num");
+	base = input_decimal_int_until_within_range(2, 36, "enter base");
 
 	arc_setall(a, MAX, '-');
 	n = baseconv_base10_to_basen(num, a, MAX, base);
