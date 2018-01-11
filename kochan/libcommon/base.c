@@ -143,7 +143,7 @@ int baseconv_base10_to_basen(int num, char a[], int asize, int abase)
 	register int i, j;
 	int left, right;
 
-	assert(num > 1);
+	assert(num > -1);
 	assert(asize > 1);
 	assert((1 < abase) && (abase <= 36));
 
@@ -159,8 +159,13 @@ int baseconv_base10_to_basen(int num, char a[], int asize, int abase)
 		a[j] = num_to_char(remainder);
 	}
 
-	asize = j;
-	arc_reverse(a, asize);
+	if (num == 0) {
+		a[0] = '0';
+		asize = 1;
+	} else {
+		asize = j;
+		arc_reverse(a, asize);
+	}
 
 	return asize;
 }
