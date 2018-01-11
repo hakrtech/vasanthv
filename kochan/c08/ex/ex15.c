@@ -75,27 +75,38 @@ int input_decimal_ints(int a[], int asize, int ninputs)
 
 int main(void)
 {
-	int num;
+	int i;
+	int start, stop;
 	int base;
 #define MAX 100
 	int inputs[MAX];
 	char a[MAX];
 	int n;
+	int ninput;
+	int nelm;
 
 	printf("convert base of value >\n");
+	ninput = input_decimal_int("enter no of input> ");
 
-	num = input_decimal_int("enter num: ");
-	base = input_decimal_int_until_within_range(2, 36, "enter base");
-
-	arc_setall(a, MAX, '-');
-	n = baseconv_base10_to_basen(num, a, MAX, base);
-
-	printf("num %d\nbase %d\n", num, base);
-	arc_base_print(a, n, "values");
-
+	// input array
 	ari_setall(inputs, MAX, -1);
-	n = input_decimal_ints(inputs, MAX, 5);
-	ari_print(inputs, n, "inputs");
+	nelm = input_decimal_ints(inputs, MAX, ninput);
+	ari_print(inputs, nelm, "inputs");
+
+	base = input_decimal_int_until_within_range(2, 36, "enter base");
+	arc_setall(a, MAX, '-');
+
+	// define loop 0 .. nelm
+	start = 0;
+	stop = nelm - 1;
+
+	for (i = start; i <= stop; i++) {
+		int num = inputs[i];
+
+		n = baseconv_base10_to_basen(num, a, MAX, base);
+		printf("num %d\nbase %d\n", num, base);
+		arc_base_print(a, n, "values");
+	}
 
 	return 0;
 }
