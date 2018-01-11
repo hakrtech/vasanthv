@@ -25,7 +25,17 @@ int input_decimal_int(void)
 
 int input_decimal_int_until_within_range(int minrange, int maxrange, char *prompt)
 {
-	return 0;
+	int val;
+
+	printf("range %d to %d> %s", minrange, maxrange, prompt);
+
+	val = input_decimal_int();
+	while ((val < minrange) || (val > maxrange)) {
+		printf("invalid val %d choice again!\n", val);
+		val = input_decimal_int();
+	}
+
+	return val;
 }
 
 int main(void)
@@ -37,23 +47,10 @@ int main(void)
 	int n;
 
 	printf("convert base of value >\n");
-	printf("enter number: ");
+	printf("enter num: ");
+
 	num = input_decimal_int();
-
-	printf("enter base: ");
-/*
-	get input until within valid range min to max
-	do 
-		print prompt
-		validate input
-	while invalid input
-*/
-	base = input_decimal_int();
-
-	for ( ; (base < 2) || (base > 36 ); ) {
-		printf("choice again! %d invalid base\n", base);
-		base = input_decimal_int();
-	}
+	base = input_decimal_int_until_within_range(2, 36, "enter base: ");
 
 	arc_setall(a, MAX, '-');
 	n = baseconv_base10_to_basen(num, a, MAX, base);
