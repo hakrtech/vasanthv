@@ -24,12 +24,11 @@ void arc_base_print(char a[], int n, char *s)
 	start = 0;
 	stop = n-1;
 
-	putchar('['); putchar(' ');
+	printf("[");
 	for (i = start; i <= stop; i++) {
-		putchar(a[i]);
-		putchar(' ');
+		printf("%3c ", a[i]);
 	}
-	putchar(']'); putchar('\n');
+	printf(" ]\n");
 }
 
 void ari_reverse_copy(int a[], int na, int b[], int nb)
