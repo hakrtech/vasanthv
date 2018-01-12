@@ -31,45 +31,6 @@ void arc_base_print(char a[], int n, char *s)
 	printf(" ]\n");
 }
 
-void ari_reverse_copy(int a[], int na, int b[], int nb)
-{
-	register int i;
-	int j;
-	int lefta;
-	int righta;
-	int leftb;
-	int rightb;
-	int starta;
-	register int stopa;
-	int startb;
-	int stopb;
-
-	assert(na > 0);
-	assert(nb > 0);
-	assert(na <= nb);
-
-	ari_setall(b, nb, -1);
-
-	// define range
-	lefta = 0;
-	righta = na - 1;
-	leftb = 0;
-	rightb = nb - 1;
-
-	// define loop a[0 .. na-1] to b[na-1 .. 0]
-	starta = lefta;
-	stopa = righta;
-	startb = righta;
-	stopb = lefta;
-
-	for (i = starta, j = startb; i <= stopa; i++, j--) {
-		assert((lefta <= i) && (i <= righta));
-		assert((leftb <= j) && (j <= rightb));
-
-		b[j] = a[i];
-	}
-}
-
 void arc_setall(char a[], int n, char c)
 {
 	int i;

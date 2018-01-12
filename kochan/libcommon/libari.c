@@ -1699,6 +1699,45 @@ void ari_range_reverse(int a[], int n, int rstart, int rend) // OKR
 	}
 }
 
+void ari_reverse_copy(int a[], int na, int b[], int nb)
+{
+	register int i;
+	int j;
+	int lefta;
+	int righta;
+	int leftb;
+	int rightb;
+	int starta;
+	register int stopa;
+	int startb;
+	int stopb;
+
+	assert(na > 0);
+	assert(nb > 0);
+	assert(na <= nb);
+
+	ari_setall(b, nb, -1);
+
+	// define range
+	lefta = 0;
+	righta = na - 1;
+	leftb = 0;
+	rightb = nb - 1;
+
+	// define loop a[0 .. na-1] to b[na-1 .. 0]
+	starta = lefta;
+	stopa = righta;
+	startb = righta;
+	stopb = lefta;
+
+	for (i = starta, j = startb; i <= stopa; i++, j--) {
+		assert((lefta <= i) && (i <= righta));
+		assert((leftb <= j) && (j <= rightb));
+
+		b[j] = a[i];
+	}
+}
+
 #ifdef LIBTEST
 static void test_start(char *s)
 {
@@ -2405,6 +2444,20 @@ void test_ari_calculation(void)
 	ari_print(med, mn, "med[]");
 }
 
+// teat array reverse copy
+void test_reverse_copy(void) {
+	int a[10];
+	int b[10];
+	int n = 10;
+
+	ari_setall_square(a, n);
+	ari_print(a, n, "a[sqr]");
+
+	ari_setall(b, n, -1);
+	ari_reverse_copy(a, n, b, n);
+	ari_print(b, n, "b[revs]");
+}
+
 static void test_ari_general(bool noisy)
 {
 #define dbg if (noisy)
@@ -2540,6 +2593,11 @@ static void test_ari_general(bool noisy)
 	fname = "ari_calculation";
 	test_start(fname);
 	test_ari_calculation();
+	test_end(fname);
+
+	fname = "ari_reverse_copy";
+	test_start(fname);
+	test_reverse_copy();
 	test_end(fname);
 }
 

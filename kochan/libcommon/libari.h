@@ -159,6 +159,7 @@ void ari_range_rrotatn_chain(int a[], int n, int jump, int rstart, int rend, int
 
 void ari_reverse(int a[], int n); // DONE
 void ari_range_reverse(int a[], int n, int rstart, int rend); // DONE
+void ari_reverse_copy(int a[], int na, int b[], int nb);
 
 // range related shifts
 void ari_range_lshift1(int a[], int n, int rstart, int rend); // DONE
