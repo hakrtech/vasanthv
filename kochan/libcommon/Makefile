@@ -30,7 +30,7 @@ BIN=
 TESTBIN=test_libari test_libbase test_libinput
 
 # list of libraries to be built
-LIB=libinteger.a libreal.a libarray.a libmatrix.a libbase.a libinputs.a
+LIB=libinteger.a libreal.a libarray.a libmatrix.a libbase.a libinput.a
 
 #
 # default target - compile libraries and then binaries
@@ -102,7 +102,7 @@ base.o: base.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
 # inputs library
-libinputs.a: libinput.o
+libinput.a: libinput.o
 	ar crs $@ libinput.o
 
 libinput.o: libinput.c

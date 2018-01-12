@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-#include "libinputs.h"
+#include "libinput.h"
 #include "libbase.h"
 
 int main(void)
