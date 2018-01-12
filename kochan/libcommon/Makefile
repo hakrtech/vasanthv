@@ -27,10 +27,10 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
 BIN=
-TESTBIN=test_libari test_libbase test_libio
+TESTBIN=test_libari test_libbase test_libinput
 
 # list of libraries to be built
-LIB=libinteger.a libreal.a libarray.a libmatrix.a libbase.a libiochennai.a
+LIB=libinteger.a libreal.a libarray.a libmatrix.a libbase.a libinputs.a
 
 #
 # default target - compile libraries and then binaries
@@ -59,8 +59,8 @@ test_libari: libari.c libari.h
 test_libbase: base.c base.h
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) base.c -L. -larray -linteger
 
-test_libio: libio.c libio.h
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libio.c -L. -larray -linteger
+test_libinput: libinput.c libinput.h
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libinput.c -L. -larray -linteger
 
 # integer number library
 libinteger.a: libnumi.o
@@ -101,10 +101,10 @@ libbase.a: base.o
 base.o: base.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
-# input/output library
-libiochennai.a: libio.o
-	ar crs $@ libio.o
+# inputs library
+libinputs.a: libinput.o
+	ar crs $@ libinput.o
 
-libio.o: libio.c
+libinput.o: libinput.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 

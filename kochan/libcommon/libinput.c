@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "libinput.h"
 #include "libarray.h"
 
 int input_decimal_int(char *prompt)
