@@ -24,11 +24,12 @@ void arc_base_print(char a[], int n, char *s)
 	start = 0;
 	stop = n-1;
 
-	printf("[ ");
+	putchar('['); putchar(' ');
 	for (i = start; i <= stop; i++) {
-		printf("%3c ", a[i]);
+		putchar(a[i]);
+		putchar(' ');
 	}
-	printf(" ]\n");
+	putchar(']'); putchar('\n');
 }
 
 void ari_reverse_copy(int a[], int na, int b[], int nb)
@@ -92,7 +93,7 @@ char num_to_char(int num)
 	char a[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 		     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
 		     'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-		     'u', 'v', 'w', 'x', 'y', 'z', '\0'
+		     'u', 'v', 'w', 'x', 'y', 'z'
 		   };
 
 	assert((0 <= num) && (num < 36));

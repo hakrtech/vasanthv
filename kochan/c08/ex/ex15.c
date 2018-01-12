@@ -15,7 +15,9 @@ int input_decimal_int(char *prompt)
 	int val;
 	int d;
 
-	printf("%s", prompt);
+	if (prompt != NULL) {
+		printf("%s", prompt);
+	}
 	d = scanf("%d", &val);
 	if (d != 1) {
 		printf("scanf error %d\n", d);
@@ -68,7 +70,7 @@ int input_decimal_ints(int a[], int asize, int ninputs)
 	return i;
 }
 
-int input_decimal_ints_until_exitval(int a[], int asize, int exitval)
+int input_decimal_ints_until_exitval(int a[], int asize, int exitval, int *endedp)
 {
 	int i;
 	int left, right;
@@ -81,23 +83,23 @@ int input_decimal_ints_until_exitval(int a[], int asize, int exitval)
 	left = 0;
 	right = asize - 1;
 
-	printf("exit!!! use val %d\n", exitval);
-
 	// define loop a[0 .. exitval]
 	i = 0;
-
 	do {
-		val = input_decimal_int("enter input: ");
-		assert((left <= i) && (i <= right));
-		a[i++] = val;
-	} while (val != exitval);
+		val = input_decimal_int(NULL);
+		if (val == exitval)
+			*endedp = 1;
+		else
+			// assert((left <= i) && (i <= right));
+			a[i++] = val;
+	} while ((val != exitval) && (i <= right));
 
 	if (debug) {
 		ari_print(a, asize, "chk");
 		printf("%d\n", i);
 	}
 
-	return i-1;
+	return i;
 }
 
 int main(void)
@@ -116,7 +118,6 @@ int main(void)
 	printf("convert base of value >\n");
 
 	base = input_decimal_int_until_within_range(2, 36, "enter output base");
-	exitval = input_decimal_int("enter exitval: ");
 	// ninput = input_decimal_int("enter no of inputs> ");
 
 	// input array
@@ -124,25 +125,25 @@ int main(void)
 	// nelm = input_decimal_ints(inputs, MAX, ninput);
 
 	// input array until exitval
-	nelm = input_decimal_ints_until_exitval(inputs, MAX, exitval);
-	printf("nelm %d\n", nelm);
+	int ended = 0;
+	exitval = input_decimal_int("enter exitval: ");
 
-	if (nelm > 0) {
-		ari_print(inputs, nelm, "inputs");
-	}
+	while (!ended) {
+		// produce the array
+		nelm = input_decimal_ints_until_exitval(inputs, MAX, exitval, &ended);
+		printf("nelm %d\n", nelm);
 
-	// arc_setall(a, MAX, '-');
+		// consume the array
+		// define loop 0 .. nelm
+		start = 0;
+		stop = nelm - 1;
 
-	// define loop 0 .. nelm
-	start = 0;
-	stop = nelm - 1;
-
-	for (i = start; i <= stop; i++) {
-		int num = inputs[i];
-
-		n = baseconv_base10_to_basen(num, a, MAX, base);
-		printf("base %d num %d ", base, num);
-		arc_base_print(a, n, "");
+		for (i = start; i <= stop; i++) {
+			int num = inputs[i];
+			n = baseconv_base10_to_basen(num, a, MAX, base);
+			printf("base %d num %d ", base, num);
+			arc_base_print(a, n, "");
+		}
 	}
 
 	return 0;
