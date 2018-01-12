@@ -18,7 +18,7 @@ COMPILE.FLAGS+=$(INCDIR)
 LINK.LIBDIRS=-L ../../libcommon
 
 # list of libraries to link with 
-LINK.LIBS=-linteger -lreal -lm -larray -lmatrix -lbase
+LINK.LIBS=-linteger -lreal -lm -larray -lmatrix -lbase -liochennai
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
