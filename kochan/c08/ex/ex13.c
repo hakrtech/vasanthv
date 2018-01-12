@@ -12,31 +12,33 @@
 int user_choice_input(void)
 {
 	int input_num;
-	printf("choice- 0. print array\n\t1. sort\n\t2. reverse sort : ");
-	scanf("%i", &input_num);
+	int d;
+
+	printf("choice- 0. print array\n\t1. sort\n\t2. reverse sort\n\t3. exit: ");
+	d = scanf("%i", &input_num);
+	if (d != 1) {
+		printf("scanf error %d\n", d);
+		exit(1);
+	}
+
 	return input_num;
+}
+
+void user_choice_invalid(int repeat)
+{
+	if (repeat < 0 || repeat > 3) {
+		printf("error!!! choice again\n");
+ 	}
 }
 
 int user_choice_validate(int vchoice)
 {
-	if (vchoice < 0 || vchoice > 2) {
-		printf("error!!! choice again\n");
- 	}
-		return vchoice;
-}
-
-int user_choice_invalid(int repeat)
-{
-	if (repeat < 0 || repeat > 2) {
-		user_choice_validate(repeat);
-		while (repeat <= 2) {
-			int again;
-
-			again = user_choice_input();
-			repeat = again;
-		}
+	while (vchoice < 0 || vchoice > 3) {
+		vchoice = user_choice_input();
+		user_choice_invalid(vchoice);
 	}
-	return repeat;
+
+	return vchoice;
 }
 
 int user_choice_print(int pchoice)
@@ -50,6 +52,9 @@ int user_choice_print(int pchoice)
 		break;
 	case 2:
 		printf("sorted reverse order\n");
+		break;
+	case 3:
+		printf("exit\n");
 		break;
 	default:
 		printf("check program\n");
@@ -68,7 +73,10 @@ void user_choice_do_operation(int do_values[], int do_nvalue, int do_case)
 			ari_print(do_values, do_nvalue, "do_values");
 		}
 	} else {
-		ari_print(do_values, do_nvalue, "do_values");
+		if (do_case == 0)
+			ari_print(do_values, do_nvalue, "do_values");
+		else
+			exit(1);
 	}
 }
 
@@ -82,11 +90,11 @@ int main(void)
 
 	nvalue = 6;
 	while (true) {
-	input = user_choice_input();
-	user_choice_invalid(input);
-	print = user_choice_validate(input);
-	doit = user_choice_print(print);
-	user_choice_do_operation(values, nvalue, doit);
+		input = user_choice_input();
+		user_choice_invalid(input);
+		print = user_choice_validate(input);
+		doit = user_choice_print(print);
+		user_choice_do_operation(values, nvalue, doit);
 	}
 
 	return 0;
