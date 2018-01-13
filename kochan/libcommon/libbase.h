@@ -12,5 +12,3 @@ int baseconv_basen_to_base10(int a[], int asize, int alen, int abase);
 // a[] = [ 1, 1, 0, 0 ] returns 4 length of values in a[] 
 int baseconv_base10_to_basen(int num, char a[], int asize, int abase); // DONE
 
-char num_to_char(int num);
-
