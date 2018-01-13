@@ -12,10 +12,5 @@ int baseconv_basen_to_base10(int a[], int asize, int alen, int abase);
 // a[] = [ 1, 1, 0, 0 ] returns 4 length of values in a[] 
 int baseconv_base10_to_basen(int num, char a[], int asize, int abase); // DONE
 
-void arc_base_print(char a[], int n, char *s);
-
 char num_to_char(int num);
-void arc_swap(char a[], int n, int i, int j);
-void arc_reverse(char a[], int n);
-void arc_setall(char a[], int n, char c);
 

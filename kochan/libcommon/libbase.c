@@ -6,47 +6,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "base.h"
+#include "libbase.h"
 #include "libarray.h"
-
-void arc_base_print(char a[], int n, char *s)
-{
-	register int i;
-	int start;
-	register int stop;
-
-	assert(n > 0);
-	assert(s != NULL);
-
-	printf("%s\t= ", s);
-
-	// define loop 0 .. n-1
-	start = 0;
-	stop = n-1;
-
-	printf("[");
-	for (i = start; i <= stop; i++) {
-		printf("%3c ", a[i]);
-	}
-	printf(" ]\n");
-}
-
-void arc_setall(char a[], int n, char c)
-{
-	int i;
-	int start;
-	int stop;
-
-	assert(n > 0);
-
-	// define loop
-	start = 0;
-	stop = n - 1;
-
-	for (i = start; i <= stop; i++) {
-		a[i] = c;
-	}
-}
 
 char num_to_char(int num)
 {
@@ -59,40 +20,6 @@ char num_to_char(int num)
 	assert((0 <= num) && (num < 36));
 
 	return a[num];
-}
-
-void arc_swap(char a[], int n, int i, int j)
-{
-	char c;
-
-	assert(n > 0);
-	assert((0 <= i) && (i < n));
-	assert((0 <= j) && (j < n));
-
-	c = a[i];
-	a[i] = a[j];
-	a[j] = c;
-}
-
-void arc_reverse(char a[], int n)
-{
-	register int i;
-	register int j;
-	int start;
-	int stop;
-
-	assert(n > 0);
-
-	// define loop
-	start = 0;
-	stop = n - 1;
-
-	for (i = start, j = stop; i < j; i++, j--) {
-		assert((start <= i) && (i <= stop));
-		assert((start <= j) && (j <= stop));
-
-		arc_swap(a, n, i, j);
-	}
 }
 
 // convert (number) in base 10 to (a[0..alen]) to base abase
@@ -167,6 +94,7 @@ int baseconv_basen_to_base10(int a[], int asize, int alen, int abase)
 	return sum;
 }
 
+#ifdef TEST
 // test basen to base10 function
 void test_basen_to_base10(void)
 {
@@ -196,7 +124,6 @@ void test_basen_to_base10(void)
 	printf("num %d\n", val);
 }
 
-#ifdef TEST
 int main(void)
 {
 	int i;
@@ -223,7 +150,7 @@ int main(void)
 	for (i = base; i <= 36; i++) {
 		printf("%d base %d", num, i);
 		n = baseconv_base10_to_basen(num, a, MAX, i);
-		arc_base_print(a, n, "");
+		arc_print(a, n, "");
 	}
 
 	char *s = "baseconv_basen_to_base10";

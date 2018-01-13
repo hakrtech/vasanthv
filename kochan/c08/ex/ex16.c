@@ -6,6 +6,7 @@
 
 #include "libinput.h"
 #include "libbase.h"
+#include "libarray.h"
 
 int main(void)
 {
@@ -35,7 +36,7 @@ int main(void)
 		int num = a[i];
 		n = baseconv_base10_to_basen(num, b, MAX, base);
 		printf("base %d num %d", base, num);
-		arc_base_print(b, n, "");
+		arc_print(b, n, "");
 	}
 
 	return 0;

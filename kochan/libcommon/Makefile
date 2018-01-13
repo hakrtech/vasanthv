@@ -56,8 +56,8 @@ clean:
 test_libari: libari.c libari.h
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libari.c -L. -linteger
 
-test_libbase: base.c base.h
-	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) base.c -L. -larray -linteger
+test_libbase: libbase.c libbase.h
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libbase.c -L. -larray -linteger
 
 test_libinput: libinput.c libinput.h
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) $(TESTBIN.PREPROCESSOR.FLAGS) libinput.c -L. -larray -linteger
@@ -98,10 +98,10 @@ libmxi.o: libmxi.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
 # base library
-libbase.a: base.o
-	ar crs $@ base.o
+libbase.a: libbase.o
+	ar crs $@ libbase.o
 
-base.o: base.c
+libbase.o: libbase.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
 # inputs library
