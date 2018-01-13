@@ -80,12 +80,15 @@ libnumd.o: libnumd.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
 # array library
-libarray.a: libari.o
-	ar crs $@ libari.o
+libarray.a: libari.o libarc.o
+	ar crs $@ libari.o libarc.o
 
 # array renamed
 libari.o: libari.c
 	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $< 
+
+libarc.o: libarc.c
+	$(CC) -o $@ $(PREPROCESSOR.FLAGS) $(COMPILE.FLAGS) -c $<
 
 # matrix library
 libmatrix.a: libmxi.o
