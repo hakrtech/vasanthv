@@ -24,7 +24,7 @@ LINK.LIBS=
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
-BIN=testmod
+BIN=testmod eg01
 
 # list of libraries to be built
 LIBDIR=
@@ -57,4 +57,7 @@ clean:
 # $< is 
 testmod: eg0mod1.c eg0mod2.c eg0main.c eg0mod.h
 	$(CC) -o $@ $(COMPILE.FLAGS) eg0mod1.c eg0mod2.c eg0main.c
+
+eg01: eg01.c eg01a.c eg01a.h
+	$(CC) -o $@ $(COMPILE.FLAGS) eg01.c eg01a.c
 
