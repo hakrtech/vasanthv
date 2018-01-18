@@ -1,6 +1,8 @@
 
 #include <stdio.h>
 
+#include "eg0mod.h"
+
 int main(void)
 {
 	char *word = "larger mprograms";

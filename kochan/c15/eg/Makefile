@@ -55,6 +55,6 @@ clean:
 # binaries
 # $@ is lhs
 # $< is 
-testmod: eg0mod1.c eg0mod2.c eg0main.c
-	$(CC) -o $@ eg0mod1.c eg0mod2.c eg0main.c
+testmod: eg0mod1.c eg0mod2.c eg0main.c eg0mod.h
+	$(CC) -o $@ $(COMPILE.FLAGS) eg0mod1.c eg0mod2.c eg0main.c
 
