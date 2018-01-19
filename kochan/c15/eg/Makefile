@@ -6,7 +6,7 @@ CC=gcc
 COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
 
 # list of binaries to be built
-BIN=testmod eg01 eg02
+BIN=testmod eg01 eg02 eg03
 
 all: 	bin
 bin:	$(BIN)
@@ -25,4 +25,7 @@ eg01: eg01.c eg01a.c eg01a.h
 
 eg02: eg02.c eg02a.c
 	$(CC) -o $@ $(COMPILE.FLAGS) eg02.c eg02a.c
+
+eg03: eg03.c date.h
+	$(CC) -o $@ $(COMPILE.FLAGS) eg03.c
 
