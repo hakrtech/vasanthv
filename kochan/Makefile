@@ -1,4 +1,5 @@
 all:
+	cd c04 && make all && cd ..
 	cd c05 && make all && cd ..
 	cd c06 && make all && cd ..
 	cd c07 && make all && cd ..
@@ -10,6 +11,7 @@ all:
 
 clean:
 
+	cd c04 && make clean && cd ..
 	cd c05 && make clean && cd ..
 	cd c06 && make clean && cd ..
 	cd c07 && make clean && cd ..
