@@ -83,6 +83,8 @@ int baseconv_basen_to_base10(int a[], int asize, int alen, int abase)
 	for (i = start, j = 1; i >= stop; i--, j *= abase) {
 		int val;
 
+		assert((left <= i) && (i <= right));
+
 	       val = a[i] * j;
 	       sum += val;
 

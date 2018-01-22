@@ -1193,8 +1193,8 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 #define MAX 100
 	int b[MAX];
 	int nb = MAX;
-	int leftb;
-	int rightb;
+	// int leftb;
+	// int rightb;
 	int starta;
 	int startb;
 	int stopa;
@@ -1213,8 +1213,8 @@ void ari_range_lrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	ari_setall(b, nb, -1);
 
 	// define range
-	leftb = 0;
-	rightb = nb - 1;
+	// leftb = 0;
+	// rightb = nb - 1;
 
 	if (debug) {
 		printf("DEBUG: ari_range_lrotatn_using_copybuf: before copy1\n");
@@ -1428,8 +1428,8 @@ void ari_range_rrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 #define MAX 100
 	int b[MAX];
 	int nb = MAX;
-	int leftb;
-	int rightb;
+	// int leftb;
+	// int rightb;
 	int starta;
 	int startb;
 	int stopa;
@@ -1448,8 +1448,8 @@ void ari_range_rrotatn_using_copybuf(int a[], int n, int lefta, int righta, int 
 	ari_setall(b, nb, -1);
 
 	// define range
-	leftb = 0;
-	rightb = n - 1;
+	// leftb = 0;
+	// rightb = n - 1;
 
 	if (debug) {
 		printf("DEBUG: ari_rrotatn_using_copybuf: before copy1\n");
@@ -1710,7 +1710,7 @@ void ari_reverse_copy(int a[], int na, int b[], int nb)
 	int starta;
 	register int stopa;
 	int startb;
-	int stopb;
+	// int stopb;
 
 	assert(na > 0);
 	assert(nb > 0);
@@ -1728,7 +1728,7 @@ void ari_reverse_copy(int a[], int na, int b[], int nb)
 	starta = lefta;
 	stopa = righta;
 	startb = righta;
-	stopb = lefta;
+	// stopb = lefta;
 
 	for (i = starta, j = startb; i <= stopa; i++, j--) {
 		assert((lefta <= i) && (i <= righta));
