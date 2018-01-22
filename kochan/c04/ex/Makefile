@@ -65,5 +65,5 @@ ex05: 	ex05.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
 ex06: 	ex06.c
-	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS)
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
 

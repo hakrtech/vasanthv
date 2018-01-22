@@ -11,7 +11,7 @@ int main(void)
 {
 	float f = 27, c;
 
-	f = input_decimal_int("enter fahrenheit: ");
+	f = input_decimal_float("enter fahrenheit: ");
 	c = (f - 32) / 1.8;
 
 	printf("fahrenheit %f converted celsius %f\n", f, c);
