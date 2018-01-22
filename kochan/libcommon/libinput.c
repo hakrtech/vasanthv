@@ -23,6 +23,23 @@ int input_decimal_int(char *prompt)
 	return val;
 }
 
+float input_decimal_float(char *prompt)
+{
+	float val;
+	int d;
+
+	if (prompt != NULL) {
+		printf("%s", prompt);
+	}
+	d = scanf("%f", &val);
+	if (d != 1) {
+		printf("scanf error %d\n", d);
+		exit(1);
+	}
+
+	return val;
+}
+
 int input_decimal_int_until_within_range(int minrange, int maxrange, char *prompt)
 {
 	int val;
