@@ -11,25 +11,28 @@ int iseven(int num)
 {
 	int ans;
 
-	if (num % 2 == 0)
+	if (num % 2 == 0) {
 		ans = YES;
-	else
+	} else {
 		ans = NO;
+	}
 
 	return ans;
 }
 
 int main(void)
 {
-	if (iseven(17) == YES)
+	if (iseven(17) == YES) {
 		printf("17 even: yes\n");
-	else
+	} else {
 		printf("17 even: no\n");
+	}
 
-	if (iseven(20) == YES)
+	if (iseven(20) == YES) {
 		printf("20 even: yes\n");
-	else
+	} else {
 		printf("20 even: no\n");
+	}
 
 	return 0;
 }
