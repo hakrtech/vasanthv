@@ -6,12 +6,14 @@
 
 #define IS_LOWER_CASE(x) (((x) >= 'a') && ((x) <= 'z'))
 #define TO_UPPER(x) (IS_LOWER_CASE(x) ? (x) - 'a' + 'A' : (x))
+#define debugprintf(...) printf("DEBUG: " __VA_ARGS__);
 
 void uppercase(char *s)
 {
 	while (*s != '\0') {
 		*s = TO_UPPER(*s);
 		++s;
+		debugprintf("%s\n", s);
 	}
 }
 
