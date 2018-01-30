@@ -4,15 +4,45 @@
 
 #include <stdio.h>
 
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-#define MIN_THREE(a, b, c) (((MIN(a, b)) < (c)) ? (MIN(a, b)) : (c))
-#define MIN_FOUR(a, b, c, d) ((MIN_THREE(a, b, c) < (d)) ? (MIN_THREE(a, b, c)) : (d))
+#define MIN2(a, b)	( \
+				(a < b)? \
+					a \
+				: \
+					b \
+		   	)
+
+#define MIN3(a, b, c) 	( \
+				(MIN2(a, b) < c)? \
+					MIN2(a, b) \
+				: \
+					c \
+			)
+
+#define MIN3A(a, b, c)	( \
+				(a < b)? \
+					(a < c)? \
+						a \
+					: \
+						c \
+				: \
+					(b < c)? \
+						b \
+					: \
+						c \
+			)
+
+#define MIN4(a, b, c, d) ( \
+				(MIN3(a, b, c) < d)? \
+					MIN3(a, b, c) \
+				: \
+					d \
+			 )
 
 int main(void)
 {
 	int a, b, c, d;
 
-	printf("minimum of two values>\n");
+	printf("minimum of values>\n");
 	printf("enter val a = ");
 	scanf("%d", &a);
 	printf("enter val b = ");
@@ -22,9 +52,10 @@ int main(void)
 	printf("enter val d = ");
 	scanf("%d", &d);
 
-	printf("a = %d b = %d\nminimum = %d\n", a, b, MIN(a, b));
-	printf("a = %d b = %d c = %d\nminimum = %d\n", a, b, c, MIN_THREE(a, b, c));
-	printf("a = %d b = %d c = %d d = %d\nminimum = %d\n", a, b, c, d, MIN_FOUR(a, b, c, d));
+	printf("a = %d b = %d\nminimum of two = %d\n", a, b, MIN2(a, b));\
+	printf("a = %d b = %d c = %d\nminimum of three = %d\n", a, b, c, MIN3(a, b, c));
+	printf("a = %d b = %d c = %d\nanother method minimum of three = %d\n", a, b, c, MIN3A(a, b, c));
+	printf("a = %d b = %d c = %d d = %d\nminimum of four = %d\n", a, b, c, d, MIN4(a, b, c, d));
 
 	return 0;
 }
