@@ -4,38 +4,27 @@
 
 #include <stdio.h>
 
-#define MIN2(a, b)	( \
-				(a < b)? \
-					a \
-				: \
-					b \
-		   	)
+#define MIN2(a, b) (((a) < (b)) ? (a) : (b))
 
 #define MIN3(a, b, c) 	( \
-				(MIN2(a, b) < c)? \
+				(MIN2(a, b) < (c))? \
 					MIN2(a, b) \
 				: \
-					c \
+					(c) \
 			)
 
 #define MIN3A(a, b, c)	( \
-				(a < b)? \
-					(a < c)? \
-						a \
-					: \
-						c \
+				((a) < (b))? \
+					(((a) < (c)) ? (a) : (c)) \
 				: \
-					(b < c)? \
-						b \
-					: \
-						c \
+					(((b) < (c)) ? (b) : (c)) \
 			)
 
 #define MIN4(a, b, c, d) ( \
 				(MIN3(a, b, c) < d)? \
 					MIN3(a, b, c) \
 				: \
-					d \
+					(d) \
 			 )
 
 int main(void)
