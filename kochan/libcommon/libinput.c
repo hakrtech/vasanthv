@@ -40,6 +40,18 @@ float input_decimal_float(char *prompt)
 	return val;
 }
 
+char input_char(char *prompt)
+{
+	char c;
+
+	if (prompt != NULL) {
+		printf("%s", prompt);
+	}
+	scanf("%c", &c);
+
+	return c;
+}
+
 int input_decimal_int_until_within_range(int minrange, int maxrange, char *prompt)
 {
 	int val;

@@ -3,7 +3,8 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
+
+#include "libinput.h"
 
 #define IS_DIGIT(x)	 ( ((x) >= '0') && ((x) <= '9') )
 #define IS_LOWER_CASE(c) ( ((c) >= 'a') && ((c) <= 'z') )
@@ -19,16 +20,14 @@ void chk_macro(char c)
 	d = IS_DIGIT(c);
 	if (d) {
 		printf("val = %d nonzero\ncharacter digit '%c'\n", d, c);
-		exit(1);
-	}
-
-	d = IS_SPECIAL(c);
-	if (d) {
-		printf("val = %d nonzero\nspecial character '%c'\n", d, c);
 	} else {
-		printf("val = %d\nalphabetic character '%c'\n", d, c);
+		d = IS_SPECIAL(c);
+		if (d) {
+			printf("val = %d nonzero\nspecial character '%c'\n", d, c);
+		} else {
+			printf("val = %d\nalphabetic character '%c'\n", d, c);
+		}
 	}
-
 }
 
 int main(void)
@@ -36,9 +35,7 @@ int main(void)
 	char c;
 
 	printf("test digit and special character>\n");
-	printf("enter a char: ");
-	scanf("%c", &c);
-	printf(" %c\n", c);
+	c = input_char("enter a char: ");
 	chk_macro(c);
 
 	return 0;

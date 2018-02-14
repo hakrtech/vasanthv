@@ -3,6 +3,7 @@
 // return input and print prompt
 int input_decimal_int(char *prompt);
 float input_decimal_float(char *prompt);
+char input_char(char *prompt);
 
 // return input until within range 
 // eg. enter output base(2..36):
