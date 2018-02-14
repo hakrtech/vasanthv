@@ -27,6 +27,19 @@
 					(d) \
 			 )
 
+#define MIN4A(a, b, c, d) ( \
+				((a) < (b))? \
+					((a) < (c))? \
+						(((a) < (d)) ? (a) : (d)) \
+					: \
+						(((c) < (d)) ? (c) : (d)) \
+				: \
+					((b) < (c))? \
+						(((b) < (d)) ? (b) : (d)) \
+					: \
+						(((c) < (d)) ? (c) : (d)) \
+			  )
+
 int main(void)
 {
 	int a, b, c, d;
@@ -45,6 +58,7 @@ int main(void)
 	printf("a = %d b = %d c = %d\nminimum of three = %d\n", a, b, c, MIN3(a, b, c));
 	printf("a = %d b = %d c = %d\nanother method minimum of three = %d\n", a, b, c, MIN3A(a, b, c));
 	printf("a = %d b = %d c = %d d = %d\nminimum of four = %d\n", a, b, c, d, MIN4(a, b, c, d));
+	printf("a = %d b = %d c = %d d = %d\nanother method minimum of four = %d\n", a, b, c, d, MIN4A(a, b, c, d));
 
 	return 0;
 }
