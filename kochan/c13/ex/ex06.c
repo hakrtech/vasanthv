@@ -4,6 +4,8 @@
 
 #include <stdio.h>
 
+#include "libinput.h"
+
 #define IS_UPPER_CASE(c) ( ((c) >= 'A') && ((c) <= 'Z') )
 
 int main(void)
@@ -12,15 +14,13 @@ int main(void)
 	int d;
 
 	printf("test a character is a uppercase letter>\n");
-	printf("enter a character: ");
-	scanf("%c", &c);
-	printf(" %c\n", c);
+	c = input_char("enter a char: ");
 
 	d = IS_UPPER_CASE(c);
 	if (d) {
-		printf("value = %d nonzero\ncharacter '%c' uppercase letter\n", d, c);
+		printf("val = %d nonzero\nchar '%c' uppercase\n", d, c);
 	} else {
-		printf("value = %d\ncharacter '%c' not a uppercase letter\n", d, c);
+		printf("val = %d\nchar '%c' not a uppercase\n", d, c);
 	}
 
 	return 0;

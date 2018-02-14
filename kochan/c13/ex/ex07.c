@@ -4,6 +4,8 @@
 
 #include <stdio.h>
 
+#include "libinput.h"
+
 #define IS_LOWER_CASE(c) ( ((c) >= 'a') && ((c) <= 'z') )
 #define IS_UPPER_CASE(c) ( ((c) >= 'A') && ((c) <= 'Z') )
 #define IS_ALPHABETIC(c) ( (IS_LOWER_CASE(c) ? (1) : (0)) || (IS_UPPER_CASE(c) ? (1) : (0)) )
@@ -14,15 +16,13 @@ int main(void)
 	int d;
 
 	printf("test a character is an alphabeti character>\n");
-	printf("enter a character: ");
-	scanf("%c", &c);
-	printf(" %c\n", c);
+	c = input_char("enter a char: ");
 
 	d = IS_ALPHABETIC(c);
 	if (d) {
-		printf("value = %d nonzero\nchar '%c' alphabetic\n", d, c);
+		printf("val = %d nonzero\nchar '%c' alphabetic\n", d, c);
 	} else {
-		printf("value = %d\nchar '%c' not a alphabetic\n", d, c);
+		printf("val = %d\nchar '%c' not a alphabetic\n", d, c);
 	}
 
 	return 0;

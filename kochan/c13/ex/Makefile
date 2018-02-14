@@ -65,10 +65,10 @@ ex04: 	ex04.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $<
 
 ex06: 	ex06.c
-	$(CC) -o $@ $(COMPILE.FLAGS) $<
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
 
 ex07: 	ex07.c
-	$(CC) -o $@ $(COMPILE.FLAGS) $<
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
 
 ex08: 	ex08.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
