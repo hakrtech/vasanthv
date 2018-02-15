@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <assert.h>
 
 #include "libinput.h"
 
@@ -19,11 +20,8 @@ void chk_macro(char c)
 
 	d = isupper(c);
 	e = IS_UPPER_CASE(c);
-	if ((d && e) || (!d && !e)) {
-		printf("matching\n");
-	} else {
-		printf("not matching chech macro\n");
-	}
+	assert((d && e) || (!d && !e));
+	printf("matching\n");
 
 	d = isalpha(c);
 	e = IS_ALPHABETIC(c);
@@ -46,6 +44,20 @@ void chk_macro(char c)
 	}
 }
 
+void chk_macro_using_decimal(void)
+{
+	int a, b, i;
+
+	printf("chk macro using decimal 0 to 127>\n");
+
+	for (i = 0; i <= 127; i++) {
+		a = isalpha(i);
+		b = IS_ALPHABETIC(i);
+		assert((a && b) || (!a && !b));
+		printf("matching i = %d [%d] and '%d'\n", i, a, b);
+	}
+}
+
 int main(void)
 {
 	char c;
@@ -53,6 +65,7 @@ int main(void)
 	printf("compare your functions>\n");
 	c = input_char("enter a char: ");
 	chk_macro(c);
+	chk_macro_using_decimal();
 
 	return 0;
 }
