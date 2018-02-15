@@ -9,9 +9,9 @@
 #define IS_DIGIT(x)	 ( ((x) >= '0') && ((x) <= '9') )
 #define IS_LOWER_CASE(c) ( ((c) >= 'a') && ((c) <= 'z') )
 #define IS_UPPER_CASE(c) ( ((c) >= 'A') && ((c) <= 'Z') )
-#define IS_ALPHABETIC(c) ( (IS_LOWER_CASE(c) ? (1) : (0)) || (IS_UPPER_CASE(c) ? (1) : (0)) )
 
-#define IS_SPECIAL(x)	 ( (IS_DIGIT(x) ? (0) : (1)) && (IS_ALPHABETIC(x) ? (0) : (1)) )
+#define IS_ALPHABETIC(c) ( (IS_LOWER_CASE(c)) || (IS_UPPER_CASE(c)) )
+#define IS_SPECIAL(x)	 ( !(IS_DIGIT(x)) && !(IS_ALPHABETIC(x)) )
 
 void chk_macro(char c)
 {
