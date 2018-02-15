@@ -3,7 +3,7 @@ NFILES=$(find . -type f -name "*.[c]" -print | wc -l)
 LOC=$(find . -name "*.[c]" -print | xargs wc -l | tail -1 | awk '{ print $1; }')
 find . -type f -name "*.c" -print | xargs cat | sed -e '/^[ 	]*$/d' | awk -f rmc.awk > o
 CLOC=$(find . -type f -name "*.c" -print | xargs cat | sed -e '/^[ 	]*$/d' | awk -f rmc.awk | wc -l)
-TLOC=8000
+TLOC=9000
 echo "Lines of Code:   $LOC ($CLOC core) in $NFILES files"
 echo "Target LOC:      $TLOC"
 PCT=$(echo "$LOC*100/$TLOC" | bc)
