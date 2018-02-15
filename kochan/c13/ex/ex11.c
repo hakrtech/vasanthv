@@ -19,10 +19,10 @@ void chk_macro(char c)
 
 	d = isupper(c);
 	e = IS_UPPER_CASE(c);
-	if ((!d && e) || (d && !e)) {
-		printf("not matching check macro\n");
-	} else {
+	if ((d && e) || (!d && !e)) {
 		printf("matching\n");
+	} else {
+		printf("not matching chech macro\n");
 	}
 
 	d = isalpha(c);
