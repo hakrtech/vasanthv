@@ -6,12 +6,8 @@
 
 #include "libinput.h"
 
-#define ABSOLUTE_VALUE(x) ( \
-				((x) < 0)? \
-					-(x) \
-				: \
-				  (x)\
-			  )
+#define ABSOLUTE_VALUE(x) ( ((x) < 0) ? -(x) : (x) )
+
 int main(void)
 {
 	int a, b, delta;

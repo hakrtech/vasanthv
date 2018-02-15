@@ -4,28 +4,19 @@
 
 #include <stdio.h>
 
-#define MIN2(a, b) (((a) < (b)) ? (a) : (b))
+#include "libinput.h"
 
-#define MIN3(a, b, c) 	( \
-				(MIN2(a, b) < (c))? \
-					MIN2(a, b) \
-				: \
-					(c) \
-			)
+#define MIN2(a, b) 	  ( ((a) < (b)) ? (a) : (b) )
+#define MIN3(a, b, c) 	  ( ((MIN2(a, b)) < (c)) ? (MIN2(a, b)) : (c) )
 
-#define MIN3A(a, b, c)	( \
+#define MIN3A(a, b, c)	  ( \
 				((a) < (b))? \
 					(((a) < (c)) ? (a) : (c)) \
 				: \
 					(((b) < (c)) ? (b) : (c)) \
-			)
+			  )
 
-#define MIN4(a, b, c, d) ( \
-				(MIN3(a, b, c) < d)? \
-					MIN3(a, b, c) \
-				: \
-					(d) \
-			 )
+#define MIN4(a, b, c, d)  ( ((MIN3(a, b, c)) < (d)) ? (MIN3(a, b, c)) : (d) )
 
 #define MIN4A(a, b, c, d) ( \
 				((a) < (b))? \
@@ -45,14 +36,10 @@ int main(void)
 	int a, b, c, d;
 
 	printf("minimum of values>\n");
-	printf("enter val a = ");
-	scanf("%d", &a);
-	printf("enter val b = ");
-	scanf("%d", &b);
-	printf("enter val c = ");
-	scanf("%d", &c);
-	printf("enter val d = ");
-	scanf("%d", &d);
+	a = input_decimal_int("enter val a = ");
+	b = input_decimal_int("enter val b = ");
+	c = input_decimal_int("enter val c = ");
+	d = input_decimal_int("enter val d = ");
 
 	printf("a = %d b = %d\nminimum of two = %d\n", a, b, MIN2(a, b));\
 	printf("a = %d b = %d c = %d\nminimum of three = %d\n", a, b, c, MIN3(a, b, c));

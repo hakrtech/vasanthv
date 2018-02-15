@@ -59,10 +59,10 @@ clean:
 # $@ is lhs
 # $< is rhs
 ex03: 	ex03.c
-	$(CC) -o $@ $(COMPILE.FLAGS) $<
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
 
 ex04: 	ex04.c
-	$(CC) -o $@ $(COMPILE.FLAGS) $<
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
 
 ex06: 	ex06.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger

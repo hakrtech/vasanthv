@@ -4,14 +4,10 @@
 
 #include <stdio.h>
 
-#define MAX2(a, b)	  (((a) > (b)) ? (a) : (b))
+#include "libinput.h"
 
-#define MAX3(a, b, c)	  ( \
-				(MAX2(a, b) > c)? \
-					MAX2(a, b) \
-				: \
-					(c) \
-			  )
+#define MAX2(a, b)	  ( ((a) > (b)) ? (a) : (b) )
+#define MAX3(a, b, c)	  ( ((MAX2(a, b)) > (c)) ? (MAX2(a, b)) : (c) )
 
 #define MAX3A(a, b, c)	  ( \
 				((a) > (b))? \
@@ -20,12 +16,7 @@
 					(((b) > (c)) ? (b) : (c)) \
 			  )
 
-#define MAX4(a, b, c, d)  ( \
-				(MAX3(a, b, c) > (d))? \
-					MAX3(a, b, c) \
-				: \
-					(d) \
-			  )
+#define MAX4(a, b, c, d)  ( ((MAX3(a, b, c)) > (d)) ? (MAX3(a, b, c)) : (d) )
 
 #define MAX4A(a, b, c, d) ( \
 				((a) > (b))? \
@@ -45,14 +36,10 @@ int main(void)
 	int a, b, c, d;
 
 	printf("maximum of values>\n");
-	printf("enter val a: ");
-	scanf("%d", &a);
-	printf("enter val b: ");
-	scanf("%d", &b);
-	printf("enter val c: ");
-	scanf("%d", &c);
-	printf("enter val d: ");
-	scanf("%d", &d);
+	a = input_decimal_int("enter val a = ");
+	b = input_decimal_int("enter val b = ");
+	c = input_decimal_int("enter val c = ");
+	d = input_decimal_int("enter val d = ");
 
 	printf("a = %d b = %d maximum of two %d\n", a, b, MAX2(a, b));
 	printf("a = %d b = %d c = %d maximum of three %d\n", a, b, c, MAX3(a, b, c));

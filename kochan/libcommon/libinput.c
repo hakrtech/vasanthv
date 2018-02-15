@@ -43,11 +43,16 @@ float input_decimal_float(char *prompt)
 char input_char(char *prompt)
 {
 	char c;
+	int d;
 
 	if (prompt != NULL) {
 		printf("%s", prompt);
 	}
-	scanf("%c", &c);
+	d = scanf("%c", &c);
+	if (d != 1) {
+		printf("scanf error %d\n", d);
+		exit(1);
+	}
 
 	return c;
 }
