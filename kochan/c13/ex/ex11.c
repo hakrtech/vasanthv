@@ -19,20 +19,26 @@ void chk_macro(char c)
 
 	d = isupper(c);
 	e = IS_UPPER_CASE(c);
-	if (d || e) {
+	if (d && e) {
 		printf("uppercase char '%c'\nisupper val = %d IS_UPPER_CASE val = %d\n", c, d, e);
+	} else {
+		printf("not a uppercase '%c' isupper val = %d IS_UPPER_CASE val = %d\n", c, d, e);
 	}
 
 	d = isalpha(c);
 	e = IS_ALPHABETIC(c);
-	if (d || e) {
+	if (d && e) {
 		printf("alphabetic char '%c'\nisalpha val = %d IS_ALPHABETIC val = %d\n", c, d, e);
+	} else {
+		printf("not a alphabetic '%c' isalpha val = %d IS_ALPHABETIC val = %d\n", c, d, e);
 	}
 
 	d = isdigit(c);
 	e = IS_DIGIT(c);
-	if (d || e) {
+	if (d && e) {
 		printf("digit '%c'\nisdigit val = %d IS_DIGIT val = %d\n", c, d, e);
+	} else {
+		printf("not a digit '%c' isdigit val = %d IS_DIGIT val = %d\n", c, d, e);
 	}
 }
 
