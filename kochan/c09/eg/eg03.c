@@ -7,35 +7,39 @@
 
 struct date
 {
-	int month;
-	int day;
-	int year;
+	int dd;
+	int mm;
+	int yyyy;
 };
 
 bool isleap_year(struct date d)
 {
-	bool leap_yr;
+	bool is_leap_yr;
 
-	if ((d.year % 4 == 0 && d.year % 100 != 0) || d.year % 400 == 0) {
-		leap_yr = true;
+	if ((d.yyyy % 4 == 0 && d.yyyy % 100 != 0) || d.yyyy % 400 == 0) {
+		is_leap_yr = true;
 	} else {
-		leap_yr = false;
+		is_leap_yr = false;
 	}
 
-	return leap_yr;
+	return is_leap_yr;
 }
 
 int num_days(struct date d)
 {
 	int days;
-	const int days_month[12] = { 31, 28, 31, 30, 31, 30,
-				     31, 31, 30, 31, 30, 31
-				   };
+	const int dd_mm[12] =		{ 31, 28, 31, 30, 31, 30,
+					  31, 31, 30, 31, 30, 31
+					};
+	const int leap_yr_dd_mm[12] =	{ 31, 29, 31, 30, 31, 30,
+					  31, 31, 30, 31, 30, 31
+					};
 
-	if (isleap_year(d) == true && d.month == 2) {
-		days = 29;
+
+	if (isleap_year(d) == true && d.mm == 2) {
+		days = leap_yr_dd_mm[d.mm - 1];
 	} else {
-		days = days_month[d.month - 1];
+		days = dd_mm[d.mm - 1];
 	}
 
 	return days;
@@ -45,24 +49,24 @@ int main(void)
 {
 	struct date today, tomorrow;
 
-	printf("enter today's date (mm dd yyyy): ");
-	scanf("%i%i%i", &today.month, &today.day, &today.year);
+	printf("enter today's date (dd mm yyyy): ");
+	scanf("%i%i%i", &today.dd, &today.mm, &today.yyyy);
 
-	if (today.day != num_days(today)) {
-		tomorrow.day = today.day + 1;
-		tomorrow.month = today.month;
-		tomorrow.year = today.year;
-	} else if (today.month == 12) { 		/* end of year */
-		tomorrow.day = 1;
-		tomorrow.month = 1;
-		tomorrow.year = today.year + 1;
+	if (today.dd != num_days(today)) {
+		tomorrow.dd = today.dd + 1;
+		tomorrow.mm = today.mm;
+		tomorrow.yyyy = today.yyyy;
+	} else if (today.mm == 12) { 		/* end of year */
+		tomorrow.dd = 1;
+		tomorrow.mm = 1;
+		tomorrow.yyyy = today.yyyy + 1;
 	} else {					/* end of month */
-		tomorrow.day = 1;
-		tomorrow.month = today.month + 1;
-		tomorrow.year = today.year;
+		tomorrow.dd = 1;
+		tomorrow.mm = today.mm + 1;
+		tomorrow.yyyy = today.yyyy;
 	}
 
-	printf("tomorrow's date is %i/%i/%i\n", tomorrow.month, tomorrow.day, tomorrow.year);
+	printf("tomorrow's date is %i/%i/%i\n", tomorrow.dd, tomorrow.mm, tomorrow.yyyy);
 
 	return 0;
 }
