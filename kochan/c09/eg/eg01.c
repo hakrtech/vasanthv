@@ -8,18 +8,18 @@ int main(void)
 {
 	struct date
 	{
-		int month;
-		int day;
-		int year;
+		int dd;
+		int mm;
+		int yyyy;
 	};
 
 	struct date today;
 
-	today.month = 1;
-	today.day = 10;
-	today.year = 2018 % 100;
+	today.dd = 17;
+	today.mm = 2;
+	today.yyyy = 2018 % 100;
 
-	printf("today date %i/%i/%.2i.\n", today.month, today.day, today.year);
+	printf("today date %i/%i/%.2i.\n", today.dd, today.mm, today.yyyy);
 
 	return 0;
 }
