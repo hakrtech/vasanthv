@@ -24,7 +24,7 @@ LINK.LIBS=-linput -larray
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
-BIN=ex02 ex03 ex04
+BIN=ex02 ex03 ex04 ex05
 
 # list of libraries to be built
 LIBDIR= ../../libcommon
@@ -66,4 +66,7 @@ ex03: 	ex03.c
 
 ex04: 	ex04.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
+
+ex05: 	ex05.c
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
