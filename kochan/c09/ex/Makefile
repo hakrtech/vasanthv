@@ -18,13 +18,13 @@ COMPILE.FLAGS+=$(INCDIR)
 LINK.LIBDIRS=-L ../../libcommon
 
 # list of libraries to link with 
-LINK.LIBS=-linput
+LINK.LIBS=-linput -larray
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
-BIN=ex02 ex03
+BIN=ex02 ex03 ex04
 
 # list of libraries to be built
 LIBDIR= ../../libcommon
@@ -63,4 +63,7 @@ ex02: 	ex02.c
 
 ex03: 	ex03.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS)
+
+ex04: 	ex04.c
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
 
