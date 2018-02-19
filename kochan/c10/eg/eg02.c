@@ -4,25 +4,29 @@
 
 #include <stdio.h>
 
+int word_len(const char string[])
+{
+	int count = 0;
+
+	while (string[count] != '\0') {
+		++count;
+	}
+
+	return count;
+}
+
 int main(void)
 {
-	int wordlenth(const char string[]);
+	int x, y, z;
+	const char a[] = { 'C', 'u', 'd', 'd', 'a', 'l', 'o', 'r', 'e', '\0' };
+	const char b[] = { 'T', 'i', 'r', 'u', 'c', 'h', 'i', 'r', 'a', 'p', 'p', 'a', 'l', 'l', 'i', '\0' };
+	const char c[] = { 'C', 'h', 'e', 'n', 'n', 'a', 'i', '\0' };
 
-	const char word1[] = {'C', 'u', 'd', 'd', 'a', 'l', 'o', 'r', 'e', '\0'};
-	const char word2[] = {'T', 'i', 'r', 'u', 'c', 'h', 'i', 'r', 'a', 'p', 'p', 'a', 'l', 'l', 'i', '\0'};
-	const char word3[] = {'C', 'h', 'e', 'n', 'n', 'a', 'i', '\0'};
-
-	printf("%i %i %i\n", wordlenth(word1), wordlenth(word2), wordlenth(word3));
+	x = word_len(a);
+	y = word_len(b);
+	z = word_len(c);
+	printf("word lenth >\ncuddalore %i tiruchirappalli %i chennai %i\n", x, y, z);
 
 	return 0;
 }
 
-int wordlenth(const char string[])
-{
-	int count = 0;
-
-	while (string[count] != '\0')
-		++count;
-
-	return count;
-}
