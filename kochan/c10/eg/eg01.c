@@ -3,38 +3,41 @@
  */
 
 #include <stdio.h>
+#include <assert.h>
+
+void concat(char r[], int n, const char a[], int na, const char b[], int nb)
+{
+	int i, j, k;
+
+	//copy a[0 .. na-1] to r[0 .. na-1]
+	for (i = 0; i <= na-1; ++i) {
+
+		assert((0 <= i) && (i < n));
+		r[i] = a[i];
+	}
+
+	//copy b[0 .. nb-1] to r[na .. n-1]
+	for (j = 0, k = na; j <= nb-1; ++j, ++k) {
+
+		assert((na <= k) && (k < n));
+		r[k] = b[j];
+	}
+}
 
 int main(void)
 {
-	void concat(char result[], const char str1[], int n1, const char str2[], int n2);
-
-	const char s1[5] = {'T', 'e', 's', 't', ' '};
-	const char s2[6] = {'W', 'o', 'r', 'k', 's', '.'};
-	char s3[11];
+	const char a[5] = {'T', 'e', 's', 't', ' '};
+	const char b[6] = {'W', 'o', 'r', 'k', 's', '.'};
+	char r[100];
+	int n = 5 + 6;
 	int i;
 
-	concat(s3, s1, 5, s2, 6);
-
-	for (i=0; i < 11; ++i)
-		printf("%c", s3[i]);
-	
+	concat(r, n, a, 5, b, 6);
+	for (i = 0; i <= n-1; ++i) {
+		printf("%c", r[i]);
+	}
 	printf("\n");
 
-	return 0;	
+	return 0;
 }
 
-void concat(char result[], const char str1[], int n1, const char str2[], int n2)
-{
-	int i;
-	int j;
-
-	//copy str1 to result
-
-	for (i = 0; i < n1; ++i)
-		result[i] = str1[i];
-
-	//copy str2 to result
-	
-	for (j = 0; j < n2; ++j)
-		result[n1 + j] = str2[j];
-}
