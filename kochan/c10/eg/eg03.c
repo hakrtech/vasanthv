@@ -3,37 +3,45 @@
  */
 
 #include <stdio.h>
+#include <assert.h>
+
+void concat(char r[], int n, const char a[], const char b[], const char c[])
+{
+	int i, j, k, l;
+
+	for (i = 0, l = 0; a[i] != '\0'; ++i, ++l) {
+
+		assert((0 <= l) && (l < n));
+		r[l] = a[i];
+	}
+
+	for (j = 0, l = i; b[j] != '\0'; ++j, ++l) {
+
+		assert((i <= l) && (l < n));
+		r[l] = b[j];
+	}
+
+	for (k = 0, l = i+j; c[k] != '\0'; ++k, ++l) {
+
+		assert(((i+j) <= l) && (l < n));
+		r[l] = c[k];
+	}
+
+	assert(((i+j+k) <= l) && (l < n));
+	r[l] = '\0';
+}
 
 int main(void)
 {
-	void concat(char result[], const char str1[], const char str2[], const char str3[]);
+	const char a[] = { "computer " };
+	const char b[] = { "science " };
+	const char c[] = { "Engineer." };
+	char result[100];
+	int n = 100;
 
-	const char str1[] = {"computer "};
-	const char str2[] = {"science "};
-	const char str3[] = {"Engineer."};
-	char strresult[30];
-
-	concat(strresult, str1, str2, str3);
-
-	printf("%s\n", strresult);
+	concat(result, n, a, b, c);
+	printf("concat three word>\n%s\n", result);
 
 	return 0;
 }
 
-void concat(char result[], const char str1[], const char str2[], const char str3[])
-{
-	int i;
-	int j;
-	int k;
-
-	for (i = 0; str1[i] != '\0'; ++i)
-		result[i] = str1[i];
-
-	for (j = 0; str2[j] != '\0'; ++j)
-		result[i+j] = str2[j];
-
-	for (k = 0; str3[k] != '\0'; ++k)
-		result[i+j+k] = str3[k];
-
-	result[i+j+k] = '\0';
-}
