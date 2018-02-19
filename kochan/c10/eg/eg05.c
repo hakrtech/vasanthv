@@ -6,13 +6,12 @@
 
 int main(void)
 {
-	char w1[30];
-	char w2[30];
-	char w3[30];
+	char a[100], b[100], c[100];
 
-	printf("Enter text:\n");
-	scanf("%s%s%s", w1, w2, w3);
-	printf("w1 = %s\nw2 = %s\nw3 = %s\n", w1, w2, w3);
+	printf("reading strings with scanf>\nenter text:\n");
+	scanf("%50s%50s%50s", a, b, c);
+	printf("w1: %s\nw2: %s\nw3: %s\n", a, b, c);
 
 	return 0;
 }
+
