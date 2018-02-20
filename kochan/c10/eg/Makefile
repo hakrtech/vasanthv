@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS= -g -Wall -Werror -pedantic -ansi --std=c99
 
 # list of binaries
-BIN= eg01 eg02 eg03 eg04 eg05 eg06 eg07 eg08 eg09
+BIN= eg01 eg02 eg03 eg04 eg05 eg06 eg07 eg08 eg09 eg10
 
 all: $(BIN)
 
