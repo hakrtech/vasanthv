@@ -15,8 +15,13 @@ bool equal_str(const char a[], int na, const char b[], int nb)
 	assert(nb > 0);
 
 	while ((a[i] == b[i]) && (a[i] != '\0')) {
+
+#define DEBUG 0
+		if (DEBUG) {
+			printf("[ %c ] [ %c ] i %d\n", a[i], b[i], i);
+		}
+
 		++i;
-		printf("i %d\n", i);
 	}
 
 	if ((a[i] == '\0') && (b[i] == '\0')) {
