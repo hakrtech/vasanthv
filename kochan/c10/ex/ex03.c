@@ -4,11 +4,12 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <assert.h>
 
 #define IS_ALPHA(c)		( ((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')) )
 #define IS_NUM_COMMAS(d)	( ((d >= '0') && (d <= '9')) || ((d >= '!') && (d <= '/')) || ((d >= ':') && (d <= '@')) )
 #define IS_WORD(x)		( (IS_ALPHA(x)) || (IS_NUM_COMMAS(x)) )
-#define IS_SPACE(y)		( (y == ' ') )
+#define IS_SPACE(y)		( (y == ' ') || (y == '	') )
 
 int word_count(const char s[])
 {
@@ -34,11 +35,29 @@ int word_count(const char s[])
 	return wc;
 }
 
+void read_line(char b[], int n)
+{
+	char c;
+	int i = 0;
+
+	do {
+		c = getchar();
+		assert((0 <= i) && (i <= n));
+		b[i] = c;
+		++i;
+	} while (c != '\n');
+
+	assert((0 <= i) && (i <= n));
+	b[i-1] = '\0';
+}
+
 int main(void)
 {
+	char a[201];
+	int n = 200;
 	int r;
-	const char a[] = "hello! india@ 1.234,2 -34a xyz";
 
+	read_line(a, n);
 	r = word_count(a);
 	printf("strings [ %s ] word count %d\n", a, r);
 
