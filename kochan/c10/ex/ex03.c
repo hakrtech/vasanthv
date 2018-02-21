@@ -57,6 +57,9 @@ int main(void)
 	int n = 200;
 	int r;
 
+	printf("word counting>\n");
+	printf("type text: ");
+
 	read_line(a, n);
 	r = word_count(a);
 	printf("strings [ %s ] word count %d\n", a, r);
