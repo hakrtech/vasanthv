@@ -24,7 +24,7 @@ LINK.LIBS=
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 
 # list of binaries to be built
-BIN=ex02 ex03 ex04 ex05
+BIN=ex02 ex03 ex04 ex05 ex06
 
 # list of libraries to be built
 LIBDIR=
@@ -68,5 +68,8 @@ ex04: 	ex04.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $<
 
 ex05: 	ex05.c
+	$(CC) -o $@ $(COMPILE.FLAGS) $<
+
+ex06: 	ex06.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $<
 

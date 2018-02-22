@@ -33,7 +33,7 @@ int find_str(const char s[], const char f[])
 int main(void)
 {
 	int r;
-	const char a[] = "life is book? yes good book!";
+	const char a[] = "life is a book? yes good book!";
 	const char b[] = "book!";
 
 	printf("find a string into source string>\n");
