@@ -7,35 +7,37 @@
 
 int count_of_str(const char s[])
 {
-	int i, count;
+	int i, n;
 
 	i = 0;
-	count = 0;
+	n = 0;
 	while (s[i] != '\0') {
 		++i;
 	}
 	if (s[i] == '\0') {
-		count = i;
+		n = i;
 	}
 
-	return count;
+	return n;
 }
 
 void remove_str(char s[], int pos, int count)
 {
-	int i, j, s_count;
+	int i, j, sn;
 
 	assert(pos >= 0);
-	s_count = count_of_str(s);
+	sn = count_of_str(s);
 
-	if ((count > 0) && (pos < s_count)) {
+	if ((count > 0) && (pos < sn)) {
 		// loop s[pos .. !'\0'] to move s[ pos+count .. !'\0']
-		for (i = pos, j = pos+count; s[i] != '\0'; ++i, ++j) {
-			if (j < s_count) {
-				s[i] = s[j];
-			} else {
-				break;
+		for (i = pos, j = pos+count; (s[i] != '\0') && (j < sn); ++i, ++j) {
+#define DEBUG 0
+			if (DEBUG) {
+				printf("check i %d j %d sn %d\n", i, j, sn);
 			}
+			assert((0 <= i) && (i < sn));
+
+			s[i] = s[j];
 		}
 		s[i] = '\0';
 	}
@@ -44,7 +46,7 @@ void remove_str(char s[], int pos, int count)
 int main(void)
 {
 	int pos, count;
-	char a[] = "the wrong date";
+	char a[] = "the wrong data";
 
 	printf("remove string>\n");
 	printf("strings [ %s ]\n", a);
