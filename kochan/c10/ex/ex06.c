@@ -3,58 +3,67 @@
   */
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <assert.h>
 
-int count_of_str(const char s[])
+int string_length(const char s[])
 {
-	int i, n;
+	int i, n = -1;
 
 	i = 0;
-	n = 0;
 	while (s[i] != '\0') {
 		++i;
 	}
-	if (s[i] == '\0') {
-		n = i;
-	}
+	assert(s[i] == '\0');
+	n = i;
 
 	return n;
 }
 
-void remove_str(char s[], int pos, int count)
+bool string_remove(char s[], int pos, int count)
 {
 	int i, j, sn;
+	bool is_removed = false;
 
 	assert(pos >= 0);
-	sn = count_of_str(s);
+	sn = string_length(s);
 
-	if ((count > 0) && (pos < sn)) {
-		// loop s[pos .. !'\0'] to move s[ pos+count .. !'\0']
-		for (i = pos, j = pos+count; (s[i] != '\0') && (j < sn); ++i, ++j) {
-#define DEBUG 0
-			if (DEBUG) {
-				printf("check i %d j %d sn %d\n", i, j, sn);
-			}
-			assert((0 <= i) && (i < sn));
-
-			s[i] = s[j];
-		}
-		s[i] = '\0';
+	if (count <= 0) {
+		return is_removed;
 	}
+	if (pos > sn) {
+	       return is_removed;
+	}
+
+	for (i = pos, j = pos+count; j < sn; ++i, ++j) {
+		assert((0 <= i) && (i < sn));
+		s[i] = s[j];
+	}
+	assert(j == sn);
+	s[i] = '\0';
+	is_removed = true;
+
+	return is_removed;
 }
 
 int main(void)
 {
 	int pos, count;
+	bool is_removed = false;
 	char a[] = "the wrong data";
 
 	printf("remove string>\n");
 	printf("strings [ %s ]\n", a);
 
-	pos = 4;
-	count = 6;
-	remove_str(a, pos, count);
-	printf("after removing strings [ %s ], position %d, count %d\n", a, pos, count);
+	pos = 1;
+	count = 5;
+	is_removed = string_remove(a, pos, count);
+
+	if (is_removed) {
+		printf("position %d count %d\nafter removing strings [ %s ]\n", pos, count, a);
+	} else {
+		printf("position %d count %d\nstrings [ %s ] not removed %d\n", pos, count, a, is_removed);
+	}
 
 	return 0;
 }
