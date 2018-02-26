@@ -8,38 +8,39 @@
 
 int string_length(const char s[])
 {
-	int i, n = -1;
+	int i = 0;
 
-	i = 0;
 	while (s[i] != '\0') {
 		++i;
 	}
 	assert(s[i] == '\0');
-	n = i;
 
-	return n;
+	return i;
 }
 
-bool string_remove(char s[], int pos, int count)
+bool string_remove(char s[], int pos, int new_len)
 {
-	int i, j, sn;
+	int i, j, len;
 	bool is_removed = false;
 
 	assert(pos >= 0);
-	sn = string_length(s);
+	len = string_length(s);
 
-	if (count <= 0) {
+	if (new_len <= 0) {
 		return is_removed;
 	}
-	if (pos > sn) {
-	       return is_removed;
+	if (pos >= len) {
+		return is_removed;
+	}
+	if (new_len > len) {
+		return is_removed;
 	}
 
-	for (i = pos, j = pos+count; j < sn; ++i, ++j) {
-		assert((0 <= i) && (i < sn));
+	for (i = pos, j = pos+new_len; j <= len; ++i, ++j) {
+		assert((0 <= i) && (i < len));
 		s[i] = s[j];
 	}
-	assert(j == sn);
+	assert(j > len);
 	s[i] = '\0';
 	is_removed = true;
 
@@ -48,21 +49,21 @@ bool string_remove(char s[], int pos, int count)
 
 int main(void)
 {
-	int pos, count;
+	int pos, new_len;
 	bool is_removed = false;
 	char a[] = "the wrong data";
 
 	printf("remove string>\n");
 	printf("strings [ %s ]\n", a);
 
-	pos = 1;
-	count = 5;
-	is_removed = string_remove(a, pos, count);
+	pos = 4;
+	new_len = 6;
+	is_removed = string_remove(a, pos, new_len);
 
 	if (is_removed) {
-		printf("position %d count %d\nafter removing strings [ %s ]\n", pos, count, a);
+		printf("position %d length %d\nafter removing strings [ %s ]\n", pos, new_len, a);
 	} else {
-		printf("position %d count %d\nstrings [ %s ] not removed %d\n", pos, count, a, is_removed);
+		printf("position %d length %d\nstrings [ %s ] not removed %d\n", pos, new_len, a, is_removed);
 	}
 
 	return 0;
