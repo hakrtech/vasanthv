@@ -4,28 +4,20 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include <assert.h>
 
-bool equal_str(const char a[], int na, const char b[], int nb)
+bool string_equal(const char a[], const char b[])
 {
 	bool is_equal = false;
 	int i = 0;
 
-	assert(na > 0);
-	assert(nb > 0);
-
 	while ((a[i] == b[i]) && (a[i] != '\0')) {
-
-#define DEBUG 0
-		if (DEBUG) {
-			printf("[ %c ] [ %c ] i %d\n", a[i], b[i], i);
-		}
-
 		++i;
 	}
 
-	if ((a[i] == '\0') && (b[i] == '\0')) {
-		is_equal = true;
+	if (a[i] == '\0') {
+		if (b[i] == '\0') {
+			is_equal = true;
+		}
 	}
 
 	return is_equal;
@@ -35,19 +27,15 @@ int main(void)
 {
 	char a[100];
 	char b[100];
-	int na = 20;
-	int nb = 20;
 	bool find = false;
 
 	printf("determine if two strings eual or not>\n");
 	printf("first string: ");
-	scanf("%20s", a);
-	printf("[ %s ]\n", a);
+	scanf("%s", a);
 	printf("second string: ");
-	scanf("%20s", b);
-	printf("[ %s ]\n", b);
+	scanf("%s", b);
 
-	find = equal_str(a, na, b, nb);
+	find = string_equal(a, b);
 	if (find) {
 		printf("strings [ %s ] [ %s ] equal %d\n", a, b, find);
 	} else {
