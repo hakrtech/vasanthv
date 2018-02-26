@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <assert.h>
 
 bool string_equal(const char a[], const char b[])
 {
@@ -13,9 +14,12 @@ bool string_equal(const char a[], const char b[])
 	while ((a[i] == b[i]) && (a[i] != '\0')) {
 		++i;
 	}
+	assert((a[i] != b[i]) || (a[i] == '\0'));
 
-	if ((a[i] == '\0') && (b[i] == '\0')) {
-			is_equal = true;
+	if (a[i] != b[i]) {
+		is_equal = false;
+	} else {
+		is_equal = true;
 	}
 
 	return is_equal;
@@ -27,7 +31,7 @@ int main(void)
 	char b[100];
 	bool is_equal = false;
 
-	printf("determine if two strings eual or not>\n");
+	printf("determine if two strings equal or not>\n");
 	printf("first string: ");
 	scanf("%s", a);
 	printf("[ %s ]\n", a);
