@@ -32,15 +32,17 @@ bool string_remove(char s[], int pos, int new_len)
 	if (pos >= len) {
 		return is_removed;
 	}
-	if (new_len > len) {
-		return is_removed;
-	}
 
-	for (i = pos, j = pos+new_len; j <= len; ++i, ++j) {
+	for (i = pos, j = pos+new_len; j <= len-1; ++i, ++j) {
 		assert((0 <= i) && (i < len));
 		s[i] = s[j];
 	}
-	assert(j > len);
+
+	if (j > len) {
+		return is_removed;
+	}
+
+	assert(j == len);
 	s[i] = '\0';
 	is_removed = true;
 
@@ -56,8 +58,8 @@ int main(void)
 	printf("remove string>\n");
 	printf("strings [ %s ]\n", a);
 
-	pos = 4;
-	new_len = 6;
+	pos = 10;
+	new_len = 2;
 	is_removed = string_remove(a, pos, new_len);
 
 	if (is_removed) {
