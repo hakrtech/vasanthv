@@ -30,13 +30,14 @@ bool string_shift(char s[], int len, int pos, int jump)
 	// loop s[pos .. len-1] to shifted s[pos+jump .. len+jump-1]
 	i = len - 1;
 	j = (len + jump) - 1;
+
+	s[len+jump] = '\0';
 	while (i >= pos) {
 		s[j] = s[i];
 		--i;
 		--j;
 	}
 	if (i < pos) {
-		s[len+jump] = '\0';
 		is_shifted = true;
 	}
 
@@ -57,7 +58,7 @@ void string_insert(char s[], int pos, char as[])
 	if (is_shifted) {
 		for (i = pos, j = 0; j <= as_len-1; ++i, ++j) {
 
-			assert((0 <= i) && (i < s_len));
+			assert((0 <= i) && (i < s_len+as_len));
 			s[i] = as[j];
 		}
 		assert(j == as_len);
@@ -76,7 +77,7 @@ int main(void)
 	printf("strings a [ %s ]\n", a);
 	printf("strings b [ %s ]\n", b);
 
-	pos = 4;
+	pos = 15;
 	string_insert(a, pos, b);
 	printf("position %d\ninserted strings [ %s ]\n", pos, a);
 
