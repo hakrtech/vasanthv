@@ -4,23 +4,25 @@
 
 #include <stdio.h>
 
-int find_str(const char s[], const char f[])
+int string_find(char s[], char f[])
 {
 	int i, j, pos = -1;
+	char c;
 
 	// loop s[0 .. !'\0'] to find f[0 .. '\0']
+	j = 0;
+	c = f[j];
+	for (i = 0; s[i] != '\0'; ++i) {
+		if (s[i] == c) {
+			int k;
 
-	for (i = 0, j = 0; s[i] != '\0'; ++i) {
-		if ((s[i] == f[j]) && (f[j] != '\0')) {
-			int k , l;
-
+			j = 0;
 			k = i;
-			l = j;
-			while ((s[k] == f[l]) && (f[l] != '\0')) {
+			while ((s[k] == f[j]) && (f[j] != '\0')) {
 				++k;
-				++l;
+				++j;
 			}
-			if ((s[k-1] == f[l-1]) && (f[l] == '\0')) {
+			if (f[j] == '\0') {
 				pos = i;
 				break;
 			}
@@ -32,16 +34,18 @@ int find_str(const char s[], const char f[])
 
 int main(void)
 {
-	int r;
-	const char a[] = "life is a book? yes good book!";
-	const char b[] = "book!";
+	int pos;
+	char a[] = "life is a book? yes good book!";
+	char b[] = "book!";
 
 	printf("find a string into source string>\n");
-	r = find_str(a, b);
-	if (r != -1) {
-		printf("source [ %s ] finded [ %s ] position %d\n", a, b, r);
+	printf("strings>\nsource [ %s ]\nfind [ %s ]\n", a, b);
+
+	pos = string_find(a, b);
+	if (pos != -1) {
+		printf("source [ %s ] finded [ %s ] position %d\n", a, b, pos);
 	} else {
-		printf("not found pos %d\n", r);
+		printf("string not found position %d\n", pos);
 	}
 
 	return 0;
