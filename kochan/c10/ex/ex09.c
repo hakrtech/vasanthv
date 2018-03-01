@@ -29,14 +29,14 @@ int string_find(char s[], char f[])
 	c = f[j];
 	while (s[i] != '\0') {
 		if (s[i] == c) {
-			int k, l;
+			int k;
 			k = i;
-			l = j;
-			while (s[k] == f[l]) {
+			j = 0;
+			while ((s[k] == f[j]) && (f[j] != '\0')) {
 				++k;
-				++l;
+				++j;
 			}
-			if ((f[l] == '\0') && (s[k-1] == f[l-1])) {
+			if (f[j] == '\0') {
 				pos = i;
 				break;
 			}
@@ -136,7 +136,7 @@ bool string_replace(char s[], char rmv[], char ins[])
 
 int main(void)
 {
-	char a[] = "The nature is butiful god. Don't pollute and distroy. Nature will angry, distroy anything.";
+	char a[] = "The nature is beautiful god. Don't pollute and destroy. Nature will angry, destroy everything.";
 	char b[] = " ";
 	char c[] = "_";
 	bool is_replaced = false;

@@ -29,14 +29,14 @@ int string_find(char s[], char f[])
 	c = f[j];
 	while (s[i] != '\0') {
 		if (s[i] == c) {
-			int k, l;
+			int k;
 			k = i;
-			l = j;
-			while (s[k] == f[l]) {
+			j = 0;
+			while ((s[k] == f[j]) && (f[j] != '\0')) {
 				++k;
-				++l;
+				++j;
 			}
-			if ((f[l] == '\0') && (s[k-1] == f[l-1])) {
+			if (f[j] == '\0') {
 				pos = i;
 				break;
 			}
