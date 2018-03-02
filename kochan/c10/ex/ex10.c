@@ -34,7 +34,10 @@ bool string_copy(char s[], char sc[], int n)
 	len = string_length(s);
 	assert(n >= len);
 	arc_setall(sc, n, '-');
-	arc_print(sc, n, "c");
+#define DEBUG 0
+	if (DEBUG) {
+		arc_print(sc, n, "c");
+	}
 
 	// loop s[ 0 ... !'\0'] to copy sc [ 0 .. n-1 ]
 	i = 0;
@@ -47,7 +50,10 @@ bool string_copy(char s[], char sc[], int n)
 	assert(s[i] == '\0');
 	sc[i] = '\0';
 	is_copied = true;
-	arc_print(sc, n, "c");
+
+	if (DEBUG) {
+		arc_print(sc, n, "c");
+	}
 
 	return true;
 }
@@ -74,91 +80,14 @@ bool string_swap(char a[], char b[])
 		printf("chk1 string copy\n");
 	}
 
-	a_len = string_length(a);
-	arc_print(a, a_len, "a");
-	b_len = string_length(b);
-	arc_print(b, b_len, "b");
+	if (DEBUG) {
+		a_len = string_length(a);
+		arc_print(a, a_len, "a");
+		b_len = string_length(b);
+		arc_print(b, b_len, "b");
+	}
 
 	return is_swaped;
-}
-
-bool dic_swap(struct dic note[], int pos)
-{
-	bool is_swaped = false, is_dic_swaped = false;
-
-	assert(pos >= 0);
-
-	is_swaped = string_swap(note[pos].word, note[pos+1].word);
-	if (is_swaped) {
-		is_swaped = string_swap(note[pos].def, note[pos+1].def);
-		if (is_swaped) {
-			is_dic_swaped = true;
-		} else {
-			printf("chk dic swap def\n");
-		}
-	} else {
-		printf("chk dic swap word\n");
-	}
-
-	return is_dic_swaped;
-}
-
-bool string_compare(char a[], char b[])
-{
-	int i = 0;
-	bool is_compared = false;
-
-	while ((a[i] == b[i]) && (a[i] != '\0')) {
-		++i;
-	}
-
-	if (a[i] <= b[i]) {
-		is_compared = true;
-	}
-
-	return is_compared;
-}
-
-bool dic_order(struct dic note[], int len, int j)
-{
-	int i = 0;
-	bool is_compared = false, is_ordered = false;
-
-	while (i < len - 1) {
-		is_compared = string_compare(note[j].word, note[i+1].word);
-		if (is_compared) {
-			printf("yes [ %s ] pos %d\n", note[j].word, i);
-			is_ordered = true;
-		} else {
-			printf("change order i %d j %d\n", i, j);
-			is_ordered = false;
-			break;
-		}
-		++i;
-	}
-
-	return is_ordered;
-}
-
-void dic_sort(struct dic note[], int len)
-{
-	int j = 0;
-	bool is_ordered = false, is_dic_swaped = false;
-
-	is_ordered = dic_order(note, len, j);
-	if (is_ordered) {
-		printf("ok\n");
-		++j;
-	} else {
-		printf("chk\n");
-		is_dic_swaped = dic_swap(note, j);
-		if (is_dic_swaped) {
-			printf("swaped done chk order\n");
-		} else {
-			printf("chk dic swap\n");
-		}
-		// do something
-	}
 }
 
 void dic_print(struct dic note[], int len)
@@ -173,7 +102,71 @@ void dic_print(struct dic note[], int len)
 		++i;
 	}
 }
-/*
+
+bool dic_swap(struct dic note[], int i, int j)
+{
+	bool is_swaped = false, is_dic_swaped = false;
+
+	assert(i >= 0);
+	assert(j >= 0);
+
+	is_swaped = string_swap(note[i].word, note[j].word);
+	if (is_swaped) {
+		is_swaped = string_swap(note[i].def, note[j].def);
+		if (is_swaped) {
+			is_dic_swaped = true;
+		} else {
+			printf("chk dic swap def\n");
+		}
+	} else {
+		printf("chk dic swap word\n");
+	}
+
+	return is_dic_swaped;
+}
+
+bool string_compare(char a[], char b[])
+{
+	bool is_compared = false;
+	int i = 0;
+
+	while ((a[i] == b[i]) && (a[i] != '\0')) {
+		++i;
+	}
+	if (a[i] <= b[i]) {
+		is_compared = true;
+	}
+
+	return is_compared;
+}
+
+void dic_sort(struct dic note[], int len)
+{
+	int i;
+	bool is_compared = true;
+	bool is_swaped = false;
+
+	assert(len > 0);
+
+	for (i = 0; i < len-1; ++i) {
+		int j;
+
+		for (j = i+1; j <= len-1; ++j) {
+
+			is_compared = string_compare(note[i].word, note[j].word);
+
+			// true condition (a[i] > a[j])
+			if (!is_compared) {
+
+				is_swaped = dic_swap(note, i, j);
+				if (!is_swaped) {
+					printf("chk swap\n");
+				}
+			}
+		}
+	}
+}
+
 void read_line(struct dic d[], int pos)
 {
 	char c;
@@ -204,28 +197,36 @@ int dic_entry(struct dic note[])
 		printf(" [ %s ]\n", note[i].def);
 
 		++i;
-	} while (i < 3);
+	} while (i < 10);
 
 	return i;
 }
-*/
+
 int main(void)
 {
 	struct dic note[100] = { 
 				 {"out", "program output, out"},
-				 {"anbu", "vasanth bro"},
 				 {"cat", "animal, living in home"},
-				 {"dog", "animal, living in home and kill cat"}
+				 {"dog", "animal, living in home and kill cat"},
+				 {"anbu", "vasanth bro"}
 				};
 	int len = 4;
+	struct dic book[100];
+
 
 	printf("sort dictionary into alphabetic order>\n");
 	printf("develop own dictionary:\n");
-	//len = dic_entry(note);
-	//dic_print(note, len);
 	dic_print(note, len);
 	dic_sort(note, len);
+	printf("\nsorted dictionary note\n");
 	dic_print(note, len);
+
+	printf("\n\ndevelop own dictionary book:\n");
+	len = dic_entry(book);
+	dic_print(book, len);
+	dic_sort(book, len);
+	printf("\nsorted dictionary book\n");
+	dic_print(book, len);
 
 	return 0;
 }
