@@ -54,7 +54,7 @@ bool string_copy(char s[], char sc[], int n)
 
 bool string_swap(char a[], char b[])
 {
-	int a_len, b_len;
+	int a_len, b_len, c_len;
 	char c[201];
 	int n  = 200;
 	bool is_copied = false, is_swaped = false;
@@ -64,7 +64,8 @@ bool string_swap(char a[], char b[])
 		b_len = string_length(b);
 		is_copied = string_copy(b, a, b_len);
 		if (is_copied) {
-			is_copied = string_copy(c, b, n);
+			c_len = string_length(c);
+			is_copied = string_copy(c, b, c_len);
 			is_swaped = true;
 		} else {
 			printf("chk2 string copy\n");
@@ -214,7 +215,7 @@ int main(void)
 				 {"out", "program output, out"},
 				 {"anbu", "vasanth bro"},
 				 {"cat", "animal, living in home"},
-				 {"doc", "animal, living in home and kill cat"}
+				 {"dog", "animal, living in home and kill cat"}
 				};
 	int len = 4;
 
