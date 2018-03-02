@@ -9,16 +9,16 @@ PREPROCESSOR.FLAGS=
 COMPILE.FLAGS+=-g -Wall -Werror -pedantic -ansi --std=c99
 
 # search for user header files in these directories
-INCDIR=
+INCDIR=-I ../../libcommon
 
 # add this to compile flags
 COMPILE.FLAGS+=$(INCDIR)
 
 # link time search for libraries in these directories
-LINK.LIBDIRS=
+LINK.LIBDIRS=-L ../../libcommon
 
 # list of libraries to link with 
-LINK.LIBS=
+LINK.LIBS=-larray
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
@@ -27,8 +27,8 @@ LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
 BIN=ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10
 
 # list of libraries to be built
-LIBDIR=
-RETURNPATH=
+LIBDIR= ../../libcommon
+RETURNPATH= ../c10/ex
 LIB=
 
 #
@@ -39,7 +39,7 @@ LIB=
 all: 	lib bin
 
 lib: 	$(LIB)
-	#cd $(LIBDIR) && make && cd $(RETURNPATH)
+	cd $(LIBDIR) && make && cd $(RETURNPATH)
 
 bin:	$(BIN)
 
@@ -83,5 +83,5 @@ ex09: 	ex09.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $<
 
 ex10: 	ex10.c
-	$(CC) -o $@ $(COMPILE.FLAGS) $<
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS)
 
