@@ -3,6 +3,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <assert.h>
 
@@ -10,6 +11,12 @@ int int_to_char(int x, int a[], int n)
 {
 	int i = 0;
 
+	assert(n > 0);
+
+	if (!x) {
+		a[i] = x;
+		++i;
+	}
 	while (x) {
 		assert((0 <= i) && (i < n));
 		a[i] = x % 10;
@@ -22,27 +29,31 @@ int int_to_char(int x, int a[], int n)
 
 bool int_to_string(int d, char c[], int n)
 {
-	int x;
 	int a[10];
 	int na = 10;
-	char b[] = "0123456789";
-	int i, j, len;
+	char s[] = "0123456789";
+	int i, j, k, len;
 	bool is_converted = false;
+
+	assert(n > 0);
 
 	i = 0;
 	j = 0;
 	if (d < 0) {
 		d = -d;
 		c[j] = '-';
-		j = 1;
+		++j;
 	}
+
+	len = 0;
 	len = int_to_char(d, a, na);
 	if (len) {
+		k = 0;
 		i = len - 1;
 		while (i >= 0) {
-			x = a[i];
+			k = a[i];
 			assert((0 <= j) && (j < n));
-			c[j] = b[x];
+			c[j] = s[k];
 			--i;
 			++j;
 		}
@@ -58,18 +69,21 @@ int main(void)
 {
 	char c[11];
 	int n = 10;
-	int d;
+	int d, e;
 	bool is_str = false;
 
 	printf("convert integer into string with minus sign>\n");
 	printf("enter integer: ");
-	scanf("%d",&d);
+	e = scanf("%d",&d);
+	if (e != 1) {
+		printf("scanf error %d\n", e);
+		exit(1);
+	}
 	printf("integer %d\n", d);
 
 	is_str = int_to_string(d, c, n);
-
 	if (is_str) {
-		printf(" string ok [ %s ]\n", c);
+		printf("string [ %s ]\n", c);
 	} else {
 		printf("not converted to string\n");
 	}

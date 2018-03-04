@@ -55,7 +55,7 @@ bool string_copy(char s[], char sc[], int n)
 		arc_print(sc, n, "c");
 	}
 
-	return true;
+	return is_copied;
 }
 
 bool string_swap(char a[], char b[])
