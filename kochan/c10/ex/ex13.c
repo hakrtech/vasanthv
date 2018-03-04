@@ -3,7 +3,6 @@
  */
 
 #include <stdio.h>
-#include <stdbool.h>
 #include <assert.h>
 
 #define IS_LOWERCASE(c) ((c >= 'a') && (c <= 'z'))
@@ -17,7 +16,12 @@ void string_to_upper(char s[])
 
 		c = s[i];
 		if (IS_LOWERCASE(c)) {
-			c = c - 'a' + 'A';
+			c = c - 'a' + 'A';	/* ascii decimal character set calculation
+						   eg. let c = 'f'
+						   	   c = 'f' - 'a'+ 'A'
+							   c = 102 - 97 + 65
+							   c = 70 (ascii decimal 70 == 'F')
+							   c = 'F' */
 			s[i] = c;
 		}
 		++i;
@@ -27,15 +31,15 @@ void string_to_upper(char s[])
 
 int main(void)
 {
-	char c[101];
+	char source[101];
 
-	printf("convert a string to equivalent uppercase character>\n");
+	printf("convert a string into equivalent uppercase character>\n");
 	printf("enter a string: ");
-	scanf("%s", c);
-	printf("string [ %s ]\n", c);
+	scanf("%s", source);
+	printf("string [ %s ]\n", source);
 
-	string_to_upper(c);
-	printf("string with equivalent uppercase [ %s ]\n", c);
+	string_to_upper(source);
+	printf("string with equivalent uppercase [ %s ]\n", source);
 
 	return 0;
 }

@@ -7,7 +7,7 @@
 
 #include "libinput.h"
 
-/* postive integer stored reverse order in an integer array eg. integer 234 to a[] = { 4, 3, 2 } */
+/* positive integer stored reverse order in an integer array eg. num 234 to a[] = { 4, 3, 2 } */
 int int_reverse_ari(int num, int a[], int n)
 {
 	int i = 0;
@@ -51,7 +51,6 @@ void int_to_string(int num, char output[], int n)
 	assert(len > 0);
 
 	i = len - 1;
-	digit = 0;
 	while (i >= 0) {
 		digit = a[i];
 		assert((0 <= j) && (j < n));
