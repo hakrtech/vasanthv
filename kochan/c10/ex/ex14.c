@@ -7,74 +7,75 @@
 
 #include "libinput.h"
 
-/* integer stored reverse order in an integer array eg. integer 234 to a[ 4 3 2 ] */
-int int_reverse_ari(int val, int a[], int n)
+/* postive integer stored reverse order in an integer array eg. integer 234 to a[] = { 4, 3, 2 } */
+int int_reverse_ari(int num, int a[], int n)
 {
 	int i = 0;
 
 	assert(n > 0);
-	assert(val >= 0);
+	assert(num >= 0);
 
-	if (val == 0) {
-		a[i] = val;
+	if (num == 0) {
+		a[i] = num;
 		++i;
 	}
-	while (val) {
+	while (num > 0) {
 		assert((0 <= i) && (i < n));
-		a[i] = val % 10;
-		val = val / 10;
+		a[i] = num % 10;
+		num = num / 10;
 		++i;
 	}
-	assert(i > 0);
+	assert(num == 0);
 
 	return i;
 }
 
-void int_to_string(int d, char c[], int n)
+void int_to_string(int num, char output[], int n)
 {
 	int a[10];
 	int na = 10;
-	char s[] = "0123456789";
-	int i, j, k, len;
+	char char_digit[] = "0123456789";
+	int i, j, digit, len;
 
 	assert(n > 0);
 
 	j = 0;
-	if (d < 0) {
-		d = -d;
-		c[j] = '-';
+	if (num < 0) {
+		num = -num;
+		output[j] = '-';
 		++j;
 	}
 
 	len = 0;
-	len = int_reverse_ari(d, a, na);
+	len = int_reverse_ari(num, a, na);
 	assert(len > 0);
 
 	i = len - 1;
-	k = 0;
+	digit = 0;
 	while (i >= 0) {
-		k = a[i];
+		digit = a[i];
 		assert((0 <= j) && (j < n));
-		c[j] = s[k];		/* int k = a[ len-1 .. 0 ] value used to get pos of character in s[ k ], a character is stored into c[ 0 .. n-1 ] */
+		output[j] = char_digit[digit];		/* int digit = a[ len-1 .. 0 ] value used to get pos of character in
+							   char_digit[ digit ], a character is stored into output[ 0 .. n-1 ] */
 		--i;
 		++j;
 	}
 	assert(i < 0);
-	c[j] = '\0';
+	output[j] = '\0';
 }
 
 int main(void)
 {
-	char c[11];
+	char output[11];
 	int n = 10;
-	int d;
+	int number;
 
 	printf("convert integer into string with minus sign>\n");
-	d = input_decimal_int("enter integer: ");
-	printf("integer %d\n", d);
+	number = input_decimal_int("enter integer: ");
+	printf("integer %d\n", number);
 
-	int_to_string(d, c, n);
-	printf("string [ %s ]\n", c);
+	int_to_string(number, output, n);
+	printf("string [ %s ]\n", output);
 
 	return 0;
 }
