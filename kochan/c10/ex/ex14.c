@@ -3,41 +3,42 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include <assert.h>
 
-int int_to_char(int x, int a[], int n)
+#include "libinput.h"
+
+/* integer stored reverse order in an integer array eg. integer 234 to a[ 4 3 2 ] */
+int int_reverse_ari(int val, int a[], int n)
 {
 	int i = 0;
 
 	assert(n > 0);
+	assert(val >= 0);
 
-	if (!x) {
-		a[i] = x;
+	if (val == 0) {
+		a[i] = val;
 		++i;
 	}
-	while (x) {
+	while (val) {
 		assert((0 <= i) && (i < n));
-		a[i] = x % 10;
-		x = x / 10;
+		a[i] = val % 10;
+		val = val / 10;
 		++i;
 	}
+	assert(i > 0);
 
 	return i;
 }
 
-bool int_to_string(int d, char c[], int n)
+void int_to_string(int d, char c[], int n)
 {
 	int a[10];
 	int na = 10;
 	char s[] = "0123456789";
 	int i, j, k, len;
-	bool is_converted = false;
 
 	assert(n > 0);
 
-	i = 0;
 	j = 0;
 	if (d < 0) {
 		d = -d;
@@ -46,47 +47,34 @@ bool int_to_string(int d, char c[], int n)
 	}
 
 	len = 0;
-	len = int_to_char(d, a, na);
-	if (len) {
-		k = 0;
-		i = len - 1;
-		while (i >= 0) {
-			k = a[i];
-			assert((0 <= j) && (j < n));
-			c[j] = s[k];
-			--i;
-			++j;
-		}
-		assert(i < 0);
-		c[j] = '\0';
-		is_converted = true;
-	}
+	len = int_reverse_ari(d, a, na);
+	assert(len > 0);
 
-	return is_converted;
+	i = len - 1;
+	k = 0;
+	while (i >= 0) {
+		k = a[i];
+		assert((0 <= j) && (j < n));
+		c[j] = s[k];		/* int k = a[ len-1 .. 0 ] value used to get pos of character in s[ k ], a character is stored into c[ 0 .. n-1 ] */
+		--i;
+		++j;
+	}
+	assert(i < 0);
+	c[j] = '\0';
 }
 
 int main(void)
 {
 	char c[11];
 	int n = 10;
-	int d, e;
-	bool is_str = false;
+	int d;
 
 	printf("convert integer into string with minus sign>\n");
-	printf("enter integer: ");
-	e = scanf("%d",&d);
-	if (e != 1) {
-		printf("scanf error %d\n", e);
-		exit(1);
-	}
+	d = input_decimal_int("enter integer: ");
 	printf("integer %d\n", d);
 
-	is_str = int_to_string(d, c, n);
-	if (is_str) {
-		printf("string [ %s ]\n", c);
-	} else {
-		printf("not converted to string\n");
-	}
+	int_to_string(d, c, n);
+	printf("string [ %s ]\n", c);
 
 	return 0;
 }

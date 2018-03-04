@@ -18,7 +18,7 @@ COMPILE.FLAGS+=$(INCDIR)
 LINK.LIBDIRS=-L ../../libcommon
 
 # list of libraries to link with 
-LINK.LIBS=-larray
+LINK.LIBS=-larray -linput
 
 # link with these flags usually called LDFLAGS
 LINK.FLAGS=$(LINK.LIBDIRS) $(LINK.LIBS)
@@ -95,5 +95,5 @@ ex13: 	ex13.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $<
 
 ex14: 	ex14.c
-	$(CC) -o $@ $(COMPILE.FLAGS) $<
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
 
