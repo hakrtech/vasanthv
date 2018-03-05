@@ -27,33 +27,33 @@ int string_length(char s[])
 	return i;
 }
 
-bool string_copy(char s[], char sc[], int n)
+bool string_copy(char source[], char dest[], int n)
 {
 	int len, i;
 	bool is_copied = false;
 
-	len = string_length(s);
+	len = string_length(source);
 	assert(n >= len);
-	arc_setall(sc, n, '-');
+	arc_setall(dest, n, '-');
+
 #define DEBUG 0
 	if (DEBUG) {
-		arc_print(sc, n, "c");
+		arc_print(dest, n, "dest");
 	}
 
-	// loop s[ 0 ... !'\0'] to copy sc [ 0 .. n-1 ]
+	// loop source [ 0 ... !'\0'] to copy dest [ 0 .. n-1 ]
 	i = 0;
-	while (s[i] != '\0') {
-	
+	while (source[i] != '\0') {
 		assert((0 <= i) && (i < n));
-		sc[i] = s[i];
+		dest[i] = source[i];
 		++i;
 	}
-	assert(s[i] == '\0');
-	sc[i] = '\0';
+	assert(source[i] == '\0');
+	dest[i] = '\0';
 	is_copied = true;
 
 	if (DEBUG) {
-		arc_print(sc, n, "c");
+		arc_print(dest, n, "dest");
 	}
 
 	return is_copied;
@@ -117,11 +117,7 @@ bool dic_swap(struct dic note[], int i, int j)
 		is_swaped = string_swap(note[i].def, note[j].def);
 		if (is_swaped) {
 			is_dic_swaped = true;
-		} else {
-			printf("chk dic swap def\n");
 		}
-	} else {
-		printf("chk dic swap word\n");
 	}
 
 	return is_dic_swaped;
@@ -145,8 +141,7 @@ bool string_compare(char a[], char b[])
 void dic_sort(struct dic note[], int len)
 {
 	int i;
-	bool is_compared = true;
-	bool is_swaped = false;
+	bool is_compared = true, is_swaped = false;
 
 	assert(len > 0);
 
@@ -159,7 +154,6 @@ void dic_sort(struct dic note[], int len)
 
 			// true condition (a[i] > a[j])
 			if (!is_compared) {
-
 				is_swaped = dic_swap(note, i, j);
 				if (!is_swaped) {
 					printf("chk swap\n");
@@ -169,19 +163,19 @@ void dic_sort(struct dic note[], int len)
 	}
 }
 
-void dic_read_line(struct dic d[], int pos)
+void dic_read_line(struct dic note[], int pos)
 {
 	char c;
 	int i = 0;
 
 	do {
 		c = getchar();
-		d[pos].def[i] = c;
+		note[pos].def[i] = c;
 		++i;
 	} while (c != '\n');
 
 	assert(c == '\n');
-	d[pos].def[i-1] = '\0';
+	note[pos].def[i-1] = '\0';
 }
 
 int dic_entry(struct dic note[])
@@ -196,9 +190,9 @@ int dic_entry(struct dic note[])
 		printf("word and definition:\n");
 		scanf("%s\n", note[i].word);
 		printf(" [ %s ]\n", note[i].word);
+
 		dic_read_line(note, i);
 		printf(" [ %s ]\n", note[i].def);
-
 		++i;
 	}
 	assert(i == index);
