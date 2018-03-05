@@ -83,7 +83,7 @@ ex09: 	ex09.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $<
 
 ex10: 	ex10.c
-	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS)
+	$(CC) -o $@ $(COMPILE.FLAGS) $< $(LINK.FLAGS) -larray -linteger
 
 ex11: 	ex11.c
 	$(CC) -o $@ $(COMPILE.FLAGS) $<

@@ -7,6 +7,7 @@
 #include <assert.h>
 
 #include "libarray.h"
+#include "libinput.h"
 
 struct dic
 {
@@ -95,12 +96,13 @@ void dic_print(struct dic note[], int len)
 	int i = 0;
 
 	assert(len > 0);
-	printf("own dictionary>\n word\t\tdefinition\n");
+	printf("dictionary>\n word\t\tdefinition\n");
 
 	while (i <= len-1) {
-		printf("[ %s ]      [ %s ]\n", note[i].word, note[i].def);
+		printf("[ %s ]       [ %s ]\n", note[i].word, note[i].def);
 		++i;
 	}
+	assert(i == len);
 }
 
 bool dic_swap(struct dic note[], int i, int j)
@@ -167,7 +169,7 @@ void dic_sort(struct dic note[], int len)
 	}
 }
 
-void read_line(struct dic d[], int pos)
+void dic_read_line(struct dic d[], int pos)
 {
 	char c;
 	int i = 0;
@@ -184,46 +186,36 @@ void read_line(struct dic d[], int pos)
 
 int dic_entry(struct dic note[])
 {
-	int i = 0;
+	int index, i;
 
-	printf("enter ten dictionary index words\n");
+	index = input_decimal_int("enter total index: ");
+	printf(" %d\n", index);
 
-	do {
-		printf("word and definition:\n ");
-
+	i = 0;
+	while (i < index) {
+		printf("word and definition:\n");
 		scanf("%s\n", note[i].word);
 		printf(" [ %s ]\n", note[i].word);
-		read_line(note, i);
+		dic_read_line(note, i);
 		printf(" [ %s ]\n", note[i].def);
 
 		++i;
-	} while (i < 10);
+	}
+	assert(i == index);
 
 	return i;
 }
 
 int main(void)
 {
-	struct dic note[100] = { 
-				 {"out", "program output, out"},
-				 {"cat", "animal, living in home"},
-				 {"dog", "animal, living in home and kill cat"},
-				 {"anbu", "vasanth bro"}
-				};
-	int len = 4;
-	struct dic book[100];
-
+	struct dic book[101];
+	int len;
 
 	printf("sort dictionary into alphabetic order>\n");
-	printf("develop own dictionary:\n");
-	dic_print(note, len);
-	dic_sort(note, len);
-	printf("\nsorted dictionary note\n");
-	dic_print(note, len);
-
-	printf("\n\ndevelop own dictionary book:\n");
+	printf("develop own dictionary book>\n");
 	len = dic_entry(book);
 	dic_print(book, len);
+
 	dic_sort(book, len);
 	printf("\nsorted dictionary book\n");
 	dic_print(book, len);
