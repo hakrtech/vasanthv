@@ -1,4 +1,4 @@
-/* chapter 10 exercise 12 program to convert a string to  floating poit value
+/* chapter 10 exercise 12 program to convert a string to  floating point value
  * vasanth 03 march 2018
  */
 
@@ -11,55 +11,57 @@
 
 float string_to_float(char s[])
 {
-	int i;
-	float val, r, f;
+	float decimal, num, result;
 	bool is_dot = false;
+	int i = 0;
 
-	i = 0;
 	if (s[i] == '-') {
 		i = 1;
 	}
 
-	r = 0.0f;
-	f = 1.0f;
+	result = 0.0f;
+	num = 1.0f;
 	while (NUM(s[i]) || DOT(s[i])) {
+
 		if (DOT(s[i])) {
 			++i;
 			is_dot = true;
 		}
 
+		decimal = s[i] - '0';	/* ascii decimal character set calculation
+					   eg. let s[ 0 ... '!0' ], s[0] = '4'
+					  	   decimal = '4' - '0'
+						   decimal =  52 - 48	(char '4' ascii decimal 52, char '0' ascii decimal 48)
+						   decimal =  4		(get char '4' to digit 4) */
 		if (is_dot) {
-			val = s[i] - '0';
-			f = f * 10.0f;
-			r = r + (val / f);
+			num = num * 10.0f;
+			result = result + (decimal / num);
 		} else {
-			val = s[i] - '0';
-			r = r * 10.0f + val;
+			result = result * 10.0f + decimal;
 		}
-
 		++i;
 	}
 	assert(!NUM(s[i]) && !DOT(s[i]));
 
 	if (s[0] == '-') {
-		r = -r;
+		result = -result;
 	}
 
-	return r;
+	return result;
 }
 
 int main(void)
 {
-	char c[100];
-	float d;
+	char source[100];
+	float num;
 
 	printf("convert a string to float>\n");
 	printf("enter a string: ");
-	scanf("%s", c);
-	printf(" [ %s ]\n", c);
+	scanf("%s", source);
+	printf(" [ %s ]\n", source);
 
-	d = string_to_float(c);
-	printf("string [ %s ] float %f\n", c, d);
+	num = string_to_float(source);
+	printf("string [ %s ] float %f\n", source, num);
 
 	return 0;
 }
