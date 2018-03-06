@@ -3,7 +3,6 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
 
 int string_length(char s[])
@@ -18,47 +17,41 @@ int string_length(char s[])
 	return i;
 }
 
-void substring(char s[], int pos, int new_len, char r[], int n)
+void sub_string(char s[], int pos, int len, char sub_snt[], int n)
 {
-	int i, j, len;
+	int i, j, s_len;
 
 	assert(n > 0);
-	len = string_length(s);
+	s_len = string_length(s);
+	assert((0 <= pos) && (pos < s_len));
+	assert((0 < len) && (len <= s_len));
 
-	if ((pos < 0) || (pos >= len)) {
-		printf("position %d error\n", pos);
-		exit(1);
-	}
-	if ((new_len <= 0) || (new_len > len)) {
-		printf("new length %d error\n", new_len);
-		exit(1);
-	}
-
-	// loop s[ pos .. len-1] to copy r[ 0 .. new_len-1]
-	for (i = 0, j = pos; i <= new_len-1; ++i, ++j) {
+	// loop s[ pos .. s_len-1] to copy r[ 0 .. len-1]
+	for (i = 0, j = pos; i <= len-1; ++i, ++j) {
+		assert((0 <= j) && (j < s_len));
 		assert((0 <= i) && (i < n));
-		r[i] = s[j];
+		sub_snt[i] = s[j];
 	}
-	assert(i == new_len);
+	assert(i == len);
 
 	assert(i <= n);
-	r[i] = '\0';
+	sub_snt[i] = '\0';
 }
 
 int main(void)
 {
-	char a[] = "do for somthing!";
-	char b[101];
+	char source[] = "do for somthing!";
+	char output[101];
 	int n = 100;
-	int pos, new_len;
+	int pos, len;
 
 	printf("extract a portion of a char string using substring>\n");
-	printf("strings [ %s ]\n", a);
+	printf("strings [ %s ]\n", source);
 
 	pos = 0;
-	new_len = 9;
-	substring(a, pos, new_len, b, n);
-	printf("position %d length %d\nsubstring [ %s ]\n", pos, new_len, b);
+	len = 10;
+	sub_string(source, pos, len, output, n);
+	printf("position %d length %d\nsubstring [ %s ]\n", pos, len, output);
 
 	return 0;
 }
