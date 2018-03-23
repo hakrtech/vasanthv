@@ -6,13 +6,14 @@
 
 int main(void)
 {
-	int digit, count = 10;
-	int *val;
+	int digit, num = 10;
+	int *ptr;
 
-	val = &count;
-	digit = *val;
+	ptr = &num;
+	digit = *ptr;
 
-	printf("count = %d digit = %d\n", count, digit);
+	printf("pointer to an interger>\n");
+	printf("num = %d pointer digit = %d\n", num, digit);
 
 	return 0;
 }
