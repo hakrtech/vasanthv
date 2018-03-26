@@ -28,8 +28,16 @@ void print_list(struct entry *list_ptr)
 int main(void)
 {
 	struct entry num1, num2, num3, *insert;
+	struct entry ap, bp, cp;
 	struct entry *list;
+	/*
+	ap = allocate size of struct node
+	verify ap is not null
 
+	similary allocate bp and cp
+
+	use ap, bp, cp instead of num1, num2, num3	
+	*/
 	list = &num1;
 	num1.val = 100;
 	num1.next = &num2;
