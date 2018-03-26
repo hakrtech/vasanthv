@@ -28,9 +28,10 @@ void print_list(struct entry *list_ptr)
 int main(void)
 {
 	struct entry num1, num2, num3, *insert;
-	struct entry ap, bp, cp;
 	struct entry *list;
 	/*
+	struct entry *ap, *bp, *cp;
+
 	ap = allocate size of struct node
 	verify ap is not null
 
